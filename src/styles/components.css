@@ -2934,3 +2934,218 @@ html[data-system='ronin-borg'] .gm-notes__body {
   font-size: 0.8rem;
   color: var(--muted);
 }
+
+/* ============================ BESTIARY ============================ */
+
+.bestiary {
+  position: fixed;
+  top: 64px;
+  right: 1rem;
+  width: min(480px, calc(100vw - 2rem));
+  max-height: calc(100vh - 96px);
+  background: var(--darker);
+  border: 2px solid var(--yellow);
+  box-shadow: var(--shadow-deep), var(--shadow-glow-yellow);
+  display: flex;
+  flex-direction: column;
+  z-index: 70;
+  animation: slide-in-right 0.18s ease-out;
+}
+.bestiary__header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0.8rem;
+  background: var(--black);
+  border-bottom: 1px solid var(--yellow);
+}
+.bestiary__header h3 {
+  font-size: 0.95rem;
+  letter-spacing: 0.25em;
+  margin: 0;
+  flex: 1;
+}
+.bestiary__count {
+  font-size: 0.7rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+}
+.bestiary__controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.8rem;
+  background: var(--dark);
+  border-bottom: 1px solid var(--dark);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+.bestiary__search {
+  flex: 1;
+  background: var(--black);
+  color: var(--bone);
+  border: 1px solid var(--yellow-dim);
+  padding: 0.35rem 0.5rem;
+  font-family: var(--font-body, inherit);
+  font-size: 0.9rem;
+}
+.bestiary__search:focus {
+  outline: none;
+  border-color: var(--yellow);
+}
+.bestiary__filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--yellow-dim);
+  white-space: nowrap;
+}
+.bestiary__empty {
+  padding: 1rem;
+  color: var(--muted);
+  font-style: italic;
+  margin: 0;
+}
+.bestiary__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+}
+.bestiary-row {
+  border-bottom: 1px solid var(--dark);
+}
+.bestiary-row--stub {
+  opacity: 0.78;
+}
+.bestiary-row__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-left: 3px solid transparent;
+  color: inherit;
+  text-align: left;
+  font-family: inherit;
+  font-size: 0.9rem;
+  padding: 0.45rem 0.8rem 0.25rem;
+  cursor: pointer;
+}
+.bestiary-row__head:hover {
+  background: var(--dark);
+}
+.bestiary-row--open > .bestiary-row__head {
+  background: var(--dark);
+  border-left-color: var(--yellow);
+}
+.bestiary-row__name {
+  color: var(--bone);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.bestiary-row__variant {
+  color: var(--muted);
+  font-weight: 400;
+  font-style: italic;
+}
+.bestiary-row__quick {
+  display: inline-flex;
+  gap: 0.6rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  color: var(--yellow-dim);
+}
+.bestiary-row__stub-tag {
+  background: var(--black);
+  color: var(--muted);
+  border: 1px dashed var(--yellow-dim);
+  padding: 0 0.4rem;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+.bestiary-row__descriptor {
+  margin: 0 0.8rem 0.4rem 1rem;
+  color: var(--muted);
+  font-style: italic;
+  font-size: 0.8rem;
+}
+.bestiary-row__detail {
+  padding: 0.2rem 0.9rem 0.7rem;
+  background: var(--dark);
+  border-left: 3px solid var(--yellow);
+  margin-left: 0;
+}
+.bestiary-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem 0.8rem;
+  margin: 0.4rem 0;
+}
+.bestiary-stats > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+.bestiary-stats__attack {
+  grid-column: 1 / -1;
+}
+.bestiary-stats dt {
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--yellow-dim);
+  margin: 0;
+}
+.bestiary-stats dd {
+  margin: 0;
+  color: var(--bone);
+  font-size: 0.88rem;
+  line-height: 1.3;
+}
+.bestiary-row__special,
+.bestiary-row__lore,
+.bestiary-row__stub-note {
+  margin: 0.4rem 0;
+  font-size: 0.83rem;
+  line-height: 1.4;
+  color: var(--bone);
+}
+.bestiary-row__lore {
+  color: var(--muted);
+  font-style: italic;
+}
+.bestiary-row__stub-note {
+  color: var(--yellow-dim);
+  border-top: 1px dashed var(--yellow-dim);
+  padding-top: 0.4rem;
+}
+.bestiary-row__special .label,
+.bestiary-row__stub-note .label {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--yellow-dim);
+}
+.bestiary-row__source {
+  margin: 0.3rem 0 0;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+.bestiary-row__foot {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: flex-end;
+}
+.bestiary-row__foot .iconbtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

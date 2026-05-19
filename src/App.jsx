@@ -32,6 +32,7 @@ import CombatTracker, { buildCombatants } from './components/CombatTracker.jsx';
 import OverlandTravel from './components/OverlandTravel.jsx';
 import DungeonGenerator from './components/DungeonGenerator.jsx';
 import AmbientMixer from './components/AmbientMixer.jsx';
+import Bestiary from './components/Bestiary.jsx';
 
 const DEFAULT_ADVENTURE_ID = 'graves-left-wanting';
 
@@ -66,6 +67,7 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
   const [travelOpen, setTravelOpen] = useState(false);
   const [dungeonOpen, setDungeonOpen] = useState(false);
   const [ambientOpen, setAmbientOpen] = useState(false);
+  const [bestiaryOpen, setBestiaryOpen] = useState(false);
 
   const system = getSystem(adventure);
   const rules = getRulesForSystem(system);
@@ -165,6 +167,9 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
         case 'a':
           setAmbientOpen((o) => !o);
           break;
+        case 'e':
+          setBestiaryOpen((o) => !o);
+          break;
         case 'escape':
           // Close the most recently opened modal-ish thing.
           if (dungeonOpen) setDungeonOpen(false);
@@ -179,6 +184,7 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
           else if (combatOpen) setCombatOpen(false);
           else if (travelOpen) setTravelOpen(false);
           else if (ambientOpen) setAmbientOpen(false);
+          else if (bestiaryOpen) setBestiaryOpen(false);
           else if (partyOpen) setPartyOpen(false);
           break;
         default:
@@ -187,7 +193,7 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [state.history.length, goBack, builderOpen, pickerOpen, shareOpen, mapOpen, rulesOpen, miseryOpen, diceOpen, partyOpen, npcOpen, combatOpen, travelOpen, dungeonOpen, ambientOpen]);
+  }, [state.history.length, goBack, builderOpen, pickerOpen, shareOpen, mapOpen, rulesOpen, miseryOpen, diceOpen, partyOpen, npcOpen, combatOpen, travelOpen, dungeonOpen, ambientOpen, bestiaryOpen]);
 
   return (
     <>
@@ -287,6 +293,15 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
             aria-pressed={ambientOpen}
           >
             ♪ ambient
+          </button>
+          <button
+            type="button"
+            className="iconbtn"
+            onClick={() => setBestiaryOpen((o) => !o)}
+            title="Bestiary (E)"
+            aria-pressed={bestiaryOpen}
+          >
+            ⛧ bestiary
           </button>
           <button
             type="button"
@@ -413,6 +428,14 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
         clearLog={clearTravelLog}
       />
       <AmbientMixer open={ambientOpen} onClose={() => setAmbientOpen(false)} />
+      <Bestiary
+        open={bestiaryOpen}
+        onClose={() => setBestiaryOpen(false)}
+        canAddToNotes={!!currentNode}
+        onAddToNotes={(text) => {
+          if (currentNode) appendScratchNotes(currentNode.id, text);
+        }}
+      />
 
       {mapOpen && (
         <MapView
@@ -478,7 +501,7 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
       <footer className="app-foot">
         <small>{adventure.meta.license}</small>
         <small className="app-foot__keys">
-          shortcuts: ? rules · b back · l library · m map · d dice · k calendar · p party · n npc · c combat · t travel · a ambient · s share · esc close
+          shortcuts: ? rules · b back · l library · m map · d dice · k calendar · p party · n npc · c combat · t travel · a ambient · e bestiary · s share · esc close
         </small>
       </footer>
     </>
