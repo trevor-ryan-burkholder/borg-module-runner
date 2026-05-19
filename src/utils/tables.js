@@ -92,14 +92,19 @@ function rollDiceKeyed(obj, explicitSides) {
 
   const maxFace = Math.max(...ranges.map((r) => r.max));
   const sides = explicitSides ?? maxFace;
-  const die = rollDie(sides);
 
-  const hit = ranges.find((r) => die >= r.min && die <= r.max);
-  if (!hit) {
-    // Re-roll out-of-range results so we always return something. This shouldn't
-    // happen if the table covers 1..sides, but it can if `sides` was passed in.
-    return rollDiceKeyed(obj, explicitSides);
+  // Re-roll out-of-range results (possible when explicitSides exceeds table
+  // coverage), but bound the attempts so a sparse table can't spin forever.
+  const MAX_TRIES = 50;
+  for (let i = 0; i < MAX_TRIES; i++) {
+    const die = rollDie(sides);
+    const hit = ranges.find((r) => die >= r.min && die <= r.max);
+    if (hit) return { value: obj[hit.key], index: keys.indexOf(hit.key), roll: die, sides };
   }
 
-  return { value: obj[hit.key], index: keys.indexOf(hit.key), roll: die, sides };
+  // Coverage gap defeated the rolls — fall back to a uniform pick over the keys
+  // so the caller still gets a valid result.
+  const fallbackIdx = Math.floor(Math.random() * keys.length);
+  const key = keys[fallbackIdx];
+  return { value: obj[key], index: fallbackIdx, roll: null, sides };
 }

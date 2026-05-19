@@ -198,11 +198,21 @@ function main() {
     parseCreature(fs.readFileSync(path.join(CREATURES, f), 'utf8'), path.basename(f, '.md'))
   );
 
-  // Strip residual markdown bold/italic asterisks from extracted fields. Bestiary entries
-  // are surfaced as plain text in the UI, not rendered as markdown.
+  // Strip residual markdown from extracted fields. Bestiary entries are surfaced
+  // as plain text in the UI, not rendered as markdown — strip bold, italic, and
+  // wiki-style cross-reference brackets ([[Plant of Life]] → Plant of Life).
   const stripMd = (s) =>
     typeof s === 'string'
-      ? s.replace(/\*\*(.+?)\*\*/g, '$1').replace(/(^|\s)\*(.+?)\*(?=\s|$)/g, '$1$2').trim()
+      ? s
+          // [[id|display text]] → display text
+          .replace(/\[\[([^\]|]+)\|([^\]]+)\]\]/g, '$2')
+          // [[name]] → name
+          .replace(/\[\[([^\]]+)\]\]/g, '$1')
+          // **bold** → bold
+          .replace(/\*\*(.+?)\*\*/g, '$1')
+          // *italic* → italic (only when surrounded by whitespace or boundaries)
+          .replace(/(^|\s)\*(.+?)\*(?=\s|$)/g, '$1$2')
+          .trim()
       : s;
   for (const e of entries) {
     e.hp = stripMd(e.hp);

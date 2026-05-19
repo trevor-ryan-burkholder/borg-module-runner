@@ -21,8 +21,10 @@ function findBestiaryMatch(text) {
   if (!text) return null;
   const lower = text.toLowerCase();
   for (const [name, entry] of bestiaryByName) {
-    // Only fire on word-boundary matches so "rat" doesn't match "narrate".
-    const rx = new RegExp(`\\b${name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i');
+    // Word-boundary match so "rat" doesn't match "narrate". Trailing "s?" lets a
+    // singular entry name match its plural in prose ("d8 zombies in the crypt").
+    const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const rx = new RegExp(`\\b${escaped}s?\\b`, 'i');
     if (rx.test(lower)) return entry;
   }
   return null;

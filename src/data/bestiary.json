@@ -32,8 +32,8 @@
       "hp": "—",
       "morale": "—",
       "attack": "No direct attack",
-      "special": "Wordless Song. The corridor walls bloom with angel-faced flowers, all of them looking through and into anyone who passes. They sing a wordless song that triggers visions of death, vertigo, monochrome outlining of all things, or invisibility-of-the-living (roll d4 from the corridor's table). The flowers themselves invite hidden things to be revealed — the [[Icon of St Largoth]]'s Eyes, brought through this passage, will see what would otherwise be hidden.",
-      "lore": "The angelic children of the [[Plant of Life]], worshipped by the [[Drowned]] in their poisoned exile. The faces in the flowers are not human — too many planes, too many eyes — and the song is not music. To walk the corridor is to be sung at by something that thinks of you as a passing weather pattern. The [[Madman]] crawled here once and never returned to himself."
+      "special": "Wordless Song. The corridor walls bloom with angel-faced flowers, all of them looking through and into anyone who passes. They sing a wordless song that triggers visions of death, vertigo, monochrome outlining of all things, or invisibility-of-the-living (roll d4 from the corridor's table). The flowers themselves invite hidden things to be revealed — the Icon of St Largoth's Eyes, brought through this passage, will see what would otherwise be hidden.",
+      "lore": "The angelic children of the Plant of Life, worshipped by the Drowned in their poisoned exile. The faces in the flowers are not human — too many planes, too many eyes — and the song is not music. To walk the corridor is to be sung at by something that thinks of you as a passing weather pattern. The Madman crawled here once and never returned to himself."
     },
     {
       "id": "antideer",
@@ -99,7 +99,7 @@
       "morale": "—",
       "attack": "Tanned flesh −d4",
       "special": "Delights in hiding and picking off its prey. Roll DR12 to detect the Bowyer to prevent it from getting two free shots.",
-      "lore": "Children oft go missing. Parents would tear the scalps from their skulls if they knew that their child was stolen and harvested by The Bone Bowyer — a horrid, stealthy fey lurking in [[Sarkash]]'s tangled depths. This tall, etiolated demon fashions bows from the bones of the children that it hunts; it stitches together supple flesh and fashions blood-dyed cloaks; it slays the elderly, the infirm and the innocent. It is altogether alien and indifferent to suffering."
+      "lore": "Children oft go missing. Parents would tear the scalps from their skulls if they knew that their child was stolen and harvested by The Bone Bowyer — a horrid, stealthy fey lurking in Sarkash's tangled depths. This tall, etiolated demon fashions bows from the bones of the children that it hunts; it stitches together supple flesh and fashions blood-dyed cloaks; it slays the elderly, the infirm and the innocent. It is altogether alien and indifferent to suffering."
     },
     {
       "id": "bonemare",
@@ -167,7 +167,7 @@
       "morale": "—",
       "attack": "No attack",
       "special": "No stat block is printed. The spirit does not fight, only pleads — it remembers something that was done to it here, but not its own name. Manifests in the Pump room, the Chain room, or the Debris room (the three rooms with random-encounter rolls).",
-      "lore": "Whatever the spirit was — a prisoner of the Den, a Courtier of the [[Shadow King]] gone looking for [[Aldon]], a cannibal's leftover — it carries enough memory to point at the worm in the sludge and hate it more than it hates being dead. Once the PCs hear it out, it dissolves."
+      "lore": "Whatever the spirit was — a prisoner of the Den, a Courtier of the Shadow King gone looking for Aldon, a cannibal's leftover — it carries enough memory to point at the worm in the sludge and hate it more than it hates being dead. Once the PCs hear it out, it dissolves."
     },
     {
       "id": "dredgehog",
@@ -210,9 +210,9 @@
       "source": "Sepulchre of the Swamp Witch",
       "hp": "8",
       "morale": "—",
-      "attack": "No armor, Bite d2 + [[Emerald Venom]]",
+      "attack": "No armor, Bite d2 + Emerald Venom",
       "special": "",
-      "lore": "The Swamp Witch's death causes all Emerald Serpents (and the [[Emerald Venom]] effects, and the barrier blocking the Downward Spiral) to disappear forever."
+      "lore": "The Swamp Witch's death causes all Emerald Serpents (and the Emerald Venom effects, and the barrier blocking the Downward Spiral) to disappear forever."
     },
     {
       "id": "false-seal",
@@ -278,7 +278,7 @@
       "morale": "—",
       "attack": "Ceramic −d4, Violent shove d6.",
       "special": "",
-      "lore": "Animated by the two original automatons (servants of [[Silas the Fattened King]]) pouring bodily fluids into the empty ceramic-humanoid heads stored in vats of rendered fat in the labyrinth's Automaton Storage. Anyone who enters that room who is not an automaton is taken to the Larder for processing."
+      "lore": "Animated by the two original automatons (servants of Silas the Fattened King) pouring bodily fluids into the empty ceramic-humanoid heads stored in vats of rendered fat in the labyrinth's Automaton Storage. Anyone who enters that room who is not an automaton is taken to the Larder for processing."
     },
     {
       "id": "forked-tongue-devotee",
@@ -289,7 +289,7 @@
       "morale": "9",
       "attack": "Gatorskin hood and vestment −d4",
       "special": "",
-      "lore": "These are the most fanatic of [[Ueth]]'s followers and will die for him if asked. They will not allow any suspicious behaviour in the Worship Hall. They speak with a burning passion and wicked lisp."
+      "lore": "These are the most fanatic of Ueth's followers and will die for him if asked. They will not allow any suspicious behaviour in the Worship Hall. They speak with a burning passion and wicked lisp."
     },
     {
       "id": "giant-skull-moth",
@@ -311,7 +311,7 @@
       "morale": "7",
       "attack": "Ropy skin −d2, Knife/shortbow d4",
       "special": "Quick — attacks and defence are dr14.",
-      "lore": "All goblins carry a curse. Once like you, they are now trapped in the prison of their crazed goblin flesh. Only their eyes reveal the truth: a ruined mind watching its body-prison perform terrible deeds. Even being attacked by goblins sends the curse, carried on the winds of their hate — see [[Goblin Curse]]. Hit or miss, it doesn't matter. In the dark of [[Sarkash]] they shoot at passers-by with twanging bows. You must find and kill the goblin before your mind is paralyzed. If the curse-carrying creature still lives d6 days after the attack, you will warp irrevocably into one yourself."
+      "lore": "All goblins carry a curse. Once like you, they are now trapped in the prison of their crazed goblin flesh. Only their eyes reveal the truth: a ruined mind watching its body-prison perform terrible deeds. Even being attacked by goblins sends the curse, carried on the winds of their hate — see Goblin Curse. Hit or miss, it doesn't matter. In the dark of Sarkash they shoot at passers-by with twanging bows. You must find and kill the goblin before your mind is paralyzed. If the curse-carrying creature still lives d6 days after the attack, you will warp irrevocably into one yourself."
     },
     {
       "id": "gold-crested-filth-crow",
@@ -421,7 +421,7 @@
       "morale": "—",
       "attack": "Leather scraps −d2, Claw/Bite d2 + special",
       "special": "Test Toughness DR8 or die turning into a zombie after 2 days.",
-      "lore": "Encountered in groups of d4, eating. Whatever is at hand. The standard Graven-Tosk variant of the walking dead — leaner than [[Zombie|Nodh]] from Bare Bones, but the bite delivers the same patient sentence. Two days, then up. The cure, if there is one, sits canonically atop a pale mountain in an infinitely-miserable forest of dark leaves, and the Hungry Zombies do not seem to know about it."
+      "lore": "Encountered in groups of d4, eating. Whatever is at hand. The standard Graven-Tosk variant of the walking dead — leaner than Nodh from Bare Bones, but the bite delivers the same patient sentence. Two days, then up. The cure, if there is one, sits canonically atop a pale mountain in an infinitely-miserable forest of dark leaves, and the Hungry Zombies do not seem to know about it."
     },
     {
       "id": "lady-porcelain",
@@ -432,7 +432,7 @@
       "morale": "—",
       "attack": "Porcelain −d2, Claws/piercing bite d4",
       "special": "",
-      "lore": "In [[Tveland]], relic thieves, defamers, and corrupt clerks suffer a punishment of exquisite and deeply impractical cruelty. Their children or grandchildren are enclosed in porcelain dolls then placed in cathedral windows, to die slowly of starvation and heat. Despite warding rituals, many return as vengeful undead, often gathering in large throngs to hunt their tormentors. Their mad gaze demands a Presence dr12 test at the start of combat to avoid being frozen with fear for d4 rounds."
+      "lore": "In Tveland, relic thieves, defamers, and corrupt clerks suffer a punishment of exquisite and deeply impractical cruelty. Their children or grandchildren are enclosed in porcelain dolls then placed in cathedral windows, to die slowly of starvation and heat. Despite warding rituals, many return as vengeful undead, often gathering in large throngs to hunt their tormentors. Their mad gaze demands a Presence dr12 test at the start of combat to avoid being frozen with fear for d4 rounds."
     },
     {
       "id": "lentil-lice",
@@ -454,7 +454,7 @@
       "morale": "—",
       "attack": "—",
       "special": "",
-      "lore": "Named only in the [[Misery Table]]:",
+      "lore": "Named only in the Misery Table:",
       "stub": "Named only in Psalm IV of the Misery Table. No stat block; an apocalyptic event, not an opposed creature."
     },
     {
@@ -499,8 +499,8 @@
       "hp": "2",
       "morale": "—",
       "attack": "No armor, Bite d2",
-      "special": "Naked, unarmed, and scared to death of the [[Angelic Choir]]. Cannot remember his name. Tries to flee any room being entered; will only bite when first bitten or cornered.",
-      "lore": "A former graverobber, mad with spore-fever. Crawls at the entrance of [[Devil's Tomb]], the only living thing the [[Drowned]] haven't bothered to kill — perhaps because the spores already did the work. He has seen the [[Angelic Choir]] singing in the corridor of angel-faced flowers and has no language left to describe it. He has stopped looking for the way out."
+      "special": "Naked, unarmed, and scared to death of the Angelic Choir. Cannot remember his name. Tries to flee any room being entered; will only bite when first bitten or cornered.",
+      "lore": "A former graverobber, mad with spore-fever. Crawls at the entrance of Devil's Tomb, the only living thing the Drowned haven't bothered to kill — perhaps because the spores already did the work. He has seen the Angelic Choir singing in the corridor of angel-faced flowers and has no language left to describe it. He has stopped looking for the way out."
     },
     {
       "id": "marrow-sparrow",
@@ -587,7 +587,7 @@
       "hp": "2",
       "morale": "—",
       "attack": "Beak d4",
-      "special": "Make their own nesting hollows along the [[Múr]]'s banks, using sawtooth beaks and a sticky putty spewn from their gullets. A flock can pull a man apart.",
+      "special": "Make their own nesting hollows along the Múr's banks, using sawtooth beaks and a sticky putty spewn from their gullets. A flock can pull a man apart.",
       "lore": "They live in hollows along the Múr's banks — hollows they shape themselves, the putty hardening to stone in the wind. Climbers on the bridges hear them all day. They do not stop. Twenty of them in the sky over Grift is not unusual. Twenty of them on a man is a brief story."
     },
     {
@@ -654,7 +654,7 @@
       "morale": "—",
       "attack": "Tendril grab (Agl dr12 to avoid); if grabbed, dragged toward the mouth (Str dr14 or d6/round until escape or tendril severed).",
       "special": "On death, all vines turn to black metal and the angelic faces to skulls. Big — impossible to miss.",
-      "lore": "The [[Drowned]] worship it as their god, and its \"angelic children\" — the bulbous angel-faced flowers along the Angelic Choir corridor — sing wordless songs (Presence DR10 or loudly sing along for a minute). Spores it releases throughout the tomb cause visions of death, vertigo, monochromatic outlining, or invisibility-of-the-living."
+      "lore": "The Drowned worship it as their god, and its \"angelic children\" — the bulbous angel-faced flowers along the Angelic Choir corridor — sing wordless songs (Presence DR10 or loudly sing along for a minute). Spores it releases throughout the tomb cause visions of death, vertigo, monochromatic outlining, or invisibility-of-the-living."
     },
     {
       "id": "ragpie",
@@ -709,7 +709,7 @@
       "morale": "7",
       "attack": "No armor, Knuckles d2",
       "special": "Whenever it takes damage, a puff of vile marrow-dust leaks from its broken bones. Melee attackers must test Toughness DR10 or become infected.",
-      "lore": "Skulks the fog-bound paths of [[Graven-Tosk]] in pairs and quartets, the bones not so much walking as *failing to fall*. The marrow has gone wrong inside them — not dust, exactly, more a fine spore that knows your name. An infected wound in this cemetery will not heal during rest; instead d6 HP is lost daily until something magickal or distant intervenes."
+      "lore": "Skulks the fog-bound paths of Graven-Tosk in pairs and quartets, the bones not so much walking as *failing to fall*. The marrow has gone wrong inside them — not dust, exactly, more a fine spore that knows your name. An infected wound in this cemetery will not heal during rest; instead d6 HP is lost daily until something magickal or distant intervenes."
     },
     {
       "id": "rusty-bass",
@@ -731,7 +731,7 @@
       "morale": "—",
       "attack": "Provoked Explosion 2d10 (distributed among the group).",
       "special": "Cannot be harmed. Will not attack unless provoked. Trades violet poison and a Beechwood Tube containing a protean unclean scroll.",
-      "lore": "An interdimensional trader who manifests as a random encounter inside the [[Accursed Den]] — shapeless and ethereal, her face a vortex of light. She sells violet poison (30s — DR14, 2d10 damage, d4+1 doses) and offers a Beechwood Tube (30s) containing a foul protean scroll: each dawn this scroll has a new unclean Power. The Power can be used once. It is misinterpreted on 1–3 on a d20 instead of a 1."
+      "lore": "An interdimensional trader who manifests as a random encounter inside the Accursed Den — shapeless and ethereal, her face a vortex of light. She sells violet poison (30s — DR14, 2d10 damage, d4+1 doses) and offers a Beechwood Tube (30s) containing a foul protean scroll: each dawn this scroll has a new unclean Power. The Power can be used once. It is misinterpreted on 1–3 on a d20 instead of a 1."
     },
     {
       "id": "sarcopha-ghost",
@@ -786,7 +786,7 @@
       "morale": "—",
       "attack": "—",
       "special": "",
-      "lore": "The Southern Frog is the chief ingredient of Southern Frog stew — a decoction brewed by the [[Occult Herbmaster]] that purges the gut. Vomit for d4 hours. Pass a dr14 test or you can do nothing else.",
+      "lore": "The Southern Frog is the chief ingredient of Southern Frog stew — a decoction brewed by the Occult Herbmaster that purges the gut. Vomit for d4 hours. Pass a dr14 test or you can do nothing else.",
       "stub": "Ingredient creature for Southern Frog stew; no canonical combat stats."
     },
     {
@@ -798,7 +798,7 @@
       "morale": "—",
       "attack": "—",
       "special": "",
-      "lore": "The Spider-Owl is the third ingredient of Spider-Owl soup — a decoction brewed by the [[Occult Herbmaster]] that grants night-vision and wall-climbing for thirty minutes.",
+      "lore": "The Spider-Owl is the third ingredient of Spider-Owl soup — a decoction brewed by the Occult Herbmaster that grants night-vision and wall-climbing for thirty minutes.",
       "stub": "Ingredient creature for Spider-Owl soup; no canonical combat stats."
     },
     {
@@ -886,7 +886,7 @@
       "hp": "—",
       "morale": "—",
       "attack": "Cannot be harmed",
-      "special": "Mental Shockwave. The demon will drain the text from one scroll the readers carry. Then it sends out a mental shockwave before vanishing. Any PC failing a Presence DR12 test is unable to use [[Powers]] for the rest of the scenario and loses d6 HP.",
+      "special": "Mental Shockwave. The demon will drain the text from one scroll the readers carry. Then it sends out a mental shockwave before vanishing. Any PC failing a Presence DR12 test is unable to use Powers for the rest of the scenario and loses d6 HP.",
       "lore": "Bound to this room for reasons no one remembers, the demon would very much like to leave; it cannot. So it eats words. The scroll text is gone forever — drained into the demon and carried into the next place crystal demons go when they grow tired enough. The shudder before vanishing is something like relief."
     },
     {
@@ -942,7 +942,7 @@
       "morale": "—",
       "attack": "Exoskeleton −d4, Bite d4 + special",
       "special": "Test Toughness DR12 or become host for a dozen freshly laid fly eggs. Extract them within d6 days or watch them hatch in your corpse.",
-      "lore": "Bursts out of urns and skulls in the [[Catacomb Corridor]] looking for food. Twice grown because the first cycle was a fly that hatched in a corpse; the second is *you*. The fog of [[Graven-Tosk]] is full of their droning when the ground sweats. Eat-Prey-Kill notes them as native fauna of the cemetery alongside the Meatroach and the [[Unbred Mutt|Unbred Mutts]]."
+      "lore": "Bursts out of urns and skulls in the Catacomb Corridor looking for food. Twice grown because the first cycle was a fly that hatched in a corpse; the second is *you*. The fog of Graven-Tosk is full of their droning when the ground sweats. Eat-Prey-Kill notes them as native fauna of the cemetery alongside the Meatroach and the Unbred Mutts."
     },
     {
       "id": "unbred-mutts",
@@ -996,7 +996,7 @@
       "hp": "2",
       "morale": "6",
       "attack": "Beak d4",
-      "special": "Looks so utterly pathetic that you will need to pass a DR12 Presence test to bring yourself to fight back. When encountering the bird, roll to meet its accompanying master (d4): 1–2. Roll again on the hunting table. 3. A flesh starved berserker ([[Berserker|Zukuma]], Bare Bones p.60). 4. A Lich looking for some god damn peace and quiet ([[Lich]], Bare Bones p.63).",
+      "special": "Looks so utterly pathetic that you will need to pass a DR12 Presence test to bring yourself to fight back. When encountering the bird, roll to meet its accompanying master (d4): 1–2. Roll again on the hunting table. 3. A flesh starved berserker (Zukuma, Bare Bones p.60). 4. A Lich looking for some god damn peace and quiet (Lich, Bare Bones p.63).",
       "lore": "The Whisperbird will follow any master, provided that you kill its current one. Until then, it will fight with tooth and beak to stop you from doing so. The bird is so wretched and pitying a thing that drawing a knife on it feels like cruelty. The lich it follows is counting on this."
     },
     {
@@ -1008,7 +1008,7 @@
       "morale": "7",
       "attack": "No armor, Knife with dried blood d4",
       "special": "Can magically douse all nearby light sources, ignite its own blinding light, and attack. Then vanish into the darkness.",
-      "lore": "Sneaks up behind its victims, silent as the grave. Skulks around the cities' outskirts and the thickets of [[Sarkash]]. 25% chance wounds from the insanely filthy knife become infected."
+      "lore": "Sneaks up behind its victims, silent as the grave. Skulks around the cities' outskirts and the thickets of Sarkash. 25% chance wounds from the insanely filthy knife become infected."
     },
     {
       "id": "widow-wraith",
@@ -1019,7 +1019,7 @@
       "morale": "—",
       "attack": "Icy touch d4 + special",
       "special": "Her sobbing alerts anyone to her presence; she always loses initiative. Her touch drains Strength, Presence, and Agility by 1 for the fight's duration.",
-      "lore": "Wanders the cold paths of [[Graven-Tosk]] alone, weeping a sound that arrives several seconds before she does. Some say she was buried alongside a husband who refused her in death; some say she buried him and then found out. Either way, the cemetery cannot keep her, and she cannot stop searching the living for warmth that comes off them in clouds."
+      "lore": "Wanders the cold paths of Graven-Tosk alone, weeping a sound that arrives several seconds before she does. Some say she was buried alongside a husband who refused her in death; some say she buried him and then found out. Either way, the cemetery cannot keep her, and she cannot stop searching the living for warmth that comes off them in clouds."
     },
     {
       "id": "wraith",
@@ -1052,7 +1052,7 @@
       "morale": "—",
       "attack": "Leather scraps −d2, Claw/bite d2 + special",
       "special": "Anyone bitten tests Toughness dr8 or dies within two days before rising as a zombie. The only cure or vaccine is said to be found at the peak of a pale mountain within an infinitely-miserable forest of dark leaves.",
-      "lore": "King [[Fathmu IX]] of [[Western Kingdom]] in particular seeks this cure and knows the name and location of the forest which the mountain overlooks."
+      "lore": "King Fathmu IX of Western Kingdom in particular seeks this cure and knows the name and location of the forest which the mountain overlooks."
     },
     {
       "id": "the-bertaker",
@@ -1063,7 +1063,7 @@
       "morale": "—",
       "attack": "Barrier (palefire) −d4",
       "special": "When targeted by healing powers, the Übertaker loses rather than recovers HP. Upon destruction, the torn rune-covered robes can be rolled up and used as an Unclean Scroll (BEHOLD THE POWER — d4 creatures' next attacks deal maximum damage).",
-      "lore": "\"Rising, floating a few feet above the ground, is the Undertaker's body. The face is gaunt, eyes sunken and filled with mad purple fire. Rune-covered robes swirl around grim feet, the shovel a fiery polearm of doom.\" Upon festering, the Undertaker's body and vengeful mind hosted a being both lesser and greater than human — a servant of a faraway underworld. This creature is concerned with one thing: to bring people back below dirt. The fog of [[Graven-Tosk]] swirls around the uncovered grave when it rises; the flies fall away into impossible silence."
+      "lore": "\"Rising, floating a few feet above the ground, is the Undertaker's body. The face is gaunt, eyes sunken and filled with mad purple fire. Rune-covered robes swirl around grim feet, the shovel a fiery polearm of doom.\" Upon festering, the Undertaker's body and vengeful mind hosted a being both lesser and greater than human — a servant of a faraway underworld. This creature is concerned with one thing: to bring people back below dirt. The fog of Graven-Tosk swirls around the uncovered grave when it rises; the flies fall away into impossible silence."
     },
     {
       "id": "berwolf",

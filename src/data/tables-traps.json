@@ -1,7 +1,7 @@
 {
-  "source": "MÖRK BORG Bare Bones Edition, p.3 (d12)",
+  "source": "Traps and Devilry (d12) — MÖRK BORG Bare Bones Edition, p.4. Entry names are canonical; trigger/effect/DR mechanics are GM-facing elaborations (the source lists names only).",
   "entries": [
-    { "name": "Tripwire to a blade-pendulum", "trigger": "Crossing the threshold", "effect": "Agl dr12 or d8 damage from a swinging blade.", "dr": "12" },
+    { "name": "Well-dressed corpse, booby-trapped", "trigger": "Looting or moving the body", "effect": "Agl dr12 or d8 damage as the rigged mechanism springs.", "dr": "12" },
     { "name": "Wall-holes shooting poisonous arrows", "trigger": "Pressure plate", "effect": "Agl dr14 or d6 damage + Tou dr12 or poisoned (-2 next test).", "dr": "14" },
     { "name": "Bells and marbles on the floor", "trigger": "Walking quietly", "effect": "Alerts everyone in the dungeon. No save.", "dr": "—" },
     { "name": "Scorpion-filled basket poised to fall", "trigger": "Disturbing the alcove above", "effect": "Agl dr12 or d4 damage + a scorpion sting per round until brushed off.", "dr": "12" },

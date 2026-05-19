@@ -63,6 +63,9 @@ export function dungeonToAdventure(dungeon) {
 
   return {
     meta: {
+      // Unique id so two same-named dungeons don't collide in the library or in
+      // per-adventure session storage.
+      id: `${slugify(dungeon.name)}-${randomSuffix()}`,
       title: dungeon.name,
       author: 'Module Runner — Dungeon Generator',
       version: '1.0',
@@ -73,6 +76,18 @@ export function dungeonToAdventure(dungeon) {
     },
     nodes,
   };
+}
+
+function slugify(s) {
+  return String(s)
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '')
+    .slice(0, 40) || 'dungeon';
+}
+
+function randomSuffix() {
+  return Math.random().toString(36).slice(2, 6);
 }
 
 function nameOf(rooms, idx) {

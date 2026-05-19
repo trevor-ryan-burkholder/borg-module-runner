@@ -3,6 +3,10 @@ import { listChannels, CHANNEL_LABELS, setChannelLevel, stopAll, ensureContext }
 
 const STORAGE_KEY = 'mb-ambient-mix';
 
+// Stable across renders — listChannels() would otherwise return a new array
+// every render and thrash the apply-levels effect.
+const CHANNELS = listChannels();
+
 function loadMix() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
@@ -23,11 +27,10 @@ function saveMix(mix) {
 }
 
 export default function AmbientMixer({ open, onClose }) {
-  const channels = listChannels();
   const [levels, setLevels] = useState(() => {
     const saved = loadMix();
     const init = {};
-    for (const c of channels) init[c] = saved?.[c] ?? 0;
+    for (const c of CHANNELS) init[c] = saved?.[c] ?? 0;
     return init;
   });
   const [masterOn, setMasterOn] = useState(false);
@@ -39,21 +42,16 @@ export default function AmbientMixer({ open, onClose }) {
   }, [levels]);
 
   // Apply levels when master is on; mute everything when off.
+  // Audio intentionally outlives panel visibility — closing the panel keeps
+  // the wind blowing, which is the whole point of the mixer.
   useEffect(() => {
     if (!masterOn) {
       stopAll();
       return;
     }
     ensureContext();
-    for (const c of channels) setChannelLevel(c, levels[c] ?? 0);
-  }, [masterOn, levels, channels]);
-
-  // Stop audio on unmount so navigating away doesn't leave sound running.
-  useEffect(() => {
-    return () => stopAll();
-  }, []);
-
-  if (!open) return null;
+    for (const c of CHANNELS) setChannelLevel(c, levels[c] ?? 0);
+  }, [masterOn, levels]);
 
   const setLevel = (channel, value) => {
     const v = Math.max(0, Math.min(1, Number(value) || 0));
@@ -63,16 +61,24 @@ export default function AmbientMixer({ open, onClose }) {
   const allOff = () => {
     setLevels((m) => {
       const next = { ...m };
-      for (const c of channels) next[c] = 0;
+      for (const c of CHANNELS) next[c] = 0;
       return next;
     });
     setMasterOn(false);
   };
 
+  // Render even when closed (display: none) so master/level state persists
+  // and audio continues playing while the panel is dismissed.
   return (
-    <aside className="ambient-mixer" role="dialog" aria-label="Ambient sound mixer">
+    <aside
+      className="ambient-mixer"
+      role="dialog"
+      aria-label="Ambient sound mixer"
+      style={open ? undefined : { display: 'none' }}
+      aria-hidden={!open}
+    >
       <header className="ambient-mixer__header">
-        <h3>AMBIENT</h3>
+        <h3>AMBIENT{masterOn ? ' · ON' : ''}</h3>
         <div className="ambient-mixer__head-actions">
           <button
             type="button"
@@ -89,11 +95,11 @@ export default function AmbientMixer({ open, onClose }) {
       </header>
 
       <p className="ambient-mixer__hint">
-        Web Audio synthesis — no files. Engage master first; the browser blocks audio until you do.
+        Web Audio synthesis — no files. Engage master first; the browser blocks audio until you do. Audio keeps playing when the panel is closed.
       </p>
 
       <ul className="ambient-mixer__channels">
-        {channels.map((c) => (
+        {CHANNELS.map((c) => (
           <li key={c} className="ambient-channel">
             <span className="ambient-channel__label">{CHANNEL_LABELS[c]}</span>
             <input

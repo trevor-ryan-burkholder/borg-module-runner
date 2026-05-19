@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { getAdventureId } from '../utils/validate.js';
+import { uid } from '../utils/id.js';
 
 const STORAGE_KEY = 'mb-module-runner-state';
 
@@ -60,6 +61,18 @@ function hydrate(restored) {
   }
   if (!Array.isArray(out.travelLog)) {
     out = { ...out, travelLog: [] };
+  }
+  // Backfill stable ids on party members saved before ids existed, so combat
+  // sync can match them reliably.
+  const members = out.partyState?.members;
+  if (Array.isArray(members) && members.some((m) => !m.id)) {
+    out = {
+      ...out,
+      partyState: {
+        ...out.partyState,
+        members: members.map((m) => (m.id ? m : { ...m, id: uid('pc') })),
+      },
+    };
   }
   return out;
 }
@@ -165,11 +178,17 @@ export function useAdventure(adventure) {
 
   const endCombat = useCallback(() => {
     setState((s) => {
-      // Sync PC combatants back to partyState by partyIndex.
-      const pcSync = s.combatState.combatants.filter((c) => c.kind === 'pc');
+      // Sync PC combatants back to partyState. Match by stable memberId so the
+      // sync survives roster edits made mid-combat; fall back to partyIndex for
+      // combatants created before member ids existed.
+      const pcs = s.combatState.combatants.filter((c) => c.kind === 'pc');
+      let newDeaths = 0;
       const updatedMembers = s.partyState.members.map((m, idx) => {
-        const c = pcSync.find((x) => x.partyIndex === idx);
+        const c = pcs.find((x) =>
+          x.memberId && m.id ? x.memberId === m.id : x.partyIndex === idx
+        );
         if (!c) return m;
+        if (c.dead && !m.dead) newDeaths += 1;
         return {
           ...m,
           hp: c.hp,
@@ -177,11 +196,6 @@ export function useAdventure(adventure) {
           conditions: c.conditions.length ? c.conditions.join(', ') : m.conditions,
         };
       });
-      // Count any newly-dead PCs into deaths.
-      const newDeaths = pcSync.reduce(
-        (n, c) => (c.dead && !s.partyState.members[c.partyIndex]?.dead ? n + 1 : n),
-        0
-      );
       return {
         ...s,
         partyState: {

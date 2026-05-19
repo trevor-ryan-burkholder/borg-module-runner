@@ -241,6 +241,7 @@ export function buildCombatants({ enemies = [], partyMembers = [] }) {
       id: nextId(),
       kind: 'pc',
       partyIndex: idx,
+      memberId: m.id ?? null,
       name: m.name || `PC ${idx + 1}`,
       hp: m.hp ?? m.hpMax ?? 4,
       hpMax: m.hpMax ?? m.hp ?? 4,

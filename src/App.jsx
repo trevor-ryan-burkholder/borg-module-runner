@@ -9,6 +9,7 @@ import {
   getUserAdventure,
   getLastLoaded,
   setLastLoaded,
+  saveUserAdventure,
 } from './utils/library.js';
 import {
   readShareFromLocation,
@@ -33,10 +34,11 @@ import OverlandTravel from './components/OverlandTravel.jsx';
 import DungeonGenerator from './components/DungeonGenerator.jsx';
 import AmbientMixer from './components/AmbientMixer.jsx';
 import Bestiary from './components/Bestiary.jsx';
+import RandomTables from './components/RandomTables.jsx';
 
 const DEFAULT_ADVENTURE_ID = 'graves-left-wanting';
 
-function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdventure }) {
+function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdventure, onLoadEphemeral }) {
   const {
     state,
     currentNode,
@@ -68,6 +70,7 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
   const [dungeonOpen, setDungeonOpen] = useState(false);
   const [ambientOpen, setAmbientOpen] = useState(false);
   const [bestiaryOpen, setBestiaryOpen] = useState(false);
+  const [tablesOpen, setTablesOpen] = useState(false);
 
   const system = getSystem(adventure);
   const rules = getRulesForSystem(system);
@@ -127,8 +130,31 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
         target?.tagName === 'TEXTAREA' ||
         target?.tagName === 'SELECT' ||
         target?.isContentEditable;
-      if (isFormElement) return;
       if (e.metaKey || e.ctrlKey || e.altKey) return;
+
+      // Escape closes the topmost panel, and must work even when a form element
+      // (e.g. the bestiary search box) has focus — otherwise the user is trapped.
+      if (e.key === 'Escape') {
+        if (dungeonOpen) setDungeonOpen(false);
+        else if (builderOpen) setBuilderOpen(false);
+        else if (pickerOpen) setPickerOpen(false);
+        else if (shareOpen) setShareOpen(false);
+        else if (mapOpen) setMapOpen(false);
+        else if (rulesOpen) setRulesOpen(false);
+        else if (miseryOpen) setMiseryOpen(false);
+        else if (diceOpen) setDiceOpen(false);
+        else if (npcOpen) setNpcOpen(false);
+        else if (combatOpen) setCombatOpen(false);
+        else if (travelOpen) setTravelOpen(false);
+        else if (ambientOpen) setAmbientOpen(false);
+        else if (bestiaryOpen) setBestiaryOpen(false);
+        else if (tablesOpen) setTablesOpen(false);
+        else if (partyOpen) setPartyOpen(false);
+        return;
+      }
+
+      // All other shortcuts are single-key and must not fire while typing.
+      if (isFormElement) return;
 
       switch (e.key.toLowerCase()) {
         case '?':
@@ -170,22 +196,8 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
         case 'e':
           setBestiaryOpen((o) => !o);
           break;
-        case 'escape':
-          // Close the most recently opened modal-ish thing.
-          if (dungeonOpen) setDungeonOpen(false);
-          else if (builderOpen) setBuilderOpen(false);
-          else if (pickerOpen) setPickerOpen(false);
-          else if (shareOpen) setShareOpen(false);
-          else if (mapOpen) setMapOpen(false);
-          else if (rulesOpen) setRulesOpen(false);
-          else if (miseryOpen) setMiseryOpen(false);
-          else if (diceOpen) setDiceOpen(false);
-          else if (npcOpen) setNpcOpen(false);
-          else if (combatOpen) setCombatOpen(false);
-          else if (travelOpen) setTravelOpen(false);
-          else if (ambientOpen) setAmbientOpen(false);
-          else if (bestiaryOpen) setBestiaryOpen(false);
-          else if (partyOpen) setPartyOpen(false);
+        case 'r':
+          setTablesOpen((o) => !o);
           break;
         default:
           break;
@@ -193,7 +205,7 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [state.history.length, goBack, builderOpen, pickerOpen, shareOpen, mapOpen, rulesOpen, miseryOpen, diceOpen, partyOpen, npcOpen, combatOpen, travelOpen, dungeonOpen, ambientOpen, bestiaryOpen]);
+  }, [state.history.length, goBack, builderOpen, pickerOpen, shareOpen, mapOpen, rulesOpen, miseryOpen, diceOpen, partyOpen, npcOpen, combatOpen, travelOpen, dungeonOpen, ambientOpen, bestiaryOpen, tablesOpen]);
 
   return (
     <>
@@ -305,6 +317,15 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
           </button>
           <button
             type="button"
+            className="iconbtn"
+            onClick={() => setTablesOpen((o) => !o)}
+            title="Random tables (R)"
+            aria-pressed={tablesOpen}
+          >
+            ⚅ tables
+          </button>
+          <button
+            type="button"
             className="iconbtn iconbtn--rules"
             onClick={() => setRulesOpen(true)}
             title="Rules reference (?)"
@@ -360,7 +381,25 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
 
       {ephemeral && (
         <div className="ephemeral-banner">
-          Loaded from share link. Not saved to your library.{' '}
+          Unsaved session — not in your library. Refreshing will lose it.{' '}
+          <button
+            type="button"
+            className="iconbtn"
+            onClick={() => {
+              const id = getAdventureId(adventure);
+              const toSave = { ...adventure, meta: { ...adventure.meta, id } };
+              try {
+                saveUserAdventure(toSave);
+                onClearEphemeral();
+                onChangeAdventure(id, toSave);
+              } catch (err) {
+                window.alert(`Could not save: ${err.message}`);
+              }
+            }}
+            title="Persist this adventure to your library"
+          >
+            ⤓ save to library
+          </button>{' '}
           <button
             type="button"
             className="iconbtn"
@@ -369,7 +408,7 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
               onChangeAdventure(DEFAULT_ADVENTURE_ID);
             }}
           >
-            close
+            discard
           </button>
         </div>
       )}
@@ -436,6 +475,14 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
           if (currentNode) appendScratchNotes(currentNode.id, text);
         }}
       />
+      <RandomTables
+        open={tablesOpen}
+        onClose={() => setTablesOpen(false)}
+        canAddToNotes={!!currentNode}
+        onAddToNotes={(text) => {
+          if (currentNode) appendScratchNotes(currentNode.id, text);
+        }}
+      />
 
       {mapOpen && (
         <MapView
@@ -490,7 +537,8 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
             return;
           }
           setDungeonOpen(false);
-          onChangeAdventure(getAdventureId(generatedAdventure), generatedAdventure);
+          // Load ephemerally — the GM can persist via the banner's "save to library".
+          onLoadEphemeral(generatedAdventure);
         }}
       />
 
@@ -501,7 +549,7 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
       <footer className="app-foot">
         <small>{adventure.meta.license}</small>
         <small className="app-foot__keys">
-          shortcuts: ? rules · b back · l library · m map · d dice · k calendar · p party · n npc · c combat · t travel · a ambient · e bestiary · s share · esc close
+          shortcuts: ? rules · b back · l library · m map · d dice · k calendar · p party · n npc · c combat · t travel · a ambient · e bestiary · r tables · s share · esc close
         </small>
       </footer>
     </>
@@ -571,6 +619,14 @@ export default function App() {
     setLastLoaded(id);
   }, []);
 
+  // Load an adventure object without persisting a lastLoaded pointer — used for
+  // generated dungeons. The session is marked ephemeral; the user can save it.
+  const handleLoadEphemeral = useCallback((advObject) => {
+    if (!advObject) return;
+    setAdventure(advObject);
+    setEphemeral(true);
+  }, []);
+
   return (
     <div className="app">
       <div className="grain" aria-hidden="true" />
@@ -595,6 +651,7 @@ export default function App() {
           ephemeral={ephemeral}
           onClearEphemeral={() => setEphemeral(false)}
           onChangeAdventure={handleChangeAdventure}
+          onLoadEphemeral={handleLoadEphemeral}
         />
       ) : (
         <div className="loading">

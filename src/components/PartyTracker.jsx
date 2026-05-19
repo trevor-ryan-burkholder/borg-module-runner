@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { rollDie } from '../utils/dice.js';
+import { uid } from '../utils/id.js';
 import CharacterGenerator from './CharacterGenerator.jsx';
 
 const BLANK_PC = () => ({
+  id: uid('pc'),
   name: '',
   class: '',
   hp: 4,
@@ -19,11 +21,12 @@ const BLANK_PC = () => ({
   expanded: true,
 });
 
+// Canonical Broken (0 HP) table — MÖRK BORG Bare Bones Edition / Rules Reference.
 const BROKEN_TABLE = {
-  1: 'Unconscious d4 rounds; wake at 1 HP.',
-  2: 'Bleeding out — dead in 1 hour without help.',
-  3: 'Lose a limb / sense (GM choice). Bleeding out, dead in d2 rounds without aid.',
-  4: 'DEAD. Immediately. No save.',
+  1: 'Fall unconscious for d4 rounds, then awaken with d4 HP.',
+  2: 'd6: 1–5 broken or severed limb, 6 lost eye. Cannot act for d4 rounds, then active with d4 HP.',
+  3: 'Haemorrhage: death in d2 hours unless treated. All tests DR16 the first hour, DR18 the last.',
+  4: 'DEAD.',
 };
 
 export default function PartyTracker({ party, onUpdate, onDismiss }) {

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { rollDie, rollExpr } from '../utils/dice.js';
 import { rollValue } from '../utils/tables.js';
+import { uid } from '../utils/id.js';
 import classesData from '../data/classes.json';
 import equipment from '../data/starting-equipment.json';
 import names from '../data/tables-names.json';
@@ -74,6 +75,7 @@ function toPartyMember(c) {
     `Trait: ${c.trait}.`,
   ].join('\n');
   return {
+    id: uid('pc'),
     name: c.name,
     class: c.className,
     hp: c.hp,
