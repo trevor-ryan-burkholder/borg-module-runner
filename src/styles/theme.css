@@ -1,0 +1,184 @@
+:root {
+  --black: #080808;
+  --dark: #111111;
+  --darker: #050505;
+  --yellow: #f5c518;
+  --yellow-dim: #b8941a;
+  --red: #8b0000;
+  --red-bright: #cc0000;
+  --white: #e8e0d0;
+  --bone: #c5b89a;
+  --muted: #6e6a5e;
+
+  --font-display: 'UnifrakturMaguntia', 'Times New Roman', serif;
+  --font-body: 'Courier Prime', 'Courier New', monospace;
+
+  --shadow-deep: 0 4px 24px rgba(0, 0, 0, 0.6);
+  --shadow-glow-yellow: 0 0 12px rgba(245, 197, 24, 0.35);
+  --shadow-glow-red: 0 0 12px rgba(204, 0, 0, 0.45);
+
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse at top, rgba(139, 0, 0, 0.08), transparent 60%),
+    radial-gradient(ellipse at bottom, rgba(245, 197, 24, 0.04), transparent 60%),
+    var(--black);
+}
+
+/* Per-system theme accent overrides. Set on <html data-system="..."> by App. */
+html[data-system='ronin-borg'] {
+  --yellow: #d94040;
+  --yellow-dim: #7a1f1f;
+  --red: #4a1010;
+  --red-bright: #f5c518;
+  --bone: #c2bba8;
+}
+html[data-system='ronin-borg'] body {
+  background:
+    radial-gradient(ellipse at top, rgba(245, 197, 24, 0.05), transparent 60%),
+    radial-gradient(ellipse at bottom, rgba(217, 64, 64, 0.06), transparent 60%),
+    var(--black);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  margin: 0;
+  color: var(--white);
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+}
+
+h1 {
+  font-size: 2.4rem;
+  line-height: 1.05;
+}
+h2 {
+  font-size: 1.8rem;
+}
+h3 {
+  font-size: 1.3rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-family: var(--font-body);
+  font-weight: 700;
+  color: var(--yellow);
+}
+h4 {
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: var(--font-body);
+  font-weight: 700;
+  color: var(--yellow);
+}
+
+p {
+  margin: 0 0 0.8em 0;
+}
+
+button {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  cursor: pointer;
+  background: var(--dark);
+  color: var(--white);
+  border: 1px solid var(--muted);
+  padding: 0.45rem 0.9rem;
+  text-transform: lowercase;
+  letter-spacing: 0.05em;
+  transition: background 0.12s, color 0.12s, border-color 0.12s, transform 0.06s;
+}
+button:hover:not(:disabled) {
+  background: var(--yellow);
+  color: var(--black);
+  border-color: var(--yellow);
+}
+button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+button:disabled,
+button[aria-disabled='true'] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+input[type='text'],
+input[type='number'] {
+  background: var(--black);
+  color: var(--white);
+  border: 1px solid var(--muted);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  padding: 0.35rem 0.5rem;
+}
+input[type='text']:focus,
+input[type='number']:focus {
+  outline: none;
+  border-color: var(--yellow);
+  box-shadow: var(--shadow-glow-yellow);
+}
+
+a {
+  color: var(--yellow);
+}
+
+::selection {
+  background: var(--yellow);
+  color: var(--black);
+}
+
+/* Film grain overlay. SVG turbulence noise, fixed, ignores pointer. */
+.grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  opacity: 0.12;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1   0 0 0 0 1   0 0 0 0 1   0 0 0 0.6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-size: 240px 240px;
+}
+
+.scanline {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9997;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.02) 0,
+    rgba(255, 255, 255, 0.02) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  mix-blend-mode: overlay;
+  opacity: 0.5;
+}

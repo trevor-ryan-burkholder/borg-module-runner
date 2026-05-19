@@ -1,0 +1,65 @@
+{
+  "source": "MBC Overland Travel + Mörk Borg Bare Bones Edition",
+  "road_types": [
+    "Almost-forgotten dirt track.",
+    "Narrow wagon track used by farmers.",
+    "Tracks drawn up by wild beasts or savage monsters.",
+    "Once well-maintained trade road, now fallen into disrepair.",
+    "Once well-maintained trade road, now fallen into disrepair.",
+    "Well-used road.",
+    "Well-used road.",
+    "Paved road, sporadically patrolled by the King's soldiers."
+  ],
+  "events": [
+    "Nothing particular happens. The world is grey.",
+    "Nothing particular happens. The world is grey.",
+    "Nothing particular happens. The world is grey.",
+    "The weather turns worse. You make no progress today.",
+    "Weather change. Reroll on the weather table.",
+    "Weather change. Reroll on the weather table.",
+    "The road forks. The signs are unintelligible. Reroll the road type.",
+    "The road forks. The signs are unintelligible. Reroll the road type.",
+    "1d6 rations of food or water become spoiled.",
+    "A monastery stands by the road. Chanting inside — Nechrubel cultists.",
+    "Ruins of a castle. Infested with savage crows; a blind alchemist lives in the lone tower.",
+    "A religious procession of flagellants and hermits, lost on the way to seeing HIM.",
+    "A funerary procession with a very large coffin. The giant inside is dead but dreaming.",
+    "Filthy farmers on their way to the market.",
+    "1d6+1 slavers, leading 2d6 slaves; half beaten to death.",
+    "A few mercenaries and their 1d8 guards — all infected with a brain parasite.",
+    "Battle across the road between flayed cultists and a tribe of Earthbound (Outcasts).",
+    "The troll Adnah (or Arbint) ambushes you.",
+    "Abandoned graveyard. Inverted gold cross (50s) in a chapel; d8 zombies in the crypt.",
+    "Two dead bodies by the side of the road."
+  ],
+  "navigation": [
+    "You get lost and spend all day before finding the road again.",
+    "You find d6+1 rations, but one is tainted (Pre dr12 to notice).",
+    "You find d6+3 rations of good food or fresh water.",
+    "You track and kill a savage beast — d8+2 rations of meat.",
+    "A village. Roll on the village table to see what you find.",
+    "A village. Roll on the village table to see what you find."
+  ],
+  "villages": [
+    "Deserted; d6 rations can be scavenged from the ruins.",
+    "Stricken by plague; any ration is 2-in-6 tainted.",
+    "Well-off trading post. Food and water plentiful and cheap.",
+    "Ruled by bandits. Don't show off your wealth.",
+    "Dominated by spider cultists. No trading with outsiders.",
+    "Inhabited by cannibals. No water for sale but plenty of food."
+  ],
+  "off_road": [
+    "A petrified forest.",
+    "An ancient battlefield, full of half-buried rusty blades and wraiths.",
+    "A valley full of the bones of extinct animals.",
+    "A temple to a pre-human god, covered in lichen.",
+    "An entrance to the deeper underworld.",
+    "A cannibal village.",
+    "Goblin-infested hills.",
+    "A ruined abbey. Guarded by a Grotesque; an occult artifact hidden in the crypt.",
+    "A black mire, sucking and silent.",
+    "The silhouette of a Wyvern against the purple evening sky.",
+    "A clock tower, chiming. Heretic witches make unliving troll hybrids in its shadow.",
+    "A vast bog. Ruled by a huge, bloated, tentacular thing that claims to have been royalty."
+  ]
+}

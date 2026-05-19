@@ -1,0 +1,59 @@
+{
+  "_note": "Hand-curated overrides for entries where the wiki MD does not yield clean stats. Keys are the slug id from the extractor. Re-running extract-bestiary.mjs merges these on top of the parsed entries.",
+  "fixups": {
+    "cursed-trout": {
+      "hp": "—",
+      "morale": "—",
+      "attack": "—",
+      "stub": "No combat stats in canon — caught by line, not fought."
+    },
+    "earthbound": {
+      "hp": "—",
+      "morale": "—",
+      "attack": "—",
+      "stub": "Stub source — single-line reference only on the EPK hunting-mishap table."
+    },
+    "leviathan": {
+      "hp": "—",
+      "morale": "—",
+      "attack": "—",
+      "stub": "Named only in Psalm IV of the Misery Table. No stat block; an apocalyptic event, not an opposed creature."
+    },
+    "long-angry-flesh-worm": {
+      "hp": "—",
+      "morale": "—",
+      "attack": "—",
+      "stub": "EPK 'In the Belly of the Beast' table flavor; no canonical stat block."
+    },
+    "the-membrane-of-sarkantha": {
+      "hp": "—",
+      "morale": "—",
+      "attack": "Acid spray d6 (Agl dr14 to avoid); or be stuck (Str dr12 to push through, dr14 to escape, +2 per failed escape until dr20 — dissolution).",
+      "special": "Cannot be killed by ordinary means. A failed escape stacks +2 dr; at dr20 the victim is absorbed and becomes part of the expanding membrane."
+    },
+    "the-plant-of-life": {
+      "hp": "30",
+      "morale": "—",
+      "attack": "Tendril grab (Agl dr12 to avoid); if grabbed, dragged toward the mouth (Str dr14 or d6/round until escape or tendril severed).",
+      "special": "On death, all vines turn to black metal and the angelic faces to skulls. Big — impossible to miss."
+    },
+    "sagsobuth": {
+      "hp": "—",
+      "morale": "—",
+      "attack": "Provoked Explosion 2d10 (distributed among the group).",
+      "special": "Cannot be harmed. Will not attack unless provoked. Trades violet poison and a Beechwood Tube containing a protean unclean scroll."
+    },
+    "southern-frog": {
+      "hp": "—",
+      "morale": "—",
+      "attack": "—",
+      "stub": "Ingredient creature for Southern Frog stew; no canonical combat stats."
+    },
+    "spider-owl": {
+      "hp": "—",
+      "morale": "—",
+      "attack": "—",
+      "stub": "Ingredient creature for Spider-Owl soup; no canonical combat stats."
+    }
+  }
+}

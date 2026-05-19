@@ -1,0 +1,952 @@
+{
+  "meta": {
+    "id": "sepulchre-of-the-swamp-witch",
+    "title": "Sepulchre of the Swamp Witch",
+    "author": "MBC: Sepulchre of the Swamp Witch",
+    "version": "1.0",
+    "system": "morkborg",
+    "description": "A murdered messenger carried forbidden words to the Dead Root Altar — words that fulfill any wish. Even stopping the Doom. Get past Ueth's Strange Serpent Drug Cult, find the altar, and pay the price.",
+    "startNode": "messengers-corpse",
+    "license": "Based on official Mörk Borg content. Independent production by Trevor Burkholder, published under the MÖRK BORG Third Party License. MÖRK BORG is © Ockult Örtmästare Games and Stockholm Kartell."
+  },
+  "nodes": [
+    {
+      "id": "messengers-corpse",
+      "title": "The Messenger's Corpse",
+      "type": "location",
+      "atmosphere": "A roadside ditch full of standing rainwater. Reeds bent flat. The body has been here a day, maybe two. Flies are uninterested — there are no flies here at all.",
+      "read_aloud": "He is face-down in the ditch with the back of his skull caved in. His tunic is mud-soaked and clings to him, but you can still see the crest stitched at the breast: a crown of black thorns. King Fathmu IX. Mad Fathmu, who sends no messengers anyone returns from. In his fist, balled tight against the rigor, is a scrap of greased parchment. Three words are written on it in a hand that pressed so hard the ink tore the page. The words don't read like any language you know — but as your eyes pass over them, your tongue knows exactly how to say them aloud.",
+      "contents": {
+        "description": "The hook scene. The PCs find the dead messenger of mad King Fathmu IX on a road near the swamp. On his body: the parchment with the forbidden words for the Dead Root Altar (a wish-granting altar deep inside the Sepulchre of the Swamp Witch). Rumours about the place are common in nearby Nechdorf and along the roads — roll d6 on the Rumours table for each PC who has spent time asking around. The Sepulchre is half a day's walk into the swamp. The Strange Serpent Drug Cult of Ueth the Scalehunter holds it.",
+        "items": [
+          "Scrap of greased parchment — three forbidden words. Anyone reading them knows how to say them. Required to make a wish at the Dead Root Altar.",
+          "Crest of King Fathmu IX (cloth, sewn) — worth ~30s to the right collector, treason to be caught with by the wrong magistrate.",
+          "Messenger's purse: 18 silver, a sliver of dried gator-meat, a folded map of swamp trails (one path circled in red ink leading to the Sepulchre).",
+          "His boots are good (worth 20s). His skull is not."
+        ],
+        "enemies": [],
+        "npcs": [
+          {
+            "name": "Dead Messenger (Fathmu's)",
+            "description": "Murdered courier in royal livery. Skull caved by a blunt instrument — not a cult weapon, more like a brigand's cudgel. He never made it to the Sepulchre.",
+            "attitude": "neutral",
+            "notes": "He cannot speak. Why he was sent, and what mad King Fathmu IX wants to wish for, is the adventure's central unanswered question. [CANON CHECK — Fathmu's motive is undefined in the source.]"
+          }
+        ],
+        "traps": [],
+        "secrets": [
+          "Chanting the forbidden words backwards at the altar raises the Swamp Witch from the dead. (True.) The cult does not know this — only the altar does.",
+          "The wish requires an unwilling human sacrifice. The parchment doesn't say so. Fathmu may or may not have known.",
+          "The murderer is not the cult. The body was dragged into the ditch by a road-bandit who took the messenger's heavy purse and missed the parchment in his fist."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Rumours You Have Also Heard (d6 — roll once per PC who asked around)",
+          "text": "1 — Snakes guard the entrance. Do not harm them. (True.) 2 — The cult kidnaps people and desecrates the altar with blood and viscera. (True.) 3 — Chanting the forbidden words BACKWARDS raises the Swamp Witch from the dead. (True.) 4 — Occult treasures buried deep, guarded by slime-covered amphibians. (True.) 5 — Deep-pocketed merchants trade illicit goods with the cult. (True.) 6 — Entrants risk catching a psychic parasite — kill everyone and burn the swamp to be sure. (Uncertain. Tempting.)"
+        },
+        {
+          "title": "The Strange Serpent Drug Cult",
+          "text": "Ueth the Scalehunter found the Emerald Serpent while intoxicated by fungus-and-swamp-water brew. The serpent bit him; brew and venom mixed into a permanent hallucinogen in his bloodstream. He had visions of sacred snakes promising eternal happiness after the world's end. All he must do is spread a message of love and joy, and SACRIFICE TO THE SERPENTS EVERY THREE DAYS. He returned to Nechdorf preaching happiness, love, sex, and drugs. A few villagers joined him. The rest were later kidnapped and sacrificed in the name of eternal love."
+        },
+        {
+          "title": "The Sepulchre — 11 Chambers, EV Paths",
+          "text": "The Sepulchre is built so that crucial paths are INVISIBLE to those without Emerald Venom in their blood (marked EV throughout this adventure). The cult's drug-key is delivered by Emerald Serpent bite at the Sunken Entrance. Without EV, a party can still progress — but they'll need a venomed PC physically present, or to slay the serpents and force doors, OR to follow another EV-tripping creature through an invisible doorway once it opens."
+        }
+      ],
+      "gm_notes": "This is the briefing node. Use the Rumours table as table-talk before the dungeon — roll d6 for each PC who has spent time in Nechdorf or on the road. The parchment is the McGuffin: without it, no wish. The crest is a hook for later — Fathmu's people may come looking. Half a day's swamp travel to the Sunken Entrance. No encounter on the way unless you want one; the Sepulchre is dangerous enough.",
+      "exits": [
+        {
+          "id": "messenger-to-entrance",
+          "label": "Walk into the swamp toward the Sunken Entrance",
+          "target": "sunken-entrance",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["start", "briefing", "hook"]
+    },
+    {
+      "id": "sunken-entrance",
+      "title": "1. Sunken Entrance",
+      "type": "location",
+      "atmosphere": "Five feet of green water lapping at a stone gate the colour of old bone. The reeds are silent. A single floating leaf the size of a shield drifts in slow circles — and she is on it.",
+      "read_aloud": "The trail ends in a flooded clearing. A stone gate, half-sunk, rises from green water the colour of old absinthe. Coiled on a floating leaf in front of the gate is a serpent the length of a tall man, scales the colour of wet emerald. She lifts her head and looks at you with eyes like cut glass. When she speaks, her voice is in your ears and behind them both at once. 'The door opens,' she says, 'to those who allow me my kiss.'",
+      "contents": {
+        "description": "The first chamber. A stone gate stands in 5 feet of green water. The large Emerald Serpent guards it from her floating leaf. She offers the bite as a key — true in effect, but the venom is also a hallucinogen that locks the party into the cult's drugged perception. The door also opens if she is slain. She attacks anyone forcing the door without permission.",
+        "items": [
+          "The stone gate. Opens for any EV-affected creature, or if the Emerald Serpent is killed, or with brute force (treat as DR14 Strength — but she attacks the moment anyone touches it without her bite)."
+        ],
+        "enemies": [
+          {
+            "name": "Emerald Serpent (Gate Sentinel)",
+            "hp": 8,
+            "morale": "—",
+            "speed": "fast",
+            "attack": "Bite, D2 + Emerald Venom",
+            "special": "Lightning reflexes — attacks THRICE each round. Melee attacks against her use Agility DR16 instead of Strength.",
+            "notes": "She prefers to talk. She attacks only if the door is forced, if she is attacked, or if more than one party member refuses the bite after taking the offer seriously. Her bite is the cult's drug-key. Source: MBC Sepulchre p.5/13."
+          }
+        ],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "The door opens if she is slain. Killing her does not prevent EV — but it cuts off the easy method of acquiring it for any other PC.",
+          "Her 'kiss' is not optional in any practical sense — getting deep into the Sepulchre without EV means slogging through invisible-pathway chambers blind, and several rooms have no non-EV exit. The cult has built itself a drug-gated dungeon on purpose.",
+          "If she dies and the party later truly kills the Swamp Witch, all Emerald Serpents disappear forever along with the venom's effects."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Emerald Venom — The 7-Day Hallucinogenic High",
+          "text": "On bite (or any other route of infection), test Toughness DR12 — NO TEST if willingly bitten, the effect simply takes hold. The afflicted suffers a 7-DAY-LONG high: chromatic vision (fire burns in jale, dolm, and ulfire — colours never seen before), spectral leaf buds grow from dead matter, kaleidoscopic nature whispers and sings at the edge of hearing. Mechanically: -1 INITIATIVE, FUMBLE ON 1-3 for the duration. While afflicted, the PC sees all hidden cult paths (marked EV) throughout the Sepulchre. Once one EV-affected creature steps onto an EV path, others without venom can follow."
+        },
+        {
+          "title": "EV Doors and Portals — The Whole Dungeon's Rule",
+          "text": "Paths invisible to those without Emerald Venom in their blood are marked EV throughout this adventure. A venomed PC can see the path, walk it, and HOLD IT OPEN — once one EV creature steps into an invisible doorway, party members without venom can follow that person THIS time. If the venomed PC leaves first, the path becomes invisible again behind them."
+        }
+      ],
+      "gm_notes": "Lean into the serpent's calm. She is not malicious. The bite is genuinely the door-key — she's not lying. She IS leaving out that the venom is a permanent psychic alteration. Roll Toughness behind the screen if a player asks; reveal the high IS happening only on the first hallucinatory description. If the party fights her, she's nasty (3 attacks per round, hard to hit) — don't pull punches but DO let her flee back into the water at low HP rather than die meaninglessly. If she dies here, the party loses access to easy EV — the rest of the dungeon becomes much harder, which is a fair price for a violent solution.",
+      "exits": [
+        {
+          "id": "entrance-to-common-hall",
+          "label": "Through the stone gate — upward slope into the Cult Common Hall",
+          "target": "cult-common-hall",
+          "condition": "Emerald Serpent permits passage, gate forced (DR14 STR, she attacks), or serpent slain",
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["combat", "drug", "gate", "key"]
+    },
+    {
+      "id": "cult-common-hall",
+      "title": "2. Cult Common Hall",
+      "type": "location",
+      "atmosphere": "The slope is wet and warm. The room above smells of algae and mold and bread burnt in a covered pan. Puddles of swamp water stand on the floor, and they will not stop catching the firelight wrong.",
+      "read_aloud": "The tunnel slopes upward into a moist cave hung with cheap lanterns. The furniture is rotting — three trestle tables, a few stools chewed by something. Bread is being grilled on a flat stone over coals, alongside long pink strips of gator meat. Puddles of swamp water shimmer on the floor where there is no draft to ripple them. The whole place smells of algae, mold, and burnt bread.",
+      "contents": {
+        "description": "The cult's mess and gathering hall. 50% chance d4+3 cultists are present, dining. They recognize EV in newcomers and may assume drugged PCs are new disciples — see Reaction rules below. The path to the Scalehunter's Chamber (4) is INVISIBLE to non-EV creatures; only those with venom in their blood (or one such PC stepping into the invisible doorway and holding it open) can pass through to room 4.",
+        "items": [
+          "Grilled gator meat (d3 rations, edible if you can stomach it).",
+          "Burnt bread, sour wine, three rotting trestle tables, lanterns.",
+          "Nothing of monetary value — the cultists are too high for treasure."
+        ],
+        "enemies": [
+          {
+            "name": "Strange Serpent Drug Cultist (×d4+3 if present, 50%)",
+            "hp": 4,
+            "morale": "4",
+            "speed": "normal",
+            "attack": "Knife or club, D4",
+            "special": "Drug-addled. Immune to mind-affecting Powers. Recognizes EV in people — if MORE THAN TWO of the party are tripping, the cultists assume they are new disciples and act friendly or helpful; otherwise, roll Reaction.",
+            "notes": "Gatorskin vestment -D3. They know plenty about an altar and fulfilled wishes but are wary to speak. Morale 4 — they break easily and flee for the Worship Hall."
+          }
+        ],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "EV: The puddles spark with green light. New green leaves grow from the rock ceiling. A SHINING PATHWAY leads to the Scalehunter's Chamber (4) — a glowing trail along the west wall that simply isn't there for the un-venomed.",
+          "Any non-EV creature who watches an EV-tripping cultist walk into the west wall and disappear can follow IF they step into the same spot at the same moment. Otherwise, the wall is solid stone.",
+          "The cultists carry no purses — they have no need. Everything they own is communal back in the Bedroom (3)."
+        ]
+      },
+      "rules": [
+        {
+          "title": "EV Recognition (Cultists)",
+          "text": "Cultists immediately spot Emerald Venom in a PC's eyes (chromatic shimmer in the iris). If MORE THAN TWO party members are EV-affected, the cultists treat the party as new disciples — friendly, share food, offer to lead them to Ueth. If two or fewer are venomed, roll a normal Reaction check. If actively bloody or charging, they fight or flee."
+        },
+        {
+          "title": "Invisible Path to Chamber 4 (EV-only)",
+          "text": "The west-wall doorway to the Scalehunter's Chamber is invisible without Emerald Venom. A venomed PC sees a shining green pathway. Once they step into it, non-venomed party members may follow THIS TIME. If everyone leaves, the door closes invisibly behind them."
+        }
+      ],
+      "gm_notes": "This is the cult's social hub. Roll the 50% presence check openly. If the party is venomed and confident, they can probably walk straight through without a fight. If they are bloody from killing the serpent at the entrance, the cultists will know — Morale 4, they'll likely break and flee toward Worship Hall (5), raising the alarm. The shining EV pathway is a chance to teach the players how the EV mechanic works visually — describe it as obviously magical so they trust it.",
+      "exits": [
+        {
+          "id": "common-to-bedroom",
+          "label": "North passage — Cult Bedroom",
+          "target": "cult-bedroom",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "common-to-scalehunter",
+          "label": "West wall — shining green pathway to the Scalehunter's Chamber (EV only)",
+          "target": "scalehunters-chamber",
+          "condition": "Requires Emerald Venom in your blood OR a venomed PC physically present to walk in first",
+          "locked": true
+        },
+        {
+          "id": "common-to-entrance",
+          "label": "Slope down — back to the Sunken Entrance",
+          "target": "sunken-entrance",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["hub", "cult", "social", "ev-path"]
+    },
+    {
+      "id": "cult-bedroom",
+      "title": "3. Cult Bedroom",
+      "type": "location",
+      "atmosphere": "Twenty mattresses of mouldy straw arranged in no order. The air is humid with bodies and the sweet rot of unwashed bedding. Snoring. A wheezing laugh in someone's dream.",
+      "read_aloud": "Twenty or so straw mattresses, all of them mouldy at the corners, are scattered across the cave floor with no order to them. Bodies sleep on them in tangles — half-dressed, half-painted in dried clay, breathing slow. Someone laughs in their sleep. A green pillow sits unattended in the far corner. As you watch, a large spectral lizard the colour of pale jade lifts its head from atop it, blinks at you with eyes that should not be that wide, and lazily retreats into the wall — through it, through stone, like it was never solid at all.",
+      "contents": {
+        "description": "Cult sleeping quarters. d6+4 cultists are resting here. They assume the party belongs unless the party is blood-splattered or charging. EV reveals the spectral lizard on the green pillow in the corner — the pillow is in fact a pouch containing the cult's small communal stash.",
+        "items": [
+          "EV-only: The green pillow in the corner is a POUCH containing 2d4 × 10 SILVER. The lizard is illusory (a remnant of the cult's collective dreaming) — it cannot be attacked, it just leaves.",
+          "20 mouldy mattresses (worthless, lice-ridden).",
+          "Scraps of cult robes, a few crudely carved snake fetishes (worth nothing)."
+        ],
+        "enemies": [
+          {
+            "name": "Strange Serpent Drug Cultist (×d6+4, resting)",
+            "hp": 4,
+            "morale": "4",
+            "speed": "normal",
+            "attack": "Knife or club, D4 (if they have a weapon to hand)",
+            "special": "Drug-addled. Immune to mind-affecting Powers. ASLEEP or DROWSY — surprised on first round if approached quietly. They assume the party belongs unless blood-splattered or charging. Many have no weapons within reach.",
+            "notes": "Gatorskin vestment -D3. Morale 4. If they wake hostile, half flee for Worship Hall (5) to raise the alarm."
+          }
+        ],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "EV: The spectral lizard on the green pillow. It cannot be harmed (illusion). The pillow IS a pouch with 2d4 × 10 silver — non-EV PCs see only a sleeping room full of mattresses and would have to ransack the place to find it.",
+          "Several cultists murmur Ueth's name in their sleep. One repeats the same broken Latin phrase over and over: 'corpora serpens, anima serpens, corpora — ' [CANON CHECK — exact phrase is not in source; flavor.]",
+          "Two cultists in one mattress are wrapped around each other — Ueth's gospel of free love is openly practiced here."
+        ]
+      },
+      "rules": [
+        {
+          "title": "The Spectral Lizard (EV)",
+          "text": "Visible only to EV-affected PCs. It is a hallucination — a remnant of cult dreaming — and cannot be attacked or interacted with. If approached, it lazily retreats THROUGH the wall and disappears. Its presence on the pillow is the visual cue that the pillow itself is a hidden pouch (2d4 × 10s)."
+        },
+        {
+          "title": "Sneaking Through Sleepers",
+          "text": "Moving silently past the cultists: Agility DR10 each, or per scene at GM call. Fumble wakes d3 cultists, who reach for their knives (1 round to ready) before either attacking or running."
+        }
+      ],
+      "gm_notes": "This is a moral / tactical chamber. The cultists are SLEEPING. The party can murder them all in their bedrolls for almost no risk — and the cultists are willing fanatics. Let the players decide what kind of people they are. The EV pillow reward is small but should reward the player who got bitten at the entrance. The two-cultists-in-one-mattress detail is canon flavor; deploy it if the moral weight wants leaning into. Half-dressed sleepers means little to no looted equipment.",
+      "exits": [
+        {
+          "id": "bedroom-to-common",
+          "label": "South passage — back to the Cult Common Hall",
+          "target": "cult-common-hall",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "bedroom-to-worship",
+          "label": "Downstream tunnel — to the Worship Hall",
+          "target": "worship-hall",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["cult", "loot", "stealth", "ev-treasure"]
+    },
+    {
+      "id": "scalehunters-chamber",
+      "title": "4. Scalehunter's Chamber",
+      "type": "location",
+      "atmosphere": "Dried gators hang from the ceiling by leather thongs, slowly turning. Snake-shapes daubed on the walls in old blood, old shit, old come. The mattresses here have been well, well used.",
+      "read_aloud": "The chamber is small and the ceiling is full of dead gators, hung by their tails. They turn slowly when no draft is moving them. The walls are decorated in snake-shapes drawn in fluids you do not want to identify. A pile of dirty rags in the corner has been a bed for a long time. On top of the rags: a curled scroll, tied with a strip of snakeskin.",
+      "contents": {
+        "description": "Ueth the Scalehunter's personal quarters. Small openings only visible on Emerald Venom (this room is only reachable via the EV path from Worship Hall (5) crevasse or the EV doorway from Common Hall (2)). Dried gators, snake-symbol graffiti, well-used mattresses. The key find is a scroll on the rag-bed: Ueth's gospel on one side, the Unclean Scroll SLITHERING STRANGULATION on the other.",
+        "items": [
+          "Ueth's Gospel Scroll — one side handwritten in Ueth's hand (gospel of free love, sex, drugs, joy, and the coming of eternal happiness after the world's end). [CANON CHECK — full text of gospel not detailed in source; flavor as needed.]",
+          "Slithering Strangulation — Unclean Scroll, the OTHER side of the same parchment. (See Rules.)",
+          "A pouch of dried snake teeth (curiosity, ~5s).",
+          "An iron-tipped throwing-stick (improvised d3 ranged, sized for Ueth's grip)."
+        ],
+        "enemies": [
+          {
+            "name": "EV Ethereal Snakes (ceiling, ×3)",
+            "hp": 0,
+            "morale": "—",
+            "speed": "fast",
+            "attack": "Bite TWICE in the same round, D4 each",
+            "special": "Visible only on EV. They do not wish to be disturbed and respond to threats by ATTACKING TWICE THE SAME ROUND for D4 damage each, then DISAPPEARING. They cannot be slain — only enraged.",
+            "notes": "If a non-EV PC is bitten by an ethereal snake, they DO take the damage (the bite is real, the snake just isn't there to be hit back). Hit-points listed as 0 because they cannot be killed by normal means — they simply leave."
+          }
+        ],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "EV: Three large snakes slither UPSIDE-DOWN on the ceiling, between the dried gators. They are real enough to bite but cannot be killed — they vanish after attacking.",
+          "Ueth sleeps here when he sleeps at all. If the alarm has been raised in Worship Hall, he may not be in his Worship Hall throne; he might be here, alone, awaiting trouble. GM choice.",
+          "The gospel scroll itself, separate from the Unclean Scroll on the back, is worth a small amount to a Black Salt scholar or a serious occultist — 50s, more if Ueth dies and the scroll is the only copy."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Unclean Scroll: SLITHERING STRANGULATION",
+          "text": "D4 rainbow-coloured, ethereal boa constrictors emerge from the ground and CAPTURE ONE CREATURE EACH for D8 ROUNDS, dealing D2 DAMAGE each round to the captured. Attacking a constricted creature in melee comes with a 50% RISK of the snake CHANGING TARGET to the attacker. Standard Mörk Borg scroll-use rules apply (Presence test on use; on fail, miscast)."
+        },
+        {
+          "title": "Ethereal Snake Encounter (EV)",
+          "text": "Visible only to EV-affected PCs. They do NOT initiate combat. They respond ONLY to threats: drawing a weapon, attempting to harm them, climbing toward the gators, or interacting with the rag-bed where their scent overlaps Ueth's. Their attacks: twice each round, D4 each, then they DISAPPEAR. They cannot be killed. They do return if the room is disturbed again after a long rest."
+        }
+      ],
+      "gm_notes": "Ueth's lair. The Slithering Strangulation scroll is the chamber's real prize — a genuinely nasty Power. The ethereal snakes are punitive: only attack if the party is being aggressive, and let them disappear after. Don't kill the party here — bleed them. Whether Ueth is here or in Worship Hall (5) is your call based on pacing — typically he is in Worship Hall, but if the alarm has been raised and you want a personal confrontation, put him here. If the party arrived through the EV crevasse from Worship Hall (5), they have already passed through cult territory — make this chamber feel like the inner sanctum of a personality, not a generic loot room.",
+      "exits": [
+        {
+          "id": "scalehunter-to-common",
+          "label": "Invisible passage — back to the Cult Common Hall (EV path)",
+          "target": "cult-common-hall",
+          "condition": "Requires Emerald Venom in your blood OR a venomed PC physically present",
+          "locked": true
+        },
+        {
+          "id": "scalehunter-to-worship",
+          "label": "EV crevasse — to the Worship Hall (behind a flutter of butterflies)",
+          "target": "worship-hall",
+          "condition": "Requires Emerald Venom in your blood OR a venomed PC physically present",
+          "locked": true
+        }
+      ],
+      "visited": false,
+      "tags": ["scroll", "loot", "ev-only", "ueth"]
+    },
+    {
+      "id": "worship-hall",
+      "title": "5. Worship Hall",
+      "type": "location",
+      "atmosphere": "Stained blankets on the floor — every conceivable stain. The smell of incense burnt to mask the smell of bodies, both kinds of bodies. From the back of the room: the wet sound of someone crying without sound.",
+      "read_aloud": "The hall is wider than you expected, ceilinged in low arches that drip with condensation. The floor is covered in blankets — stained, layered, overlapping — and the blankets are scattered with bodies in various combinations of awake and asleep, dressed and undressed, alive and partly so. Heavy incense fights a losing battle against the smell. At the back of the hall, three large cages of black iron hold five emaciated figures who do not look up at you. Standing among the blankets, a fanatic in a gatorskin hood with a forked dagger lifts his head and SMILES at you. The smile has too many teeth.",
+      "contents": {
+        "description": "The cult's worship space and main practical hall. Ueth's gospel of free love is practiced here on the stained blankets. Among them: a ruby ring inscribed 'Klopstock'. Three iron cages at the back hold five starved prisoners. d4+2 Forked-Tongue Devotees guard the sacrifices; 50% chance d4 regular cultists are also present. Ueth himself is usually here unless you've placed him elsewhere — he likes to preach to the writhing congregation. EV reveals two further paths.",
+        "items": [
+          "Klopstock Ruby Ring — worth 200s to most merchants. Worth 5× (1,000s) to the only surviving Klopstock family member in Schleswig, who has been looking for it.",
+          "Iron cages (3) holding five starved prisoners — locked. Keys on a Devotee. Or smash the locks (DR12 STR each).",
+          "Several incense braziers (worth 5s each if anyone bothers).",
+          "Cult robes, gatorskin scraps, half-empty wineskins of swamp brew (drink at Toughness DR12 or take a temporary -1 PRE for d4 hours; survives the high)."
+        ],
+        "enemies": [
+          {
+            "name": "Forked-Tongue Devotee (×d4+2)",
+            "hp": 9,
+            "morale": "9",
+            "speed": "normal",
+            "attack": "Forked dagger, D4 + poison — OR — Viper spit (ranged, Agility DR12 or blinded D3 rounds)",
+            "special": "Poison: Toughness DR10 or become infected and drowsy — all attack and defense DR +2 for D4 HOURS. Viper spit: Agility DR12 or blinded D3 rounds.",
+            "notes": "Gatorskin hood and vestment -D4. Morale 9 — they do NOT break. They are Ueth's true believers. Most fanatic of the cult. Burning passion. Wicked lisp."
+          },
+          {
+            "name": "Strange Serpent Drug Cultist (×d4 if present, 50%)",
+            "hp": 4,
+            "morale": "4",
+            "speed": "normal",
+            "attack": "Knife or club, D4",
+            "special": "Drug-addled. Immune to mind-affecting Powers. Friendly to >2 EV PCs.",
+            "notes": "Gatorskin vestment -D3. May be enjoying themselves on the blankets rather than fighting — surprised first round, half-dressed."
+          },
+          {
+            "name": "Ueth the Scalehunter (cult leader, typically present)",
+            "hp": 20,
+            "morale": "6",
+            "speed": "normal",
+            "attack": "Jagged spear, D8 + BLEED",
+            "special": "BLEED — D2 damage every round for D4 ROUNDS after being hit by the spear. Ignores armor.",
+            "notes": "Gatorskin robe -D4. Wants newcomers to join him in worship. If unwilling, he subdues them for sacrifice (knockout, not kill). If morale breaks, he flees to Worship Hall (5) for cultist aid — if HE is in Worship Hall already, he flees deeper into the dungeon, NOT toward the altar (he is afraid of the Garden and beyond). Has not gone farther than the Garden (7), where he felt threatened and turned back."
+          }
+        ],
+        "npcs": [
+          {
+            "name": "Five Starved Prisoners (in cages)",
+            "description": "Travelers and villagers from Nechdorf. Horrified, weak. They have nothing but the will to be set free.",
+            "attitude": "friendly",
+            "notes": "Stats as level-0 commoners: HP 1d4, no skills, no armor. They will follow rescuers but slow the party (treat as Speed slow). They know the cult's name and Ueth's name but nothing about the altar."
+          }
+        ],
+        "traps": [],
+        "secrets": [
+          "The Klopstock ring is the chamber's hidden fortune. It is mixed in with the blankets, on a finger of a cultist who doesn't remember whose finger it was, or worn on a thong around a Devotee's neck — GM call.",
+          "If the party frees the five prisoners and gets them out alive, that's a Reaction bonus with the next nearby village they enter. (Mörk Borg cares little about reputation — make it a tangible bonus, not a meta one.)",
+          "EV: A portal of GREEN VINES opens in the north wall — the path to the Snake Pit (6). A CREVASSE behind a flutter of butterflies opens in the west wall — the path back to the Scalehunter's Chamber (4).",
+          "Ueth's spear is named, sort of — he calls it 'mama' under his breath. Looting it is allowed; it remains a D8 + Bleed spear."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Klopstock Ring Value",
+          "text": "200 silver to a normal merchant. 1,000 silver to the last surviving Klopstock in Schleswig — a sour, grief-mad old woman who has been advertising a finder's reward for her family's lost heirloom. Getting word to her: a hook for after the dungeon."
+        },
+        {
+          "title": "EV Exits (Two)",
+          "text": "EV: North wall opens as a portal of GREEN VINES leading to the Snake Pit (6). West wall opens as a CREVASSE behind a flutter of butterflies leading to the Scalehunter's Chamber (4). Both require EV; once a venomed PC steps through, others may follow. Non-EV creatures see only stone walls."
+        },
+        {
+          "title": "Forked-Tongue Devotee Poison and Spit",
+          "text": "Forked dagger: D4 damage; on hit, Toughness DR10 or infected and drowsy — all attack and defense DR +2 for D4 hours. Viper spit (ranged, short range): Agility DR12 or blinded for D3 rounds (no damage)."
+        }
+      ],
+      "gm_notes": "This is the cult's heart. It is uncomfortable on purpose. The orgy is canon. The cages are canon. Ueth is the central NPC: he TRULY believes the gospel and he will TRY to convert before fighting. If the party is EV-tripping and not actively hostile, he will preach. He breaks at Morale 6 — flees for help if NOT already in Worship Hall, or flees deeper (he won't pass the Garden) if he is. The Klopstock ring is a hook. The prisoners are a moral test — and if rescued, a logistical burden. The two EV exits make Worship Hall the connectivity hub of the middle dungeon.",
+      "exits": [
+        {
+          "id": "worship-to-bedroom",
+          "label": "Upstream tunnel — back to the Cult Bedroom",
+          "target": "cult-bedroom",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "worship-to-snake-pit",
+          "label": "North wall — portal of green vines to the Snake Pit (EV only)",
+          "target": "snake-pit",
+          "condition": "Requires Emerald Venom in your blood OR a venomed PC physically present",
+          "locked": true
+        },
+        {
+          "id": "worship-to-scalehunter",
+          "label": "West wall — crevasse behind a flutter of butterflies to the Scalehunter's Chamber (EV only)",
+          "target": "scalehunters-chamber",
+          "condition": "Requires Emerald Venom in your blood OR a venomed PC physically present",
+          "locked": true
+        }
+      ],
+      "visited": false,
+      "tags": ["combat", "boss-mini", "cult", "moral", "loot"]
+    },
+    {
+      "id": "snake-pit",
+      "title": "6. Snake Pit",
+      "type": "location",
+      "atmosphere": "Hot, close, alive. A grime-thick altar above a writhing 20-foot pit. The walls and ceiling are veined with dead roots that look almost — but not quite — like the room is breathing.",
+      "read_aloud": "A grime-covered stone altar squats above a 20-foot pit that writhes. The walls and ceiling are veined with dead roots, thick as a forearm. At the lip of the pit, a hooded figure in a gatorskin vest stoops, dropping handfuls of mice over the edge — they vanish into a thrashing carpet of serpents below. Most of the snakes are common adders. One of them is bigger. One of them is GREEN. And one of them is watching you.",
+      "contents": {
+        "description": "Sacrificial pit chamber. A grime-covered stone altar above a 20-foot pit full of snakes. A Forked-Tongue Devotee is feeding them. Most serpents are harmless (and won't come near open flame). One is another Emerald Serpent who warns non-EV characters that they will not reach their goal without his bite. Below the snakes: a dozen human skeletons. A stone-block-looking protrusion in the pit wall hides a NARROW TUNNEL to the Hidden Ferns (8). EV reveals a further path to the Garden (7).",
+        "items": [
+          "Underneath the snakes (requires descent into the pit — see Rules): a dozen human skeletons, picked clean. Loot: 3d10 silver, a rust-pitted shortsword (d4), a silver locket containing a child's tooth (worth 15s to a sentimentalist).",
+          "The altar above the pit is grime-thick and bears no carvings — it is a feeding altar, not a wishing one.",
+          "Mice in a basket the Devotee is using as feed (not loot, atmosphere)."
+        ],
+        "enemies": [
+          {
+            "name": "Forked-Tongue Devotee (feeding the snakes)",
+            "hp": 9,
+            "morale": "9",
+            "speed": "normal",
+            "attack": "Forked dagger, D4 + poison — OR — Viper spit (Agility DR12 or blinded D3 rounds)",
+            "special": "Poison: Toughness DR10 or infected and drowsy, atk/def DR +2 for D4 hours. Viper spit: Agility DR12 or blinded D3 rounds.",
+            "notes": "Gatorskin -D4. May try to kick a PC into the pit (Strength contest, on win the PC falls 20ft and lands among snakes — see Rules)."
+          },
+          {
+            "name": "Emerald Serpent (in the pit)",
+            "hp": 8,
+            "morale": "—",
+            "speed": "fast",
+            "attack": "Bite, D2 + Emerald Venom",
+            "special": "Lightning reflexes — THRICE per round. Melee against him uses Agility DR16. He attacks only if threatened.",
+            "notes": "He WARNS any non-EV PC telepathically that they will not reach their goal without his bite. He is offering, not threatening. Source: MBC Sepulchre p.5/13."
+          },
+          {
+            "name": "Pit Adders (harmless if no open flame, ×many)",
+            "hp": 1,
+            "morale": "—",
+            "speed": "fast",
+            "attack": "Bite, 1 (no venom)",
+            "special": "Common adders. Most are harmless. They will not come near open flame. Anyone in the pit takes d4 damage per round from collective bites unless they have flame or are EV-affected (the green-light eyes make the adders disinterested).",
+            "notes": "Treat as environmental hazard rather than individual stat blocks."
+          }
+        ],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "Below the snakes: a dozen human skeletons. Falling in (or descending on a rope) is the only way to find the small loot — and the narrow tunnel.",
+          "A protrusion in the pit wall looks like a stone block from above. It is actually the opening of a NARROW TUNNEL — crawl-only — that leads to the Hidden Ferns (8). This bypasses the EV-locked Garden (7) entirely.",
+          "EV: A giant snake's HEAD with a VERTICAL MOUTH protrudes from the northern wall above the pit. If approached, it telepathically informs the PCs that 'Ueth forbids any cultist from going farther.' It opens its mouth — allowing passage to the Garden (7) — IF the supplicant claims not to be a cultist or claims not to care about Ueth's rule."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Falling Into the Pit",
+          "text": "20-foot drop: 2d4 damage (Mörk Borg standard fall). Once in the pit, you are among the adders — d4 damage per round from collective bites UNLESS you carry an open flame (adders shun it) OR you are EV-affected (the chromatic eye-shine bores them). The Emerald Serpent will offer the bite to any non-EV PC down there. Climbing out: DR12 Strength or 1 round to scramble up the rope/wall."
+        },
+        {
+          "title": "Narrow Tunnel to the Hidden Ferns",
+          "text": "Below the snakes, in the south pit wall, a hidden crawl-tunnel leads to the Hidden Ferns (8). Crawl only — anyone in heavy armor +DR2 to physical tests until through. NON-EV PARTIES CAN USE THIS PATH — it is the non-EV route to the back half of the dungeon. The adders in the Hidden Ferns will then attack non-EV PCs as normal (see chamber 8)."
+        },
+        {
+          "title": "EV: The Giant Snake's Head Portal (to the Garden)",
+          "text": "Visible only on EV. The giant snake head telepathically forbids cultists from passing. It opens its vertical mouth and grants passage to the Garden (7) IF a supplicant declares they are not a cultist, OR declares they do not care about Ueth's rule. Lies work. The snake is testing intent, not loyalty."
+        }
+      ],
+      "gm_notes": "Two routes forward from here. (a) The EV-only giant snake portal to the Garden (7), then to Hidden Ferns (8). (b) The narrow tunnel under the pit wall straight to Hidden Ferns (8) — this skips the Garden entirely and is the NON-EV route. Both lead to the same endgame. The narrow tunnel is the dungeon's grace for parties that killed the entrance serpent. The Emerald Serpent in the pit is one more chance to dose a PC. The Devotee will try to keep PCs at arm's length with viper spit and shove anyone close into the pit. Don't pull the kick: a 20ft fall onto snakes is a real consequence.",
+      "exits": [
+        {
+          "id": "snake-pit-to-worship",
+          "label": "Back through the portal of green vines to the Worship Hall (EV only)",
+          "target": "worship-hall",
+          "condition": "Requires Emerald Venom in your blood OR a venomed PC physically present",
+          "locked": true
+        },
+        {
+          "id": "snake-pit-to-garden",
+          "label": "North wall — giant snake's vertical-mouth portal to the Garden (EV only, must convince)",
+          "target": "garden",
+          "condition": "Requires Emerald Venom AND a successful claim of non-cultism (or not caring about Ueth's rule)",
+          "locked": true
+        },
+        {
+          "id": "snake-pit-to-ferns",
+          "label": "Drop into the pit, crawl through the hidden tunnel in the south pit wall — to the Hidden Ferns",
+          "target": "hidden-ferns",
+          "condition": "Requires descending into the pit (2d4 fall, d4/round adder bites unless flame/EV) and crawling through the tunnel",
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["combat", "pit", "ev-path", "alt-route", "loot"]
+    },
+    {
+      "id": "garden",
+      "title": "7. Garden",
+      "type": "location",
+      "atmosphere": "Luminescent flowers droop from the ceiling and shed slow petals that don't reach the floor. Strange ancient symbols crawl across the walls when no one is looking at them. The floor is skulls. The skulls are mostly human.",
+      "read_aloud": "Flowers the size of dinner plates hang from the ceiling, lit from within, pulsing slow. The walls are carved with symbols you don't recognize — and they don't QUITE stay the same shape when your eye passes over them. The floor is skulls. Most of them are human. A few are not: WIDE, VIOLET, with THREE eye sockets and a mouth that could swallow a person whole.",
+      "contents": {
+        "description": "An ancient, pre-cult chamber. Luminescent flowers, shifting carved symbols, and a floor of skulls — most human, but a few WIDE VIOLET THREE-EYE SOCKETED skulls with mouths big enough to swallow a person. Hidden among them: a small bag of gems worth 750 silver. EV reveals the wall-text and opens the way forward to the Hidden Ferns (8).",
+        "items": [
+          "Hidden among the skulls: a small leather bag of GEMS worth 750 SILVER. Searching: Presence DR12 to find without wading skull-by-skull (which takes time — d4 of searching draws an encounter if the alarm is up).",
+          "Loose human teeth, finger-bones, a single child-sized femur (sentimental, not valuable).",
+          "Three of the wide violet three-eyed skulls. Each is roughly the size of a melon. Worth nothing to a normal merchant. Worth a fortune to the right scholar (~500s if you can find one — the Black Salt or Galgenbeck antiquarians might pay)."
+        ],
+        "enemies": [],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "EV: The shifting carved symbols resolve into a familiar alphabet: 'The eternal avatar here guards, protecting both those above and below from famine, plague, war, death and extinction.' [CANON CHECK — who or what the eternal avatar is, is undefined in source. Possibly the Swamp Witch. Possibly something older.]",
+          "EV: A giant flower at the far end OPENS, revealing the path toward the Hidden Ferns (8). Without EV, this path is invisible — the flower is just a flower.",
+          "The wide violet three-eyed skulls belonged to creatures kin to Srolki & Yaoxl. There used to be MANY of them. Something killed them, long ago, and made trophies of their skulls. The cult did not. The cult does not know."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Searching the Skulls",
+          "text": "The 750s gem bag is hidden among hundreds of skulls. Searching: Presence DR12 to find it in 1 round; otherwise wading skull-by-skull takes d4 × 10 minutes (during which, if the alarm is up, draw a random encounter — d6 cultists or d4 ethereal adders from the Hidden Ferns side)."
+        },
+        {
+          "title": "EV: The Carved Inscription",
+          "text": "Visible only on EV. The shifting symbols become readable: 'The eternal avatar here guards, protecting both those above and below from famine, plague, war, death and extinction.' What this means and who the eternal avatar IS is undefined — flag for the players, let them speculate."
+        },
+        {
+          "title": "EV: The Opening Flower Path",
+          "text": "Visible only on EV. A giant luminescent flower at the far end opens like a doorway, revealing the path to the Hidden Ferns (8). Without EV, the flower is just decorative — and the only route onward from this chamber is back the way you came."
+        }
+      ],
+      "gm_notes": "This is the deep-history room. The cult has been here only a few decades; this chamber has been here far longer. The violet three-eyed skulls are the Garden's loudest hint — they tie to Srolki & Yaoxl in Downward Spiral (11), and to the unmapped cities of toad-kin far below. The gem bag is the dungeon's middle-treasure prize. The eternal avatar inscription is a genuine canon gap — let players speculate freely. Ueth has been to this chamber and turned back, terrified — he won't come here even if alarm is raised.",
+      "exits": [
+        {
+          "id": "garden-to-snake-pit",
+          "label": "Back through the giant snake's mouth — to the Snake Pit (EV only)",
+          "target": "snake-pit",
+          "condition": "Requires Emerald Venom in your blood OR a venomed PC physically present",
+          "locked": true
+        },
+        {
+          "id": "garden-to-ferns",
+          "label": "Through the opening giant flower — to the Hidden Ferns (EV only)",
+          "target": "hidden-ferns",
+          "condition": "Requires Emerald Venom in your blood OR a venomed PC physically present",
+          "locked": true
+        }
+      ],
+      "visited": false,
+      "tags": ["ancient", "loot", "ev-only", "lore", "mystery"]
+    },
+    {
+      "id": "hidden-ferns",
+      "title": "8. Hidden Ferns",
+      "type": "location",
+      "atmosphere": "Luminescent ferns cover the floor and walls in a soft green light that comes from no source. The air is wet, fresh, alive. For the first time in this dungeon, it does not smell of cult.",
+      "read_aloud": "The walls and floor are blanketed in glowing ferns — soft green, almost cold, like the underside of a leaf in moonlight. The air is wet and clean. It smells of growing things. Then a black ribbon of adder uncoils from beneath a frond at your boot. And another. And another.",
+      "contents": {
+        "description": "Fern-blanketed chamber. The CROAKING TRIDENT is hidden beneath the ferns along the east wall. Venomous adders guard the path from the Snake Pit (6) — they attack anyone NOT EV-affected. EV reveals piles of dead ethereal snakes along the east wall, especially atop the Trident.",
+        "items": [
+          "THE CROAKING TRIDENT — hidden beneath the ferns along the east wall. (See Rules for full mechanic.)",
+          "Glowing fern fronds (no light source, just luminescent — picked, they fade in d6 hours).",
+          "A few discarded snake-skins."
+        ],
+        "enemies": [
+          {
+            "name": "Venomous Adder (path guardians, ×many)",
+            "hp": 1,
+            "morale": "—",
+            "speed": "fast",
+            "attack": "Bite, D4 (venom)",
+            "special": "Attack anyone unaffected by Emerald Venom passing through. Agility DR12 or be BITTEN for D4 damage.",
+            "notes": "EV-affected PCs are ignored by the adders. Non-EV PCs entering from the Snake Pit (6) crawl-tunnel must make Agility DR12 or take D4. This is the price of the non-EV route."
+          }
+        ],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "EV: Dead ETHEREAL SNAKES are piled along the east wall — especially atop the Croaking Trident. They are the corpses of the watchers the Garden's wall-text mentions. They died protecting something. The Trident, probably.",
+          "The Trident is two-handed and surrounded by pandemonic energy. It WANTS to be picked up. PCs near it on EV may hear a faint, almost wet CROAKING in their head that grows louder the closer they get.",
+          "The path from this chamber to the Tomb (9) opens through a parting in the ferns at the north wall — visible to anyone in this chamber, EV or not."
+        ]
+      },
+      "rules": [
+        {
+          "title": "The Adder Path (Snake Pit Crawl-Tunnel Entry)",
+          "text": "Any non-EV PC passing through the ferns must test Agility DR12 or be bitten by an adder for D4 damage. EV-affected PCs are ignored. The adders do not pursue beyond this chamber. Total bites for a non-EV party of four entering: roll once per PC."
+        },
+        {
+          "title": "THE CROAKING TRIDENT — Cursed Two-Handed Weapon",
+          "text": "Two-handed. Surrounded by pandemonic energy. Damage: D10 regular + D4 pandemonic damage per hit. Each LIVING creature slain by the wielder gradually turns them into a mad amphibian humanoid. SUBTLE AT FIRST, but: AT 5 KILLS — bulging eyes, slimy sweat, skin discoloration are noticed by others. AT 8 KILLS — wielder has a natural -D2 ARMOR due to rubbery skin, and CROAKS between their words (NPCs react accordingly). AT 13 KILLS — the transformation is COMPLETE. Nothing remains but chaotic amphibian rage, madness, and violence. The wielder is gone. The PC becomes an NPC, hostile to all."
+        }
+      ],
+      "gm_notes": "The Croaking Trident is the dungeon's defining cursed weapon. A PC will probably pick it up. Track kill count visibly — make every kill with it count toward 13. Use the 5/8 thresholds as roleplay cues: at 5, other party members start noticing; at 8, the PC croaks audibly mid-sentence and -D2 armor is permanent. At 13, the GM takes the character. Whether the player wants this is irrelevant once the trident is in their hands — that's the curse. Srolki & Yaoxl (11) want this weapon BADLY — that's a play hook. The adder path is the bill for taking the non-EV shortcut. Don't fudge it.",
+      "exits": [
+        {
+          "id": "ferns-to-snake-pit",
+          "label": "South — crawl-tunnel back to the Snake Pit (under the pit wall)",
+          "target": "snake-pit",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "ferns-to-garden",
+          "label": "Back through the giant flower — to the Garden (EV only)",
+          "target": "garden",
+          "condition": "Requires Emerald Venom in your blood OR a venomed PC physically present",
+          "locked": true
+        },
+        {
+          "id": "ferns-to-tomb",
+          "label": "North — parting in the ferns to the Tomb",
+          "target": "tomb",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "ferns-to-altar",
+          "label": "Tight passway south — squeezed through dead roots to the Dead Root Altar",
+          "target": "dead-root-altar",
+          "condition": "Tight squeeze — heavy armor +DR2",
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["loot", "cursed-weapon", "puzzle", "adders"]
+    },
+    {
+      "id": "tomb",
+      "title": "9. Tomb",
+      "type": "location",
+      "atmosphere": "A cloud of moths fills the room — circling, just circling. Thirteen obelisks carved with infinite spiraling snakes ring an empty stone coffin. She is here. She floats.",
+      "read_aloud": "A slow cloud of moths fills the room. On closer look, they do nothing — just circle. The chamber is round, and around its edge stand THIRTEEN OBELISKS, each carved with snakes that spiral into snakes that spiral into snakes, with no beginning. In the center: a sarcophagus, stone, LIDLESS and EMPTY. At the far end, two feet from the ground, OBSCURED BY MOTHS, she floats — a scraggy figure in a green robe. Where her head should be, black smoke. Two bright diamond eyes burn within it. On her back: a sword longer than she is, made of moonlight.",
+      "contents": {
+        "description": "The Swamp Witch's tomb. Cloud of moths (circling, harmless). Ring of 13 obelisks carved with infinite spiraling snakes. Lidless, empty sarcophagus. The Swamp Witch floats at the far end of the room, obscured by moths. EV reveals tentacles of pulsing light from the sarcophagus, reaching toward the corridors to the Dead Root Altar (10) and the Downward Spiral (11). She is ETERNAL while the altar stands — she cannot be killed normally.",
+        "items": [
+          "The 13 obelisks — carved with spiraling snakes. Cannot be moved. Worth nothing material.",
+          "The lidless empty sarcophagus — the Witch's resting place. Empty by her choice; she does not need to lie down.",
+          "If the Witch is permanently slain (see Rules): the LUNAR ZWEIHANDER is left behind — a moonlight greatsword (D12 + radiance, ignores non-magical armor; on each hit, all within 50ft Presence DR12 or D4 radiant damage). The sword fades to nothing in d20 days if no one wields it."
+        ],
+        "enemies": [
+          {
+            "name": "The Swamp Witch",
+            "hp": 30,
+            "morale": "—",
+            "speed": "fast",
+            "attack": "Lunar Zweihander, D12 + radiance",
+            "special": "RADIANCE — the Lunar Zweihander is made from moonlight, IGNORES ALL NON-MAGICAL ARMOR, and each hit fills the room with radiant light: everyone within 50 FEET tests Presence DR12 or takes D4 damage. ETERNAL — as long as the Dead Root Altar stands, the Swamp Witch does not die at 0 HP — she EVAPORATES and REFORMS in the sarcophagus with FULL HEALTH 3D6 ROUNDS later. Should she truly die (altar broken first), the Emerald Serpents, the barrier blocking the Downward Spiral, and ALL Emerald Venom hallucinations DISAPPEAR FOREVER.",
+            "notes": "Ethereal barrier -D4. Multi-coloured scales instead of skin. Where her head should be: black smoke and two bright diamond eyes. She floats. She communicates telepathically — whispers or screeches. She WANTS the party to make a wish at the altar; she will whisper seductive promises if they just find an unwilling person to pledge. 'Would all members of the party truly be missed in this world?'"
+          }
+        ],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "EV: A WHIRLWIND OF COLOURS fills the room, most previously unknown and alien (jale, dolm, ulfire and worse). The droning noise of HUNDREDS OF SOULS SCREAMING IN ULTRA-SLOW MOTION fills the chamber. TENTACLES OF PULSING LIGHT grow from the sarcophagus, REACHING TOWARD THE CORRIDORS that lead to the Dead Root Altar (10) AND the Downward Spiral (11).",
+          "The Swamp Witch is the Dead Root Altar's keeper and parasite — she gains power from each wish, and the altar grants her eternal regeneration. They are bound. Kill one, weaken the other (see chamber 10 wish-roll 2).",
+          "If the altar is broken first (wish roll d6 = 2 result), the Witch is reduced to 1 HP and can be killed permanently. Cause-and-effect can also run in reverse: she can be 'killed' indefinitely as long as the altar stands.",
+          "Chanting the forbidden words BACKWARDS at the altar RAISES the Swamp Witch from the dead. (Useful only if she has already been permanently killed — turns the rumour into a horror.)"
+        ]
+      },
+      "rules": [
+        {
+          "title": "ETERNAL — The Witch Cannot Be Killed (Normally)",
+          "text": "While the Dead Root Altar stands, the Swamp Witch does NOT die at 0 HP. She evaporates and reforms in the sarcophagus with FULL HEALTH after 3D6 ROUNDS. Fighting her without first breaking the altar is futile — she just keeps coming back. The party can FLEE while she's reforming. The party CANNOT simply outlast her here. If she truly dies (altar broken first by wish-roll 2 or otherwise), the Emerald Serpents, the EV-barrier on the Downward Spiral, AND ALL EMERALD VENOM HALLUCINATIONS DISAPPEAR FOREVER."
+        },
+        {
+          "title": "Lunar Zweihander — Radiance",
+          "text": "The Witch's greatsword is made from moonlight. Damage D12. Ignores ALL non-magical armor. Each hit fills the room with radiant light — everyone within 50ft tests Presence DR12 or takes D4 radiant damage. This INCLUDES the Witch's allies (there are none here). If the Witch is permanently slain, the Lunar Zweihander falls and can be wielded — same stats — but FADES TO NOTHING in d20 days unless a magical preservation is used."
+        },
+        {
+          "title": "Telepathic Seduction",
+          "text": "The Witch does not fight first. She speaks. Telepathically, in whispers or screeches, she invites the party to USE the altar. She will name members of the party who would 'not truly be missed in this world' and suggest them as the sacrifice. She actively wants a wish made — every wish strengthens the altar's bond to her. If the party refuses and threatens, THEN she fights."
+        }
+      ],
+      "gm_notes": "The Tomb is a chess problem, not a brawl. Tell the players, through the EV vision of pulsing-light tentacles toward both forward corridors, that the Witch is THE keeper. Telegraph her eternality through her behavior: she will not chase. She will simply walk back to the sarcophagus and stand there. If the party tries to fight her without breaking the altar first, they WILL waste resources and learn the lesson. The intended path is: get the words read at the altar, the altar shatters (wish-roll 2 outcome OR a deliberate alternative the GM finds), the Witch becomes mortal. Then come back here and finish her. Her telepathic promises are a great roleplay moment — make her negotiate, list the party's weaknesses, suggest the obvious sacrifice (the prisoners from Worship Hall, perhaps).",
+      "exits": [
+        {
+          "id": "tomb-to-ferns",
+          "label": "South — parting in the ferns back to the Hidden Ferns",
+          "target": "hidden-ferns",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "tomb-to-altar",
+          "label": "Corridor — to the Dead Root Altar (EV: pulsing tentacles of light point the way)",
+          "target": "dead-root-altar",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "tomb-to-spiral",
+          "label": "Corridor — to the Downward Spiral (EV: pulsing tentacles of light point the way)",
+          "target": "downward-spiral",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["boss", "puzzle-boss", "tomb", "central-hub"]
+    },
+    {
+      "id": "dead-root-altar",
+      "title": "10. Dead Root Altar",
+      "type": "location",
+      "atmosphere": "Walls, floor, ceiling — all dead roots. The silence is total. Not a fly. Not an insect. Not a breath of air. The room is HOLDING ITSELF.",
+      "read_aloud": "The chamber is rooted — walls, floor, ceiling, all of it dead roots packed tight, the colour of old bone and dried blood. At the center of the room, a group of roots stands up on its own and resolves itself into the shape of an ALTAR. Carvings on it are letters from no alphabet you know. Scattered around the floor are loose bits of dead wood, twisted by accident or design into shapes that are VAGUELY HUMAN — a leg here, the suggestion of a face there. It is dead silent in here. There is not a fly. There is not a breath of air. The room is holding itself perfectly still.",
+      "contents": {
+        "description": "The wish-granting altar. Walls, ground, and ceiling all dead roots. Root-altar at center, carved with lost symbols. Loose bits of dead wood, vaguely human-shaped (these are former sacrifices — wishes have been made here). Dead silent — not a fly lives here. A tight passway south through a pair of roots leads to the Hidden Ferns (8). EV reveals the altar's golden glow and READABLE inscription.",
+        "items": [
+          "The Dead Root Altar itself — cannot be moved. Can be DESTROYED (treat as DR16 STR repeated tries; or the d6=2 wish-roll outcome). Destroying it makes the Swamp Witch mortal.",
+          "Loose bits of dead wood scattered across the floor — former sacrifices. Worthless. Vaguely human-shaped. If counted: about ELEVEN sets. Eleven souls. The altar has been used recently.",
+          "The forbidden words (carried in from the Messenger's Corpse — required to make a wish here)."
+        ],
+        "enemies": [],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "EV: The altar is surrounded by a GOLDEN GLOW. Small BUDDING LEAVES are spread on all roots in the chamber — except the loose bits of wood on the floor, which are COMPLETELY DEAD AND BARREN. The altar's lost symbols become readable: 'WITHOUT COST, NO WISH COMES TRUE. MAKE A PLEDGE UNWILLING, AND REALITY BENDS FOR YOU. STAY THEN SILENT.'",
+          "An UNWILLING HUMAN SACRIFICE is required for the wish to function. A WILLING sacrifice is punished (see Rules — Willing Sacrifice Punishment).",
+          "Phrasing matters. The GM is encouraged to find loopholes and complications. Asking for riches may result in stolen treasures someone already seeks. ASKING FOR THE WORLD NOT TO END ONLY DELAYS THE INEVITABLE — do not roll on the Calendar of Nechrubel the next time a Misery is supposed to activate. ONE MISERY. ONE.",
+          "No matter the wish, the SACRIFICE DIES SCREAMING as their soul is pulled into the altar. All that remains of them is dead wood — joining the loose bits on the floor."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Making a Wish — The Procedure",
+          "text": "1. Read the forbidden words aloud at the altar (the parchment from the Messenger's Corpse). 2. Sacrifice an UNWILLING HUMAN on the altar — they MUST be unwilling for the wish to work. The sacrifice dies SCREAMING as their soul is drawn into the altar. All that remains is dead wood. 3. State the wish clearly. PHRASING MATTERS — the GM will find loopholes. 4. Roll d6 on the Side-Effect table below. ASKING FOR THE WORLD NOT TO END only delays the inevitable — the next time a Misery would activate, it does not. One Misery. One reprieve. Then the Calendar resumes."
+        },
+        {
+          "title": "Side-Effects of a Wish (d6, roll after each wish)",
+          "text": "1 — The altar TEMPORARILY CRACKS, weakening the Downward Spiral's barrier long enough for Srolki & Yaoxl to CROSS UPWARD. No further wish for D12 MONTHS. 2 — The altar CRACKS STRAIGHT THROUGH, weakening the Swamp Witch to 1 HP — she can be killed PERMANENTLY. A MISERY INSTANTLY ACTIVATES. Nothing can ever restore the altar. 3 — The room fills with chaotic magical energy. ALL SCROLLS OF POWER SHIFT — test Presence for each scroll someone carries; on a failure, roll a random new Power to replace the previous. No further wish for D10 DAYS. 4 — SEASONS CHANGE: if summer, becomes winter, etc. No further wish for D6 WEEKS. 5 — TIME SLOWS DOWN in the dungeon. The GM rolls until a Misery occurs — a number of days passes equal to the number of rolls. No further wish until as many days have passed once more. 6 — The altar deems the pledge UNWORTHY and DRAINS THE ENERGY from everyone in the room — LOSS OF D4 FROM MAXIMUM HP. No further wish until as many months have passed as TOTAL HP were lost."
+        },
+        {
+          "title": "WILLING SACRIFICES ARE PUNISHED",
+          "text": "A character giving themselves up for the greater good is THROWN INTO THE AIR for D10 DAMAGE, while the WISH-MAKER tests Toughness DR16 or suffers 2D8 DAMAGE AND IS PARALYZED FOR D6 ROUNDS. This ALSO ANGERS THE SWAMP WITCH, who APPEARS, sword in hands — fight her immediately. The wish does NOT work."
+        },
+        {
+          "title": "Backwards Chanting Raises the Witch",
+          "text": "If the forbidden words are chanted BACKWARDS at the altar (no sacrifice required), and the Swamp Witch is dead, she is RAISED from the dead — full HP, fully eternal again if the altar still stands. (Only useful as a horror twist.)"
+        }
+      ],
+      "gm_notes": "This is the climax. Stop and breathe before running this scene. The players have arrived. They have the words. They need a victim. The five starved prisoners from Worship Hall (5) are the obvious option — if the party rescued them, they are an unwilling sacrifice in the most damning sense. Or a captured cultist. Or, if the party is feeling philosophical, themselves (which the altar punishes — see Willing Sacrifices). MAKE THE PHRASING MATTER. Ask the player to state the wish in exact words and write it down. Find the loophole. Roll the d6 side-effect openly. Roll 2 is the 'good' outcome (Witch becomes killable) but instantly costs a Misery — let them feel the weight. Roll 1 is the worst: Srolki & Yaoxl break through and the dungeon goes vertical and apocalyptic. Roll 5 (time slows) can chew weeks of campaign time — use it.",
+      "exits": [
+        {
+          "id": "altar-to-tomb",
+          "label": "Corridor — back to the Tomb",
+          "target": "tomb",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "altar-to-ferns",
+          "label": "South — tight passway squeeze through dead roots to the Hidden Ferns",
+          "target": "hidden-ferns",
+          "condition": "Tight squeeze — heavy armor +DR2",
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["end", "climax", "altar", "wish"]
+    },
+    {
+      "id": "downward-spiral",
+      "title": "11. Downward Spiral",
+      "type": "location",
+      "atmosphere": "A black pit. A ledge spiraling down, no rail, no end. Cold air rises. Something far below sounds almost like waves.",
+      "read_aloud": "A pit opens in the floor. Black. A narrow ledge spirals along its inside wall and goes down, and down, and down. There is no rail. Cold air rises up out of it carrying a smell of stone-water and something organic, deep. If you listen hard, far below there is a sound that is almost — but not quite — waves.",
+      "contents": {
+        "description": "A black pit with a narrow ledge spiraling downward, downward, downward. If the Swamp Witch is alive AND the altar is intact, a magical barrier blocks anyone from going farther than 30 feet down. Two antediluvian, three-eyed, humanoid toads — Srolki and Yaoxl — stand guard hidden 50 feet below the barrier. They want the Croaking Trident more than anything. If the barrier breaks and one of them survives the encounter to spread word, MORE of their kind will appear in the area over the next d20 days. Further down: great caverns. Deeper still: ENTIRE CITIES of these creatures.",
+        "items": [
+          "The narrow spiraling ledge (treat falls as deadly: 6d6 at 50ft, 10d6 at 100ft, GM call below that — there is no bottom in any practical sense).",
+          "If both Srolki and Yaoxl are slain: Srolki's METAL ARMOR (suitable for a Large humanoid; salvageable into a tier-2 armor for a human, -D4) and Yaoxl's RANSEUR OF THE MAELSTROM (D10 + drain — see stats).",
+          "Beyond the barrier (only descendable when broken): an immense cavern system that is its own adventure."
+        ],
+        "enemies": [
+          {
+            "name": "Srolki",
+            "hp": 25,
+            "morale": "—",
+            "speed": "fast",
+            "attack": "Claws D6 × 2 and Bite D10 — OR — Croak (once per round, see Special)",
+            "special": "SLIMESPEED — attacks TWICE EACH ROUND with claws and bites, or croaks once. Attack and defence tests are DR14 AGAINST SROLKI. CROAK — a loud croak STUNS AND DEAFENS anyone within 20 feet unless they test Presence DR12.",
+            "notes": "Rubbery skin and Metal armor -D6. Antediluvian three-eyed humanoid toad. Guardian of the Spiral. Wants the Croaking Trident desperately."
+          },
+          {
+            "name": "Yaoxl",
+            "hp": 27,
+            "morale": "—",
+            "speed": "normal",
+            "attack": "Ranseur of the Maelstrom, D10 + DRAIN",
+            "special": "DRAIN — the ranseur transfers D4 HP FROM THE TARGET TO YAOXL on each hit. POWERS — can wield the following Powers up to D3 TIMES PER DAY EACH: METZHUOTL BLIND YOUR EYE, NINE VIOLET SIGNS UNKNOT THE STORM, and ROSKOE'S CONSUMING GLARE.",
+            "notes": "Rubbery skin -D3. Antediluvian three-eyed humanoid toad. Power-wielder. Srolki and Yaoxl have guarded this pit for centuries, during which they have been partners, enemies, lovers, and allies."
+          }
+        ],
+        "npcs": [],
+        "traps": [
+          {
+            "name": "The Spiral Ledge",
+            "trigger": "Combat, jostling, or fumble on a movement roll while on the ledge",
+            "effect": "Fall 50ft (6d6) to the barrier, or much further if the barrier is broken (10d6+).",
+            "dr": "Agility DR12 to avoid being pushed off in melee; on fumble of any attack roll while on the ledge, the attacker tests Agility DR10 or falls."
+          }
+        ],
+        "secrets": [
+          "EV: BUBBLES slowly rising from the pit. Almost sounds like waves in the distance. An OPAQUE SHINING GREEN BARRIER blocks the path at 30ft down.",
+          "Srolki and Yaoxl have been partners, enemies, lovers, and allies — all of these, more than once, over centuries. They will fight side-by-side. They will also betray each other instantly if one of them gets the Croaking Trident first. The party can drive a wedge.",
+          "They are WILLING TO DO ALMOST ANYTHING to get the Croaking Trident. If the party has it, NEGOTIATION IS POSSIBLE — they will offer treasure, ancient knowledge, even safe passage downward into the toad cities. They will also try to murder the party for it the moment they think they can win.",
+          "If the barrier is broken and EITHER OF THEM SURVIVES to spread word, MORE OF THEIR KIND will appear in the area over the next d20 DAYS. The cult will not survive. The swamp will not survive. The toads remember every grudge of the last 10,000 years.",
+          "Further down: great caverns. Deeper still: ENTIRE CITIES of these creatures. (Unmapped. Adventure hook.)"
+        ]
+      },
+      "rules": [
+        {
+          "title": "The 30-Foot Barrier",
+          "text": "While the Swamp Witch is alive AND the Dead Root Altar stands, a magical barrier (visible only on EV as an opaque shining green wall) blocks all descent below 30 feet. The barrier cannot be forced — it is the seal binding the toads below. Srolki and Yaoxl are 50 feet below the barrier, hidden, waiting. They will SPEAK through the barrier (telepathically, or by shouting) but cannot cross it from below. The barrier breaks when: (a) the Swamp Witch is PERMANENTLY killed AND the altar is broken (wish-roll 2), OR (b) a wish-roll 1 weakens the barrier temporarily, letting Srolki & Yaoxl cross upward."
+        },
+        {
+          "title": "Combat on the Ledge",
+          "text": "The narrow spiral ledge has no rail. Melee on it: any combatant who fumbles an attack tests Agility DR10 or FALLS. Being shoved deliberately: Agility DR12 to grab the ledge or fall. Fall damage: 50ft (6d6) to the barrier; further down if the barrier is broken (10d6+). Survivors of a fall to the barrier are stuck against it — climbing back up takes d4 rounds and requires a Strength DR12 each round."
+        },
+        {
+          "title": "If Either Toad Survives",
+          "text": "If the barrier is broken AND either Srolki or Yaoxl survives the encounter to leave or send word, MORE OF THEIR KIND will appear in the swamp area over the next D20 DAYS. The cult is wiped out. The swamp ecosystem collapses. The region becomes hostile to humans for generations. The party is responsible. Make sure they know."
+        }
+      ],
+      "gm_notes": "This is the dungeon's bottom — and its open thread to a much bigger world. While the barrier holds, this chamber is a stalemate: the toads can talk but cannot reach the party, and vice versa. Play their voices through the barrier as a temptation — let them offer trades, beg for the Croaking Trident, hint at the cities below. When the barrier breaks (wish-roll 1 = temporary, wish-roll 2 + altar destruction = permanent), the fight is on. Srolki is the brawler, Yaoxl is the caster. Use them as a coordinated team — Yaoxl drops Roskoe's Consuming Glare while Srolki closes. If a PC has the Croaking Trident, the toads will prioritize disarming them over killing them. If the party gives up the Trident, the toads honor the deal — and then immediately fight each other over it (an excellent escape window for the party). If either survives, the d20-day countdown to a regional invasion begins.",
+      "exits": [
+        {
+          "id": "spiral-to-tomb",
+          "label": "Corridor — back to the Tomb",
+          "target": "tomb",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "spiral-down",
+          "label": "Descend past the barrier — into the great caverns below (only if barrier is broken)",
+          "target": "downward-spiral",
+          "condition": "Requires the magical barrier to be broken (Swamp Witch dead AND altar destroyed, OR temporary wish-roll 1 weakening)",
+          "locked": true
+        }
+      ],
+      "visited": false,
+      "tags": ["end", "boss", "barrier", "hook"]
+    }
+  ],
+  "bestiary": [
+    {
+      "name": "Emerald Serpent",
+      "hp": 8,
+      "morale": "—",
+      "speed": "fast",
+      "attack": "Bite, D2 + Emerald Venom",
+      "special": "Lightning reflexes — attacks THRICE each round. Melee attacks against her use Agility DR16 instead of Strength. Emerald Venom: Toughness DR12 (no test if willingly bitten) for the 7-day hallucinogenic high — chromatic vision in jale, dolm, ulfire; spectral leaves grow from dead matter; -1 initiative, fumble on 1-3. Sees the cult's hidden EV paths.",
+      "notes": "Floating sentinel at the gate (Sunken Entrance) and in the Snake Pit. If the Swamp Witch is permanently slain, ALL Emerald Serpents — and Emerald Venom itself — disappear forever. Source: MBC Sepulchre p.5/13."
+    },
+    {
+      "name": "Strange Serpent Drug Cultist",
+      "hp": 4,
+      "morale": "4",
+      "speed": "normal",
+      "attack": "Knife or club, D4",
+      "special": "Drug-addled — immune to mind-affecting Powers. RECOGNIZES Emerald Venom in others; if MORE THAN TWO of the party are tripping, the cultists assume the party are new disciples (friendly/helpful). Otherwise roll Reaction.",
+      "notes": "Gatorskin vestment -D3. Common rank-and-file. Knows of an altar and fulfilled wishes but wary to speak. Encountered d4+3 to d6+4 at a time. Source: MBC Sepulchre p.13."
+    },
+    {
+      "name": "Forked-Tongue Devotee",
+      "hp": 9,
+      "morale": "9",
+      "speed": "normal",
+      "attack": "Forked dagger, D4 + poison — OR — Viper spit (ranged, Agility DR12 or blinded D3 rounds)",
+      "special": "Poison: Toughness DR10 or infected and drowsy — all atk/def DR +2 for D4 HOURS. Viper spit: Agility DR12 or blinded D3 rounds (no damage).",
+      "notes": "Gatorskin hood and vestment -D4. Most fanatic of Ueth's followers. Burning passion. Wicked lisp. Morale 9 — does not break. Source: MBC Sepulchre p.13."
+    },
+    {
+      "name": "Ueth the Scalehunter",
+      "hp": 20,
+      "morale": "6",
+      "speed": "normal",
+      "attack": "Jagged spear, D8 + BLEED",
+      "special": "BLEED — D2 damage every round for D4 ROUNDS after being hit. Ignores armor.",
+      "notes": "Gatorskin robe -D4. Permanently-high cult leader. Real-deal believer. Wants newcomers to join him in worship — if unwilling, subdues them for sacrifice. If morale breaks, flees to Worship Hall (5) for cultist aid; if he IS in Worship Hall, flees deeper but NEVER past the Garden (7). Source: MBC Sepulchre p.13."
+    },
+    {
+      "name": "The Swamp Witch",
+      "hp": 30,
+      "morale": "—",
+      "speed": "fast",
+      "attack": "Lunar Zweihander, D12 + radiance",
+      "special": "RADIANCE — moonlight blade, IGNORES ALL NON-MAGICAL ARMOR; each hit, everyone within 50ft tests Presence DR12 or takes D4 radiant damage. ETERNAL — while the Dead Root Altar stands, she does not die at 0 HP; she evaporates and reforms in her sarcophagus at FULL HP after 3D6 ROUNDS. If permanently slain (altar broken first), all Emerald Serpents, the Downward Spiral barrier, and ALL Emerald Venom hallucinations disappear forever.",
+      "notes": "Ethereal barrier -D4. Scraggy figure in green robe. Multi-coloured scales instead of skin. Head: black smoke and two diamond eyes. Floats. Telepathic — whispers/screeches. Wants the party to make a wish. Source: MBC Sepulchre p.13."
+    },
+    {
+      "name": "Srolki",
+      "hp": 25,
+      "morale": "—",
+      "speed": "fast",
+      "attack": "Claws D6 × 2 and Bite D10 — OR — Croak",
+      "special": "SLIMESPEED — attacks TWICE per round with claws and bites, or croaks once. ATK/DEF tests are DR14 AGAINST SROLKI. CROAK — loud croak STUNS AND DEAFENS within 20ft unless Presence DR12.",
+      "notes": "Rubbery skin and Metal armor -D6. Antediluvian three-eyed humanoid toad. Guardian of the Downward Spiral with Yaoxl. Wants the Croaking Trident. Source: MBC Sepulchre p.13."
+    },
+    {
+      "name": "Yaoxl",
+      "hp": 27,
+      "morale": "—",
+      "speed": "normal",
+      "attack": "Ranseur of the Maelstrom, D10 + DRAIN",
+      "special": "DRAIN — ranseur transfers D4 HP from target to Yaoxl on each hit. POWERS — wields METZHUOTL BLIND YOUR EYE, NINE VIOLET SIGNS UNKNOT THE STORM, and ROSKOE'S CONSUMING GLARE up to D3 TIMES PER DAY each.",
+      "notes": "Rubbery skin -D3. Antediluvian three-eyed humanoid toad. Power-wielder. Partner-and-enemy of Srolki across centuries. Source: MBC Sepulchre p.13."
+    },
+    {
+      "name": "EV Ethereal Snakes (Ceiling)",
+      "hp": 0,
+      "morale": "—",
+      "speed": "fast",
+      "attack": "Bite TWICE same round, D4 each, then disappear",
+      "special": "Visible only on EV. Cannot be killed — they simply leave after attacking. Their bites do real damage even to non-EV PCs who cannot see them. Respond ONLY to threats.",
+      "notes": "Found upside-down on the ceiling of the Scalehunter's Chamber (4) and as ethereal corpses piled atop the Croaking Trident in the Hidden Ferns (8). Source: MBC Sepulchre p.7."
+    },
+    {
+      "name": "Venomous Adder (Hidden Ferns Guardians)",
+      "hp": 1,
+      "morale": "—",
+      "speed": "fast",
+      "attack": "Bite, D4 (venom)",
+      "special": "Attack any non-EV creature passing through the Hidden Ferns. Agility DR12 or bitten for D4. EV-affected PCs are ignored.",
+      "notes": "The price of the non-EV route via the Snake Pit crawl-tunnel. Source: MBC Sepulchre p.10."
+    },
+    {
+      "name": "Pit Adders (Snake Pit Floor)",
+      "hp": 1,
+      "morale": "—",
+      "speed": "fast",
+      "attack": "Bite, 1 (no venom)",
+      "special": "Most are harmless. Will NOT come near open flame. Anyone in the pit takes d4/round from collective bites unless they have flame OR are EV-affected.",
+      "notes": "Environmental hazard, not individual combatants. The pit contains hundreds. Source: MBC Sepulchre p.8."
+    }
+  ]
+}

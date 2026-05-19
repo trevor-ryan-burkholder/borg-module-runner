@@ -1,0 +1,17 @@
+{
+  "source": "MÖRK BORG Bare Bones Edition, p.3 (d12)",
+  "entries": [
+    { "name": "Tripwire to a blade-pendulum", "trigger": "Crossing the threshold", "effect": "Agl dr12 or d8 damage from a swinging blade.", "dr": "12" },
+    { "name": "Wall-holes shooting poisonous arrows", "trigger": "Pressure plate", "effect": "Agl dr14 or d6 damage + Tou dr12 or poisoned (-2 next test).", "dr": "14" },
+    { "name": "Bells and marbles on the floor", "trigger": "Walking quietly", "effect": "Alerts everyone in the dungeon. No save.", "dr": "—" },
+    { "name": "Scorpion-filled basket poised to fall", "trigger": "Disturbing the alcove above", "effect": "Agl dr12 or d4 damage + a scorpion sting per round until brushed off.", "dr": "12" },
+    { "name": "Fish hooks hanging at eye level", "trigger": "Walking through unseen", "effect": "Pre dr10 to spot. Otherwise d2 damage and -1 Pre tests until removed.", "dr": "10" },
+    { "name": "Chest marked with explosive runes", "trigger": "Opening without disarming the runes", "effect": "All within 10ft take d8 damage; Agl dr12 for half.", "dr": "12" },
+    { "name": "Lock trapped with vial of poison gas", "trigger": "Picking the lock", "effect": "Tou dr12 or -d6 hp and incapacitated 1 minute.", "dr": "12" },
+    { "name": "Jewel removal leads to roof collapse", "trigger": "Lifting the jewel", "effect": "Agl dr14 or 2d6 crushing damage.", "dr": "14" },
+    { "name": "Slanted floor, translucent oil, pit", "trigger": "Walking onto the oiled stones", "effect": "Agl dr14 or slide into a d4×10 ft pit (1d6 per 10ft).", "dr": "14" },
+    { "name": "Snake-cages on collapsing ceiling tiles", "trigger": "Stepping on the wrong tile", "effect": "Agl dr12 or d4 snakes drop. Each bite: d4 + Tou dr10 or poisoned.", "dr": "12" },
+    { "name": "Evil urns release cold ghosts", "trigger": "Disturbing the urns", "effect": "Pre dr14 to ward off; otherwise -1 Str and Tou for the rest of the day.", "dr": "14" },
+    { "name": "Coins coated in grime and poison", "trigger": "Picking up the coins", "effect": "Tou dr10 or -d4 hp and weakened (next test +2 dr).", "dr": "10" }
+  ]
+}

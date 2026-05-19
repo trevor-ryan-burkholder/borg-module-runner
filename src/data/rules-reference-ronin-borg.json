@@ -1,0 +1,125 @@
+{
+  "rules_reference": {
+    "system": "ronin-borg",
+    "sections": [
+      {
+        "id": "core-mechanics",
+        "title": "Core Mechanics",
+        "entries": [
+          {
+            "term": "Schema Compatibility",
+            "text": "Ronin Borg is a fan derivative of Mörk Borg. All core mechanics — d20 tests, DR12 baseline, Omens, Powers as Prayers, armor as damage subtraction — apply unchanged. The system field exists so the runner can theme and label cards appropriately."
+          },
+          {
+            "term": "Tests",
+            "text": "Roll d20 + Attribute. Meet or beat DR. DR12 baseline. Pushing is the same as Mörk Borg: use an Omen to reroll."
+          },
+          {
+            "term": "Omens (Karma)",
+            "text": "Each PC begins the day with d2 Karma — functionally identical to Omens. Spend to reroll, reduce damage by d6, or convert a fumble to a regular miss."
+          },
+          {
+            "term": "Honor",
+            "text": "Optional Ronin Borg overlay: each PC tracks Honor 0–6. Acts of dishonor reduce it; acts of restoration raise it. At Honor 0, you are masterless even to yourself — −1 to all Presence-based tests."
+          }
+        ]
+      },
+      {
+        "id": "combat",
+        "title": "Combat",
+        "entries": [
+          {
+            "term": "Initiative",
+            "text": "Each side rolls d6. Higher acts first. Identical to Mörk Borg."
+          },
+          {
+            "term": "Iaijutsu (Drawing Cut)",
+            "text": "First round of combat only: a PC with a sheathed katana may declare iaijutsu — roll d20 + Agility vs DR12. Success: the strike deals weapon damage and the attacker holds initiative next round."
+          },
+          {
+            "term": "Katana (d8)",
+            "text": "Two-handed; cannot be paired with a shield. Critical hits: double damage AND ignore armor (standard Mörk Borg crit rule)."
+          },
+          {
+            "term": "Dishonorable Tactics",
+            "text": "Ranged attacks vs an unaware enemy, attacking from behind, attacking the unarmed: each costs 1 Honor on success. The GM may choose to reward the tactic with advantage (−DR2) for a single roll regardless."
+          }
+        ]
+      },
+      {
+        "id": "conditions",
+        "title": "Conditions",
+        "entries": [
+          {
+            "term": "Bleeding / Infected / Frightened / Cursed",
+            "text": "Identical to Mörk Borg. See the Mörk Borg rules reference for full text."
+          },
+          {
+            "term": "Shamed",
+            "text": "Ronin Borg-specific. After a public act of cowardice, the PC suffers Shamed: −DR2 to all social tests until they have restored Honor through a witnessed act. Stacks with no other condition."
+          }
+        ]
+      },
+      {
+        "id": "powers-and-scrolls",
+        "title": "Prayers & Charms",
+        "entries": [
+          {
+            "term": "Prayers (Powers)",
+            "text": "Functionally identical to Mörk Borg Powers. Re-skinned as petitions to kami, ancestors, or buddhas. Cannot be cast in any armor heavier than light."
+          },
+          {
+            "term": "Paper Charms (Scrolls)",
+            "text": "Functionally identical to Mörk Borg Scrolls. Single-use, no test required to read aloud, consumed on use. Misuse die same as Mörk Borg."
+          }
+        ]
+      },
+      {
+        "id": "apocalypse",
+        "title": "The Tenshō (The Ending)",
+        "entries": [
+          {
+            "term": "Calendar of Bones",
+            "text": "Ronin Borg's apocalypse-clock equivalent. Roll d6 each in-game day; on a 1, a new Omen of the Tenshō falls. Effects accumulate. When the last Omen falls, the realm is unmade."
+          },
+          {
+            "term": "Standard Omens",
+            "text": "The crows stop singing · Rice turns to ash in the pot · The dead samurai walk the road again · A second moon rises black · The mountain breathes wrong · The Emperor's name is forgotten by all who hear it · etc. GM-curated, ~21 total per campaign frame."
+          }
+        ]
+      },
+      {
+        "id": "creatures",
+        "title": "Creatures",
+        "entries": [
+          {
+            "term": "Reading a Stat Block",
+            "text": "Identical to Mörk Borg: HP, Morale (or — for never-breaks), Speed, Armor (−dX), Attack (name +mod, damage, special). See Mörk Borg rules reference for full conventions."
+          },
+          {
+            "term": "Yokai",
+            "text": "Spirit-class creatures with Morale —. Most cannot be permanently killed without specific ritual or charm reagents. Banished forms return at the next Omen of the Tenshō."
+          }
+        ]
+      },
+      {
+        "id": "equipment",
+        "title": "Equipment",
+        "entries": [
+          {
+            "term": "Armor Tiers",
+            "text": "Light (-d2): silk-lined kimono, light leather. Medium (-d4): lamellar. Heavy (-d6): full ō-yoroi. Same penalty rules as Mörk Borg."
+          },
+          {
+            "term": "Weapon Dice",
+            "text": "d2: tessen, fist. d4: tantō, shortsword, bokken. d6: wakizashi, naginata one-handed. d8: katana (two-handed), naginata two-handed, yumi (bow). d10: ōdachi."
+          },
+          {
+            "term": "Currency",
+            "text": "Mon (silver). A meal ~2 mon, a night at an inn ~5 mon, a katana ~50 mon, ō-yoroi ~200 mon."
+          }
+        ]
+      }
+    ]
+  }
+}

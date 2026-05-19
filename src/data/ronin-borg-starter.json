@@ -1,0 +1,401 @@
+{
+  "meta": {
+    "id": "ronin-borg-starter",
+    "title": "Smoke in the Reed Fields",
+    "author": "Trevor Burkholder",
+    "version": "1.0",
+    "system": "ronin-borg",
+    "description": "A short Ronin Borg one-shot. Three rōnin wake at a burning village. A dishonored lord waits in the watchtower. The bandits responsible are camped a day east. Something older than all of them watches from the mountain.",
+    "startNode": "burning-village",
+    "license": "Original starter by Trevor Burkholder, published under the MÖRK BORG Third Party License framework as a Ronin Borg-compatible scenario. Adapt freely."
+  },
+  "nodes": [
+    {
+      "id": "burning-village",
+      "title": "The Burning Village",
+      "type": "location",
+      "atmosphere": "Smoke chokes the reed fields. Bodies in farm clothes line a path that used to lead somewhere worth defending. A crow watches from a charred shrine torii.",
+      "read_aloud": "You wake on damp earth. Your swords are beside you, oiled but unsheathed. The reeds around you are burning slow — wet enough not to roar, dry enough not to die. Up the path, a village smolders. A wooden watchtower leans against the dawn sky to the north, untouched. To the east, a road climbs the hills toward a mountain whose top is gone in fog. You do not remember coming here.",
+      "contents": {
+        "description": "Burned-out farming village in the reed fields. PCs begin here with weapons but no context. Bodies on the path are villagers, not bandits. The watchtower (north) is intact and occupied. The road east leads to the bandit camp (one day's travel). A small shrine path leads west, half-overgrown. The crow watches.",
+        "items": [
+          "A villager's purse: 12 mon (silver).",
+          "Half a sake bottle, still corked. d4 doses; one dose = +1 to next Presence test, then -1 to next Agility test.",
+          "A wooden practice sword (bokken). d4 damage.",
+          "A child's wooden carving of a kappa, blackened at one edge. No mechanical value."
+        ],
+        "enemies": [],
+        "npcs": [
+          {
+            "name": "The Crow",
+            "description": "A single crow on the charred torii. It watches the PCs. When they look away, it does not move; when they look back, it is closer.",
+            "attitude": "neutral",
+            "notes": "Flavor. May follow the party. If a PC speaks to it directly, it tilts its head. If offered food, it eats. It does not leave the scene until the Mountain Hermit appears at the climax — then it is on his shoulder."
+          }
+        ],
+        "traps": [],
+        "secrets": [
+          "One of the bodies is the village headman. His hand is closed around a paper charm — a ward against ronin. It did not work.",
+          "The fire is not finished. It will keep burning at this rate for another day, slow and damp.",
+          "If the PCs search carefully (Presence DR12): one set of bootprints leads from the headman's body to the watchtower — not running, walking. The lord saw and did nothing.",
+          "The crow is the Mountain Hermit's familiar. He is already watching."
+        ]
+      },
+      "rules": [
+        {
+          "title": "First Light, Last Honor",
+          "text": "Ronin Borg's opening framing: each PC has lost their lord, their sword, or their name — at least one. The GM may ask each player which, before the first roll."
+        },
+        {
+          "title": "The Crow",
+          "text": "If killed, the PC who killed it loses 1 Honor permanently and gains the condition Shamed. The crow is unarmed and small (DR16 to hit, HP 1)."
+        }
+      ],
+      "gm_notes": "Open the session by asking each PC what they lost. Their answer should be one of: lord, sword, name. Note it — it matters at the climax (Mountain Hermit) and influences which ending is possible. The crow is the connective thread; bring it back at every location until the climax. The watchtower is the obvious next step; the bandits east are the actual job; the shrine west is optional but rewards the patient.",
+      "exits": [
+        {
+          "id": "village-to-tower",
+          "label": "North — the watchtower",
+          "target": "watchtower",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "village-to-shrine",
+          "label": "West — the overgrown shrine path",
+          "target": "shrine",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "village-to-camp",
+          "label": "East — the bandit camp (one day's travel)",
+          "target": "bandit-camp",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["start", "scene"]
+    },
+    {
+      "id": "watchtower",
+      "title": "The Lord's Watchtower",
+      "type": "location",
+      "atmosphere": "A wooden tower three stories tall, leaning slightly. The lowest door is open. From the top floor, a man's voice — calm, formal, and tired — calls down a greeting in court Japanese.",
+      "read_aloud": "He calls down: 'Welcome, masterless ones. The fire was not my doing. I would have stopped it, had I the men. Come up. Bring sake.'",
+      "contents": {
+        "description": "Wooden watchtower, three floors, leaning. Bottom floor empty. Second floor: a futon, a small writing desk, an open ledger of village debts. Top floor: Lord Hatano, alone, seated, sword across his lap.",
+        "items": [
+          "Ledger of village debts (unpaid by the lord himself, mostly).",
+          "Writing desk: ink, brush, three unsent letters of resignation.",
+          "A whetstone, well-used.",
+          "Hatano's katana — d8, two-handed. Family blade. Will pass to whomever he names dying."
+        ],
+        "enemies": [],
+        "npcs": [
+          {
+            "name": "Lord Hatano",
+            "description": "An older samurai in worn formal robes. Hair tied. Sword across his lap. Calm. He has not eaten in two days.",
+            "attitude": "neutral",
+            "notes": "HP 6, Morale —, Light armor −d2, Katana d8. Hires the PCs to kill the bandits responsible for the village fire. Pay: 200 mon and his katana when he dies, which he expects to do soon — by sword or by ritual."
+          }
+        ],
+        "traps": [],
+        "secrets": [
+          "Hatano set the fire himself, drunk, two nights ago. He does not remember. The villagers below are his.",
+          "The ledger on the second floor contains his confession — written sober, then forgotten. A PC who reads it (Presence DR12 to parse the formal calligraphy) knows the truth.",
+          "If confronted with the confession, his Morale — means he will not flee. He kneels, asks the PCs to second his harakiri, and offers the katana to the one with the most Honor (GM judgement)."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Hire by Honor",
+          "text": "Hatano can be persuaded to hire the PCs with Presence DR10. Failure to persuade: he hires them anyway, but his Morale 0 and the contract reduces to verbal — no written promise."
+        },
+        {
+          "title": "Reading the Confession",
+          "text": "Presence DR12. Success: the PC knows the truth. They may share or not. Failure: they read it as a list of debts owed to villagers."
+        }
+      ],
+      "gm_notes": "Hatano is a tragic figure, not a villain. If the PCs kill him without finding the confession, the village's ghosts will haunt them (mechanically: -1 Honor each per Misery roll until they make amends at the shrine). If they find the confession AND second his harakiri, his katana passes to one of them and they begin restored: +1 Honor and one Karma (Omen). The crow watches from the tower window throughout.",
+      "exits": [
+        {
+          "id": "tower-to-village",
+          "label": "South — back to the village",
+          "target": "burning-village",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "tower-to-shrine",
+          "label": "Southwest — the overgrown shrine path",
+          "target": "shrine",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "tower-to-camp",
+          "label": "East — the bandit camp (one day's travel)",
+          "target": "bandit-camp",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["npc", "scene"]
+    },
+    {
+      "id": "shrine",
+      "title": "The Overgrown Shrine",
+      "type": "location",
+      "atmosphere": "A small Shinto shrine the forest is taking back. Moss on the offering box. A stone fox missing its head. The wind here moves wrong — sometimes against the trees.",
+      "read_aloud": "The path opens into a clearing that should not be a clearing — the trees lean back from it. A small wooden shrine, the paint long gone. A stone fox with its head broken off lies in the grass. Beside the offering box, fresh: three new white stones, recently arranged. Someone tends this place. Not often.",
+      "contents": {
+        "description": "Forgotten Shinto shrine, recently visited. Stone fox statue (head broken off). Offering box (empty save the new stones). Wind anomaly suggests a minor kami still in residence. A path north leads up to the mountain.",
+        "items": [
+          "The stone fox's head — Presence DR12 to find in the grass. Restored to the body, restores the wind to normal AND grants the restorer +1 Honor.",
+          "Three white stones, arranged: the Mountain Hermit's mark. Recently placed.",
+          "A paper charm in the offering box: ward against fire. Worth 50 mon to a temple; useful against the Mountain Hermit's final form (-d4 fire damage for the scene)."
+        ],
+        "enemies": [],
+        "npcs": [
+          {
+            "name": "The Shrine Kami (unseen)",
+            "description": "A minor kami of the broken fox, dwindling. It does not appear, but the wind speaks.",
+            "attitude": "neutral",
+            "notes": "If the fox's head is restored, the kami speaks once, in the silence between two breaths, naming the Mountain Hermit by his old name: Yamashiro. This is the only way the PCs learn his name. Naming a kami-corrupted being correctly inflicts +d4 damage on attacks against them."
+          }
+        ],
+        "traps": [],
+        "secrets": [
+          "The kami is dying. If the head is not restored within d6 in-game days, the shrine collapses and the kami is gone. No mechanical effect, but the Mountain Hermit is one less hermit.",
+          "The fire-ward charm in the offering box was placed by the Mountain Hermit himself — long ago, when he was a man named Yamashiro. He left it for whoever might one day come hunting him."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Finding the Fox's Head",
+          "text": "Presence DR12. Success: head found and may be restored (Strength DR8, ritual). Failure: searcher hears a single bell-note that no one else hears."
+        },
+        {
+          "title": "The Fire-Ward Charm",
+          "text": "Single-use. Applied at start of an encounter with a fire-bearing enemy: subtract d4 from all fire damage taken by the bearer for that encounter, then the charm burns away."
+        }
+      ],
+      "gm_notes": "This is the optional node and the only place to learn the Mountain Hermit's true name (Yamashiro). Parties that skip this node fight him at the climax without the +d4 damage bonus from naming him correctly — making the encounter notably harder. The fire-ward charm is a similar quiet reward. Lean into the wind-anomaly: small theatrical detail, recurring.",
+      "exits": [
+        {
+          "id": "shrine-to-village",
+          "label": "East — back to the village",
+          "target": "burning-village",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "shrine-to-tower",
+          "label": "Northeast — the watchtower",
+          "target": "watchtower",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "shrine-to-mountain",
+          "label": "North — the path up the mountain",
+          "target": "mountain-summit",
+          "condition": "Not recommended without the bandit camp first — the mountain is the climax",
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["puzzle", "treasure"]
+    },
+    {
+      "id": "bandit-camp",
+      "title": "The Bandit Camp",
+      "type": "location",
+      "atmosphere": "A clearing among pines. Six tents in a half-circle around a low fire. The horses are tied poorly. The bandits are drinking, loud, certain no one is coming.",
+      "read_aloud": "You crest the ridge an hour before sundown. Below: a clearing, six tents, a fire, eight bandits in mismatched armor passing a sake jug. Their horses are tethered badly — three of them could break loose without trying. Above the fire, on a spear stuck in the ground, the village headman's straw hat. They are laughing.",
+      "contents": {
+        "description": "Bandit camp east of the village. Eight bandits, three of whom are sleeping off the morning's sake. Their leader, Boss Genjirō, sits closest to the fire. The stolen rice (the actual contracted item) is in the largest tent. Horses are tied near the trees.",
+        "items": [
+          "Stolen rice: six rice-bales, marked with the village's stamp. Recoverable.",
+          "Boss Genjirō's gear: a fine yumi (bow, d8), 80 mon, a forged seal from a daimyo two provinces over.",
+          "The headman's straw hat — proof for Hatano (or his ghost) that the bandits were responsible.",
+          "Three half-decent horses, easily stolen if the camp is taken or distracted."
+        ],
+        "enemies": [
+          {
+            "name": "Bandit (×8)",
+            "hp": 4,
+            "morale": "6",
+            "speed": "normal",
+            "attack": "Mismatched weapon +0, d4 or d6",
+            "special": "Three are sleeping off sake at scene start. Wake on first sound of combat with one round of delay.",
+            "notes": "Common bandits. Will flee if reduced to half number or if Genjirō falls (his death triggers Morale check for the rest). The three sleepers are at +DR2 disadvantage for their first round."
+          },
+          {
+            "name": "Boss Genjirō",
+            "hp": 12,
+            "morale": "8",
+            "speed": "normal",
+            "attack": "Yumi (bow) +1, d8 — OR — Katana +1, d8",
+            "special": "Once per fight: shouts a warcry that rallies bandits within hearing — they re-roll a failed Morale check immediately, with advantage.",
+            "notes": "Wears scavenged lamellar (-d4). Knows the bandits' contract is forged. Carries the forged seal. If captured alive, will trade the seal and the name of his employer (a minor daimyo two provinces over) for his life."
+          }
+        ],
+        "npcs": [],
+        "traps": [
+          {
+            "name": "The Camp Bell",
+            "trigger": "Approaching the camp loudly OR a missed Stealth roll.",
+            "effect": "A small alarm bell strung between two trees on the approach path. If triggered, the sleeping bandits wake on round 1 instead of round 2, and Genjirō has his bow ready instead of his sword.",
+            "dr": "Agility DR10 to spot. Agility DR12 to disarm silently."
+          }
+        ],
+        "secrets": [
+          "Genjirō's forged seal implicates a minor daimyo (Lord Tsukuda) in the village burning. Hatano did not know this. If Hatano is told before he dies, he asks the PCs to carry the seal to a magistrate — a new contract, a new direction.",
+          "One of the bandits, Eito, is the son of the village headman. He thought his father had abandoned him; he has been with the bandits for two years. If recognized (a PC who searched the bodies in the village will know the family resemblance), he can be turned — surrender, defect, or kill himself out of shame. Each outcome shifts ±1 Honor for the convincer."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Approaching by Stealth",
+          "text": "Agility DR12 per PC. Success by all: surprise round, +DR2 disadvantage on bandits for round 1. Any failure: alarm bell tripped (see Traps)."
+        },
+        {
+          "title": "Iaijutsu Opening (Ronin Borg)",
+          "text": "A PC with a sheathed katana may declare iaijutsu before the first round: d20 + Agility vs DR12. Success: the strike deals weapon damage to a chosen bandit and the attacker holds initiative next round."
+        }
+      ],
+      "gm_notes": "The bandits are the contracted job — but the forged seal is the twist. A daimyo two provinces over wanted Hatano's village destroyed. The PCs can: kill all the bandits and bring the head, capture Genjirō and bring him, recover the seal, find Eito the headman's son. Each choice shapes the final scene. Don't railroad — let the players decide. The mountain summit is the climax; it activates after the camp is resolved one way or another.",
+      "exits": [
+        {
+          "id": "camp-to-village",
+          "label": "West — back to the village (one day)",
+          "target": "burning-village",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "camp-to-tower",
+          "label": "Northwest — back to the watchtower (one day)",
+          "target": "watchtower",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "camp-to-mountain",
+          "label": "Up the trail — the mountain summit (the crow flies that way)",
+          "target": "mountain-summit",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["combat", "scene"]
+    },
+    {
+      "id": "mountain-summit",
+      "title": "The Mountain Summit",
+      "type": "location",
+      "atmosphere": "Above the fog line. The wind here is the wind from the shrine, exactly. A small wooden hut. A man waiting on a rock, the crow on his shoulder. He has been waiting a long time.",
+      "read_aloud": "The path crests above the fog. The summit is bare stone. A small wooden hut, ragged. On a flat rock by the hut, a man sits. He is older than the trees you climbed past. The crow from the village is on his shoulder. He watches you arrive without surprise. He says: 'I have been waiting. Sit. Or don't.'",
+      "contents": {
+        "description": "Summit. The Mountain Hermit (Yamashiro) waits. He is the one who paid the bandits — through proxies; he gave the daimyo's seal to Genjirō. He set this entire scenario in motion. He is dying. He wanted witnesses, judges, executioners. The crow is his familiar. The encounter resolves by combat, by judgement (PCs as a tribunal), or by his suicide if confronted with his true name.",
+        "items": [
+          "Hermit's hut: rice for two weeks, a sleeping mat, a single scroll wrapped in oilcloth.",
+          "The scroll: titled 'Confessions of Yamashiro.' A full account of his arrangement with Lord Tsukuda, the village he ordered burned, and why (the village hid a child he wronged seventy years ago — the child grew old and died there without knowing him).",
+          "Hermit's tantō (d4) — if he dies, it is his to give."
+        ],
+        "enemies": [
+          {
+            "name": "The Mountain Hermit (combat form)",
+            "hp": 18,
+            "morale": "—",
+            "speed": "normal",
+            "attack": "Burning hand +1, d6 fire damage + special — OR — tantō +0, d4",
+            "special": "Fire — touch deals d6 fire damage (the fire-ward charm from the shrine reduces by d4). Once per fight: BURN AWAY — sets one PC's outermost garment alight; d4 damage per round until a Toughness DR12 succeeds. If named correctly (Yamashiro, learned at the shrine): all attacks against him deal +d4 damage.",
+            "notes": "He fights only if attacked, or if the PCs explicitly refuse to judge him and walk away. His Morale — means he does not flee — he wants this to end one way or the other."
+          }
+        ],
+        "npcs": [
+          {
+            "name": "Yamashiro (the Mountain Hermit, peaceful)",
+            "description": "An old man in patchwork robes. Crow on his shoulder. Eyes that have not slept in years. Hands burnt at the fingertips.",
+            "attitude": "neutral",
+            "notes": "He admits everything if asked directly. He paid the bandits. He set the fire. He wanted to be found. He explains: seventy years ago he abandoned a pregnant servant; she gave birth in the village; the child grew old there and died last winter without ever knowing him. He set the village on fire to mourn — and to be found and judged. The bandits were the bait."
+          }
+        ],
+        "traps": [],
+        "secrets": [
+          "If the PCs read the scroll before deciding what to do with Yamashiro, his Morale becomes 0 — he will not resist anything. He wants the scroll read.",
+          "The crow is the soul of the child he abandoned. It has been waiting too. When Yamashiro dies, the crow flies once around the summit and falls.",
+          "If a PC sat in the village at the start and asked the crow a real question — and remembered the answer — they may speak it now. Whatever it is, Yamashiro weeps."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Judgement (The Tribunal Option)",
+          "text": "If the PCs declare themselves a tribunal and read the confession aloud, Yamashiro will accept any verdict. Execute him: +1 Honor each, his tantō to the executioner. Spare him: he commits ritual harakiri at sunset, asks for a second. Banish him: he walks down the mountain, never seen again — the GM may bring him back in a later adventure as a ghost."
+          },
+        {
+          "title": "Iaijutsu Opening (Ronin Borg)",
+          "text": "A PC with a sheathed katana may declare iaijutsu before the first round: d20 + Agility vs DR12. Success: the strike deals weapon damage and the attacker holds initiative next round."
+        },
+        {
+          "title": "The Lost Thing",
+          "text": "Each PC who declared at the start what they lost (lord/sword/name) may now recover it here — only if they refuse to attack Yamashiro. Lost lord: a vision tells them where their old master's grave lies. Lost sword: the hermit's tantō, accepted, fits the empty scabbard. Lost name: they remember it, and remember why they hid it. Restoring is permanent and gives +1 to all rolls for the rest of the day."
+        }
+      ],
+      "gm_notes": "This is the climax and the catharsis. Three valid endings: tribunal (read the scroll, judge him, sentence carried out), combat (he fights, but reluctantly), or refusal (the PCs walk away; the mountain takes him at sunset regardless). The Lost Thing rule rewards players who answered the opening question seriously. Bring the crow back: it watches everything, and its falling at his death is the emotional period. If the PCs killed the crow at the village, Yamashiro is already broken when they arrive — he will not fight, he will not speak, he will simply offer his neck.",
+      "exits": [
+        {
+          "id": "summit-down",
+          "label": "Down the mountain — the road continues, the scenario ends",
+          "target": "epilogue",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "summit-to-camp",
+          "label": "Back down to the bandit camp",
+          "target": "bandit-camp",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["climax", "npc", "boss"]
+    },
+    {
+      "id": "epilogue",
+      "title": "The Road Continues",
+      "type": "location",
+      "atmosphere": "The path down the mountain joins a wider road. The fog lifts. Somewhere ahead is the next village, the next contract, the next ruin.",
+      "read_aloud": "You come down off the mountain in the morning. The fog has lifted. The wider road runs both ways — north toward the capital, south toward the sea. You have weapons and silver and at least one fewer thing you came in with. The crow does not follow.",
+      "contents": {
+        "description": "End of the starter. Tally Honor changes, distribute Hatano's katana / Yamashiro's tantō / the village's gratitude as appropriate. GM continues into their own campaign from here.",
+        "items": [],
+        "enemies": [],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "The forged seal (if recovered) implicates Lord Tsukuda — a hook for the next scenario.",
+          "If Eito (the headman's son) defected, he travels with the party as a follower until the next significant scene.",
+          "If the scroll was read aloud, Yamashiro's confession spreads; in 1d6 weeks, his old province sends a hunter looking for the witnesses."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Reckoning",
+          "text": "Total Honor changes for each PC. The GM may grant: +1 max HP to any PC whose Honor rose by 2+. The GM may impose: Shamed condition on any PC whose Honor fell to 0 or below. Karma (Omens) refresh to maximum."
+        }
+      ],
+      "gm_notes": "This is a scaffolding node. The starter ends here; the GM continues into their own campaign with the threads the PCs leave: Tsukuda the daimyo, Eito the defector, the hunter coming for the witnesses. The crow's absence is the period.",
+      "exits": [],
+      "visited": false,
+      "tags": ["end"]
+    }
+  ]
+}

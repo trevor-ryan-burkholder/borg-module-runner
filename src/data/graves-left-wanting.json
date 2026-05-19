@@ -1,0 +1,988 @@
+{
+  "meta": {
+    "id": "graves-left-wanting",
+    "title": "Graves Left Wanting",
+    "author": "Karl Druid (design/art Johan Nohr; ed. Fiona Maeve Geist & Jarrett Crader)",
+    "version": "1.0",
+    "system": "morkborg",
+    "description": "The party awakens in coffins in the cursed cemetery of Graven-Tosk. There is no defined ending and no clear escape path.",
+    "startNode": "plague-pit",
+    "license": "Based on official Mörk Borg content. Independent production by Trevor Burkholder, published under the MÖRK BORG Third Party License. MÖRK BORG is © Ockult Örtmästare Games and Stockholm Kartell."
+  },
+  "nodes": [
+    {
+      "id": "plague-pit",
+      "title": "The Plague Pit",
+      "type": "location",
+      "atmosphere": "Repugnant smell. Moonlight the color of sour milk. Encircled by soupy fog whose tendrils occasionally creep down. Stale, warm air. Dark.",
+      "read_aloud": "You wake in earth. The lid of a cheap coffin is two inches above your face and it is full of teeth — not yours. Above the wood: weight. Below the weight: the chest of someone who stopped breathing some time ago. You push, and the soil above you gives. You are in a pit. The moon is the color of sour milk. Fog moves down the walls like something deciding whether to come in. Around you, in stacks and tangles, the dead are at every stage of being dead. None of them ask why you are still warm.",
+      "contents": {
+        "description": "An open mass grave at the bottom of a depression in the graveyard. The PCs begin here, clambering up out of coffins, mass burials, or shallow scrapings. Corpses at differing stages of decay are everywhere — loot is on the bodies, not in chests. Any direction leads back out into the fog of the Graveyard (Walking the Trails). One ruin-tunnel to the west leads down into Erhard's Tomb.",
+        "items": [
+          "Loot the bodies — roll d6 twice on the Plague Pit loot table (see Rules below).",
+          "Spare coffin lids and decayed rope (improvised tools, GM call)."
+        ],
+        "enemies": [],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "Among the corpses is at least one body recently buried by the Undertaker herself — wounds inconsistent with disease. The PCs are not the first 'survivors' she's silenced.",
+          "If a PC stays in the pit long enough to listen, they hear, faintly: someone crying west, down the ruin-tunnel. (Erhard's Tomb is silent. The crying is the Widow-wraith, somewhere on the trails above.)"
+        ]
+      },
+      "rules": [
+        {
+          "title": "Loot the Bodies (d6, roll twice)",
+          "text": "1 — 3d10 silver. 2 — d4 seemingly edible rations of dried meat. 3 — Pendant featuring a portrait of a mouthless man. 4 — Rusted but functional shortsword (d4). 5 — 10ft rope with noose still firmly tied. 6 — Pouch of white powder: win the next initiative roll automatically, d6 doses."
+        },
+        {
+          "title": "Walking the Trails (d4)",
+          "text": "Leaving the Plague Pit by 'any direction' means traveling the fog. Roll d4 for destination: 1 Strangly Tree · 2 Plague Pit · 3 Origin Fountain · 4 Maus' Vomatorium. Then roll d10 for a random encounter. Once all four surface locations have been visited, the next trail leads to the Undertaker's Hut."
+        },
+        {
+          "title": "Random Encounter (d10)",
+          "text": "1 — d4 Rotted Skeletons skulking. 2 — a ghastly Widow-wraith. 3 — d4 Unbred Mutts digging. 4 — d4 Half-billed Ravens. 5 — d4 Hungry Zombies eating. 6–10 — A random PC experiences Sensory Strangeness (see Walking the Trails screen)."
+        }
+      ],
+      "gm_notes": "This is the opening scene. Read the read-aloud, then ask each player what their PC does before letting them speak to each other. They wake naked-of-context: no introduction, no party formation. Let them loot before they organize. The d6 pendant of a mouthless man is canon flavor with no payoff in this module — it's a hook for a future scenario, or just a creepy keepsake. The 'pouch of white powder' is intentionally drug-like; treat doses as one-use. After the first round of looting, prompt them to leave: any direction triggers Walking the Trails. The west ruin-tunnel is the only fixed exit (does not need a Trails roll). Do not pre-roll the d4 trail — let them choose 'any direction' and roll in front of them.",
+      "exits": [
+        {
+          "id": "plague-pit-to-trails",
+          "label": "Climb out into the fog — any direction (roll d4 trail + d10 encounter)",
+          "target": "walking-the-trails",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "plague-pit-to-erhard",
+          "label": "West — ruin-tunnel down to Erhard's Tomb",
+          "target": "erhards-tomb",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["start", "loot", "surface"]
+    },
+    {
+      "id": "walking-the-trails",
+      "title": "Walking the Trails",
+      "type": "transition",
+      "atmosphere": "The fog of Graven-Tosk does not stay where you left it. The path under your feet is the only path until it isn't.",
+      "read_aloud": "The fog closes behind you and forgets what direction you came from. Stone teeth jut from the dirt at angles that suggest the dirt has been moving. Whatever is walking with you is not walking in step.",
+      "contents": {
+        "description": "This is not a place — it is the procedural travel layer between the four surface locations. Roll d4 for destination and d10 for encounter, then jump to the appropriate node. After all four primary surface locations (Strangly Tree, Plague Pit, Origin Fountain, Maus' Vomatorium) have been marked Visited, the next trail leads to the Undertaker's Hut instead. The Roach Herder, if recruited, navigates without rolling.",
+          "items": [],
+          "enemies": [],
+          "npcs": [],
+          "traps": [],
+          "secrets": [
+            "The fog rearranges the places themselves, not the PCs. Two parties walking from the Plague Pit at the same moment would arrive at different destinations.",
+            "The Roach Herder knows which way to go. Recruiting him removes the d4 roll entirely — he just leads."
+          ]
+      },
+      "rules": [
+        {
+          "title": "Roll the Trail (d4)",
+          "text": "1 Strangly Tree · 2 Plague Pit · 3 Origin Fountain · 4 Maus' Vomatorium. After all four surface locations are visited at least once, this roll is ignored — the trail leads to the Undertaker's Hut."
+        },
+        {
+          "title": "Random Encounter (d10)",
+          "text": "1 — d4 Rotted Skeletons. 2 — Widow-wraith. 3 — d4 Unbred Mutts. 4 — d4 Half-billed Ravens. 5 — d4 Hungry Zombies. 6–10 — Sensory Strangeness."
+        },
+        {
+          "title": "Sensory Strangeness (d8)",
+          "text": "1 — Muffled scratching. 2 — Is everyone walking backwards? 3 — Wind chills the spine yet makes you sweat. 4 — Invisible breathing behind your left/right ear (50%). 5 — That cherub just looked at you. 6 — Sudden smell of wet dog. 7 — Did something grab your hand just now? 8 — You could swear there were more of you. Where's Skruggs?"
+        }
+      ],
+      "gm_notes": "Use this node as a GM screen. Pick the destination after the d4 and the encounter after the d10, then jump to the appropriate location node. Mark each visited surface location to track progress toward the Hut trigger. If the Roach Herder is with them, skip the d4 — he leads them where they ask. He still doesn't suppress encounters.",
+      "exits": [
+        {
+          "id": "trail-to-strangly",
+          "label": "1 — The Strangly Tree",
+          "target": "strangly-tree",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "trail-to-pit",
+          "label": "2 — The Plague Pit",
+          "target": "plague-pit",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "trail-to-fountain",
+          "label": "3 — The Origin Fountain",
+          "target": "origin-fountain",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "trail-to-vomatorium",
+          "label": "4 — Maus' Vomatorium",
+          "target": "maus-vomatorium",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "trail-to-hut",
+          "label": "All four surface locations visited — the trail leads to the Undertaker's Hut",
+          "target": "undertakers-hut",
+          "condition": "All four surface locations visited",
+          "locked": true
+        }
+      ],
+      "visited": false,
+      "tags": ["hub", "procedural"]
+    },
+    {
+      "id": "erhards-tomb",
+      "title": "Erhard's Tomb",
+      "type": "location",
+      "atmosphere": "Floor covered in drifting fog. Two unlit torches in iron sconces flank a standing sarcophagus. The air in here is too still.",
+      "read_aloud": "The tunnel opens into a low chamber. Fog drifts knee-high, slow as honey. Centered against the far wall stands a sealed sarcophagus, flanked by two unlit torches in old iron. The torches do not catch when you try to light them. The sarcophagus is heavy stone, sealed with something black that ran down and dried.",
+      "contents": {
+        "description": "A small underground burial chamber. The sarcophagus is sealed and contains Erhard. Two iron sconces hold torches that refuse to light. A narrow crawl space exits north into the Catacomb Corridor; the east tunnel returns to the Plague Pit; a south tunnel leads to the Colander Room.",
+        "items": [
+          "Two unlit torches in iron sconces. They cannot be lit while in the chamber. Removed, they burn normally.",
+          "Inside the sarcophagus (if opened): Erhard's body — waxy, malleable, very flammable. Iron skeleton. Fist-sized ruby in the ribcage where a heart would be."
+        ],
+        "enemies": [],
+        "npcs": [
+          {
+            "name": "Erhard",
+            "description": "A man's odorless corpse in near perfect condition, wearing fine silk clothes. The skin is waxy and flammable. Beneath it: an iron skeleton and a fist-sized ruby in the ribcage.",
+            "attitude": "neutral",
+            "notes": "Erhard does not act. He is a body, a question, and a great deal of treasure. He gives no orders, makes no demands, says nothing. Why his skeleton is iron, why a ruby sits where a heart should, and who sealed him with such care — all unwritten."
+          }
+        ],
+        "traps": [
+          {
+            "name": "Sarcophagus Lid",
+            "trigger": "Failed Strength test to open the sarcophagus.",
+            "effect": "The lid falls open uncontrolled. Everyone involved takes d4 damage.",
+            "dr": "Strength DR18, reduced by 2 per assistant. Failure: d4 damage to all assisters."
+          }
+        ],
+        "secrets": [
+          "The ruby is worth ~500 silver to anyone outside Graven-Tosk, which is no one the PCs can reach.",
+          "Erhard's waxy skin burns like a candle. A whole body could light the chamber for hours. Anyone holding him while he burns takes 1 damage per round.",
+          "The torches will not light here because the chamber's air is being held by something. Carrying a torch in from the corridor: it gutters but holds. Once back in the chamber, it dies."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Opening the Sarcophagus",
+          "text": "Test Strength DR18, reduced by 2 for each assistant (DR16 with 1 helper, DR14 with 2, DR12 with 3). Failure: the lid falls open and everyone involved takes d4 damage."
+        }
+      ],
+      "gm_notes": "Erhard is one of the great Mörk Borg curiosities — the iron skeleton and the ruby heart are canonical and never explained. Let the players speculate. The ruby is treasure they cannot spend. The skin's flammability is a single dark experiment waiting to happen. Do not let the chamber's anomalous airlessness become a puzzle — it is atmosphere, not a lock. The north crawl space is tight; armored PCs +DR2 to all physical tests until they're through.",
+      "exits": [
+        {
+          "id": "erhard-to-corridor",
+          "label": "North — narrow crawl space to the Catacomb Corridor (tight: medium+ armor at +DR2)",
+          "target": "catacomb-corridor",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "erhard-to-pit",
+          "label": "East — tunnel back up to the Plague Pit",
+          "target": "plague-pit",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "erhard-to-colander",
+          "label": "South — tunnel to the Colander Room",
+          "target": "colander-room",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["puzzle", "treasure", "underground"]
+    },
+    {
+      "id": "catacomb-corridor",
+      "title": "The Catacomb Corridor",
+      "type": "location",
+      "atmosphere": "Dark and deadly quiet. Balmy and unventilated. The corridor stretches north–south and the air does not move at all.",
+      "read_aloud": "The corridor is long and warm and silent in a way no underground place should be. Toothless skulls watch from niches on both walls. Three large urns sit on the floor, lids resting unevenly. A lamp lies on its side near the wall, its oil pooled and dried.",
+      "contents": {
+        "description": "Long stone corridor running north–south. Toothless skeletons rest in dusty wall niches. Three urns sit on the floor with contents to be rolled. A spent lamp lies on the ground. North tunnel leads to the Roach Herder's Lair. A broken niche-wall crawlspace east leads to Erhard's Tomb. The south staircase leads up to the Origin Fountain.",
+        "items": [
+          "Three large urns — roll d4 each (see Rules).",
+          "Lamp (functional if filled — oil is dried, needs the urn-result-4 oil or other source)."
+        ],
+        "enemies": [],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "Every skull in every niche is missing its teeth. The teeth are in Urn 1 — if rolled — and possibly elsewhere. Someone removed every tooth in this corridor and kept them.",
+          "The corridor's airlessness is the same anomaly as Erhard's Tomb. Open flames consume oxygen here faster than they should — torch duration halved."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Open an Urn (d4)",
+          "text": "Roll for each urn opened. 1 — Teeth, just teeth. 2 — Rotted books and a tube containing a random Unclean Scroll. 3 — Decomposing corpse; a Twice-grown Corpse Fly bursts from the soft skull, looking for food. 4 — Lamp oil (4d6 hours)."
+        }
+      ],
+      "gm_notes": "Three urns is three rolls. Players will open them in order — let the suspense build. If urn 3 (corpse fly) is rolled, the fly is hungry: it attacks the closest PC. If urn 2 (unclean scroll) is rolled, GM's choice or roll on a random unclean scroll table — keep it nasty. The crawlspace to Erhard's Tomb is awkward but not dangerous. The Roach Herder's Lair to the north has rushing water beyond it — listen for it as PCs approach.",
+      "exits": [
+        {
+          "id": "corridor-to-roach",
+          "label": "North — tunnel to the Roach Herder's Lair (sound of water beyond)",
+          "target": "roach-herders-lair",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "corridor-to-erhard",
+          "label": "East — crawlspace through broken niche-wall to Erhard's Tomb",
+          "target": "erhards-tomb",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "corridor-to-fountain",
+          "label": "South — staircase up to the Origin Fountain",
+          "target": "origin-fountain",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["puzzle", "loot", "underground"]
+    },
+    {
+      "id": "colander-room",
+      "title": "The Colander Room",
+      "type": "location",
+      "atmosphere": "Half-lit by moonbeams piercing miniscule holes in stone and dirt. Long worms of mist droop and drip from the ceiling. The sound of chattering teeth.",
+      "read_aloud": "The room is round and the ceiling is full of pinholes. Through each one, a single pale beam of moonlight has drilled down, hanging in the still air like a thin silver wire. Long worms of mist drool from the ceiling and drip onto a stone table. At the table sit three skeletons, wrapped in coils of fog. They are arguing. You hear no words — only the clatter of tooth on tooth, fast and angry. On the table sits a locked metal strongbox. One skeleton waves an elaborate dagger like a key.",
+      "contents": {
+        "description": "Circular chamber. Ceiling pierced by thousands of tiny holes. Three Fogbound Skeletons sit at a stone table arguing soundlessly via tooth-chatter, wrapped in fog coils. Locked metal strongbox on the table. One skeleton holds The Skeleton Unkey — an elaborate key-like dagger (d4, opens any lock; unlocked things lead to unexpected places). North tunnel returns to Erhard's Tomb. East: a collapsed wall opens into Maus' Vomatorium.",
+        "items": [
+          "Locked metal strongbox (see Strongbox table).",
+          "The Skeleton Unkey — d4 dagger that opens any lock; things unlocked by it lead to unexpected, rarely convenient places."
+        ],
+        "enemies": [
+          {
+            "name": "Fogbound Skeleton",
+            "hp": 5,
+            "morale": "—",
+            "speed": "normal",
+            "attack": "Rusty blade or bone fist, +0, d4",
+            "special": "Wrapped in coils of fog — first attack against each Fogbound Skeleton per round must beat DR12 Agility or pass harmlessly through the mist. They speak only by clattering teeth; immune to charm, fear, and language.",
+            "notes": "[CANON CHECK — Fogbound Skeleton has no standalone stat block in the wiki; stats here are reasonable interpolation from Rotted Skeleton (HP 5) and the description in MBC_Graves_left_wanting.pdf, p.9. There are three of them. They become hostile if anyone grabs the Unkey, the strongbox, or attacks first."
+          }
+        ],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "The Skeleton Unkey opens any lock — including locks the players don't know exist. If used on the Undertaker's Hut door, the door opens but the room beyond is not the same hut anyone else would enter. GM call: where does it go?",
+          "The strongbox, opened by means OTHER than the Unkey, contains 200 silver coins. Opened by the Unkey, it contains one of four impossible things — see Rules.",
+          "The Fogbound Skeletons are arguing about whether to kill whoever just came in. The argument is going badly for the side that wants to wait."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Unheard Voices",
+          "text": "The Fogbound Skeletons speak with elongated tongues of mist, soundless save the clatter of tooth against tooth. They cannot be parleyed with by speech."
+        },
+        {
+          "title": "Strongbox, Unlocked by the Unkey (d4)",
+          "text": "1 — Full of flowing, cold water (pours out indefinitely while held open). 2 — Reveals a PC's beating heart (whichever PC opened it; closing the box stops the bleeding). 3 — Releases a ray of dazzling light (all in chamber test Toughness DR12 or blinded 1 round). 4 — Contains red sand (smells of distant sea)."
+        },
+        {
+          "title": "Strongbox, Opened by Other Means",
+          "text": "200 silver coins. Boring. Heavy."
+        },
+        {
+          "title": "Provoking the Skeletons",
+          "text": "Grabbing the dagger or strongbox makes the skeletons hostile. They fight to the destruction of the last skeleton — no Morale."
+        }
+      ],
+      "gm_notes": "The Unkey is the most useful item in the dungeon — and the most dangerous. Its destinations are deliberately undefined. When a PC uses it on a 'normal' door (Undertaker's Hut, a coffin, a sealed tomb), invent somewhere strange — a corridor in another part of Graven-Tosk they haven't seen, a coffin in the Plague Pit suddenly with a fresh corpse in it, a back wall of the Vomatorium opening into rain. The fog wrapping the skeletons gives them effective concealment — first attack each round per skeleton may pass through. The east collapsed wall to the Vomatorium is one-way easy in / hard back: getting through is fine; coming back means climbing rubble (DR10 Strength or Agility).",
+      "exits": [
+        {
+          "id": "colander-to-erhard",
+          "label": "North — tunnel to Erhard's Tomb",
+          "target": "erhards-tomb",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "colander-to-vomatorium",
+          "label": "East — collapsed wall to Maus' Vomatorium (DR10 Strength/Agility to climb back)",
+          "target": "maus-vomatorium",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["combat", "puzzle", "treasure", "underground"]
+    },
+    {
+      "id": "maus-vomatorium",
+      "title": "Maus' Vomatorium",
+      "type": "location",
+      "atmosphere": "Acid's sour smell. Sickly puddles of green and yellow gall glow in the gloom. The sound of a boiling pot, slow and patient.",
+      "read_aloud": "The chamber is grand and wrong. Stone walls carved with old skill. Two rows of columns hold a buckling ceiling. The flagstone floor is eaten through in places, and the holes have filled with luminous green and yellow gall. On a raised dais sits a marble coffin, its lid bubbling and steaming. Yellow liquid runs down its sides and pools at the dais's base. Something in the coffin is taking a very long bath.",
+      "contents": {
+        "description": "Ornate underground chamber. The floor is eroded by glowing gall in puddles between flagstones. Two rows of columns. A marble coffin on a raised dais leaks bubbling yellow gall from a shifting lid. Inside the coffin: Fela Maus' bones and the Roseate Baritona. North: stone doors and staircase to the surface. West: collapsed wall back to the Colander Room (DR10 to climb up).",
+        "items": [
+          "The Roseate Baritona — a human-sized ivory horn bedecked with Maus' family skulls and bound in magical entrails. When blown, listeners must test Toughness DR10 or vomit acid (d6 damage). Blower beware — they are a listener too if their attack draws the horn's note across themselves.",
+          "Fela Maus' bones (no mechanical value; whole skeleton would be culturally priceless to a Galgenbeck museum if such a place still cared)."
+        ],
+        "enemies": [],
+        "npcs": [
+          {
+            "name": "Fela Maus (bones only)",
+            "description": "The legendary bard-made-noble Fela Maus, cursed by a bog hag after neglecting to fulfill her part of a long-forgotten occult enterprise. She is bones now, soaking in her own acid bath.",
+            "attitude": "neutral",
+            "notes": "She does not speak. She does not rise. The Baritona is her grave goods and her curse — the thing she failed to complete is locked inside the horn's noise."
+          }
+        ],
+        "traps": [
+          {
+            "name": "Gall Pools",
+            "trigger": "Standing within ~5ft of the dais OR moving through a gall-puddle.",
+            "effect": "d6 damage per round near the dais. Crossing a puddle without testing: d4 to the leg.",
+            "dr": "Agility DR12 to cross a puddle without contact. Standing near the dais simply hurts — no save."
+          }
+        ],
+        "secrets": [
+          "The horn's curse is keyed to Maus' family. A PC who can prove themselves a Maus by blood (highly unlikely) would not vomit. Anyone else, the horn judges them.",
+          "The collapsed wall to the Colander Room is not natural — Maus' coffin was set down here AFTER the chamber was sealed. Someone broke in to put her in. They did not come out the same way.",
+          "If the Baritona is removed from the chamber, the gall on the floor cools to inert syrup over d6 hours. The room becomes safe but the horn becomes louder."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Recovering the Baritona",
+          "text": "Reaching into the coffin to fish the horn out of the gall: test Toughness DR12 or take d6 acid damage. A long stick, hook, or rope can be substituted at no test."
+        },
+        {
+          "title": "Blowing the Roseate Baritona",
+          "text": "Listeners (including the blower, unless braced) test Toughness DR10 or vomit acid for d6 damage. The note can be heard throughout the underground portion of Graven-Tosk."
+        }
+      ],
+      "gm_notes": "Blowing the horn is a nuclear option. Use it once in combat and it changes the encounter. The acid damage applies to listeners within hearing, not just the blower's enemies — PC allies will vomit too unless protected. The blower can plug their own ears or hold breath (Toughness DR8) to brace. The chamber is overtly hostile to flesh; if a PC stands by the dais looking at the horn for more than a moment, they're losing HP. Stone doors north open onto the trail-fog (route them via Walking the Trails on exit) — alternatively, the staircase emerges directly at the surface and the GM can simply place them at the Vomatorium's entrance on a 'visited' check. The collapsed wall west to Colander is DR10 to climb up.",
+      "exits": [
+        {
+          "id": "vomatorium-to-surface",
+          "label": "North — stone doors and staircase up to the surface (Walking the Trails)",
+          "target": "walking-the-trails",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "vomatorium-to-colander",
+          "label": "West — climb collapsed wall back to Colander Room (DR10 Strength/Agility)",
+          "target": "colander-room",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["treasure", "trap", "underground"]
+    },
+    {
+      "id": "origin-fountain",
+      "title": "The Origin Fountain",
+      "type": "location",
+      "atmosphere": "The smell of stagnant water. Whispers of laughing children where no children should be.",
+      "read_aloud": "A grand rectangular fountain. The stone is old enough that the carving has softened — angels and cherubs and things between, all of them weeping mist instead of water. The mist falls into the basin and stays put, a thick low layer that hides the bottom. Two statues at the fountain's crest hold a stone jar between them. A bridge of stepping pillars protrudes from the mist, leading across the basin to a stone door on the far side. From somewhere under the mist, children are laughing.",
+      "contents": {
+        "description": "Grand rectangular fountain at the heart of the surface graveyard. Cherubs and statuary weep mist (not water) that pools in the basin and hides the bottom. Two statues at the crest hold a stone jar containing Nostalgia Gruel. A bridge of pillars leads to a stone door on the far side. North: door and steps down to the Catacomb Corridor.",
+        "items": [
+          "Nostalgia Gruel (inside the jar) — enough to restore two people to their prime, +1 to all abilities permanently. Taking it requires reaching the jar (see Rules)."
+        ],
+        "enemies": [],
+        "npcs": [],
+        "traps": [
+          {
+            "name": "Pillar Bridge",
+            "trigger": "Crossing the fountain basin via the stepping pillars.",
+            "effect": "Slip and fall into the mist. The cherubs laugh. Moments later, the PC wakes in the Catacomb Corridor, toothless and aged. All abilities −1 permanently.",
+            "dr": "Agility DR12 to cross safely. Fail: aged in the mist; lose all teeth, lose 1 from each ability, wake in Catacomb Corridor."
+          },
+          {
+            "name": "Reaching the Jar",
+            "trigger": "Climbing to the fountain's crest to retrieve the jar.",
+            "effect": "Slip and fall into the mist. Same aging effect as the bridge.",
+            "dr": "Agility DR16 to retrieve safely. Fail: as Pillar Bridge."
+          }
+        ],
+        "secrets": [
+          "The children laughing are not children. They are what the mist makes of memory — PCs who fell into the mist in another timeline, still here.",
+          "The door on the far side of the bridge has not been opened in centuries. It leads nowhere now — the corridor beyond collapsed. PCs who reach it find a small alcove with a single brass coin and a closed sketchbook of unreadable script.",
+          "The Nostalgia Gruel is real and the +1 to all abilities is permanent. Drinking it ages the drinker visibly into a former, healthier self — wrinkles smooth out backward, gray hair browns again."
+        ]
+      },
+      "rules": [
+        {
+          "title": "The Pillar Bridge",
+          "text": "Test Agility DR12 to cross. Failure: fall into the mist; wake in the Catacomb Corridor, toothless and aged; all abilities −1 permanently."
+        },
+        {
+          "title": "The Jar of Nostalgia Gruel",
+          "text": "Test Agility DR16 to retrieve. Contents: enough Gruel to restore TWO people to their prime, +1 to all abilities permanently. Failure: as the pillar bridge."
+        }
+      ],
+      "gm_notes": "The fountain is the module's only unambiguous power-up — and it costs an aging risk. Two doses only. Watch the table dynamics: who gets the second dose? The door across the bridge is a flavor cul-de-sac; don't let it derail the session. The aging penalty is permanent and brutal — make sure the players understand the risk before they roll. The 'toothless and aged' detail is canon; lean into it. PCs lose 1 to each of Strength, Agility, Presence, and Toughness, not just one.",
+      "exits": [
+        {
+          "id": "fountain-to-corridor",
+          "label": "North — door and steps down to the Catacomb Corridor",
+          "target": "catacomb-corridor",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "fountain-to-trails",
+          "label": "Back into the fog — any direction (Walking the Trails)",
+          "target": "walking-the-trails",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["puzzle", "treasure", "surface"]
+    },
+    {
+      "id": "roach-herders-lair",
+      "title": "The Roach Herder's Lair",
+      "type": "location",
+      "atmosphere": "Hot and humid. Rancid sweat. Sound of rushing water from the north. Roaches everywhere — some too large.",
+      "read_aloud": "The tunnel opens into a wider chamber that smells of a man who has not bathed in years and a thousand insects that have. Debris is piled to the walls — broken urns, splintered coffin-wood, things that used to be from graves. On a throne of trash sits a man in robes that have given up. A whip rests across his knees. Roaches the size of dogs creep along the walls; smaller ones cover the floor. He has been watching you since before you entered.",
+      "contents": {
+        "description": "A debris-filled chamber stacked with stolen grave goods. A man (the Roach Herder) sits on a throne of trash and would-be valuables, a barbed whip in his hand. Meatroaches and ordinary roaches infest the floor. North: archway and tunnel to the Shadow King's Sewer. West: tunnel back to the Catacomb Corridor.",
+        "items": [
+          "Throne of Trash — piles of grave-goods, mostly worthless. d20 silver scattered, a tarnished silver locket, an iron candleholder shaped like a praying hand.",
+          "Barbed Roach Whip (d6) — wielded by the Herder. Looted from his cold dead hand if it comes to that."
+        ],
+        "enemies": [
+          {
+            "name": "The Roach Herder (if hostile)",
+            "hp": 4,
+            "morale": "5",
+            "speed": "normal",
+            "attack": "Bite +0, d4 (special) — OR — Barbed Roach Whip +0, d6",
+            "special": "Bite: test Toughness DR12 or become infected (-d6 HP per day; no natural healing in Graven-Tosk).",
+            "notes": "He doesn't WANT to fight. He recruits hard. If cornered, his Morale 5 means he breaks fast — and once broken, he begs, lies, and offers to guide. If attacked unprovoked, he fights with the whip. He flees through the north sewer archway if reduced below 2 HP, and the PCs will not catch him."
+          }
+        ],
+        "npcs": [
+          {
+            "name": "The Roach Herder",
+            "description": "Robes that have given up. A whip across his lap. The only living human inside Graven-Tosk besides the Deadn't. He has been trying to breed a roach large enough to fly him out, and the longer he stays, the closer he gets — he says.",
+            "attitude": "neutral",
+            "notes": "Recruitable. He will offer to guide the party to the Undertaker's Hut (or anywhere on the surface) in exchange for protection and a share of any silver. He is an insecure liar and an untrustworthy narcissist; everything he says about Graven-Tosk's history is half-true. But he IS the only one who can navigate the fog reliably — recruiting him skips the d4 trail roll on Walking the Trails. He will not enter Maus' Vomatorium (claims the gall ruins his boots; really he tried to drink it once and is afraid). He will lead the party to the Undertaker's Hut and then refuse to enter, claiming to keep watch outside."
+          }
+        ],
+        "traps": [],
+        "secrets": [
+          "He has been here longer than he says. His party died years ago. The roaches he 'breeds' are wild — he just feeds them.",
+          "He knows the sewer current can be ridden out — but only if you don't mind drowning. He has watched two PCs try.",
+          "His real name was Klaus Brennach. He was a merchant's son from Galgenbeck. He will deny this and become very upset if challenged on it.",
+          "Hidden in the throne (DR14 Presence to spot, or stated search): a small leather case containing a single, perfect crystal vial of cathedral incense — worth ~80 silver, and recognizable on sight to any priest of Galgenbeck."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Recruiting the Roach Herder",
+          "text": "Approach non-hostile: roll Reactions normally (Presence-modified 2d6). On amicable+ result, he offers to guide. On hostile, he attacks with the whip. Once he agrees to guide, he is reliably loyal until the first sign of real danger, at which point his Morale 5 reasserts."
+        },
+        {
+          "title": "Trail Navigation with the Herder",
+          "text": "While the Herder is alive and with the party on the surface, no d4 trail roll is needed — the GM picks (or the players choose) the destination directly. Random encounters still roll normally."
+        }
+      ],
+      "gm_notes": "The Roach Herder is the module's only escape valve from the fog. Recruiting him makes the rest of the surface tractable. He is also a coward and a fraud — play him as fawning to the strongest PC, scornful to the weakest. The 'breeding cockroaches to fly home' detail is canon; he is genuinely doing this, however absurd. The northern sewer is one-way: PCs heading north reach the Sewer with no resistance, but coming back south from the Sewer to the Lair means climbing up through the archway (no test, just narrative time). If you want to give the players a hint that not all is well at the Hut, the Herder is the foreshadow — he will say things like 'the woman there is dead but she's the only one keeping the place from being worse' and refuse to explain.",
+      "exits": [
+        {
+          "id": "roach-to-sewer",
+          "label": "North — archway and tunnel to the Shadow King's Sewer (sound of rushing water)",
+          "target": "shadow-kings-sewer",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "roach-to-corridor",
+          "label": "West — tunnel to the Catacomb Corridor",
+          "target": "catacomb-corridor",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["npc", "hub", "underground"]
+    },
+    {
+      "id": "shadow-kings-sewer",
+      "title": "The Shadow King's Sewer",
+      "type": "location",
+      "atmosphere": "The air carries petrichor as ice-cold droplets splash warm stone. Words are drowned by pitch-black water deafeningly crashing past.",
+      "read_aloud": "The tunnel ends at a river. Black water hammers past, deep and fast, heading north and west. The noise eats your voice — speaking is shouting and shouting is whispering. Cold droplets fly up and land on stone that is somehow still warm. Above you: a wooden hatch in the ceiling, with a rope dangling that ends a few feet too high to reach.",
+      "contents": {
+        "description": "A stone tunnel amputated by a river of frothing, freezing water rushing north and west. Above: a wooden hatch with a rope that ends out of reach — someone standing on another's shoulders could grab it (the hatch opens up into the inside of the Strangly Tree). South: tunnel and archway back to the Roach Herder's Lair. North: nothing but cold, hard rock; the river continues into stone.",
+        "items": [],
+        "enemies": [],
+        "npcs": [],
+        "traps": [
+          {
+            "name": "The Black River",
+            "trigger": "Touching the water — falling in, being pushed, dangling a hand to test.",
+            "effect": "Test Strength DR14 or be swept away. Swept-away PCs drown before long. Rotten coffins or makeshift rafts would surely be crushed before reaching any ocean.",
+            "dr": "Strength DR14 to grab a ledge or stone. Failure: gone."
+          }
+        ],
+        "secrets": [
+          "The river does reach the ocean. Eventually. Nothing the PCs can build will survive the journey.",
+          "The hatch above leads to the Strangly Tree's hollow interior. The rope is anchored 'somewhere far above' inside the tree. Climbing it tugs the corpses outside the tree like marionettes — a horrifying detail nobody will see from inside.",
+          "The river's warmth-vs-cold paradox is one of the module's quiet anomalies: the stone is warm because Graven-Tosk's soil is heating (Calendar of Nechrubel 3:1); the water is cold because it comes from somewhere very deep."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Reaching the Hatch",
+          "text": "The rope dangles 'a few feet too high.' A PC standing on another PC's shoulders can reach. A grappling hook or tall improvised platform works. No test for the grab itself — but the climber must succeed Strength DR10 to haul themselves up the rope into the tree."
+        },
+        {
+          "title": "Riding the River",
+          "text": "Not a viable escape. The booklet is explicit: makeshift rafts crush, swimmers drown, the journey is longer than breath. Any PC who tries: gone. No save."
+        }
+      ],
+      "gm_notes": "This is the connection between underground and the Strangly Tree. The hatch is the only way to ascend without going back the way they came. Make the noise of the river suffocating — players have to lean in to coordinate. The river being a 'no, but' escape is the point: the module REFUSES escape, but it lets the PCs imagine one for a moment.",
+      "exits": [
+        {
+          "id": "sewer-to-tree",
+          "label": "Above — climb the rope through the hatch into the Strangly Tree (PC pyramid + Strength DR10)",
+          "target": "strangly-tree",
+          "condition": "Reach the hatch (shoulders, hook, etc.) + Strength DR10",
+          "locked": false
+        },
+        {
+          "id": "sewer-to-roach",
+          "label": "South — tunnel and archway back to the Roach Herder's Lair",
+          "target": "roach-herders-lair",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["trap", "underground"]
+    },
+    {
+      "id": "strangly-tree",
+      "title": "The Strangly Tree",
+      "type": "location",
+      "atmosphere": "A wind blows through wheezing branches, chilling the air and carrying decay's smell far away.",
+      "read_aloud": "The tree is enormous and naked of leaves. Its branches groan under the weight of a dozen hanging bodies, nooses creaking, the corpses turning slow in the wind like meat in a smokehouse. The wind keeps the smell pushed elsewhere. Above the lowest branches, a wooden door has been built into the trunk itself — just big enough for one of you to crawl through. A plank ladder leans against the trunk to reach it.",
+      "contents": {
+        "description": "Enormous leafless tree on the surface, hung with a dozen corpses in nooses. A wooden door is built into the trunk, accessed by a rickety plank ladder. Inside, the trunk is hollow; a long rope leads down (to the Shadow King's Sewer hatch). Below the tree, the rope-and-hatch connects to the Sewer. Any other direction is the fog (Walking the Trails).",
+        "items": [
+          "Twelve hanging corpses — searchable. GM call: each corpse may yield d6 silver, a personal trinket, or nothing. Most yield nothing; one yields a folded note that says only 'I told you so.'",
+          "Plank ladder — old and rickety. Test Agility DR8 or the rung breaks; d2 damage."
+        ],
+        "enemies": [],
+        "npcs": [],
+        "traps": [
+          {
+            "name": "The Ladder",
+            "trigger": "Climbing the plank ladder to reach the trunk door.",
+            "effect": "A rung breaks. d2 damage from the fall.",
+            "dr": "Agility DR8."
+          }
+        ],
+        "secrets": [
+          "Inside the hollow trunk, climbing the rope tugs the nooses outside — pulling on the hanged corpses with every movement. A macabre marionette show. Anyone watching from outside sees the corpses 'dance' as someone descends.",
+          "The dozen hanged are mostly previous PCs who tried to escape Graven-Tosk and chose this exit instead. The cemetery does not let go.",
+          "One of the corpses, the freshest, has a perfect-condition shortsword (d6, not rusted) in a sheath on its hip. Cutting it down to take it requires standing on a branch (Agility DR10)."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Climbing the Ladder",
+          "text": "Test Agility DR8 to climb without breaking a rung. Failure: d2 damage from the fall, no progress."
+        },
+        {
+          "title": "Inside the Trunk",
+          "text": "The trunk is hollow. A long rope is anchored somewhere far above and descends somewhere far below. Climbing down: Strength DR10 (no test if descending hand-over-hand with full grip; test only if rushing or wounded). Climbing up: Strength DR12. Going down ends at the Sewer hatch."
+        }
+      ],
+      "gm_notes": "This is the cemetery's most theatrical location and the symmetric exit to the Sewer. The marionette detail is canon and unforgettable — if anyone is climbing the rope while another PC watches from outside, describe it. The plank ladder breaking is a nice early consequence. The trunk descent is fairly safe; the climb back up is harder.",
+      "exits": [
+        {
+          "id": "tree-to-sewer",
+          "label": "Through the trunk door, down the rope to the Shadow King's Sewer",
+          "target": "shadow-kings-sewer",
+          "condition": "Climb ladder (Agility DR8) + descend rope (Strength DR10)",
+          "locked": false
+        },
+        {
+          "id": "tree-to-trails",
+          "label": "Back into the fog — any direction (Walking the Trails)",
+          "target": "walking-the-trails",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["surface", "puzzle"]
+    },
+    {
+      "id": "undertakers-hut",
+      "title": "The Undertaker's Hut",
+      "type": "location",
+      "atmosphere": "The intermingled smell of wet lumber and rotting flesh. Light flees through the cracks of a closed window shutter. Muffled voices are audible inside.",
+      "read_aloud": "The fog thins. A stone hut with a thatched roof and walls covered in creeping vines stands ahead. Piles of cut logs flank a dozen barrels and half as many freshly made coffins. Beside the hut, an open grave gapes — a robed woman's body inside, a worn shovel stuck in the dirt at her feet. Behind the hut, a small garden has gone wild. From inside the closed shutters: voices. Three of them. Arguing about chores.",
+      "contents": {
+        "description": "Stone hut with thatched roof, vines, closed shutters. Outside: log piles, barrels, six freshly made coffins, an open grave with the Undertaker's body inside and her shovel stuck in the dirt. Behind: an overgrown garden. Inside: the Deadn't (Stein, Benzen, Arga), alive, friendly, going about chores. This is the climax node — the Übertaker rises during the encounter (see twist node).",
+        "items": [
+          "The Undertaker's shovel (d6 — counts as a polearm in two hands). Standing in her open grave.",
+          "Six freshly made coffins (empty, well-built).",
+          "A dozen barrels (assorted — three contain salted meat; two contain lamp oil, 4d6 hours each; one contains pickled hands).",
+          "Garden produce: herbs (a few bandages' worth of useful plants — DR10 Presence to identify which), a single rotten apple, a patch of nightshade."
+        ],
+        "enemies": [],
+        "npcs": [
+          {
+            "name": "Stein",
+            "description": "A Grift merchant. Rusted shortsword. Hands shake. The richest man in the hut. He stayed because he didn't see another option; he believes if they keep up routine, something will change.",
+            "attitude": "friendly",
+            "notes": "HP 2, Morale 8, No armor, Shortsword d4. Carries a purse with 50 silver. He talks too much. He will offer the PCs food and a coffin to sleep in."
+          },
+          {
+            "name": "Benzen",
+            "description": "A Schleswig guard. Crossbow over his shoulder, 10 bolts at his belt. Believes in chores and first-watch the way a man believes in something that used to keep him alive.",
+            "attitude": "friendly",
+            "notes": "HP 3, Morale 9, Leather −d2, Crossbow d8 (10 bolts). Wary of armed strangers — keeps the crossbow loaded but not raised. Of the three, he is most likely to fight first if the PCs turn on the trio."
+          },
+          {
+            "name": "Arga",
+            "description": "A Galgenbeck priest of the Two-Headed Basilisks. Steady. The one who buried the Undertaker. The one who did not bury her well enough.",
+            "attitude": "friendly",
+            "notes": "HP 4, Morale 10, Scale −d4, Staff d4. Carries one random sacred scroll (GM rolls). She is the de facto leader of the Deadn't. She will offer to share her scroll if the situation truly requires it — and not before. She is the only one who knows the Undertaker's blood is still in the dirt of the open grave."
+          }
+        ],
+        "traps": [],
+        "secrets": [
+          "Arga did not bury the Undertaker deep enough because she ran out of time and the others would not help in the dark. She did not say a rite over the body. She did not weight the grave. This is why the Übertaker rises.",
+          "The Undertaker's shovel is the polearm that becomes the Übertaker's fiery weapon. Taking it before the rise might or might not prevent it — the module does not specify; GM call.",
+          "Behind the hut's garden, a small headstone has been set: 'HE WHO REFUSED.' The grave below it is empty. The Undertaker dug it for herself and never lay down in it.",
+          "The barrel of pickled hands is forty-three hands. The Undertaker kept them. Some of them are very small."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Welcome at the Hut",
+          "text": "The Deadn't are friendly enough and invite the PCs to join them in settling down. They share food, offer a coffin to sleep in, and warn (vaguely) about the woman in the grave outside."
+        },
+        {
+          "title": "The Trigger",
+          "text": "At some point during the encounter — GM's choice; the booklet recommends after the PCs have had a chance to settle in — the air grows suddenly chill, the flies' buzzing fades, the fog swirls around the uncovered grave, and the Undertaker's body rises as the Übertaker. Proceed to the Übertaker encounter node."
+        }
+      ],
+      "gm_notes": "This is the climax. Do not rush it. Let the players talk to the Deadn't, hear their stories, eat their food, get comfortable. The Deadn't are sympathetic and tragic — they are people, not enemies. The Übertaker's rise should feel like a violation of a small peace, not a planned boss fight. Once the rise begins, move to the Übertaker node. The Deadn't will fight alongside the PCs against the Übertaker, but they are fragile (HP 2/3/4) and at least one will probably die in the fight. Arga's sacred scroll may be the difference. If the PCs kill the Deadn't for their gear before the trigger, run the Übertaker rise anyway — she does not care who is in the hut.",
+      "exits": [
+        {
+          "id": "hut-to-ubertaker",
+          "label": "Time passes. The air grows chill. The fog swirls around the open grave. → The Übertaker rises",
+          "target": "ubertaker",
+          "condition": "GM triggers when the encounter has had room to breathe",
+          "locked": false
+        },
+        {
+          "id": "hut-to-merchant",
+          "label": "Outside the hut at dusk, a stranger arrives at the gate — the wretched old merchant Mikhael",
+          "target": "merchant",
+          "condition": "Optional — GM may introduce Mikhael before or after the rise",
+          "locked": false
+        },
+        {
+          "id": "hut-to-trails",
+          "label": "Back into the fog — any direction (Walking the Trails)",
+          "target": "walking-the-trails",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["climax", "npc", "hub"]
+    },
+    {
+      "id": "ubertaker",
+      "title": "The Übertaker Rises",
+      "type": "location",
+      "atmosphere": "The air grows suddenly chill. The ever-present flies' buzzing seems strangely distant. Neck hairs stand on the edge of an impossible abyss as the fog swirls around the uncovered grave.",
+      "read_aloud": "The buzzing stops. All at once. Even the wind goes still. The fog above the open grave begins to turn, slowly at first, then faster — a column of mist where mist should not move. And then the body rises. The Undertaker's corpse floats a few feet above the ground. The face is gaunt, the eyes sunken and filled with mad purple fire. Rune-covered robes swirl around grim feet. The shovel — her shovel — is in her hand, and it is on fire. Not red fire. Pale. Almost white. Almost violet.",
+      "contents": {
+        "description": "The combat encounter with the Übertaker. The fight occurs at the open grave outside the Undertaker's Hut. The Deadn't (if alive) will fight alongside the PCs but are fragile. There is no canonical escape route afterward; the cemetery does not release survivors.",
+        "items": [
+          "The Übertaker's torn rune-covered robes (after destruction) — can be rolled up and used as an Unclean Scroll: BEHOLD THE POWER (d4 creatures' next attacks deal maximum damage)."
+        ],
+        "enemies": [
+          {
+            "name": "The Übertaker",
+            "hp": 27,
+            "morale": "—",
+            "speed": "fast",
+            "attack": "Fiery shovel-polearm +0, d8 + see Random Action",
+            "special": "BARRIER (PALEFIRE) −d4 — pale violet flame wards the body; subtract d4 from all incoming damage. Each round, roll d4 for the Übertaker's action: 1 SCOURGE TAKE YOU — all creatures in melee range take d4 damage; 2 BEHOLD THE POWER — next attack deals maximum damage; 3 NO REPROACH ANSWERS — spins the shovel, a random creature appears; Defense DR14 or d6 damage; 4 REST IS NOW — skeletal hands pull a creature into the ground, prone + Strength DR14 or d8 damage. When targeted by HEALING POWERS, the Übertaker LOSES HP rather than recovers.",
+            "notes": "She fights to destruction. No Morale. The shovel is the polearm; the robes are the barrier. Targeting her with healing is the cleverest trick — a sacred scroll of healing flipped onto her deals damage instead of healing. Arga, if alive, knows this — though she may not say so unless prompted."
+          }
+        ],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "The Übertaker is a servant of a faraway underworld inhabiting the Undertaker's body. Destroying the body banishes the entity — but it has, demonstrably, found bodies before.",
+          "Healing damages her. This is the secret. A cleric character — Arga, or a PC — turns the fight when they figure it out.",
+          "The 'faraway underworld' is unnamed. CANON CHECK: it may be the same as Akünh's Death Realm, or a third place. The module does not say.",
+          "After her destruction, the body falls back into the grave and stays. The shovel does not burn anyone who picks it up — the palefire dies with her."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Round Actions (d4)",
+          "text": "Each round, roll d4 for the Übertaker's action: 1 SCOURGE TAKE YOU (melee range take d4); 2 BEHOLD THE POWER (next attack max damage); 3 NO REPROACH ANSWERS (random creature appears, Defense DR14 or d6); 4 REST IS NOW (target prone + Strength DR14 or d8)."
+        },
+        {
+          "title": "Palefire Barrier",
+          "text": "All incoming damage to the Übertaker is reduced by d4 (rolled per attack). Magical fire and sacred damage are not specifically excepted — but healing is reversed (below)."
+        },
+        {
+          "title": "Healing Reversed",
+          "text": "Healing Powers and effects targeted at the Übertaker cause damage instead of restoration. A sacred scroll of healing dealing d6 to a normal target deals d6 damage to the Übertaker."
+        },
+        {
+          "title": "Loot",
+          "text": "After destruction, the rune-covered robes can be rolled up and used as a single-use Unclean Scroll: BEHOLD THE POWER — d4 chosen creatures' next attacks deal maximum damage."
+        }
+      ],
+      "gm_notes": "This is the boss. HP 27 is significant — at a typical party of 4 with d6 weapons, even reduced by palefire d4, the fight is winnable but tense. The healing trick is the key — Arga's random sacred scroll has a real chance of being a healing scroll, in which case the encounter has an elegant solution. Run the d4 actions strictly: roll publicly. Action 3 (NO REPROACH ANSWERS) lets you reintroduce a corpse or random encounter from the surface — a Hungry Zombie, a Half-billed Raven, whatever fits. Action 4 (REST IS NOW) is signature — the ground opens beneath a PC. After her destruction, the booklet is explicit: there is no escape route waiting. The PCs may settle in with the surviving Deadn't, or wander back into the fog. The Calendar of Nechrubel continues. The soil keeps warming.",
+      "exits": [
+        {
+          "id": "ubertaker-aftermath-hut",
+          "label": "Aftermath — return to the Hut (settle in, rest, plan)",
+          "target": "undertakers-hut",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "ubertaker-aftermath-trails",
+          "label": "Aftermath — back into the fog. There is no escape waiting.",
+          "target": "walking-the-trails",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["combat", "boss", "climax", "end"]
+    },
+    {
+      "id": "merchant",
+      "title": "Wretched Old Mikhael, the Merchant",
+      "type": "location",
+      "atmosphere": "A white-eyed mule emerges first from the fog. Then the wagon. Then the man — old, robed, eyes that have seen the dirt from beneath.",
+      "read_aloud": "The mule comes through the fog before its driver. White-eyed. Pulling a wagon stacked with covered crates and chiming softly with the sound of small bottles. The driver follows: a man too old to still be alive, wearing layered robes and a smile like a question mark. 'You look like outcasts,' he says, in a voice that has been buried and dug back up. 'I do not trade with villagers. Would you like to see what I have?'",
+      "contents": {
+        "description": "Mikhael the wandering merchant. Optional encounter — the GM may introduce him at the Undertaker's Hut, on the trails, or after the Übertaker fight as a darkly comic coda. He sells regional goods at a price paid in pieces of the buyer's soul. He cannot be permanently killed (his body bursts into black flame and the earth spits him out in d4 days; willing to forgive the first time).",
+        "items": [
+          "His wagon's catalog — roll d6 per region per visit. He carries wares from Tveland, Wästland, Kergüs, and Grift (see the four merchant tables in Rules). The cost of every item is paid in soul: d6 → 1 −1 Strength, 2 −1 Presence, 3 −1 Agility, 4 −1 Toughness, 5 −1 Max HP, 6 roll twice.",
+          "The white-eyed mule — non-statted, non-saleable. Mikhael loves the mule. Threatening it ends the conversation."
+        ],
+        "enemies": [
+          {
+            "name": "Wretched Old Mikhael (if attacked)",
+            "hp": 6,
+            "morale": "9",
+            "speed": "slow",
+            "attack": "Staff +0, d4",
+            "special": "ETERNAL UNLIFE — when reduced to 0 HP, his body bursts into black flame along with all unsold possessions. The earth spits him out d4 days later. The first attack against him: he is willing to forgive the PCs once. The second time: never again (he will refuse to trade with them across any future life).",
+            "notes": "He does not fight unless cornered or attacked first. He has been alive for a very long time and he is not particularly worried about dying. Killing him for his wares destroys the wares — his body and all unsold goods burn together."
+          }
+        ],
+        "npcs": [
+          {
+            "name": "Wretched Old Mikhael",
+            "description": "An undead merchant. Crucified-family backstory. Forgiven and cursed by a priestess of the Dark Spider. The dead spit him out from blackened earth when he dies — he has no place among them.",
+            "attitude": "neutral",
+            "notes": "He trades only with heretics and outcasts. Distrusts villagers who would crucify him. He will not, under any circumstance, trade with someone wearing visible holy symbols of the Two-Headed Basilisks. If Arga is present and visible, he will only speak with the other PCs and pretend Arga is not there."
+          }
+        ],
+        "traps": [],
+        "secrets": [
+          "The Dark Spider, Harbinger of the end — Mikhael's god — is unnamed in canon beyond a single mention. Possibly an aspect of Nechrubel. Possibly its own thing.",
+          "Mikhael has been inside Graven-Tosk before. He has buried twelve corpses here personally — payments from previous customers who could not pay in silver. He never speaks of this.",
+          "If a PC pays for an item with the d6=6 'roll twice' result, Mikhael's smile widens. He likes the heavy spenders."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Buying from Mikhael — Cost of Sale (d6 per item)",
+          "text": "Every item costs a portion of your soul. Roll d6: 1 — −1 Strength permanent. 2 — −1 Presence permanent. 3 — −1 Agility permanent. 4 — −1 Toughness permanent. 5 — −1 Max HP permanent. 6 — roll twice (re-roll any 6)."
+        },
+        {
+          "title": "Tveland Wares (d6)",
+          "text": "1 Stone Dagger — d4; DR12 Strength to plunge; living target turns to stone, restored by removing the dagger. 2 Tongue of a False Prophet — eat it: cast Powers at DR6 for one day, but any failure causes an arcane catastrophe. 3 Two-headed Silver Ring — wearing it increases crit and fumble range by 1; multiple rings stack. 4 Vial of Goblin Ichor — grows hot near goblins; a drop of cursed blood points at the curser. 5 Wickhead Brain — rubbed, emits torchlight; fragile, breaks → DR12 Toughness or blinded 1 round. 6 Galgenbeck Deathmask — placed on a corpse, see how it died; heretical theft if caught."
+        },
+        {
+          "title": "Wästland Wares (d6)",
+          "text": "1 Pouch of Valley Vapors — breathing replenishes all HP and cures infection; catatonic d4 hours. 2 Jar of Troll Piss — spilled, no beast approaches; may attract a Troll. 3 Fine but Gaudy Clothing — pass as nobility (DR10 Presence); commoners mock, bandits attack on sight. 4 Pilgrim's Compass — needle points to the most dangerous thing nearby. 5 Peasant's Kuksa — any liquid scooped becomes adequate drinking water. 6 Lucky Fishing Spear — thrown into water, guaranteed to strike a living thing; instantly kills fish; might strike much larger; d6 damage."
+        },
+        {
+          "title": "Kergüs Wares (d6)",
+          "text": "1 Vibrant Red Ribbon — worn, color drains; see living heartbeats as red splashes in darkness. 2 Vial of Glowing Blue Blood — poison; freezes veins, d4 rounds death, DR16 Toughness to resist. 3 Gleaming Golden Scalpel — DR8 attack, d4 damage; self-imposed DR+ to open a vein for bonus damage equal to the penalty. 4 Pleasing Green Cloak — never too cold or hot; very itchy. 5 One-eyed One-legged One-winged Gull — needs daily ration, squawks, useless, allows reroll of omens gained when resting. 6 Bright Yellow Flower — never withers; given as token of affection, recipient extremely agreeable to next thing said."
+        },
+        {
+          "title": "Grift Wares (d6)",
+          "text": "1 Little Poppet — unique Power: peer into the mind of someone whose eyes you can see; know thoughts, intentions, next action. 2 Key Retrieved from the Múr — any door opened with it leads to a 15ft × 15ft stone room, openable only from outside; trapped creatures die in 24 hours. 3 Chip, the Rat — intelligent rat, loves you; bite d2 always infects; DR16 to hit (small); +d4 HP when you rest. 4 Sorrowful Music Box — listeners cannot lie (DR12 Presence to resist); affected sob uncontrollably. 5 Hangman's Rope — 30ft; fuses permanently to whatever it's tied to; immune to all force. 6 Giant's Chisel — d4 damage; instead of attack, DR14 Strength to dislodge armor by one tier."
+        }
+      ],
+      "gm_notes": "Mikhael is the dark coda. He is one of the only ways to introduce a wider-world item into the closed system of Graven-Tosk. He does not save the PCs — but he offers tools, at a cost the players will hate paying. Run him as bemused and patient. He does not haggle. He does not lie. The soul-cost mechanic is canon and meant to hurt. If the players try to rob him: his Eternal Unlife means the wares burn — they get nothing — and he will refuse to trade with them in any future life. If they are polite, he may offer one piece of gossip from outside the cemetery (the Calendar's most recent Misery, news from a city, etc.) for free.",
+      "exits": [
+        {
+          "id": "merchant-to-hut",
+          "label": "Mikhael moves on into the fog. Return to the Hut.",
+          "target": "undertakers-hut",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "merchant-to-trails",
+          "label": "Back into the fog — any direction (Walking the Trails)",
+          "target": "walking-the-trails",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["npc", "shop", "end"]
+    }
+  ],
+  "bestiary": [
+    {
+      "name": "Rotted Skeleton",
+      "hp": 5,
+      "morale": "7",
+      "speed": "normal",
+      "attack": "Knuckles, d2",
+      "special": "Takes damage → puff of vile marrow-dust. Melee attackers test Toughness DR10 or become infected. Wounds in Graven-Tosk do not heal during rest: −d6 HP daily until magickal or distant intervention.",
+      "notes": "Encountered in d4 packs. Source: Graves Left Wanting, p.7."
+    },
+    {
+      "name": "Widow-wraith",
+      "hp": 15,
+      "morale": "—",
+      "speed": "normal",
+      "attack": "Icy touch, d4 + special",
+      "special": "Her sobbing alerts to her presence; she ALWAYS loses initiative. Her touch drains Strength, Presence, and Agility by 1 for the fight's duration.",
+      "notes": "Encountered alone. Source: Graves Left Wanting, p.7."
+    },
+    {
+      "name": "Unbred Mutt",
+      "hp": 8,
+      "morale": "—",
+      "speed": "fast",
+      "attack": "Bite, d6",
+      "special": "Will not break off. Whatever is between them and the grave they came from, they will bite through.",
+      "notes": "Encountered in packs of d6. Source: Eat-Prey-Kill p.6 / Graves Left Wanting p.7."
+    },
+    {
+      "name": "Half-billed Raven",
+      "hp": 2,
+      "morale": "—",
+      "speed": "fast",
+      "attack": "Beak / Choking tongue, d4 / special",
+      "special": "DR12 Agility to avoid the tongue or d4 damage per round until DR14 Strength succeeds or the raven dies. The tongue is the worse half.",
+      "notes": "Encountered in murders of d4. Source: Eat-Prey-Kill p.6 / Graves Left Wanting p.7."
+    },
+    {
+      "name": "Hungry Zombie",
+      "hp": 6,
+      "morale": "—",
+      "speed": "slow",
+      "attack": "Claw/Bite, d2 + special",
+      "special": "Leather scraps −d2. Test Toughness DR8 or die turning into a zombie after 2 days.",
+      "notes": "Encountered in groups of d4, eating. Source: Graves Left Wanting p.7."
+    },
+    {
+      "name": "Twice-grown Corpse Fly",
+      "hp": 4,
+      "morale": "—",
+      "speed": "fast",
+      "attack": "Bite, d4 + special",
+      "special": "Exoskeleton −d4. Test Toughness DR12 or become host for a dozen freshly laid fly eggs. Extract within d6 days or watch them hatch in your corpse.",
+      "notes": "Bursts from urns and skulls in the Catacomb Corridor. Source: Graves Left Wanting p.11."
+    },
+    {
+      "name": "Fogbound Skeleton",
+      "hp": 5,
+      "morale": "—",
+      "speed": "normal",
+      "attack": "Rusty blade or bone fist, d4",
+      "special": "[CANON CHECK] First attack per round against each Fogbound Skeleton must beat DR12 Agility or pass harmlessly through the fog wrapping. Soundless except for tooth-chatter.",
+      "notes": "Three of them at the Colander Room table. Source: Graves Left Wanting p.9 (stat block interpolated)."
+    },
+    {
+      "name": "The Roach Herder",
+      "hp": 4,
+      "morale": "5",
+      "speed": "normal",
+      "attack": "Bite d4 + special — OR — Barbed Roach Whip d6",
+      "special": "Bite: test Toughness DR12 or infected. Flees if reduced below 2 HP through the sewer archway.",
+      "notes": "Lives on a throne of trash in his lair. Recruitable. Source: Graves Left Wanting p.13."
+    },
+    {
+      "name": "The Übertaker",
+      "hp": 27,
+      "morale": "—",
+      "speed": "fast",
+      "attack": "Fiery shovel-polearm, d8 + Round Action",
+      "special": "BARRIER (PALEFIRE) −d4. Healing reversed: healing damages her. d4 Round Action: 1 SCOURGE TAKE YOU (melee range d4). 2 BEHOLD THE POWER (next attack max). 3 NO REPROACH ANSWERS (random creature appears, Defense DR14 or d6). 4 REST IS NOW (prone + Strength DR14 or d8). Loot: torn robes = Unclean Scroll BEHOLD THE POWER (d4 creatures' next attacks max damage).",
+      "notes": "Climax encounter. Source: Graves Left Wanting p.17."
+    },
+    {
+      "name": "Stein (Deadn't)",
+      "hp": 2,
+      "morale": "8",
+      "speed": "normal",
+      "attack": "Shortsword, d4",
+      "special": "No armor. Carries a purse of 50 silver.",
+      "notes": "Grift merchant. One of the Deadn't. Friendly. Source: Graves Left Wanting p.16."
+    },
+    {
+      "name": "Benzen (Deadn't)",
+      "hp": 3,
+      "morale": "9",
+      "speed": "normal",
+      "attack": "Crossbow, d8 (10 bolts)",
+      "special": "Leather −d2.",
+      "notes": "Schleswig guard. One of the Deadn't. Friendly. Source: Graves Left Wanting p.16."
+    },
+    {
+      "name": "Arga (Deadn't)",
+      "hp": 4,
+      "morale": "10",
+      "speed": "normal",
+      "attack": "Staff, d4",
+      "special": "Scale −d4. Carries one random sacred scroll.",
+      "notes": "Galgenbeck priest. One of the Deadn't. Hardiest of the three. Source: Graves Left Wanting p.16."
+    },
+    {
+      "name": "Wretched Old Mikhael",
+      "hp": 6,
+      "morale": "9",
+      "speed": "slow",
+      "attack": "Staff, d4",
+      "special": "ETERNAL UNLIFE — at 0 HP, body and all unsold possessions burst into black flames. Earth spits him out in d4 days. Forgives the PCs the first time.",
+      "notes": "Optional wandering merchant. Source: The Merchant booklet."
+    }
+  ]
+}

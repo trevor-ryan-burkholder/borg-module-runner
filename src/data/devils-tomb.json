@@ -1,0 +1,600 @@
+{
+  "meta": {
+    "id": "devils-tomb",
+    "title": "Devil's Tomb",
+    "author": "Johan Nohr (using the MÖRK BORG digital dungeon generator)",
+    "version": "1.0",
+    "system": "morkborg",
+    "description": "Retrieve the stolen Eyes of the Icon of St Largoth from a one-page hellhole deep in Graven-Tosk. The Madman crawls at the entrance. The Plant of Life waits at the back. The chained bronze door reads GO TO NECH.",
+    "startNode": "entrance",
+    "license": "Based on official Mörk Borg content. Independent production by Trevor Burkholder, published under the MÖRK BORG Third Party License. MÖRK BORG is © Ockult Örtmästare Games and Stockholm Kartell."
+  },
+  "nodes": [
+    {
+      "id": "entrance",
+      "title": "Entrance — The Madman's Threshold",
+      "type": "location",
+      "atmosphere": "Cold breath off wet stone. Spores hang in the lamplight like motes of yellow snow. Something naked and small is crawling away from you on its elbows.",
+      "read_aloud": "The throat of the tomb opens in a low stone arch swallowed by Graven-Tosk's grey. Inside: a passage cut by hands that did not love the work. The air tastes of mildew and old incense. A naked man crawls in circles at your feet. His skin is grey-green with mould. He does not look up. He whispers a name that is not his own and flinches at sounds you cannot hear. From deeper in: dripping water and something that might be singing.",
+      "contents": {
+        "description": "The mouth of Devil's Tomb. A spore-fevered Madman crawls at the entrance, naked and unarmed, eaten through by the Plant of Life's spores. He has been here long enough to forget his name. The passage descends west into the Drowned Hall. The Madman will not enter further. The first node where airborne spores apply — every PC entering the tomb is now in a sporeful space.",
+        "items": [
+          "Nothing on the Madman — the Drowned took anything worth taking, or he ate it.",
+          "Discarded graverobber's tools half-buried in the muck near the wall: a bent pry-bar, a snapped chisel, an empty sack."
+        ],
+        "enemies": [],
+        "npcs": [
+          {
+            "name": "The Madman",
+            "description": "A naked, grey-green graverobber, spore-mad and cringing. Cannot remember his name. Tries to flee any room being entered; bites only when first bitten or cornered. HP 2, Morale —, no armor, bite d2.",
+            "attitude": "neutral",
+            "notes": "Terrified of the Angelic Choir — will scream and curl if the corridor is mentioned. Has seen the singing flowers and has no language left for it. He has stopped looking for the way out. A merciful party with magickal healing might restore him — what he was looking for in the tomb is unwritten. [CANON CHECK: name and original purpose left blank in source.]"
+          }
+        ],
+        "traps": [],
+        "secrets": [
+          "If a PC succeeds in calming or feeding the Madman (Presence DR12, or any genuine kindness), he points west with a shaking finger and rasps a single word: 'sing-ing'. He means the Angelic Choir.",
+          "His spore-fever is contagious only by extended contact — but every PC breathes the air. From this room on, the spore table applies."
+        ]
+      },
+      "rules": [
+        {
+          "title": "The Spore-Filled Air (d4, per node entered, GM call on triggers)",
+          "text": "Devil's Tomb is full of the Plant of Life's spores. When a PC enters a new spore-affected room, or when the GM wants to twist the screw, roll d4: 1 — Visions of death (the PC sees themselves dying, vivid and immediate; lose next action). 2 — Vertigo (DR12 Agility or fall prone, drop a held item). 3 — Monochromatic outlining (the world goes black-and-white-with-edges for d6 rounds; no mechanical penalty but unsettling). 4 — Invisibility-of-the-living (all warm-blooded creatures briefly vanish from the PC's sight for d4 rounds — they see only stone, water, and the dead). The Drowned are immune. The Madman is past help."
+        },
+        {
+          "title": "The Madman in Combat",
+          "text": "He will not fight. He flees, bites if cornered, and dies easy. Killing him is meaningless and the Drowned will not care. The spore-fever in his blood is no worse than the air."
+        }
+      ],
+      "gm_notes": "This is the first impression of the tomb. The Madman is a living warning. Let the players decide what to do with him — kill him for mercy, ignore him, drag him out, try to cure him. None of it is wrong. The spore table starts NOW. Roll it for every PC the first time they enter the entrance, and again whenever a player gets cocky. The Drowned Hall is the only way deeper. Make the descent feel like swallowing.",
+      "exits": [
+        {
+          "id": "entrance-to-hall",
+          "label": "West — descend into the Drowned Hall (the sound of water grows)",
+          "target": "drowned-hall",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "entrance-to-outside",
+          "label": "Out — back into the grey of Graven-Tosk (abandon the Icon)",
+          "target": "entrance",
+          "condition": "Leaving the adventure",
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["start", "spores"]
+    },
+    {
+      "id": "drowned-hall",
+      "title": "The Drowned Hall",
+      "type": "location",
+      "atmosphere": "Knee-deep cold water, lit greenish by something filtered through a waterfall in the next room. The air is wet and yeasty. Fleshy cocoons hang from the ceiling like dripping fruit.",
+      "read_aloud": "The passage opens into a flooded chamber. Cold black water laps at your shins. Light comes from somewhere ahead, broken into shifting greens by water you cannot yet see. From the ceiling hang ten — no, more — fleshy cocoons the size of men, each twitching faintly. Standing in the water, mostly motionless, are scaled amphibian figures with eyes like wet stones. Spears in webbed hands. They turn their faces toward you slowly, and one of them opens a mouth full of needles.",
+      "contents": {
+        "description": "The main lair of the Drowned. A flooded chamber lit by a sickly green light filtered through the waterfall pouring down the Pit to Hell in an adjacent room. Ten Drowned sleep in fleshy cocoons hanging from the ceiling at any given time; four more are typically out raiding. Their granite Drowned Altar stands at the chamber's center, on which a dead Drowned is laid, covered in blue leaves and vines from the Plant of Life. Their muddy hoard is piled along the north wall. Exits: north to the Drowned Hoard, east to Belpheduk's Den, south to the Angelic Choir corridor, west to the Goblin chamber. The waterfall sound comes from beyond the Choir corridor — the Pit to Hell.",
+        "items": [
+          "The Drowned Altar — a granite slab; a dead Drowned lies on it under blue leaves and vines. Thrice daily the Drowned mourn him. Touching the body provokes immediate combat from all present Drowned.",
+          "Fleshy cocoons — each contains a sleeping Drowned. Cutting one open while its occupant sleeps: free kill, but wakes the others (DR14 Agility to stay silent; failure = all Drowned awake and hostile)."
+        ],
+        "enemies": [
+          {
+            "name": "Drowned (sleeping in cocoons)",
+            "hp": 6,
+            "morale": "8",
+            "speed": "normal",
+            "attack": "Spear, d6",
+            "special": "Scales −d2. Immune to the spores' effects. Upon death, freezes the water nearby — d4 damage to anyone standing in the water within ~5ft.",
+            "notes": "Ten present at any time, asleep in ceiling cocoons. Cutting cocoons down silently: DR14 Agility. They wake in d4 rounds if combat begins below them; once awake, they drop into the water and fight as a coordinated raiding party. Source: Devil's Tomb (Drowned stat block)."
+          },
+          {
+            "name": "Drowned (awake guards)",
+            "hp": 6,
+            "morale": "8",
+            "speed": "normal",
+            "attack": "Spear, d6",
+            "special": "Scales −d2. Immune to spores. Death-freeze: d4 damage to anything in the same water within ~5ft.",
+            "notes": "1d4 are typically awake and standing in the water as guards. The death-freeze stacks — multiple Drowned dying in the same round can fill the chamber with knife-edged ice. [CANON CHECK: 'four are usually out raiding' — they may return mid-scene, GM's call on timing.] Source: Devil's Tomb (Drowned faction)."
+          }
+        ],
+        "npcs": [],
+        "traps": [
+          {
+            "name": "Death-freeze Water",
+            "trigger": "A Drowned dies while a PC stands in the chamber's water.",
+            "effect": "d4 cold damage; ice splinters cut. Multiple Drowned dying in the same round each apply the d4.",
+            "dr": "No save — it triggers on Drowned death, not PC action."
+          }
+        ],
+        "secrets": [
+          "The cocoons are not just beds — they are how the Drowned dream of the Plant of Life. Cutting one open releases a smell of fish-oil and church incense. Burning them is a war crime even by Drowned standards and would draw every Drowned in the tomb.",
+          "The altar's blue leaves and vines came from the Plant of Life itself. A leaf carried out of the tomb withers in d6 hours; a leaf eaten while in the tomb provides a vision of the Plant's hidden chamber (functionally the same as looking through the Eyes — single use).",
+          "The waterfall sound comes from the Pit to Hell, beyond the Angelic Choir corridor — the water flooding this hall pours over the edge there. The Drowned do not cross the Choir corridor and do not go near the Pit."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Stealth Through the Hall",
+          "text": "Walking the flooded chamber without alerting the awake Drowned: DR14 Agility (the water slops). Cutting down cocoons silently: DR14 Agility per cocoon. Failure on any of these wakes the cocoon-sleepers in d4 rounds."
+        },
+        {
+          "title": "Parley with the Drowned",
+          "text": "The Drowned speak a wet, gurgling tongue. A PC who can speak it (GM call — likely a single dose of Plant-of-Life leaf, or a scroll) can negotiate. They demand the PCs worship at the altar or leave. They will not part with the Eyes. They will not let anyone near Belpheduk."
+        }
+      ],
+      "gm_notes": "This is the dungeon's hub and its hardest fight. Ten Drowned in cocoons + d4 awake guards is a TPK if engaged head-on at low level. Lean into the stealth options: the cocoons are silent kills if the PCs are careful. The death-freeze water is the signature mechanic — a cleared room can still hurt the party. If the PCs befriend or free Belpheduk first, she will tell them which cocoon to leave intact (the one that holds the leader, whose name she will not speak). The Drowned do not pursue out of the water. Spore table on entry. The Hoard, the Den, the Choir, and the Goblin chamber are all accessible from here — let the players choose what to risk first.",
+      "exits": [
+        {
+          "id": "hall-to-hoard",
+          "label": "North — wade to the muddy hoard (the Eyes are here)",
+          "target": "drowned-hoard",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "hall-to-belpheduk",
+          "label": "East — narrow tunnel to a cramped, stinking cell (a single arm is nailed to the wall)",
+          "target": "belpheduk-den",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "hall-to-choir",
+          "label": "South — corridor walled in singing flowers (the sound is wrong)",
+          "target": "angelic-choir",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "hall-to-goblins",
+          "label": "West — side passage, shouting and the clang of metal",
+          "target": "goblin-chamber",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "hall-to-entrance",
+          "label": "Up — climb back to the entrance",
+          "target": "entrance",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["hub", "combat", "spores", "stealth"]
+    },
+    {
+      "id": "drowned-hoard",
+      "title": "The Drowned Hoard",
+      "type": "location",
+      "atmosphere": "A mound of mud-caked metal heaped against a damp wall. Coins, cutlery, nails, horseshoes, chain — everything shiny the Drowned have ever stolen, never sorted, never spent.",
+      "read_aloud": "The water here is shallower, draining toward a low spot at the back of the room. Heaped against the wall is a small mountain of mud: coins, spoons, broken chains, hammered cups, horseshoes, the tongues of bells. Bits of it glint where the green light catches. Half-buried near the top, two milky-white stones the size of plums stare upward at nothing. Behind you, the murmur of the Drowned in their cocoons.",
+      "contents": {
+        "description": "The Drowned's hoard — a mud-covered jumble of coins, cutlery, chains, nails, horseshoes, and miscellaneous bright debris. Buried in it: the stolen Eyes of the Icon of St Largoth, two milky-white stones the size of plums. Finding them in the hoard takes time (see Rules). Looking through them reveals all invisible and hidden things — including the otherwise-hidden passage to the Plant of Life from the Angelic Choir corridor.",
+        "items": [
+          "The Eyes of the Icon of St Largoth — two milky-white stones, plum-sized. Held up to a PC's own eyes, they reveal all invisible and hidden things in line of sight, including the hidden passage from the Angelic Choir corridor to the Plant of Life chamber. Recovering them is the adventure objective.",
+          "Mud-buried loot — roll d6 per minute of digging (see Rules)."
+        ],
+        "enemies": [],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "The Eyes are not labeled, marked, or special-looking. A PC digging quickly will scoop coins for an hour before realizing the two pale stones in the pile are what they came for. Patient sorting reveals them in d4 minutes; frantic digging in d6 minutes.",
+          "Mixed in with the coins: a child's silver tooth on a wire; a wedding ring engraved 'always'; a sealed glass vial of greenish liquid (DR12 Toughness to drink without retching, [CANON CHECK: contents unwritten — GM call, perhaps a single-use spore antidote).",
+          "Anyone holding the Eyes up to their face for the first time gasps — the entire tomb's hidden things ripple into view at once. Roll on the spore table immediately afterward; the experience is mind-rattling."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Digging the Hoard (per minute, d6)",
+          "text": "Each minute of digging produces: 1 — 3d10 silver coins. 2 — Random tool or utensil (d4 dagger, spoon, ladle, hammer). 3 — Tangle of chain (d3 weight; rope-equivalent). 4 — A single odd item (GM call — child's tooth on wire, wedding ring, glass vial, etc.). 5 — Handful of nails (improvised weapons, caltrops). 6 — A horseshoe — and beneath it, on a roll: the Eyes (if not yet found)."
+        },
+        {
+          "title": "Finding the Eyes",
+          "text": "Patient sort: d4 minutes guaranteed. Frantic dig: d6 minutes, and roll a noise check (DR12 Agility) — failure alerts the Drowned in the Hall. The Eyes are not signposted; the GM should describe them as 'two milky-white stones the size of plums' and let the players realize what they have."
+        },
+        {
+          "title": "Using the Eyes",
+          "text": "Hold one or both stones up to one or both eyes. The user sees all hidden things in line of sight: secret doors, invisible creatures, illusions, the hidden passage in the Angelic Choir corridor. First use: roll on the spore-table (the rush of revelation is too much). Subsequent uses: no penalty. The Eyes are passive — they do not 'detect' through walls or behind cover, only see what is hidden in plain sight."
+        }
+      ],
+      "gm_notes": "This is the McGuffin chamber. Make the Eyes feel earned — describe the hoard's banal pile, let the players sift, then drop the plum-stones into the description casually. The Eyes are the key that opens the Plant of Life's hidden passage in the Choir corridor. Without them, the Plant of Life chamber is invisible — the corridor appears to dead-end. A clever party may find the chamber through other means (Belpheduk's directions, a leaf-eaten vision, the Skeleton Unkey from another adventure) — let them, but reward the canonical path. Digging is loud unless done carefully; the Hall's Drowned may be alerted.",
+      "exits": [
+        {
+          "id": "hoard-to-hall",
+          "label": "Back — wade to the Drowned Hall",
+          "target": "drowned-hall",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["treasure", "objective", "spores"]
+    },
+    {
+      "id": "belpheduk-den",
+      "title": "Belpheduk's Den — The Traitor's Cell",
+      "type": "location",
+      "atmosphere": "Mud floor. Walls so close the torch flame eats itself. A single severed arm nailed at shoulder-height to the far wall, scales going grey. Something amphibian breathes in the dark.",
+      "read_aloud": "The tunnel narrows until you have to stoop. It opens into a cell the size of a closet — mud-floored, low-ceilinged, stinking of swamp-rot. Nailed to the far wall at shoulder-height is a single severed amphibian arm, the scales going grey, the fingers half-curled. Below it crouches a Drowned: scaled, wet-eyed, one shoulder a knotted scar. She turns her head toward you and her mouth, full of needles, makes a slow shape that is almost a smile.",
+      "contents": {
+        "description": "A muddy, cramped cell — Belpheduk's punishment for killing a fellow Drowned. Her own severed arm is nailed to the wall. She is hungry, spiteful, and the only Drowned who wants the Plant of Life destroyed. She knows where the Plant is hidden (the passage from the Choir corridor). She will trade this knowledge for freedom, food, and the chance to see the Plant burn. The cell has no door — the Drowned consider escape impossible because she has nowhere to go in the tomb that isn't worse. She is wrong.",
+        "items": [
+          "Belpheduk's severed arm, nailed to the wall — taking it down requires prying out three rusted iron nails (DR10 Strength or a tool). Belpheduk wants it back. Whether it can be re-attached is [CANON CHECK — unwritten; GM call, possibly with magickal healing].",
+          "A wooden bowl of grey water on the floor. A few finger-bones at the bottom."
+        ],
+        "enemies": [],
+        "npcs": [
+          {
+            "name": "Belpheduk, the Traitor",
+            "description": "A scaled amphibian Drowned, one-armed, mud-caked, hungry, spiteful. HP 5, Morale 3, Scales −d2, Claws d4. Killed a fellow Drowned and was punished by imprisonment and the nailing of her own severed arm. Immune to the spores like all Drowned.",
+            "attitude": "neutral",
+            "notes": "Wants the Plant of Life destroyed and knows where it is hidden — the passage from the Angelic Choir corridor. Will trade this knowledge for: freedom (carrying her out of the cell), food (any), and the promise of seeing the Plant burn. If freed and accompanied, she will lead the party past the Choir flowers (she is partially resistant to their song) and to the hidden passage even without the Eyes. Whether she turns on the PCs once the Plant is dead is open — her hatred has had nowhere else to go for a long time. [CANON CHECK: what she did beyond 'killed a fellow Drowned' is unwritten.]"
+          }
+        ],
+        "traps": [],
+        "secrets": [
+          "Belpheduk knows: which cocoon in the Hall holds the Drowned leader; that the Eyes are in the Hoard; that the Plant of Life chamber's passage opens off the Choir corridor and is invisible without the Eyes (or her guidance).",
+          "She does NOT know what is beyond the GO TO NECH door, and the question makes her flinch.",
+          "If left freed and alive after the Plant of Life is destroyed, she may help the PCs cross the Pit to Hell (she is hungry enough to risk it) or she may try to kill them in their sleep. Roll Morale or GM call."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Freeing Belpheduk",
+          "text": "Belpheduk can walk out under her own power — there is no chain, no door. She does not leave because the Drowned would kill her in the Hall. Smuggling her past the Hall requires the Hall to be cleared, stealthed, or otherwise neutralized. She will fight at the PCs' side against any Drowned, claws d4, HP 5."
+          },
+        {
+          "title": "Bargaining With Her",
+          "text": "She will tell the PCs the location of the Plant of Life passage in exchange for: (1) the promise to destroy the Plant; (2) freedom from the cell; (3) any food. Refusing all three: she still tells them, but spits in their boot first and curses their journey home — GM tracks it as a single bad-luck token, redeem at a dramatic moment."
+        }
+      ],
+      "gm_notes": "Belpheduk is the dungeon's social pivot. The Plant of Life chamber is invisible without either the Eyes or her guidance — she is the alternate path. A party that frees her can skip the Hoard entirely if they don't care about completing the objective for their patron (they still need the Eyes to actually deliver the contract). Her severed arm is a weird talisman — she wants it back, and the question of whether it can be re-attached is left open. If the party is cruel to her, she will fight; she will lose (HP 5, scared, one-armed), but the moment is meant to feel like kicking a wounded dog. The Drowned in the Hall do NOT check on her — they consider her dead.",
+      "exits": [
+        {
+          "id": "belpheduk-to-hall",
+          "label": "Back — crawl out through the narrow tunnel to the Drowned Hall",
+          "target": "drowned-hall",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["npc", "alternate-path", "social"]
+    },
+    {
+      "id": "goblin-chamber",
+      "title": "The Goblin Squabble",
+      "type": "location",
+      "atmosphere": "Dry side passage off the flooded hall, lit by a single guttering torch wedged in a sconce. Three ropy-skinned creatures shrieking at each other in a language that hates itself. In the middle of them, on the stone: a beautiful two-handed sword.",
+      "read_aloud": "The side passage is dry. Stone steps lift you out of the water. The torch ahead is wedged in a sconce and burning poorly. Three goblins — ropy-skinned, yellow-eyed, mouths too wide — are shrieking at one another in a language of clicks and curses. They are all reaching for the same thing: a two-handed sword on the floor between them, polished, sharp, gleaming, far too good for any of them. One of them sees you. The shrieking stops. The reaching does not.",
+      "contents": {
+        "description": "A dry side chamber where three goblins squabble over a magnificent two-handed sword (d10+1). The sword is the only thing in the room worth taking — and the only thing keeping the goblins from immediately attacking the party (they would have to stop fighting each other to do it). A clever party can let them keep killing each other and take the sword from the survivor.",
+        "items": [
+          "Two-handed sword, d10+1 — bright, sharp, far too well-made for goblin hands. The goblins killed someone for it; they don't remember who. [CANON CHECK: provenance unwritten. Possibly looted from the cult that originally made the hellhole.]",
+          "Three goblin knives (d4) and one short bow with d6 chipped arrows — on the goblins' bodies after."
+        ],
+        "enemies": [
+          {
+            "name": "Goblin (Seth)",
+            "hp": 6,
+            "morale": "7",
+            "speed": "normal",
+            "attack": "Knife or shortbow, d4",
+            "special": "Ropy skin −d2. Quick: attacks and defense at DR14. CURSE: any PC hit OR attacked by a goblin (hit or miss) is cursed — see Goblin Curse rule. Three of them in this chamber.",
+            "notes": "Three present, currently fighting each other over the sword. Will turn on the PCs if attacked or if any PC reaches for the sword. If left alone, they kill each other in d4 rounds and the survivor (whichever has HP left) keeps the sword until the PCs intervene. Source: MÖRK BORG Bare Bones, p.58; Devil's Tomb."
+          }
+        ],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "If the party simply watches, the goblins kill each other. d4 rounds. The survivor will be wounded (1-3 HP remaining) and exhausted, and will accept the sword if offered, or fight if attacked.",
+          "The sword's provenance is unwritten. It is sharp, balanced, and the goblins have already drawn blood on it. There may be a name etched on the cross-guard. [CANON CHECK — GM call on a name.]",
+          "The Goblin Curse: any PC hit OR attacked by a goblin (hit or miss) is cursed. The curse warps the victim into a goblin in d6 days if the goblin who attacked them still lives. Kill the goblin before that, or watch your friend grow ropy."
+        ]
+      },
+      "rules": [
+        {
+          "title": "The Goblin Curse",
+          "text": "Even being SHOT AT by a goblin sends the curse, carried on their hate — hit or miss, it doesn't matter. The cursed PC's mind is paralyzed: they must succeed at Presence DR12 each morning to act normally that day (failure: confused, halved actions, GM call). If the goblin who attacked them is still alive d6 days after the attack, the PC warps irrevocably into a goblin themselves. Kill the goblin to break the curse."
+        },
+        {
+          "title": "Letting Them Squabble",
+          "text": "If the PCs hold position and watch, the goblins kill each other in d4 rounds. Roll: 1 — All three die simultaneously; sword on the floor, free. 2-3 — One survivor at 1d3 HP, holding the sword, immediately attacks anyone who moves. 4 — Two survive, both wounded; they cease fighting each other and turn on the party together."
+        },
+        {
+          "title": "Taking the Sword",
+          "text": "d10+1 damage. Two-handed. Heavy. Whoever wields it gains nothing magickal — only a very good sword. Any PC who killed a goblin to get it has rolled into the Goblin Curse."
+        }
+      ],
+      "gm_notes": "This is the only 'side chamber treasure' room in the dungeon, and it's a deliciously bad bargain — a d10+1 sword in exchange for the Goblin Curse. The clever solution (watch them kill each other, then loot the bodies, never attack a goblin yourself) should be rewarded. Note the curse triggers on goblins ATTACKING the PC, not the other way around — a goblin that throws a knife wide still curses you. The goblins have nothing else interesting on them. The passage is a dead-end aside from the way back to the Hall — Devil's Tomb is small, every chamber matters.",
+      "exits": [
+        {
+          "id": "goblins-to-hall",
+          "label": "Back — down the steps into the Drowned Hall",
+          "target": "drowned-hall",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["combat", "treasure", "curse"]
+    },
+    {
+      "id": "angelic-choir",
+      "title": "The Angelic Choir Corridor",
+      "type": "location",
+      "atmosphere": "A long stone corridor whose walls are no longer stone. They have grown bulbous flowers with angel faces — too many planes, too many eyes — and the flowers are singing a song that is not music.",
+      "read_aloud": "The corridor's walls are blooming. Bulbous flowers the size of children's heads grow from the stone in clusters and clumps. Each flower has a face — angelic in the wrong way: too many planes, too many eyes, mouths that open in three directions. They are singing. There are no words. The song goes through your chest like cold water. At the far end of the corridor, the passage continues toward the sound of falling water. To one side: blank wall.",
+      "contents": {
+        "description": "The corridor leading from the Drowned Hall to the Pit to Hell. Its walls bloom with angel-faced flowers — the angelic children of the Plant of Life — singing a wordless song. The corridor's hidden passage to the Plant of Life chamber opens off this corridor and is INVISIBLE without the Eyes of St Largoth (or Belpheduk's guidance). Anyone walking the corridor must save against the song. Anyone passing through with the Eyes held to their face sees the hidden passage as plainly as a door.",
+        "items": [
+          "Angel-faced flowers along the walls — can be plucked. A plucked flower continues to sing softly for d6 hours, then withers. [CANON CHECK: whether a flower carried out of the tomb keeps singing is the obvious table-question — GM call, probably yes, probably terribly.]"
+        ],
+        "enemies": [
+          {
+            "name": "Angelic Choir (hazard, not a creature)",
+            "hp": 0,
+            "morale": "—",
+            "speed": "—",
+            "attack": "Wordless Song (DR10 Presence per passage through)",
+            "special": "Failure: the PC loudly sings along for a full minute, drawing every Drowned in the tomb. The song has no direct damage but the consequences do. Roll on the spore table (d4) as well — the corridor is the densest spore concentration in the tomb.",
+            "notes": "The flowers cannot be 'killed' — chopping one is a single satisfying spurt of sap, but ten more bloom from neighboring stone within minutes. Carrying a plucked flower in a pack imposes a constant DR8 Presence to avoid humming. Source: Devil's Tomb (Angelic Choir hazard)."
+          }
+        ],
+        "npcs": [],
+        "traps": [
+          {
+            "name": "The Wordless Song",
+            "trigger": "Passing through the corridor without ear protection.",
+            "effect": "Failure: loudly sing along for 1 minute, drawing every awake Drowned in the tomb. Success: the song still goes through your chest, but you don't sing.",
+            "dr": "Presence DR10. Plugging ears: advantage. Belpheduk's company: she sings instead of you, no save needed."
+          }
+        ],
+        "secrets": [
+          "The hidden passage to the Plant of Life chamber opens off the south wall of this corridor, about halfway down. Without the Eyes or Belpheduk, the wall appears blank. With the Eyes held to a PC's face: the doorway is plainly visible, a low stone arch grown over with vine.",
+          "The flowers themselves invite hidden things to be revealed — the Eyes are MORE powerful here than anywhere else in the tomb, because the flowers are part of the same plant. A PC using the Eyes in this corridor for the first time sees not only the passage but a brief vision of the Plant itself (one extra roll on the spore table).",
+          "The Madman crawled this corridor once and never came back to himself. The flowers remember him. If the Madman is brought into the corridor, the flowers' song shifts — and he goes still, perfectly calm, for the first time since the tomb took him. [CANON CHECK: whether this is healing or worse is unwritten.]"
+        ]
+      },
+      "rules": [
+        {
+          "title": "Walking the Corridor",
+          "text": "Each PC tests Presence DR10 on entry. Failure: loudly sings along for 1 minute (60 seconds = 10 combat rounds = LOUD). Every awake Drowned in the tomb will be drawn to the sound. Success: the song goes through you, but you don't sing. Plugging ears with wax, cloth, or hands: advantage on the save."
+        },
+        {
+          "title": "Finding the Hidden Passage",
+          "text": "Without the Eyes or Belpheduk: the south wall is blank stone. The corridor seems to dead-end into another passage continuing toward the Pit. With the Eyes: a low vine-covered stone arch is plainly visible. With Belpheduk: she leads the party to the spot and shows them where to push. The passage requires no save to enter — only to find."
+        }
+      ],
+      "gm_notes": "This is the dungeon's most beautiful and most awful room. Lean on the song description. The hidden passage to the Plant of Life is the central reveal of the adventure — DO NOT volunteer it. Let the players walk the corridor, see the angel flowers, save against the song, and continue toward the Pit thinking they have missed nothing. Only when they remember the Eyes (or talk to Belpheduk) does the passage open up. The corridor connects to the Pit to Hell to the south; the hidden passage to the Plant of Life branches off the south wall, halfway down. Spore table on entry, AND the song save, AND (if Eyes used) a bonus spore roll. This corridor is the most dangerous walking-through room in the dungeon.",
+      "exits": [
+        {
+          "id": "choir-to-hall",
+          "label": "Back — to the Drowned Hall",
+          "target": "drowned-hall",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "choir-to-pit",
+          "label": "South — onward, toward the sound of falling water",
+          "target": "pit-to-hell",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "choir-to-plant",
+          "label": "South wall (HIDDEN) — a low vine-covered arch (requires Eyes of St Largoth OR Belpheduk's guidance)",
+          "target": "plant-of-life",
+          "condition": "Eyes of St Largoth held to face, OR Belpheduk leading the party",
+          "locked": true
+        }
+      ],
+      "visited": false,
+      "tags": ["hazard", "hidden", "spores", "key-room"]
+    },
+    {
+      "id": "pit-to-hell",
+      "title": "The Pit to Hell — Bridge & Bronze Door",
+      "type": "location",
+      "atmosphere": "A bottomless chasm. The water from the Drowned Hall pours over the edge here, becoming a waterfall down into red-orange light. A narrow stone bridge spans the pit. On the far side: a greenish bronze door, chained, scrawled in old blood.",
+      "read_aloud": "The corridor opens onto an abyss. The chamber is vast and round, and its floor is a hole. Water from somewhere behind you pours over the edge in a thin steady curtain, and the curtain falls and falls and is lit, deep below, by a red-orange glow that does not flicker like flame but pulses like a heart. A narrow stone bridge — no rail, no width — crosses the pit. On the far side stands a door of greenish bronze, sealed with heavy iron chains. Written on it in old, dark blood: GO TO NECH.",
+      "contents": {
+        "description": "A bottomless chasm leading straight to the fiery torture-realms of Hell. The water from the upper Drowned Hall pours over the edge as a small waterfall. A narrow stone bridge crosses to the far side, where a greenish bronze door stands chained and inscribed in blood: GO TO NECH. The Drowned do not cross. The Madman crawls nowhere near it. Whatever the cult that originally carved this hellhole was doing here is gone; the pit is what they left behind. The chained door is the question they never answered.",
+        "items": [
+          "Heavy iron chains across the bronze door — rusted, intact, requiring serious cutting (a sword: many rounds + damage to blade; the Skeleton Unkey from Graves Left Wanting: instantly, possibly disastrously; bare hands: no).",
+          "The bronze door itself: greenish patina, unmoving, slightly warm to the touch. The blood-script GO TO NECH is dry and old but has not faded."
+        ],
+        "enemies": [],
+        "npcs": [],
+        "traps": [
+          {
+            "name": "Falling into the Pit",
+            "trigger": "Crossing the bridge while distracted, hurried, or in combat; being pushed; failing a save.",
+            "effect": "Death. No save, no roll. The pit drops to the fiery torture-realms of Hell. The fall is long. Anything that touches the pit's floor is gone.",
+            "dr": "Crossing the bridge in good order: no test. Crossing while wounded, encumbered, or under attack: Agility DR12. Failure: fall. Failure by 5+: drag a neighbor."
+          }
+        ],
+        "secrets": [
+          "The 'NECH' is Nechrubel. The door is, almost certainly, a passage to him or one of his servitors. Possibly only a deeper level of the Hell below. [CANON CHECK — adventure's greatest unwritten promise. The original module does not say what is beyond. A campaign could make this the actual ending.]",
+          "The water falling into the pit never reaches anything that splashes back. The waterfall just falls. Listen long enough and you can hear it hitting something soft, somewhere beyond hearing — but not water.",
+          "The Drowned will not approach this room. Even with the rest of the tomb cleared, they avoid it. They know something. [CANON CHECK — what they know is unwritten.]",
+          "Opening the chained door: GM call. The original module gives no contents. Suggested: a stone corridor leading inward, lit by no visible source, smelling of burning hair, ending in a single iron throne with a small black box on the seat. Inside the box: the next adventure's hook. (Or: don't. Let the door stay shut. Some doors should.)"
+        ]
+      },
+      "rules": [
+        {
+          "title": "Crossing the Bridge",
+          "text": "In good order: no test, just narrative care. Wounded, encumbered, or in combat: Agility DR12 per crossing. Failure: fall into the pit, instant death. Failure by 5+: also drag the nearest PC unless they make a Strength DR12 to stay rooted. The bridge has no railing and is one person wide."
+        },
+        {
+          "title": "Breaking the Chains",
+          "text": "Heavy iron, rusted, intact. Hacking with a sword: 10+ rounds AND the weapon takes wear (GM call: −1 die size on next critical fumble). A two-handed sword (the goblin sword, d10+1): half time. The Skeleton Unkey (if smuggled in from elsewhere): instant — but where the door leads when unlocked by the Unkey is no longer wherever it normally leads. GM call."
+        },
+        {
+          "title": "The Door Itself",
+          "text": "The bronze does not yield to weapons. The chains are the lock. Whatever is on the other side, the chains are what keeps it there. [CANON CHECK: original module gives no resolution. The door is the adventure's central unanswered question.]"
+        }
+      ],
+      "gm_notes": "This is the ADVENTURE'S GREATEST UNWRITTEN PROMISE. The chained bronze door reading GO TO NECH is the most evocative single image in Devil's Tomb, and the original module gives the GM no resolution. Treat it as a hook for a future scenario — possibly the next campaign arc — OR as a door that should never be opened. Some tables will want to break the chains. Let them. Then improvise the worst thing you can imagine that still feels like it belongs in Mörk Borg. Suggestion: a stone corridor leading inward, lit by no visible source, smelling of burning hair, ending in a single iron throne with a black box on the seat. Inside the box: a folded note in Nechrubel's hand reading 'I knew you would come.' Or: the door swings open and a single hand reaches through and beckons. Then it shuts. Or: nothing — silence — a dust-dry passage that ends after 20 feet at a blank wall. The pit kills on contact with anything below. The bridge is the kill-zone of the dungeon; bring it into combat if the party fights here, and let the Drowned's freezing water trick PCs into slipping.",
+      "exits": [
+        {
+          "id": "pit-to-choir",
+          "label": "Back — to the Angelic Choir corridor",
+          "target": "angelic-choir",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "pit-to-nech",
+          "label": "Across the bridge, through the chained bronze door — GO TO NECH (chains intact: locked)",
+          "target": "pit-to-hell",
+          "condition": "Chains broken AND the GM has decided what is on the other side",
+          "locked": true
+        }
+      ],
+      "visited": false,
+      "tags": ["trap", "hazard", "unresolved", "key-room"]
+    },
+    {
+      "id": "plant-of-life",
+      "title": "The Plant of Life — The Hidden Chamber",
+      "type": "location",
+      "atmosphere": "A round chamber so thick with spores that the air itself is colored. At its center: a giant pulsing cactus in every color, taller than a man. Tendrils grow from its top and sway in the spore-thick air. Vines along the floor. The whole room breathes.",
+      "read_aloud": "The hidden passage opens onto a round chamber and the air is thick enough to chew. Spores hang in every color — yellow, violet, green, a red that is almost black. At the center, taller than any of you, stands a pulsing cactus in every color of the body's interior, ridged and breathing. Tendrils grow from its crown and sway in the air like blind fingers feeling for warmth. Bulbous angel-faced flowers grow in clusters from its trunk, their mouths open, silent now. The room itself seems to inhale. One of the tendrils turns toward the warm thing nearest the entrance.",
+      "contents": {
+        "description": "The hidden chamber holding the Plant of Life — a giant, pulsing, multicolored cactus, the Drowned's god. Tendrils from its crown grab anyone nearby. The Drowned worship it; the angel-faced flowers of the Choir corridor are its 'angelic children.' Spores fill this chamber at the worst concentration in the tomb. Killing it: HP 30, and on death all vines turn to black metal, all angel-faces turn to skulls. The room behind the Plant has collapsed into the Pit to Hell — at the back of the chamber, the floor falls away into the same red-orange glow.",
+        "items": [
+          "Tendril sap (collected from a chopped tendril) — sweet, faintly luminous, [CANON CHECK: GM call on effects — perhaps a single-dose vision, or a HP heal, or a slow poison].",
+          "After death: a tangle of black metal vines and a halo of small bone skulls where the angel-flowers were. These are objects of dread but no mechanical value. Drowned in the tomb feel the death instantly."
+        ],
+        "enemies": [
+          {
+            "name": "The Plant of Life",
+            "hp": 30,
+            "morale": "—",
+            "speed": "rooted",
+            "attack": "Tendril grab + drag, d6/round in the mouth",
+            "special": "Anyone in the chamber: DR12 Agility or grabbed by a tendril; then DR14 Strength or dragged into the plant's mouth, d6 damage per round until Strength test passed OR tendril chopped off (a tendril has 4 HP, regrows in d6 rounds). Multiple PCs can be grabbed simultaneously — roll separately per round per PC. Spore-cloud: every round in the chamber, every PC rolls on the spore table (d4). On death: all vines turn to black metal, all angel-faces in the chamber AND the Choir corridor turn to skulls — the Drowned in the Hall feel it and immediately begin to mourn or rage (GM call). Big: impossible to miss. Big: impossible to flee at speed.",
+            "notes": "Climax encounter. The Plant cannot pursue. Its tendrils reach about 20 feet from the trunk. A party that backs out of the chamber is safe — but the tendrils tear out chunks of the wall trying to follow. Source: Devil's Tomb (Plant of Life)."
+          }
+        ],
+        "npcs": [],
+        "traps": [
+          {
+            "name": "Collapsed Floor at the Back",
+            "trigger": "Movement past the Plant to the back of the chamber.",
+            "effect": "The back third of the chamber has collapsed into the Pit to Hell. Movement into that zone: Agility DR14 or fall. Falling: death (same as the Pit).",
+            "dr": "Agility DR14 to navigate the rubble; visible to anyone with a light, but easy to miss in the spore-fog."
+          }
+        ],
+        "secrets": [
+          "The Plant's chamber has collapsed at the back into the Pit to Hell — that is why the Drowned can hear the Plant breathing from the Pit chamber, and why the angelic flowers also bloom along the Choir corridor leading there. The Plant is rooted IN Hell.",
+          "Belpheduk wanted this. If she is with the party when the Plant dies, she weeps black tears, embraces the burning, and either swears loyalty forever or attacks the party — GM Morale roll.",
+          "The Drowned in the Hall feel the Plant's death instantly. d4 Drowned will arrive within 10 rounds, in mourning frenzy (Morale ignored, attack at advantage). The Plant's death is the dungeon's loudest event.",
+          "After the Plant's death, the angel-faces along the Choir corridor become small bone skulls grown into the wall. The corridor is silent. The hidden passage is now plainly visible — but there is nothing left in the chamber but black metal vines and a corpse-cactus."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Entering the Chamber",
+          "text": "On entry, every PC tests DR12 Agility or is grabbed by a tendril this round. Every round thereafter, the test repeats for any PC within reach (~20ft of trunk)."
+        },
+        {
+          "title": "Grabbed by a Tendril",
+          "text": "DR14 Strength to break free. Failure: dragged d4 feet toward the trunk, then d6 damage per round in the mouth until Strength test passed OR tendril chopped (4 HP, regrows d6 rounds)."
+        },
+        {
+          "title": "Burning the Plant",
+          "text": "Fire is highly effective: a torch or burning oil applied directly does d6 fire damage per round and prevents tendril regrowth in that area. The Plant is wet, fleshy, and the spores in the air are flammable — a flame source in this chamber: DR10 Toughness for everyone in the room or take d4 fire damage from the air igniting. [CANON CHECK: spore-air flammability is interpolation from Plant description; original module silent on fire interaction.]"
+        },
+        {
+          "title": "Spores at Maximum Density",
+          "text": "Every round in this chamber, every PC rolls on the spore table (d4). Drowned are immune; Belpheduk is immune. Everyone else: every round."
+        },
+        {
+          "title": "After Death",
+          "text": "All vines turn to black metal; all angel-faces in the chamber and in the Choir corridor turn to small bone skulls. The Drowned in the Hall feel it: d4 Drowned arrive in 10 rounds, frenzied, Morale ignored, attack at advantage. The chamber becomes safe but ugly. The corridor becomes silent."
+        }
+      ],
+      "gm_notes": "This is the climax. The Plant is HP 30 and a true boss — chip damage is too slow. Fire is the answer. The collapsed floor at the back is the kill-the-PC-who-flanks trap. The spore table EVERY ROUND is brutal — a party that lingers will hallucinate themselves into death. The Drowned's mourning frenzy after the kill is meant to make the escape harder than the boss fight. If Belpheduk is present, this is her moment — let her weep, embrace the burning, and (per her Morale roll) either help carry the wounded out or turn on the party while their guard is down. The chamber's exit is back to the Choir corridor; the Choir corridor is now silent and harmless; the Hall has 1d4 frenzied Drowned arriving. The objective (Eyes of St Largoth) does NOT require killing the Plant — a party that simply takes the Eyes and leaves is canonically successful. The Plant is the temptation, the boss the adventure dares you to fight.",
+      "exits": [
+        {
+          "id": "plant-to-choir",
+          "label": "Back — through the now-visible vine arch into the Angelic Choir corridor",
+          "target": "angelic-choir",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "plant-to-pit",
+          "label": "Back of chamber (DEADLY) — collapsed floor drops into the Pit to Hell (DR14 Agility or fall to death)",
+          "target": "pit-to-hell",
+          "condition": "DR14 Agility to navigate the rubble without falling",
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["climax", "boss", "spores", "trap"]
+    }
+  ],
+  "bestiary": [
+    {
+      "name": "The Madman",
+      "hp": 2,
+      "morale": "—",
+      "speed": "normal",
+      "attack": "Bite, d2",
+      "special": "Naked, unarmed, spore-mad. Tries to flee any room being entered; bites only when first bitten or cornered. Terrified of the Angelic Choir. Cannot remember his name.",
+      "notes": "Crawls at the entrance. The first warning. Source: Devil's Tomb, p.1. [CANON CHECK: name and original purpose unwritten.]"
+    },
+    {
+      "name": "Drowned",
+      "hp": 6,
+      "morale": "8",
+      "speed": "normal",
+      "attack": "Spear, d6",
+      "special": "Scales −d2. Immune to the spores' effects. Upon death, freezes the water nearby — d4 damage to anyone in the same water within ~5ft. Stacks if multiple die same round.",
+      "notes": "Ten present in the Drowned Hall in fleshy cocoons; 1d4 awake guards; four are usually out raiding. Source: Devil's Tomb (Drowned faction)."
+    },
+    {
+      "name": "Belpheduk, the Traitor",
+      "hp": 5,
+      "morale": "3",
+      "speed": "normal",
+      "attack": "Claws, d4",
+      "special": "One-armed (severed and nailed to her cell wall). Scales −d2. Immune to spores. Hungry and spiteful. Knows the location of the Plant of Life.",
+      "notes": "Imprisoned in the Traitor's Den. Will trade Plant-passage knowledge for freedom, food, and the promise to burn the Plant. May ally with the party or turn on them — GM Morale call after the Plant dies. Source: Devil's Tomb (Belpheduk)."
+    },
+    {
+      "name": "Goblin (Seth)",
+      "hp": 6,
+      "morale": "7",
+      "speed": "normal",
+      "attack": "Knife or shortbow, d4",
+      "special": "Ropy skin −d2. Quick: attacks and defense at DR14. CURSE: any PC HIT OR ATTACKED by a goblin (hit or miss) is cursed. Kill the goblin who attacked you, or warp into a goblin yourself in d6 days.",
+      "notes": "Three present in the Goblin Squabble chamber, fighting over a d10+1 two-handed sword. Will kill each other in d4 rounds if left alone. Source: MÖRK BORG Bare Bones p.58; Devil's Tomb."
+    },
+    {
+      "name": "Angelic Choir (hazard)",
+      "hp": 0,
+      "morale": "—",
+      "speed": "—",
+      "attack": "Wordless Song — Presence DR10 per passage through the corridor",
+      "special": "Failure: loudly sing along for 1 minute, drawing every awake Drowned in the tomb. Cannot be killed — chopping a flower spurts sap; ten more bloom from neighboring stone in minutes. Carrying a plucked flower: constant DR8 Presence to avoid humming. Linked to the Plant of Life — die together.",
+      "notes": "Angel-faced flowers in the Choir corridor. The 'angelic children' of the Plant of Life. After the Plant dies, they turn to bone skulls grown into the wall. Source: Devil's Tomb (Angelic Choir)."
+    },
+    {
+      "name": "The Plant of Life",
+      "hp": 30,
+      "morale": "—",
+      "speed": "rooted",
+      "attack": "Tendril grab + drag, d6/round in the mouth",
+      "special": "Anyone in the chamber: DR12 Agility or grabbed by a tendril; then DR14 Strength or dragged into the plant's mouth, d6/round until escape or tendril chopped (4 HP, regrows d6 rounds). Spore-cloud every round (d4 spore table). On death: vines turn to black metal, angel-faces turn to skulls, Drowned in the Hall feel it and arrive frenzied in 10 rounds. Fire is highly effective (d6/round, but spore-air ignites: DR10 Toughness everyone in chamber or d4 fire).",
+      "notes": "Climax boss. Cannot pursue. Tendrils reach ~20ft. The Drowned's god. Source: Devil's Tomb (Plant of Life)."
+    }
+  ]
+}

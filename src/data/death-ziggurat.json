@@ -1,0 +1,948 @@
+{
+  "meta": {
+    "id": "death-ziggurat",
+    "title": "The Death Ziggurat",
+    "author": "MBC: The Death Ziggurat",
+    "version": "1.0",
+    "system": "morkborg",
+    "description": "Find the ziggurat and stop the demon spawn Akünh from breaking free of her Death Realm prison. The Creton Order hires the PCs. The fog whirls down into the sinkhole. Time is shorter than the Calendar of Nechrubel says.",
+    "startNode": "the-depression",
+    "license": "Based on official Mörk Borg content. Independent production by Trevor Burkholder, published under the MÖRK BORG Third Party License. MÖRK BORG is © Ockult Örtmästare Games and Stockholm Kartell."
+  },
+  "nodes": [
+    {
+      "id": "the-depression",
+      "title": "The Depression",
+      "type": "location",
+      "atmosphere": "Cold that does not belong to any season. Fog pours down the cliffs and forgets to come back up. A bruise-dark cloud spirals overhead, drawn down into a great fog-pit at the north end. The forest at the rim is quiet in the way forests are when the things in them have been eaten.",
+      "read_aloud": "The Sarkash thins, then opens onto nothing. A sinkhole yawns at your feet, as though some impossible fist punched the earth a century ago and the ground never closed. Cliffs of black rock plunge a hundred and fifty, two hundred, three hundred feet down to a frozen lake. From the southwest a river arrives as a still waterfall, locked mid-fall in grey ice. At the north end, the murky clouds whirl down into a fog-cloud thick as wool, spinning slow, never landing. The cold here has teeth.",
+      "contents": {
+        "description": "The starting hub. A vast, unnaturally cold sinkhole carved out of deep Sarkash. Cliffs 150–300 ft tall ring it. A frozen river enters from the southwest as a motionless waterfall, feeding the half-iced lake at the bottom. The fog-tornado at the north end is Akünh's channeling — beneath it, hidden in the parallel Death Realm, sits the ziggurat. Ivy-eaten ruins are scattered through the depression between fir-trees. Within walking distance: the death-obsessed cultist camp (30 min from the rim), the foul cave with its rotten mouth, the rot-priest camp, the frozen lake, the Spiral Chapel among the ruins. Walking the ruins layer is procedural — see the Walking the Ruins node. Sarku stalks here.",
+        "items": [
+          "Climbing the cliffs without gear: Agility DR12 or fall. Length of rope and pitons makes it a non-roll for prepared parties.",
+          "Frozen river / waterfall: passable on foot but the ice groans. Cracking through means submersion in water that should be lethal-cold but isn't quite — Toughness DR10 or 1d4 cold damage."
+        ],
+        "enemies": [],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "The fog-tornado is not weather — it is Akünh's channeling, a physical manifestation of power being drawn from her demonic parent in a parallel realm. Stopping it stops the rising of undead. Reversing it (via the Spiral Crown) drains Akünh herself.",
+          "The ziggurat is not in this realm. It hides under the fog-cloud in the Death Realm and cannot be reached without a rot-priest medallion.",
+          "Sarku — gaunt, ethereal, sharp-tongued — drifts through these woods. He hung his dried-up victims upside down from the firs. He once served Akünh; now he wants her stopped. He knows where her heart is."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Akünh's Channeling",
+          "text": "The tornado-cloud is a physical manifestation of channeling from the demonic world where Akünh's parent resides. This is the power that broke her free and now raises her undead army. If stopped, no more undead rise. If reversed (with the Spiral Crown), her powers drain quickly. If unstopped, Akünh will conquer the closest castle and march the undead horde across the lands."
+        },
+        {
+          "title": "Random Encounters in the Depression",
+          "text": "Roll once per stretch of overland travel inside the depression (use the Walking the Ruins d12). Plenty of moaning undead frozen in the mud near the lake — they pull themselves loose at the worst moments. Rot-priests patrol with horn beasts. The cultists do not enter the depression yet but watch from the rim."
+        },
+        {
+          "title": "Cliffs and Cold",
+          "text": "Cliffs 150–300 ft. Climbing without gear: Agility DR12. Falling: d6 per 10 ft. The cold is constant — long exposure (more than an hour without shelter or fire) costs 1 HP/hour, ignored by fur cloaks."
+        }
+      ],
+      "gm_notes": "This is the campaign hub. Let the players orient themselves. The Creton Order's instruction — 'find the ziggurat, stop the demon, the priests carry keys' — is all the briefing they get. Do not tell them the ziggurat is in another realm. Let them search. The medallion clue should come from a rot-priest body or from Sarku. Sarku is the secret ally — he can appear anywhere in the depression and will not directly attack the party unless attacked. He drops hints in fragments. The cliffs hem the players in: leaving the depression means abandoning the contract. Lots of ruins to explore — use the Walking the Ruins procedural layer. Time pressure is implied but not mechanical — Akünh's army is growing while the party dithers.",
+      "exits": [
+        {
+          "id": "depression-to-cultist-camp",
+          "label": "Up and out — 30 min walk to the death-obsessed cultist camp at the rim",
+          "target": "cultist-camp",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "depression-to-foul-cave",
+          "label": "Into the foul-smelling cave (cold passages, undead lurk)",
+          "target": "foul-cave",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "depression-to-priest-camp",
+          "label": "Approach the conical tents of the rot-priest camp",
+          "target": "priest-camp",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "depression-to-frozen-lake",
+          "label": "Down to the frozen lake of black water-lilies",
+          "target": "frozen-lake",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "depression-to-walking",
+          "label": "Pick a direction and walk the ruins (procedural — 15 min = 1 hex = 1 event)",
+          "target": "walking-the-ruins",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "depression-to-spiral-chapel",
+          "label": "Strike out toward the painted-sky chapel among the ruins",
+          "target": "spiral-chapel",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "depression-to-death-realm",
+          "label": "North end — step into the fog-cloud (requires rot-priest medallion)",
+          "target": "death-realm-approach",
+          "condition": "Rot-priest medallion in party's possession",
+          "locked": true
+        }
+      ],
+      "visited": false,
+      "tags": ["start", "hub", "surface"]
+    },
+    {
+      "id": "cultist-camp",
+      "title": "The Death-Obsessed Cultist Camp",
+      "type": "location",
+      "atmosphere": "Smell of singed fur and old blood. Bone-rattles strung from low branches click in a wind no one feels. Twenty-five hooded shapes move slow between the fires, headdresses heavy with skull-parts.",
+      "read_aloud": "The camp squats on the rim of the depression, half-hidden in the firs. Twenty-five figures in thick furs, faces tattooed with scriptural scars, wear strange headdresses of stacked bone and antler — taller hats for the ones who matter most. They speak slowly and the words come out almost-not-human. They are very glad to be here. They have felt the deathly vibrations rising from the pit below and believe these are keys — to the golden afterlife in the Shimmering Fields. They have not gone down yet. They have found the rotting mouth in the woods but did not dare open it.",
+      "contents": {
+        "description": "Camp of 25 Death-Obsessed Cultists from a plague-wracked Tveland hovel. Strange headdresses signal rank — the taller the hat, the higher the rank. Tattooed faces, thick furs dangling skeletal parts. They have felt the necromantic vibrations and believe them keys to the Shimmering Fields. They are UNAWARE of Akünh, the rot-priests, or what waits below — they only sense the energy. They have found the rotting-mouth cave but have not entered. They will trade information for offerings. They will turn hostile if mocked, if undead are brought into camp, or if approached as enemies of the death-vibration.",
+        "items": [
+          "Headdresses of the highest ranks contain real teeth from named saints and unnamed corpses — culturally precious, mechanically useless.",
+          "Camp has fur cloaks, dried meat (d6 rations), a flask of fermented something that grants +1 Toughness next test (one dose per flask)."
+        ],
+        "enemies": [
+          {
+            "name": "Death-Obsessed Cultist",
+            "hp": 16,
+            "morale": "6",
+            "speed": "normal",
+            "attack": "Axe / Spear / Scythe, d6",
+            "special": "Fur armor −d2. Highest-rank cultists can use DEATHLIKE SILENCE (Power): all within range test Presence DR14 or are deafened for d10 minutes; every test requiring hearing or balance has its DR increased by 4.",
+            "notes": "25 in the camp. From a plague-wracked Tveland hovel. Inhuman-slow dialect. Goal: harvest the necromantic energies as a 'ticket' to the Shimmering Fields. Source: MBC The Death Ziggurat."
+          }
+        ],
+        "npcs": [
+          {
+            "name": "Cult Hierophant (highest hat)",
+            "description": "An old woman whose face is more tattoo than skin. Her hat is a stack of jawbones bound with sinew. She speaks with the deathlike silence Power but prefers not to.",
+            "attitude": "neutral",
+            "notes": "Will treat the PCs as fellow seekers if they speak respectfully of death and the Shimmering Fields. Knows the rotting mouth in the woods exists, knows it is closed, has not figured out how to open it. Does not know Akünh exists. Has lost 3 scouts to the rot-priests but believes they ascended."
+          }
+        ],
+        "traps": [],
+        "secrets": [
+          "The cultists do not know they are sacrifices-in-waiting. If Akünh wins, they go first.",
+          "If shown a rot-priest medallion the hierophant will recognize it as 'a key from the other priests' and offer two cultists as guides into the depression. They will follow until killed.",
+          "The cultists know how to open the rotting mouth — blood — but have not tried because their doctrine forbids spilling cult blood within sight of the Shimmering Fields."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Hospitality vs Hostility",
+          "text": "If the PCs approach as fellow seekers and offer something to death (a corpse, a piece of jewelry, a song), the camp is hospitable. They share food, fire, rumors. If the PCs mock the doctrine or attack first, all 25 charge — the highest ranks open with Deathlike Silence to deafen the loudest threat."
+        },
+        {
+          "title": "Deathlike Silence (Power)",
+          "text": "Cast by ranking cultists only. All within ~30 ft test Presence DR14 or are deafened d10 minutes. While deaf: hearing/balance tests at +4 DR. Stacks badly with anything requiring concentration."
+        }
+      ],
+      "gm_notes": "These are not cannon-fodder mooks. 25 of them with d6 weapons can murder a party. Make the social option real. The cultists are exploitable allies — point them at the priest-camp and they will engage. They lose, but they buy time. The hierophant's old-woman voice slows the table; play it. [CANON CHECK — the source lists 25 cultists; if running short-handed, scale to 12 without losing the texture.]",
+      "exits": [
+        {
+          "id": "camp-to-depression",
+          "label": "Down into the depression (30 min descent)",
+          "target": "the-depression",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "camp-to-foul-cave",
+          "label": "30 min through the firs to the foul-smelling cave",
+          "target": "foul-cave",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["social", "combat", "surface"]
+    },
+    {
+      "id": "foul-cave",
+      "title": "The Foul-Smelling Cave",
+      "type": "location",
+      "atmosphere": "The cave breathes. Air comes out colder than it should, wet with rot and old meat. Lichen the color of bruise. The dripping never quite syncs with itself.",
+      "read_aloud": "The opening in the rock smells like a body left in summer. Cold air rolls out of it in slow exhalations. The passage runs back deep — twisting, low in places, opening into chambers no torchlight reaches the back of. Almost an hour in, the tunnel ends in a wall of flesh. A great rotting MOUTH, taller than two of you, lips sealed and crusted, set in the rock as though the woods themselves grew teeth here. It does not breathe. It does not move. It waits.",
+      "contents": {
+        "description": "Long cold cave system, roughly an hour's traverse from the entrance to the rotting mouth. Undead lurk in the side-passages — they ignore the cultists outside but attack anything with warm blood that enters. The terminal chamber holds a massive rotting mouth set into living rock. It is closed. It opens when blood (any amount, any donor) is dripped on it. Beyond the mouth: stairs down into the priest-camp area of the depression, or — depending on GM placement — a shortcut into the ruin field where the Spiral Chapel hides.",
+        "items": [
+          "Bones of three cultist scouts, half-eaten. One still wears the cult's lower-rank skull-headdress.",
+          "A rot-priest medallion on one of the dead scouts (apparently dropped here by a priest patrol that didn't bother to retrieve it). [GM: this is one of two reliable medallion sources before the priest-camp fight.]"
+        ],
+        "enemies": [
+          {
+            "name": "Undead (cave lurkers)",
+            "hp": 3,
+            "morale": "—",
+            "speed": "slow",
+            "attack": "Grapple — Strength DR12 or be grappled; while grappled, all present undead claw/bite for d4 each",
+            "special": "WILL NOT DIE. Drop to 0 HP and they stay down for one round, then rise with 1 HP. SLOW — can always be outrun unless grappled.",
+            "notes": "Encountered in clumps of d6+2 in the cave. Source: MBC The Death Ziggurat."
+          }
+        ],
+        "npcs": [],
+        "traps": [
+          {
+            "name": "Floor Sink",
+            "trigger": "Walking heavily near the central chamber.",
+            "effect": "Foot punches through old rotten timber over a hollow — d4 damage, climb out next round.",
+            "dr": "Agility DR12 to keep balance / spot the soft spot."
+          }
+        ],
+        "secrets": [
+          "The mouth opens when blood drips on it. Any blood — including a deliberately cut finger (1 HP cost). The cultists never tried.",
+          "Beyond the mouth: warm air, a sloping tunnel of pulsating flesh, a descending passage that mirrors the maw inside the ziggurat. This cave is one of Akünh's flesh-roots reaching out of the Death Realm. [GM: use this to fast-travel willing parties to a location near the priest-camp or the ziggurat-interior depending on dramatic need.]",
+          "Among the chewed scout-bones: a partial map of the depression scratched onto a bone splinter. Marks the priest-camp and the chapel but warns 'do not approach the cloud.'"
+        ]
+      },
+      "rules": [
+        {
+          "title": "Opening the Rotting Mouth",
+          "text": "The mouth is closed. Drip blood on it (any source, any quantity — even 1 HP from a cut finger). The lips peel back wetly. The mouth stays open while the bleeder is within 10 ft; once they step away or the wound clots, it slowly seals over d6 minutes."
+        },
+        {
+          "title": "Undead in the Cave",
+          "text": "The undead are slow. The PCs can almost always outrun them, but they cannot kill them — only delay. Grappling is the real threat. A grappled PC is set upon by every undead in reach (d4 each per round). Cut them apart, burn them, bury them under rubble — anything that prevents them rising again."
+        }
+      ],
+      "gm_notes": "The mouth is a one-way wonder. Going through it should feel like crossing a threshold — the warmth on the other side is wrong. If you want the rotting mouth to function as the under-depression shortcut, place its exit at the priest-camp or even at the ziggurat-interior. The undead are an obstacle, not a fight. Don't grind the players down here — they have bigger problems waiting. The medallion on the dead scout is a deliberate gimme: if your party hasn't found another medallion yet, this is the easiest one.",
+      "exits": [
+        {
+          "id": "cave-to-camp",
+          "label": "Back out — 30 min to the cultist camp",
+          "target": "cultist-camp",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "cave-to-depression",
+          "label": "Back out and down into the depression",
+          "target": "the-depression",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "cave-through-mouth",
+          "label": "Drip blood and step through the rotting mouth",
+          "target": "priest-camp",
+          "condition": "Blood dripped on the mouth (1 HP)",
+          "locked": true
+        }
+      ],
+      "visited": false,
+      "tags": ["combat", "puzzle", "underground"]
+    },
+    {
+      "id": "priest-camp",
+      "title": "The Rot-Priest Camp",
+      "type": "location",
+      "atmosphere": "Sweet rot under thick incense. The conical tents are painted in spiral symbols that won't stay still in the corner of your eye. The fire burns low and blue.",
+      "read_aloud": "Black tents stand in a tight ring, each tall and conical, each painted with the same spiral mark over and over until your eye refuses to follow it. The incense is heavy and the rot beneath it is heavier. Around a low blue fire sit several figures in wide-brimmed cylindrical hats hung with black veils, robes loose over chests that do not look right under the cloth. They are not eating. They are talking — softly, patiently — about whether one can exist in every realm at once and so slip the end.",
+      "contents": {
+        "description": "Rot-priest encampment inside the depression. d4+2 rot-priests around a low fire, in calm philosophical discussion about simultaneity across realms — they believe escaping the Calendar of Nechrubel means existing in all worlds at once. They are not on guard but they are not stupid. Each wears a medallion (key to the Death Realm). The tents contain incense, ritual herbs, two spare medallions in a locked iron box, scrolls about the Spiral Crown's history, and one priest in meditative trance who can be killed without alerting the others if the party is careful.",
+        "items": [
+          "Rot-priest medallion (one per priest) — required to find the ziggurat in the Death Realm.",
+          "Locked iron box (Strength DR12 or Agility DR12 to pick): 2 spare medallions, 30 silver, a scroll fragment naming the Spiral Crown as 'reversal-key.'",
+          "Bundles of dousing incense — burning a bundle in an enclosed space makes Presence tests +DR2 for an hour but masks the wearer's scent from undead.",
+          "Black ritual robes — a disguise. Wearing one fools other rot-priests at distance until close inspection (Presence DR12 to maintain the bluff)."
+        ],
+        "enemies": [
+          {
+            "name": "Rot Priest",
+            "hp": 10,
+            "morale": "8",
+            "speed": "normal",
+            "attack": "Claws, d6",
+            "special": "DEVOUR — Strength DR12 or be grappled; next turn devoured for d8/round until freed. ROTTING TOUCH — anyone damaged will not heal during rest until magickally cured OR resting one night at least a day's travel from the ziggurat.",
+            "notes": "d4+2 around the fire (roll on arrival). Black robes, wide-brimmed cylindrical hats with black veils. Rotting mouth on upper body. Must eat human flesh regularly. Wear medallions allowing travel to the ziggurat in the Death Realm. Source: MBC The Death Ziggurat / wiki Rot Priest."
+          }
+        ],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "Every priest carries a medallion. Looted medallions work for the looter. The party needs at least one to reach the ziggurat in the Death Realm.",
+          "The trance-meditating priest in the back tent maintains a portion of the channeling. Killing him weakens the cloud-tornado noticeably — Akünh feels it.",
+          "The scroll fragment in the iron box explicitly names the Spiral Crown as the only thing that can REVERSE the channeling. The priests have been hunting for it. They have not found it. The Spiral Chapel is nearby."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Rotting Touch",
+          "text": "Anyone wounded by a rot-priest cannot heal during rest. Healing requires either magickal intervention OR one night spent at least a day's travel from the ziggurat. The depression itself counts as 'within range' — they cannot heal here at all."
+        },
+        {
+          "title": "Devour",
+          "text": "On a successful claws hit, the priest may instead grapple — Strength DR12 to break free. Failing to break free the following round means the chest-mouth swallows the limb whole: d8 damage per round until freed or killed. The priest cannot attack other targets while devouring."
+        },
+        {
+          "title": "Medallions",
+          "text": "Required to find the ziggurat in the Death Realm. Without one, the fog-cloud leads only to a barren waste swarming with undead. With one, the walled enclosure with ziggurat and Necropolis reveals itself. One medallion per party member is not required — being in physical contact with the bearer is enough."
+        }
+      ],
+      "gm_notes": "This is the cleanest source of medallions. Make it tempting to engage stealthily — a sniped priest yields a medallion without alerting the others. If the party blitzes the camp, d4+2 priests with rotting touch and devour can grind them down fast. Six priests is a TPK on bad rolls. Encourage flanking, distraction, fire on the tents. The philosophical discussion is canon — let the priests SPEAK in front of the players if eavesdropping is possible. Their belief that they can exist in all realms at once is the lie Akünh feeds them. They are wrong. They will die first.",
+      "exits": [
+        {
+          "id": "priest-camp-to-depression",
+          "label": "Slip back into the depression",
+          "target": "the-depression",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "priest-camp-to-frozen-lake",
+          "label": "Toward the frozen lake at the bottom",
+          "target": "frozen-lake",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "priest-camp-to-walking",
+          "label": "Strike out through the ruin field (Walking the Ruins)",
+          "target": "walking-the-ruins",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["combat", "stealth", "treasure", "surface"]
+    },
+    {
+      "id": "frozen-lake",
+      "title": "The Frozen Lake of Black Water-Lilies",
+      "type": "location",
+      "atmosphere": "Ice the color of a bruise. Black flowers caught in it like trapped insects. Beneath the ice, dark water. Along the shore, the half-frozen mud is full of dozens of mouths — moaning, slow, never quite still.",
+      "read_aloud": "The lake stretches flat and dark under a thin sheet of milky ice. Black water-lilies are caught in the freeze, petals brittle as carbonized paper, scattered across the surface like a count of small bad omens. The river enters from the southwest as a still waterfall — water locked mid-fall. At the shoreline, the mud is alive. Dozens of half-frozen undead are trapped in it — heads, arms, torsos — moaning, twisting, unable to free themselves. Their eyes track you.",
+      "contents": {
+        "description": "Bottom of the depression. A wide round lake under thin black ice, dotted with frozen black water-lilies. The river enters as a motionless waterfall from the southwest. Along the shoreline, dozens of moaning undead trapped in the half-frozen mud — they cannot rise but they can grab anyone within reach. Crushing a black water-lily releases a powdered effect (see d6 table). The ice supports careful crossing (Agility DR10) but a misstep drops the crosser into water that should be lethal-cold but isn't (Toughness DR10 or 1 HP and lose held items).",
+        "items": [
+          "Black Water-Lilies — d20+ of them caught in the ice. Picking and crushing one releases its effect (see Rules d6 table). Carrying one intact: bag carefully; they shatter if jostled.",
+          "Frozen waterfall ice can be chipped off and used as cold-storage / weapon (improvised club d2, melts in d6 hours)."
+        ],
+        "enemies": [
+          {
+            "name": "Mud-Trapped Undead",
+            "hp": 3,
+            "morale": "—",
+            "speed": "slow",
+            "attack": "Grapple — anyone within 5 ft of the shore mud: Agility DR10 to step past, else Strength DR12 or grappled. Grappled: claw/bite d4 per round from each grasping undead.",
+            "special": "WILL NOT DIE — drop to 0 HP, stay down 1 round, rise with 1 HP. Cannot pursue — locked in the mud. Decapitating prevents rising. Setting them on fire works if a fire source is available — d6 fuel-rounds to fully burn one.",
+            "notes": "Dozens of them. Treat as terrain — the threat is being yanked into the mud, not killed outright. Source: MBC The Death Ziggurat."
+          }
+        ],
+        "npcs": [],
+        "traps": [
+          {
+            "name": "Thin Ice",
+            "trigger": "Crossing the lake without care.",
+            "effect": "Plunge into black water below — Toughness DR10 or 1 HP cold damage; held items roll d6, on a 1–2 lost to the dark.",
+            "dr": "Agility DR10 to cross carefully (slow pace)."
+          }
+        ],
+        "secrets": [
+          "Anyone with effect 3 (Maximum HP and damage to undead both +d6) becomes a one-PC anti-Akünh weapon. Worth gambling on.",
+          "Sarku has been seen here at dawn, sitting at the lake's edge, watching the trapped undead. He says nothing to anyone unless approached gently.",
+          "Beneath the ice, far from shore, something larger than an undead is frozen. The PCs may guess it but the source does not name it. [GM choice — a larger horn beast, an old rot-priest who slipped, a fragment of Akünh's body she shed during her breaking-free. Whatever you pick, do not let it fight unless the players carve it out.]"
+        ]
+      },
+      "rules": [
+        {
+          "title": "Black Water-Lily Effects (d6)",
+          "text": "Roll when a lily is crushed. Durations: W = wears off, P = permanent, H = HP-affecting. 1 — (W) Visions of the Death Realm, bleak and threatening, flicker past at the worst of times. Duration 1 hour. 2 — (P) All body hair turns white; skin the color of a bog mummy. 3 — (H) Steals energy from the realm of Death — maximum HP and damage to undead both INCREASE by d6 (permanent until cured). 4 — (P) In half an hour, turns into a sickly pale, red-eyed ghoul creature. Can only taste human flesh. 5 — (P) Starts aging in reverse. 6 — (W) Wounds will not heal. Attracts larvae. Immune to the rot-priests' touch. Old people smell. Duration 1 week."
+        },
+        {
+          "title": "Crossing the Lake",
+          "text": "Agility DR10 to cross carefully (slow, hands-out). Running across: DR14. Falling through: Toughness DR10 or 1 HP cold damage; held items roll d6, on 1–2 lost to the dark."
+        }
+      ],
+      "gm_notes": "The d6 table is the star of this location. The mud-undead are atmosphere with teeth — do not turn this into a combat grind. The water lilies are an exquisite Mörk Borg trap — every roll is interesting. The result 4 (ghoul-conversion) is permanent and party-altering — only crush a lily if the player is willing. Make them say it out loud. The result 3 (max HP and undead damage +d6) is the secret reason to gamble. Let them figure that out.",
+      "exits": [
+        {
+          "id": "lake-to-depression",
+          "label": "Back up into the depression",
+          "target": "the-depression",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "lake-to-priest-camp",
+          "label": "Along the shore toward the priest-camp",
+          "target": "priest-camp",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "lake-to-walking",
+          "label": "Strike across the ruin field (Walking the Ruins)",
+          "target": "walking-the-ruins",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["puzzle", "trap", "surface"]
+    },
+    {
+      "id": "walking-the-ruins",
+      "title": "Walking the Ruins",
+      "type": "transition",
+      "atmosphere": "The depression is more ruined than wooded once you walk it. Old stone everywhere. Things half-buried. The cloud overhead keeps the sun out and the cold in.",
+      "read_aloud": "The trees thin and the ruins begin. Old broken walls, sunken stairs, columns with their tops bitten off. Ivy that should be dead grows over everything. You cross from one ruin to the next, and the cold finds new ways to get under your cloak.",
+      "contents": {
+        "description": "Procedural travel layer for crossing the ruin-strewn floor of the depression. This is not a place the PCs physically arrive at — the GM uses this node as a screen when the party traverses between known locations or searches the ruins for treasure. ONE HEX = 15 MINUTES = ONE RANDOM EVENT. The GM rolls the d10 Ruin Type when they want to describe a ruin, the d10 Searching result when the party stops to search (15 minutes per attempt), and the d12 Random Event once per hex of travel. Treasure tables (Minor 3d20 sp; Major 30+2d20 sp) below. Encounters route to the priest-camp, frozen-lake, foul-cave, Spiral Chapel, or back to the depression node as appropriate. Sarku may appear at GM's discretion (results 9–10 on Random Events).",
+        "items": [],
+        "enemies": [],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "The cloud-tornado event (result 4) is the same cosmic spiral as on the Spiral Chapel ceiling. A perceptive party may make the connection and seek out the chapel.",
+          "Akünh's two on-map appearances (events 11 and 12) are her physical body — not summoned, not illusory. She can be engaged here if the PCs are bold or stupid. She does not chase if they flee.",
+          "The 'walled enclosure' of the Death Realm is sometimes briefly visible through the fog when result 4 occurs — flag it for the players if they have a medallion in hand."
+        ]
+      },
+      "rules": [
+        {
+          "title": "D10 Ruin Types",
+          "text": "Roll to describe the ruin the party is in or approaching. 1 — Unholy chapel. 2 — Intact tower. 3 — Cracked dome. 4 — Underground shrine. 5 — Fountain plaza. 6 — Walled garden. 7 — Black monolith. 8 — Overgrown ziggurat (small, ruined — not THE Ziggurat). 9 — Demon statuary. 10 — Basalt mausoleum."
+        },
+        {
+          "title": "D10 Searching the Ruins (15 minutes)",
+          "text": "Roll when the party spends 15 min searching a ruin. 1 — Feeling of being watched (no encounter, but tension rises). 2 — d3 frozen corpses. 3 — As 2, one of them has a Minor Treasure. 4 — TRAP — test Agility DR12 or d6 damage. 5 — Floor gives way — fall into a crypt, d3 damage. 6 — Roll a Random Event (d6). 7 — Roll a Random Event (d10). 8 — Minor Treasure in the open. 9 — Minor Treasure stashed away (Presence DR10 to find quickly). 10 — MAJOR TREASURE."
+        },
+        {
+          "title": "D12 Random Events (roll once per hex)",
+          "text": "1–2 — Nothing happens. Yet. Eerily quiet. Cold. 3 — Clouds drawn into the fog cloud. Thunder roars. 4 — Clouds open up, revealing a weirdly colorful galaxy spiraling around a massive black center. Is it getting bigger? 5 — Sudden arctic cold, lasting a few moments. Everything freezes. 6 — Discovered by d6 moaning undead who attack. 7 — d4 rot-priests approach carefully. 8 — d4 confident rot-priests with 2 horn beasts. 9 — Stalked by Sarku, who accidentally makes some noise before hiding in the shadows. Easily discovered. 10 — Approached by Sarku, curious. 11 — Akünh, kneeling on the ground, resurrecting two corpses. 12 — Akünh approaches, wants to know what these strangers are doing in this place."
+        },
+        {
+          "title": "D10 Minor Treasures (worth 3d20 silver each)",
+          "text": "1 — Blasphemous idol. 2 — Charcoal black chalice. 3 — Bracelet of teeth. 4 — Curved ritual dagger (d4). 5 — Poisoned brooch (one dose, Toughness DR12 or d6 damage). 6 — Blood-stained coins. 7 — Obsidian rod. 8 — Iron devil mask. 9 — Skull-shaped reliquary lamp [CANON CHECK — source entry truncated; GM-suggested filler]. 10 — Bone-handled flensing knife [CANON CHECK — source entry truncated; GM-suggested filler]."
+        },
+        {
+          "title": "D6 Major Treasures (worth 30 + 2d20 silver each)",
+          "text": "1 — Demonic figurine with eyes that seem to follow. 2 — Void-black ring, heavier than it should be. 3 — A handful of gemstones. 4 — Mummified head of a prophet. 5 — Crystal ball. 6 — Unclean scroll (roll on your favored unclean scroll table)."
+        }
+      ],
+      "gm_notes": "Use this as a GM screen for the procedural ruin-crawl, the way Graves Left Wanting uses Walking the Trails. Roll the d12 once per hex. Stop to search? Roll the d10 Searching. Want a specific ruin texture? Roll the d10 Ruin Type. Players never arrive at this 'node' — it represents the in-between space. Two entries on the Minor Treasures table are truncated in the source layout — flagged [CANON CHECK]; replace if a future printing fills them in.",
+      "exits": [
+        {
+          "id": "ruins-to-depression",
+          "label": "Stay in the depression — return to hub",
+          "target": "the-depression",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "ruins-to-spiral-chapel",
+          "label": "Locate the painted-sky chapel",
+          "target": "spiral-chapel",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "ruins-to-priest-camp",
+          "label": "Stumble onto the rot-priest camp",
+          "target": "priest-camp",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "ruins-to-frozen-lake",
+          "label": "End up at the frozen lake",
+          "target": "frozen-lake",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "ruins-to-foul-cave",
+          "label": "Find the foul-smelling cave",
+          "target": "foul-cave",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["hub", "procedural"]
+    },
+    {
+      "id": "spiral-chapel",
+      "title": "The Spiral Chapel",
+      "type": "location",
+      "atmosphere": "Ivy-veiled stone. Inside: silence so total it pushes against the ears. The ceiling is the night sky, painted, and the night sky is moving slowly even though nothing is. The galaxy at the center stares back.",
+      "read_aloud": "The chapel is small and squat under its mantle of ivy. The door hangs open. Inside, the air does not move. The ceiling, edge to edge, is painted: a deep black sky, stars in slow spiraling arms, and at the very center a great galaxy with a darker-than-dark hole at its heart. The galaxy seems to turn while you stare. Directly below it, in the stone floor, is a circular depression no wider than your palm. On the side wall, a mural — a robed priest at the door of a temple, gazing out at the same cosmos overhead.",
+      "contents": {
+        "description": "Old chapel dedicated to Heedless Creation, the spiraling cosmic force. Ceiling painted with a spiral galaxy that is the same image as the fog-tornado outside. Floor below the painted galaxy holds a circular depression — beneath it, a hidden compartment containing the Spiral Crown (golden, ruby-adorned). A wall mural depicts a priest gazing at the cosmos. Pressing the painted priest's head opens a small compartment behind the mural containing the SPIRAL-PATTERNED METAL DISC. The disc fits the floor depression. Pressing the disc into the depression opens the hidden compartment with the crown. Pressing the depression WITHOUT the disc triggers a lightning bolt from the painted galaxy: 2d4 damage to whoever pressed it.",
+        "items": [
+          "Spiral-patterned metal disc (in compartment behind mural — press the painted priest's head). Fits the floor depression exactly. The puzzle key.",
+          "The Spiral Crown (golden, ruby-adorned). In the hidden floor compartment, accessible only by pressing the disc into the depression. See Rules for wearing it. This is the ONLY thing that can reverse Akünh's channeling.",
+          "Mural and ceiling — together they constitute a teaching: the cosmos and the channeling are the same shape. A perceptive PC may realize the Spiral Crown is the answer before they wear it."
+        ],
+        "enemies": [],
+        "npcs": [],
+        "traps": [
+          {
+            "name": "Galaxy-Lightning",
+            "trigger": "Pressing the floor depression without the disc in place.",
+            "effect": "Lightning bolt from the painted ceiling-galaxy strikes the presser: 2d4 damage. The bolt is not directional — only the presser is hit.",
+            "dr": "No save. Direct damage."
+          }
+        ],
+        "secrets": [
+          "The painted galaxy moves when not directly observed. A PC who watches the ceiling from the corner of their eye sees the spiral arms turn. Stare directly and it freezes. Wisdom of Heedless Creation: do not look directly.",
+          "Pressing the painted priest's head opens the mural compartment — the disc waits inside. The compartment is small and obvious once you think to push the head.",
+          "The Spiral Crown reverses Akünh's channeling. The moment it is worn, the fog-tornado outside stutters and begins drawing the wrong way. Akünh feels it instantly and teleports to stop the wearer."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Solving the Chapel",
+          "text": "1. Find the mural — wall, opposite the door. 2. Press the painted priest's head (Presence DR10 to spot the bevel; once spotted, anyone can press it). 3. Take the spiral-patterned metal disc from the compartment. 4. Place the disc in the floor depression below the painted galaxy. 5. Press. The compartment opens. The Spiral Crown lies within."
+        },
+        {
+          "title": "Pressing the Depression Without the Disc",
+          "text": "Lightning bolt from the ceiling-galaxy strikes the presser for 2d4 damage. No save. Each subsequent press by anyone: another 2d4. The trap does not deplete."
+        },
+        {
+          "title": "Wearing the Spiral Crown",
+          "text": "Lightning shoots into it from the cosmos. The wearer becomes a cosmic vessel — strange and nightmarish visions of the infinite collapsing Cosmos. The wearer is allowed AT MOST THREE DR12 PRESENCE TESTS (one per round) to remove the crown. Should all three fail, the wearer is IRREVOCABLY LOST TO THE COSMOS — gone, no body, no death save. Wearing the crown also REVERSES AKÜNH'S CHANNELING and drains her HP by d4 per round. Akünh will instantly teleport to the wearer and try to stop them (claws and devouring, dark rays, the works)."
+        }
+      ],
+      "gm_notes": "This is the win-condition tool. The Spiral Crown reverses the channeling AND drains Akünh AND attracts Akünh — a three-edged sword. Make the three Presence tests dramatic. Roll them at the table, in order, no take-backs. A PC who fails all three has not died — they have been UNMADE. Other PCs cannot retrieve them. The crown falls to the floor when the wearer is taken. Pick it up. Try again. The damage trap (2d4 without disc) is there to teach: do not improvise on cosmic furniture. Let a curious player eat the lightning once. Then let them figure out the disc.",
+      "exits": [
+        {
+          "id": "chapel-to-walking",
+          "label": "Back out into the ruin field (Walking the Ruins)",
+          "target": "walking-the-ruins",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "chapel-to-depression",
+          "label": "Back into the depression",
+          "target": "the-depression",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["puzzle", "treasure", "win-condition"]
+    },
+    {
+      "id": "death-realm-approach",
+      "title": "Into the Death Realm",
+      "type": "location",
+      "atmosphere": "The fog parts in a circle around the bearer of the medallion. The air goes flat — no smell, no sound, no warmth, no cold. Beyond the parted fog, a high stone wall stretches off in both directions, blacker than the rock around it.",
+      "read_aloud": "You step into the fog-cloud and the world stops happening. There is no temperature. No wind. The medallion on your chest grows heavy as iron and warm as a held breath. Around you, the fog peels back in a slow circle. Outside the circle: a wall of black stone too tall to see the top of. An entrance gapes opposite where you stand — a tall arch with no door. Beyond it, you can see the upper tiers of an ice-covered ziggurat clawing at a sky that is not your sky.",
+      "contents": {
+        "description": "The threshold to the Death Realm, accessible only via a rot-priest medallion. Without a medallion, the fog leads only to a barren waste swarming with d10 undead. With one, the walled enclosure resolves out of the fog. Inside the walls: the Necropolis (island in a square pond) and the Ziggurat itself, the two arranged so the entrance gate faces the ziggurat with the necropolis to one side. The threshold is silent and tasteless — the senses do not quite work here. Sarku cannot follow into this realm.",
+        "items": [
+          "Anyone in physical contact with the medallion-bearer crosses with them. Drop contact mid-step and you are left in the original realm — disorienting and probably dangerous.",
+          "The medallion's heat fades after a minute or so on this side. Do not lose it — the way back requires it too."
+        ],
+        "enemies": [
+          {
+            "name": "Undead (barren-waste swarm)",
+            "hp": 3,
+            "morale": "—",
+            "speed": "slow",
+            "attack": "Grapple — Strength DR12 or be grappled; while grappled, all present undead claw/bite for d4 each",
+            "special": "WILL NOT DIE. SLOW — can be outrun. Only encountered if the party tries to enter the fog-cloud WITHOUT a medallion: d10 of them lurch out of the mist in waves.",
+            "notes": "Punishment for trying to cheat the medallion mechanic. Source: MBC The Death Ziggurat."
+          }
+        ],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "Sarku cannot enter the Death Realm. He is ethereal but earthbound. He will wait at the threshold.",
+          "Time runs differently here — slower for the inside, faster outside, or maybe the reverse. The source does not specify. [CANON CHECK — treat as flavor, do not mechanize.]",
+          "Looking back through the arch, the depression is visible from the inside. Looking from the depression, the arch is invisible. A one-way mirror of fog and stone."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Entry Requires a Medallion",
+          "text": "No medallion: the fog leads to a barren undead-swarm waste. With a medallion: the walled enclosure with ziggurat and necropolis resolves. One medallion suffices for the bearer plus anyone in physical contact. Lost medallion en route — bearer crosses alone."
+        },
+        {
+          "title": "The Sensory Flatness",
+          "text": "Inside the Death Realm: no scent, no taste, no temperature, sounds muffled. Tracking, smelling rot, hearing distant voices — all at +DR2 here. Conversely, undead and rot-priests function normally; they are at home."
+        }
+      ],
+      "gm_notes": "This is the gate. Hold it locked behind the medallion requirement — it is the central puzzle of the first half. Players who try to brute-force the fog without a medallion get the d10 undead waste as a teaching moment, not a TPK. The first wave should hint: you are missing something. Sarku at the threshold can mutter the answer if the players are stuck (he knows the medallions are the keys). Inside, the ziggurat and necropolis are visible from the entrance — point both out so the players can choose where to go first.",
+      "exits": [
+        {
+          "id": "approach-to-necropolis",
+          "label": "Through the gate, then aside to the Necropolis pond",
+          "target": "necropolis",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "approach-to-ziggurat",
+          "label": "Straight ahead — climb the ice-stairs of the Ziggurat",
+          "target": "ziggurat-interior",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "approach-to-depression",
+          "label": "Step back through the arch into the depression",
+          "target": "the-depression",
+          "condition": "Medallion still in possession",
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["transition", "underground", "death-realm"]
+    },
+    {
+      "id": "necropolis",
+      "title": "The Necropolis",
+      "type": "location",
+      "atmosphere": "Square pond, black water, no ripple. Square island. Hundreds of mausolea standing close as teeth. Among them, a pit you cannot see the bottom of. From the pit: scratching that does not stop.",
+      "read_aloud": "A square pond, perfectly square, perfectly still, the water blacker than the stone around it. In the center, a square island, and on it, a city of the dead — mausolea, tombstones, graves, packed close. A narrow stone causeway crosses to the island. Among the mausolea, a pit. You cannot see the bottom. From within it: scratching, slow and steady. Next to the pit, a black tent. Two figures sit inside, cross-legged, eyes closed, hands on knees. They breathe slow and they do not look up. Two great twisted shapes pace the island — chaotic masses of horn and bone with circular toothed mouths where faces should be.",
+      "contents": {
+        "description": "Island-in-square-pond necropolis. Hundreds of old mausolea. Among them: a BOTTOMLESS PIT from which the horn beasts crawl when summoned by the meditating rot-priests in the tent. TWO rot-priests in the tent, deep in trance, sustain the summoning. STOPPING THEIR MEDITATION (kill them, dispel them, dump them in the pond — any disruption) HALTS FURTHER HORN BEASTS FROM EMERGING. The pit currently has TWO horn beasts loose, patrolling the island. Hundreds of mausolea can be looted (treat as a Major Treasure source — roll on the d6 Major Treasure table once per hour of careful work; risk attracting a wandering rot-priest patrol).",
+        "items": [
+          "Mausolea loot — see the d6 Major Treasures table on Walking the Ruins. One roll per hour of careful work. Sloppy looting (smashing locks, breaking sarcophagi) attracts attention — roll d6, on a 5–6 a rot-priest patrol arrives from the ziggurat.",
+          "The two meditating priests carry medallions, an ornate bone chime, and a folded map of the necropolis with the pit circled in red.",
+          "The pit itself — bottomless as far as anyone can tell. Dropping a torch shows nothing. The scratching does not get louder or quieter as torches fall."
+        ],
+        "enemies": [
+          {
+            "name": "Horn Beast",
+            "hp": 8,
+            "morale": "—",
+            "speed": "normal",
+            "attack": "Claws, d6 — ATTACKS TWICE PER ROUND",
+            "special": "Shifting bones −d4 (armor). No face — circular mouth full of teeth instead. Cannot be intimidated, charmed, or reasoned with. Crawls out of the bottomless pit when summoned.",
+            "notes": "Two of them patrolling the necropolis island. More will crawl out of the pit each round of combat unless the meditating priests in the tent are stopped. Source: MBC The Death Ziggurat / wiki Horn Beast."
+          },
+          {
+            "name": "Rot Priest (meditating)",
+            "hp": 10,
+            "morale": "8",
+            "speed": "normal",
+            "attack": "Claws, d6 (if interrupted)",
+            "special": "DEVOUR — Strength DR12 or grappled; next turn devoured d8/round. ROTTING TOUCH — wounds do not heal during rest until magickally cured or one night a day's travel from the ziggurat. Currently in trance — first attack against a meditating priest is automatic hit. After that they fight normally.",
+            "notes": "Two of them in the tent next to the pit. While they meditate, horn beasts crawl from the pit. Stop the meditation (kill, disrupt, drag away) — no more horn beasts. Source: MBC The Death Ziggurat."
+          }
+        ],
+        "npcs": [],
+        "traps": [
+          {
+            "name": "The Bottomless Pit",
+            "trigger": "Standing within 5 ft of the pit edge while fighting.",
+            "effect": "Bumped or knocked: Agility DR12 or fall. Fall is bottomless — no save, gone. A roped PC can be retrieved if rope was tied beforehand.",
+            "dr": "Agility DR12 to avoid edge in melee."
+          }
+        ],
+        "secrets": [
+          "STOPPING THE MEDITATING PRIESTS HALTS THE HORN-BEAST SUMMONING. Kill them, knock them out, drag them away from the pit. The two horn beasts already loose remain — but no more will crawl up.",
+          "The pond is exactly square. The island is exactly square. The pit appears to be exactly round. Geometry is deliberate here. [GM: feel free to read a Heedless Creation portent into it — circles and squares, channeled cosmos.]",
+          "One of the mausolea — the largest, central — contains an old Cretun knight's tomb. His armor is intact and his sword (d8, blessed against undead — undead take +1 damage from it) is still in his crossed hands. Bringing it out of the mausoleum: the carved doors slam shut. Strength DR14 or be locked in. Inside, the air is breathable for d6 hours."
+        ]
+      },
+      "rules": [
+        {
+          "title": "The Summoning Loop",
+          "text": "While both meditating rot-priests breathe in the tent, a NEW horn beast crawls out of the pit every 3 rounds of combat. Kill one priest: rate slows (one horn beast every 6 rounds). Kill both: no more horn beasts emerge. The currently-loose beasts (the two on patrol) are not affected."
+        },
+        {
+          "title": "Looting the Mausolea",
+          "text": "Careful work: 1 hour per Major Treasure roll. Sloppy work: 15 min per roll, but d6 each time — on 5–6, a rot-priest patrol of d4 arrives from the ziggurat to investigate. Sound carries strangely in this realm."
+        }
+      ],
+      "gm_notes": "The necropolis is the OPTIONAL side-objective of the Death Realm. The win condition is in the ziggurat. But the necropolis offers: medallions, major treasure, the Cretun knight's sword (anti-undead bonus), and the chance to shut off the horn-beast supply BEFORE engaging Akünh. Smart parties hit the necropolis first. Reckless parties charge the ziggurat and find themselves swamped by horn beasts they could have prevented. The bottomless pit is a real fall — no save, gone, character lost. Use it for dramatic moments. The Cretun sword is canon-flavored (the Cretun order bound Akünh originally) and a fitting reward for a careful party.",
+      "exits": [
+        {
+          "id": "necropolis-to-approach",
+          "label": "Back to the gate threshold",
+          "target": "death-realm-approach",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "necropolis-to-ziggurat",
+          "label": "Across the enclosure to the Ziggurat",
+          "target": "ziggurat-interior",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["combat", "treasure", "death-realm"]
+    },
+    {
+      "id": "ziggurat-interior",
+      "title": "Inside the Ziggurat",
+      "type": "location",
+      "atmosphere": "Cold so deep your breath does not show. Walls of ice over stone, scaled with frost-feathers. The broken top yawns above. Spiraling clouds funnel down, down, down into a mouth in the floor that should not be there.",
+      "read_aloud": "You climb the icy steps and pass through the ziggurat's arch. The interior is a single colossal chamber. The walls are stone clad in ice; the ice climbs the inside as it does the outside. The top of the ziggurat is broken — shattered outward, as though something inside it exploded — and through the jagged opening you see the cloud-tornado above, draining endlessly down. The clouds spiral inside, down, down, and pour into a rotting MOUTH in the floor at the chamber's center, sucking the storm in. Warm air rises from the maw — wrong, wet, stinking of decay. Around the mouth, figures: more black-veiled rot-priests in hats, and two of the horn-beast horrors, pacing.",
+      "contents": {
+        "description": "The colossal interior of the Ziggurat. Single great chamber under the broken top. Walls ice over stone. At the center: a ROTTING MOUTH in the floor, sucking down the spiraling cloud-tornado from above. Warm rot-stinking air rises from the maw, thawing the ground in a circle around it. GUARDING the mouth: d4+1 ROT PRIESTS and 2 HORN BEASTS. The priests will defend the mouth to the death — they know what lies below. The horn beasts attack on sight. This is the gauntlet before Akünh's heart. Beyond the mouth (descending into it): the warm flesh-walled tunnel, the rhythmic beat.",
+        "items": [
+          "Each of the d4+1 rot-priests carries a medallion. The party can stock up if they didn't already.",
+          "On the icy wall, half-frozen into the rime: an old Cretun banner, torn. Cultural item — Cretun Order would pay for its return. [GM-pricing: 200 sp.]",
+          "Scattered on the chamber floor in the warm ring around the mouth: melt-water puddles holding the bones of priests who got too close to the maw and were sucked in. Among the bones, one whole medallion."
+        ],
+        "enemies": [
+          {
+            "name": "Rot Priest (mouth-guard)",
+            "hp": 10,
+            "morale": "8",
+            "speed": "normal",
+            "attack": "Claws, d6",
+            "special": "DEVOUR — Strength DR12 or grappled; next turn devoured d8/round. ROTTING TOUCH — wounds do not heal during rest until magickally cured or one night a day's travel from the ziggurat.",
+            "notes": "d4+1 of them, defending the rotting mouth in the floor. They fight to the last — failing Morale means they hurl themselves into the maw rather than retreat. Source: MBC The Death Ziggurat."
+          },
+          {
+            "name": "Horn Beast (mouth-guard)",
+            "hp": 8,
+            "morale": "—",
+            "speed": "normal",
+            "attack": "Claws, d6 — ATTACKS TWICE PER ROUND",
+            "special": "Shifting bones −d4. No face — circular mouth full of teeth. Cannot be intimidated.",
+            "notes": "Two of them. Patrol the warm ring around the mouth. If the necropolis-pit summoning has been stopped, no more arrive. Otherwise: every 3 rounds another crawls out of the mouth itself (instead of the pit), dragged up by the channeling. Source: MBC The Death Ziggurat."
+          }
+        ],
+        "npcs": [],
+        "traps": [
+          {
+            "name": "The Maw's Pull",
+            "trigger": "Standing within 5 ft of the rotting mouth in the floor.",
+            "effect": "The channeling draws everything down. Strength DR12 to hold position each round, or be dragged 5 ft closer. Reach the lip: dropped into the maw (continue to akunhs-heart node — voluntary descent or not).",
+            "dr": "Strength DR12 per round near the lip."
+          }
+        ],
+        "secrets": [
+          "The broken top of the ziggurat — exploded outward — was caused by Akünh breaking free. The Cretun order bound her INSIDE the ziggurat, and when she broke free she punched UP through the top. The mouth in the floor is fresh — it was not here when she was bound.",
+          "If the Spiral Crown is being worn anywhere when the party arrives, Akünh is NOT in the chamber — she has teleported to the wearer. The priests are confused and disorganized. They fight badly (Morale 5 instead of 8).",
+          "Inside the mouth in the floor: a tunnel of pulsating flesh, warm, descending 10 m. At the bottom: Akünh's heart, black and pulsating, growing from the wall. Destroying it banishes Akünh AND triggers one Misery instantly."
+        ]
+      },
+      "rules": [
+        {
+          "title": "The Maw's Pull",
+          "text": "Within 5 ft of the mouth: Strength DR12 per round or dragged 5 ft toward the lip. At the lip: dropped into the maw next round. Voluntary descent is also possible — climb in, slide down. The descent is 10 m, walls of flesh, no fall damage."
+        },
+        {
+          "title": "Cloud-Tornado Sounds",
+          "text": "The constant whirl down through the broken top into the maw is LOUD. All Presence tests for hearing in this chamber are at +DR2. Sneaking up on the priests is correspondingly easier."
+        }
+      ],
+      "gm_notes": "This is the gauntlet, not the climax. The climax is below. The mouth-guards are meant to be a hard but winnable fight — d4+1 priests + 2 horn beasts is brutal. If the party has the Cretun sword from the necropolis, they have an answer. If they shut off the horn-beast summoning at the necropolis pit, the two here are it — no reinforcements. If they didn't, every 3 rounds a new horn beast claws up out of the mouth. Make that visible. The maw's pull means melee at the mouth's edge is dangerous for both sides — priests are not immune. The hidden answer for a clever party: knock the priests INTO the maw using the pull.",
+      "exits": [
+        {
+          "id": "ziggurat-to-necropolis",
+          "label": "Back across to the Necropolis",
+          "target": "necropolis",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "ziggurat-to-approach",
+          "label": "Out and back to the gate threshold",
+          "target": "death-realm-approach",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "ziggurat-to-maw",
+          "label": "Into the rotting mouth — descend",
+          "target": "the-maw",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["combat", "death-realm"]
+    },
+    {
+      "id": "the-maw",
+      "title": "The Maw",
+      "type": "location",
+      "atmosphere": "Warm. Wet. The walls are flesh. They pulse against your shoulders as you descend. The cold of the realm above is gone, replaced by something more intimate. Below, a heartbeat — slow, deep, BIG.",
+      "read_aloud": "The descent is warm and wet. The walls of the tunnel are flesh — pink, pulsing, slick, throbbing with a slow heartbeat that you can feel in your own chest before you can hear it. Your boots squelch in the slime. The air is thick with rot and something else, something more living, something that should not be down here at all. Ten meters down, the tunnel opens out. Below — close — the heartbeat is no longer a guess.",
+      "contents": {
+        "description": "The descending flesh-walled tunnel from the rotting mouth in the ziggurat floor to Akünh's heart 10 m below. The descent itself is uncontested — no traps, no enemies, no opposition. The tunnel pulses. The walls breathe. The heartbeat grows louder as the party descends. This is a transition space designed to ratchet tension. At the bottom, the tunnel opens into the heart-chamber.",
+        "items": [
+          "The flesh-walls can be cut. They bleed. The cuts heal in d6 minutes. A PC who cuts a chunk loose has a 'sample' — useless, mostly, but a souvenir, and the rot-priests in the camp above would pay for it if they survive (they will not).",
+          "Anything dropped down the tunnel reaches the heart-chamber intact. Useful if the party throws fire down ahead of themselves."
+        ],
+        "enemies": [],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "The heartbeat is Akünh's separated heart, beating in time with her body wherever it is. If she is engaged elsewhere (e.g., attracted by the Spiral Crown), the heart's beat will quicken when she takes damage and slow when she rests.",
+          "The walls are warm because the heart pumps real blood — Akünh's. Tracing the blood-flow points toward the heart even without sight.",
+          "A PC who listens carefully (Presence DR10) can tell whether Akünh's body is engaged in combat above or moving freely — useful intel before stepping into the heart-chamber."
+        ]
+      },
+      "rules": [
+        {
+          "title": "The Descent",
+          "text": "10 m of warm flesh tunnel. No checks required to descend — the slime is slick but the walls are gentle. Climbing back up: Strength DR10 (slick) or rope. The tunnel does NOT close behind the party. Akünh would not bother sealing them in; they are exactly where she wants them now."
+        }
+      ],
+      "gm_notes": "Use this node as the tension-builder before the climax. Read the read-aloud slow. The heartbeat is the soundtrack. Players should feel the weight of where they are. The descent is intentionally easy — the GM should not invent obstacles here. The chamber below is the climax; do not waste reader-energy on the tunnel. If a player wants to listen carefully, give them the secret about Akünh's body-state. That intel matters.",
+      "exits": [
+        {
+          "id": "maw-to-heart",
+          "label": "Step out into the heart-chamber",
+          "target": "akunhs-heart",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "maw-to-ziggurat",
+          "label": "Climb back up out of the maw (Strength DR10)",
+          "target": "ziggurat-interior",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["transition", "death-realm"]
+    },
+    {
+      "id": "akunhs-heart",
+      "title": "Akünh's Heart",
+      "type": "location",
+      "atmosphere": "Warm cave of flesh. The walls breathe in time with the thing growing out of them. At the chamber's center, set into the wall like a fruit on a vine, hangs a HEART — black, slick, the size of a small barrel, pulsing slow and deep. Each beat is the room.",
+      "read_aloud": "The tunnel opens. You stand in a chamber of living flesh, warm and wet and breathing all around you. At the wall — set INTO the wall, growing out of it — is a heart. Black as oil, slick, the size of a small barrel. It beats. Slow. Deep. Each beat, the chamber walls flex and the air shudders. The blood vessels feeding it are thick as your arm and run down into the floor and up into the walls. This is what you came for. This is what kills her.",
+      "contents": {
+        "description": "THE CLIMAX. A chamber of living flesh 10 m below the ziggurat floor. AKÜNH'S HEART grows from the wall — black, pulsating, barrel-sized. DESTROYING IT BANISHES AKÜNH INTO THE VOID UNTIL THE END OF DAYS but ALSO INSTANTLY CAUSES ONE MISERY TO TAKE PLACE. The heart has approximately 30 HP and is unarmored (ICY GROUND −d2 only — not really armor, just slick footing). It cannot defend itself. It can absorb tremendous punishment because it is one of two organs and Akünh's body fights for it: AS SOON AS THE HEART TAKES DAMAGE, AKÜNH TELEPORTS TO THE CHAMBER. From this round forward, the players fight Akünh while attempting to finish the heart. Akünh's d-action loop is brutal. If Akünh is reduced to 0 HP and the heart still beats, she RESURRECTS AT THE HEART next round. Only destroying the heart ends her.",
+        "items": [
+          "The heart itself. Cannot be removed intact — the blood vessels are too thick and Akünh appears the moment it is struck. Pieces of it, if any survive its destruction, are useless to the living and dangerous to the dead.",
+          "After destruction: the chamber begins to die. Walls cool. Slime dries. The way out (back up the maw) collapses gradually — d6 minutes to climb out before the tunnel constricts shut."
+        ],
+        "enemies": [
+          {
+            "name": "Dread Akünh, Demon Spawn",
+            "hp": 20,
+            "morale": "11",
+            "speed": "fast",
+            "attack": "Claws and Devouring d6 — ATTACKS TWICE PER ROUND; if both hit, you are DEVOURED (Strength DR14 to escape or die)",
+            "special": "Roll d-action each of Akünh's turns: 1 DEATH SCREAM (all in chamber: Presence DR12 or drawn to arm's length of Akünh). 2 CLAWS AND DEVOURING (d6 × 2; both hit = devoured, Strength DR14 or die). 3 DARK RAYS d4 (eyes; up to d6 enemies in range). 4 TELEPORT (anywhere within the depression — or here). SEPARATED HEART: at 0 HP, Akünh RESURRECTS at her heart NEXT ROUND with full 20 HP. Only destroying the heart ends her.",
+            "notes": "Clad in dazzling black robe embroidered with gold and crimson. Five eyes symmetrically placed around the head. Cylindrical antlers crown her. A huge rotting vertical mouth covers her chest and abdomen. Source: MBC The Death Ziggurat."
+          }
+        ],
+        "npcs": [],
+        "traps": [
+          {
+            "name": "Heart's Pulse",
+            "trigger": "Each round the heart still beats while the party is in the chamber.",
+            "effect": "On odd rounds, the chamber walls flex hard — Agility DR10 or knocked prone. On even rounds, the floor's heat spikes — Toughness DR10 or 1 HP.",
+            "dr": "Agility DR10 / Toughness DR10."
+          }
+        ],
+        "secrets": [
+          "Destroying the heart triggers ONE MISERY instantly. Roll on the Calendar of Nechrubel. Tell the players AFTER the strike lands. There is no way to know which Misery — it is random and final.",
+          "The heart can take massive damage. Treat as HP 30 with no armor. The party should be able to finish it in a few rounds of focused attacks IF they aren't all dead from Akünh.",
+          "The SPIRAL CROWN, if worn down here, drains Akünh d4 HP per round AND reverses the channeling. Combined with attacking the heart, this is the cleanest win — but the wearer is making the three DR12 Presence tests in the heart-chamber, with Akünh teleporting in to stop them.",
+          "Sarku KNEW this was the answer. If the players spoke to him kindly at any point in the depression, he may appear at the threshold of the maw above and shout the truth down: STAB THE HEART. (He cannot enter the Death Realm but his voice carries through the open tunnel.)"
+        ]
+      },
+      "rules": [
+        {
+          "title": "Destroying the Heart",
+          "text": "HP 30. No armor (slick footing −d2 to attackers' Agility-based attacks). Cannot dodge. Cannot defend. Once the heart takes ANY damage, Akünh teleports to the chamber and engages on her next turn. When the heart reaches 0 HP, it bursts in a spray of black blood. AKÜNH IS BANISHED INTO THE VOID UNTIL THE END OF DAYS. ALSO: ONE MISERY TAKES PLACE INSTANTLY. Roll on the Calendar of Nechrubel."
+        },
+        {
+          "title": "Akünh's Action Loop (roll d4 on her turn)",
+          "text": "1 — DEATH SCREAM. All in chamber: Presence DR12 or drawn to arm's-length distance of Akünh (next attack roll automatic for her claws). 2 — CLAWS AND DEVOURING. Two d6 claw attacks; if BOTH hit one target, that target is devoured into the chest-mouth (Strength DR14 or DIE; on success, escape with d8 acid damage). 3 — DARK RAYS d4. Beams from the five eyes; affects up to d6 enemies in range. 4 — TELEPORT. Disappears, reappears anywhere in the chamber, or briefly leaves to the depression and returns next round (GM choice — use to break a kill-zone)."
+        },
+        {
+          "title": "Separated Heart",
+          "text": "At 0 HP, Akünh's body collapses into black smoke and reforms NEXT ROUND at the heart, fully healed (HP 20). She is hostile and aware of which PC put her down. The only way to permanently end her is to destroy the heart. While the heart still beats, she returns as many times as it takes."
+        },
+        {
+          "title": "The Spiral Crown in the Heart-Chamber",
+          "text": "If the crown is worn here, it drains Akünh d4 HP per round AND keeps reversing the channeling. The wearer is still subject to the three DR12 Presence tests to remove it — failing all three means the wearer is lost to the Cosmos and the crown falls free. Akünh prioritizes the wearer with every action. If she is somehow killed by the crown alone (drained to 0) before the heart is destroyed, she resurrects at the heart next round."
+        },
+        {
+          "title": "Aftermath",
+          "text": "Heart destroyed: Akünh banished, one Misery rolled. The chamber begins collapsing — d6 minutes to climb back up the maw before it constricts shut. The fog-tornado above the depression dissipates over the next hour. The medallions stop working. The Death Realm seals. The Cretun Order pays the surviving PCs as promised — generously. The world is still ending. It is ending less quickly. For now."
+        }
+      ],
+      "gm_notes": "This is the climax. Be honest with the players: tell them up front that the heart can take massive damage but Akünh teleports in the moment it bleeds. Make them choose — kill her first then finish the heart (she resurrects), or rush the heart and survive her assault. The right answer is BOTH: a couple of PCs hold her, the rest beat the heart. The Spiral Crown is the cheat code. Bringing it here flips the fight — but the three Presence tests are still real, and a failed wearer is GONE. The Misery on heart-destruction is canon and instant. Roll on whatever Calendar of Nechrubel result you use at your table. Read it out loud. Let it land. The PCs saved the world from Akünh and helped end it one Misery closer. That's the trade. That's Mörk Borg.",
+      "exits": [
+        {
+          "id": "heart-to-maw",
+          "label": "Climb back up the maw (d6 minutes before it closes after the heart breaks)",
+          "target": "the-maw",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["combat", "climax", "end", "death-realm"]
+    }
+  ],
+  "bestiary": [
+    {
+      "name": "Dread Akünh, Demon Spawn",
+      "hp": 20,
+      "morale": "11",
+      "speed": "fast",
+      "attack": "Claws and Devouring d6 — attacks twice per round; if both hit, devoured (Strength DR14 or die)",
+      "special": "Roll d-action: 1 DEATH SCREAM (Presence DR12 or drawn to arm's length). 2 CLAWS AND DEVOURING (d6 × 2; both hit = devoured). 3 DARK RAYS d4 (up to d6 enemies). 4 TELEPORT (freely within the depression — a rotting mouth eats its way out of the ground and she climbs out). SEPARATED HEART — at 0 HP, resurrects at her heart beneath the ziggurat with full HP.",
+      "notes": "Clad in dazzling black robe embroidered with gold and crimson. Five eyes symmetrically placed around the head, crowned with cylindrical antlers. Huge rotting vertical mouth covering chest and abdomen. Mostly found in the ziggurat. Spawn of SHE. Source: MBC The Death Ziggurat / wiki Akünh."
+    },
+    {
+      "name": "Rot Priest",
+      "hp": 10,
+      "morale": "8",
+      "speed": "normal",
+      "attack": "Claws, d6",
+      "special": "DEVOUR — Strength DR12 or grappled; next turn devoured d8/round until freed or priest killed. ROTTING TOUCH — wounds do not heal during rest until magickally cured OR one night spent a day's travel from the ziggurat.",
+      "notes": "Black robes, wide-brimmed cylindrical hats with black veils. Rotting mouth on upper body. Must eat human flesh regularly. Each wears a medallion granting passage to the ziggurat in the Death Realm. Source: MBC The Death Ziggurat / wiki Rot Priest."
+    },
+    {
+      "name": "Horn Beast",
+      "hp": 8,
+      "morale": "—",
+      "speed": "normal",
+      "attack": "Claws, d6 — attacks twice per round",
+      "special": "Shifting bones −d4 (armor). No face — circular mouth full of teeth instead. Cannot be intimidated, charmed, or reasoned with. Crawls from the bottomless pit in the necropolis (or from the maw inside the ziggurat) when summoned by meditating rot-priests.",
+      "notes": "Chaotic mass of horns and bones with a circular toothed mouth for a face. Source: MBC The Death Ziggurat / wiki Horn Beast."
+    },
+    {
+      "name": "Undead",
+      "hp": 3,
+      "morale": "—",
+      "speed": "slow",
+      "attack": "Grapple — Strength DR12 or grappled; while grappled, all present undead claw/bite d4 each",
+      "special": "WILL NOT DIE — drop to 0 HP, stay down 1 round, then rise with 1 HP. Decapitation or burning prevents rising. SLOW — can always be outrun unless grappled.",
+      "notes": "Rotting dead awakened to serve Akünh. Drooling tongues, red eyes. Encountered in clumps in the foul cave, frozen in the lake-mud, swarming the barren waste, scattered through the ruin field. Source: MBC The Death Ziggurat."
+    },
+    {
+      "name": "Sarku",
+      "hp": 15,
+      "morale": "8",
+      "speed": "normal",
+      "attack": "Blood-sucking tongue, d4",
+      "special": "TONGUE GRAPPLE — a hit grapples; automatic damage in future rounds until DR14 Strength breaks free. ETHEREAL — immune to physical harm. Hangs his dried-up victims upside-down from the trees.",
+      "notes": "Akünh's former closest advisor. Left her when he realized her demonic origin. Gaunt, ghostly. Wants to be set free from his earthly prison and move on to the afterlife. Knows where Akünh's heart is and that stabbing it kills her. Will not enter the Death Realm. Potential ally if treated gently. Source: MBC The Death Ziggurat / wiki Sarku."
+    },
+    {
+      "name": "Death-Obsessed Cultist",
+      "hp": 16,
+      "morale": "6",
+      "speed": "normal",
+      "attack": "Axe / Spear / Scythe, d6",
+      "special": "Fur armor −d2. Highest-rank cultists can use DEATHLIKE SILENCE (Power): all within range test Presence DR14 or are deafened d10 minutes; while deaf, hearing/balance tests are at +4 DR.",
+      "notes": "25 of them camped at the rim of the depression. From a plague-wracked Tveland hovel. Speak slowly with an inhuman dialect. Hope to use the necromantic energies as a ticket to the Shimmering Fields. Unaware of Akünh. Source: MBC The Death Ziggurat."
+    }
+  ]
+}

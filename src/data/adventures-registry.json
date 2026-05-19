@@ -1,0 +1,85 @@
+{
+  "bundled": [
+    {
+      "id": "graves-left-wanting",
+      "title": "Graves Left Wanting",
+      "system": "morkborg",
+      "author": "Karl Druid (art Johan Nohr)",
+      "description": "The party awakens in coffins in the cursed cemetery of Graven-Tosk. There is no defined ending and no clear escape path.",
+      "file": "graves-left-wanting.json"
+    },
+    {
+      "id": "rotblack-sludge",
+      "title": "Rotblack Sludge",
+      "system": "morkborg",
+      "author": "Pelle Nilsson & Johan Nohr (Mörk Borg core book)",
+      "description": "The Shadow King's heir is missing. Retrieve him discreetly from the Accursed Den. The iconic intro module.",
+      "file": "rotblack-sludge.json"
+    },
+    {
+      "id": "sepulchre-of-the-swamp-witch",
+      "title": "Sepulchre of the Swamp Witch",
+      "system": "morkborg",
+      "author": "MBC: Sepulchre of the Swamp Witch",
+      "description": "A murdered messenger carried forbidden words to the Dead Root Altar — words that fulfill any wish. Get past Ueth's drug cult. Pay the price.",
+      "file": "sepulchre-of-the-swamp-witch.json"
+    },
+    {
+      "id": "death-ziggurat",
+      "title": "The Death Ziggurat",
+      "system": "morkborg",
+      "author": "MBC: The Death Ziggurat",
+      "description": "Find the ziggurat and stop the demon spawn Akünh from breaking free of her Death Realm prison. A cosmic necrocrawl.",
+      "file": "death-ziggurat.json"
+    },
+    {
+      "id": "goblin-grinder",
+      "title": "The Goblin Grinder",
+      "system": "morkborg",
+      "author": "MBC: The Goblin Grinder",
+      "description": "Galgenbeck is overrun. The cure is fake. The alchemist is making the goblins. Storm the Derelict Mill before the price of survival rises again.",
+      "file": "goblin-grinder.json"
+    },
+    {
+      "id": "devils-tomb",
+      "title": "Devil's Tomb",
+      "system": "morkborg",
+      "author": "Johan Nohr (MÖRK BORG dungeon generator)",
+      "description": "Retrieve the stolen Eyes of the Icon of St Largoth from a one-page hellhole deep in Graven-Tosk. The Plant of Life waits at the back. The chained bronze door reads GO TO NECH.",
+      "file": "devils-tomb.json"
+    },
+    {
+      "id": "bloat",
+      "title": "Bloat",
+      "system": "morkborg",
+      "author": "MBC: Bloat",
+      "description": "A gluttonous underground labyrinth where Silas the Fattened King consumes the world one body at a time. Six rooms of fat, filth, and ravenous magic.",
+      "file": "bloat.json"
+    },
+    {
+      "id": "eat-prey-kill",
+      "title": "Eat Prey Kill",
+      "system": "morkborg",
+      "author": "Karl Druid (MBC: Eat Prey Kill)",
+      "description": "Regional bestiary + hunting rules. Roll for Presence, hunt for meat, suffer the d10 mishap. Not a scenario — a supplement to keep on hand at the table.",
+      "file": "eat-prey-kill.json"
+    },
+    {
+      "id": "tenebrous-reliquary",
+      "title": "The Tenebrous Reliquary",
+      "system": "morkborg",
+      "author": "Various (MBC: Tenebrous Reliquary)",
+      "description": "Thirty-six accursed objects. A d66 cursed-item table the GM places, and the players regret.",
+      "file": "tenebrous-reliquary.json"
+    },
+    {
+      "id": "ronin-borg-starter",
+      "title": "Smoke in the Reed Fields",
+      "system": "ronin-borg",
+      "author": "Trevor Burkholder",
+      "description": "A Ronin Borg one-shot. Three rōnin wake at a burning village. A dishonored lord waits in the watchtower. Something older than all of them watches from the mountain.",
+      "file": "ronin-borg-starter.json"
+    }
+  ],
+  "community": []
+}

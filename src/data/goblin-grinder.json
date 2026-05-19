@@ -1,0 +1,732 @@
+{
+  "meta": {
+    "id": "goblin-grinder",
+    "title": "The Goblin Grinder",
+    "author": "MBC: The Goblin Grinder",
+    "version": "1.0",
+    "system": "morkborg",
+    "description": "Galgenbeck is overrun. The cure is fake. The alchemist is making the goblins. Storm the Derelict Mill before the price of survival rises again.",
+    "startNode": "galgenbeck-streets",
+    "license": "Based on official Mörk Borg content. Independent production by Trevor Burkholder, published under the MÖRK BORG Third Party License. MÖRK BORG is © Ockult Örtmästare Games and Stockholm Kartell."
+  },
+  "nodes": [
+    {
+      "id": "galgenbeck-streets",
+      "title": "The Streets of Galgenbeck",
+      "type": "location",
+      "atmosphere": "Goblin corpses piled at the gutter-mouths, picked at by crows that won't eat them. The smell of rot and burning hair. Townsfolk stagger past with sunken eyes, clutching little brown bottles like prayer beads.",
+      "read_aloud": "Galgenbeck stinks of two things tonight — goblin and hope, and one of them is rotting in the street. The little corpses are everywhere. Stacked. Piled. Dragged into alleys by children paid in copper. A man in a bishop's hat is screaming about repentance from a barrel. No one is listening. Everyone is squinting at the same crooked sign down the lane: a red apron painted onto warped wood, and beneath it the word MEDICKAL. The line outside the door bends around the block. The man at the front is crying. The price went up again at sunrise.",
+      "contents": {
+        "description": "Opening street scene. The PCs arrive in Galgenbeck during the height of the Goblin Curse epidemic. Goblin corpses litter the streets — the result of nightly Goblin Grinder output. The Medickal Shoppe is the obvious destination, but rumor and observation can point a sharp PC toward the Derelict Mill (Qarg's blood-trail of dragged corpses runs from one to the other if anyone thinks to look). The PCs choose a hook from the d4 below (or the GM hands them one) — that hook frames why they're here at all.",
+        "items": [
+          "Goblin Cure bottles (40s, +5 silver per day) — sold only at the Medickal Shoppe. Postpones total transformation by d6 days. Is not actually a cure.",
+          "Rumors on the street (free, mostly wrong): the goblins crawl up from the river; a witch in the cathedral made them; the alchemist Nagel is a saint; the alchemist Nagel is the devil.",
+          "If anyone tracks the corpse-drag trail: a wide smear of blood and grave-mud runs from the cemetery, past the Medickal Shoppe's back door, and out toward an old boarded-up mill at the city's edge."
+        ],
+        "enemies": [],
+        "npcs": [
+          {
+            "name": "Urgrip Wikt (if Hook 4)",
+            "description": "Worried peasant. Sunken eyes, gray at the jaw — the curse is on him. Offers a small velvet pouch with a single pale pearl inside as payment. Says it was his grandmother's. Doesn't know what it really is.",
+            "attitude": "friendly",
+            "notes": "He believes the pearl is just an heirloom. It is a Calumny Pearl — place it under your tongue and you entirely believe the first lie told to you. Do not tell the players this. Let them discover it the worst way."
+          },
+          {
+            "name": "Jota Klefunheim of Klefunheim (if Hook 3)",
+            "description": "A suspicious noble in a fox-fur collar that has seen better foxes. Speaks like he is paying you while he is paying you. Has reason to believe the cure is a scam but cannot say why in public.",
+            "attitude": "neutral",
+            "notes": "Pays 200 silver up front to figure out what is really happening, reduced by 20s each day the matter is unresolved. Will pay double if the PCs bring back proof the alchemist is behind it — a corpse-key, a vial of fake cure, the Bastard's head."
+          }
+        ],
+        "traps": [],
+        "secrets": [
+          "Some of the goblin corpses in the gutter still have the eyes of the people they used to be. A PC who looks closely (DR12 Presence) recognizes one — a butcher, a tax-clerk, a child from two streets over.",
+          "Qarg the gravedigger has been seen at odd hours dragging sacks the wrong direction — out of the cemetery, not into it.",
+          "The price of the cure has gone up every single morning for a week. Math suggests it will not stop."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Why the PCs Care (d4 — pick or roll)",
+          "text": "1 — One or more PCs is afflicted with the Goblin Curse (d6 days to transform unless the attacking goblin dies). They cannot keep up with Nagel's rising prices. 2 — Nagel hires the PCs as Medickal Shoppe guards (Qarg can't keep up with broke peasants demanding cures). 3 — Suspicious noble Jota Klefunheim of Klefunheim pays 200s to figure out what's going on, reduced by 20s per day unresolved. 4 — Worried peasant Urgrip Wikt offers a family heirloom — unknown to him, a Calumny Pearl."
+        },
+        {
+          "title": "Goblin Curse",
+          "text": "Anyone ATTACKED by a goblin (hit OR miss) transforms into one in d6 days unless the attacking goblin is killed before then. The Cure delays it by another d6 days. Only killing the source ends it."
+        },
+        {
+          "title": "Goblin Cure",
+          "text": "40 silver, rising 5s per day Nagel remains in business. Postpones transformation by d6 days. NOT a real cure. Sold only at the Medickal Shoppe."
+        },
+        {
+          "title": "Calumny Pearl",
+          "text": "Place underneath your tongue. You entirely believe the first lie told to you. Urgrip does not know this."
+        }
+      ],
+      "gm_notes": "This is the framing scene. Let the PCs gawp at the goblin corpses, get a hook landed on them, and decide where to go. The two obvious moves are (a) the Medickal Shoppe to confront/negotiate/buy/be-hired-by Nagel, or (b) following the blood-trail to the Derelict Mill if anyone is paying attention. Do not gate the mill behind the shoppe — clever PCs should be allowed to skip Nagel entirely. If they do, Nagel is at the mill making goblins when they arrive, and the time-pressure rule kicks in the second they hesitate at the barricade. Whichever hook they take, the time pressure begins now: every wasted day costs 5 more silver per cure, 20 less from Klefunheim, and another step toward goblin-skin for the cursed. Klefunheim and Wikt are not on every street; only present if the GM uses their hook.",
+      "exits": [
+        {
+          "id": "streets-to-shoppe",
+          "label": "Push through the line into the Medickal Shoppe",
+          "target": "medickal-shoppe",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "streets-to-mill",
+          "label": "Follow the blood-trail to the boarded-up mill at the city's edge",
+          "target": "derelict-mill-approach",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["start", "hub", "city"]
+    },
+    {
+      "id": "medickal-shoppe",
+      "title": "The Medickal Shoppe",
+      "type": "location",
+      "atmosphere": "A vaguely metallic smell — coin, blood, or both. Shelves of small brown bottles labeled in shaky red ink. A man in a red apron polishes the counter as if the wood itself were a customer.",
+      "read_aloud": "The bell over the door clangs flat. Inside, the shop is small and immaculate. Every shelf brims with squat brown bottles — GOBLIN CURE, in red — and behind the counter stands a thin man with curly hair, a spotless red apron, and the eyes of a person counting your teeth. He smiles. 'Welcome, welcome. Forty silver. Or — perhaps — there is other business?' A broad woman in filthy furs leans against the wall in the corner, a shovel across her back. She does not smile.",
+      "contents": {
+        "description": "Nagel Krat's storefront. Nagel sells the fake Cure here, hires muscle, accepts bribes, and keeps a goblin crate under the counter for emergencies. Qarg the gravedigger is usually present during busy hours as muscle. If approached as customers, Nagel sells. If approached as guards (Hook 2), Nagel hires for 30s/day and pretends he's grateful. If approached with suspicion or force, Nagel attempts smoke-bomb escape back to the Mill (which is exactly where the PCs need to go anyway).",
+        "items": [
+          "Goblin Cure (40s, +5/day) — postpones d6 days, fake.",
+          "Flash Powder (45s) — blinds enemies and probably you.",
+          "Healing Tincture (30s) — mostly mouse dung and red pigment. On a roll of 1, attacks/defence at −2 until full rest.",
+          "Invigorating Elixir (25s) — +1 Agility for 1 hour. Might stop your heart.",
+          "Juice (7s) — apple juice. It is just apple juice.",
+          "Under a latch behind the counter: the Goblin Crate. d4+1 goblins crammed inside, ready to leap out at everyone except Nagel."
+        ],
+        "enemies": [
+          {
+            "name": "Nagel Krat (if cornered)",
+            "hp": 6,
+            "morale": "6",
+            "speed": "normal",
+            "attack": "Knife, d4",
+            "special": "Smoke bomb — DR14 Presence test or Nagel escapes. He carries d10×10s in his apron and will shed it (silver scatters; PCs lose actions grabbing) to make pursuit DR16 Agility. He has the only working key to the Goblin Grinder device (spare is on Urvan's body in the basement).",
+            "notes": "A smart worm. Begs, pleads, bribes, cries. Will sell out anyone for his own skin. If reduced below half HP or clearly losing, throws smoke bomb and bolts for the Derelict Mill. Do not let him die in the shop unless the PCs are very lucky and very cruel."
+          },
+          {
+            "name": "Qarg, Gravedigger (if hostile)",
+            "hp": 9,
+            "morale": "7",
+            "speed": "normal",
+            "attack": "Cudgel d6 or Shovel d4",
+            "special": "Filthy furs −d2. Easily bribed: convincing her to leave her post or look the other way is a DR8 Presence test if offered more silver than Nagel pays (10s/hour as muscle, 50s per corpse delivered).",
+            "notes": "Not loyal — paid. If a PC offers her real coin (50s+) to step outside for a smoke, she goes. She is not picky about what happens to anyone afterward."
+          },
+          {
+            "name": "Goblin (Crate, d4+1 if released)",
+            "hp": 6,
+            "morale": "7",
+            "speed": "normal",
+            "attack": "Knife or shortbow, d4",
+            "special": "Quick — attacks and defence are DR14. Carry the Goblin Curse: anyone attacked (hit or miss) transforms in d6 days unless the goblin is killed first.",
+            "notes": "Released by Nagel as he runs. They attack everyone except him. Ropy-skinned, cackling. Ropy skin −d2."
+          }
+        ],
+        "npcs": [
+          {
+            "name": "Nagel Krat, Alchemist",
+            "description": "Thin, curly hair, obsessively clean red apron. Smells of bleach and something sour underneath. Eyes that are always doing arithmetic.",
+            "attitude": "friendly",
+            "notes": "Will sell, hire, bribe, or run — in that order. If hired as guards (Hook 2): 30s/day plus a free Cure each. He wants the PCs OUTSIDE keeping peasants off his door, not inside seeing his ledgers. He has the only working Grinder key on a chain around his neck."
+          },
+          {
+            "name": "Qarg, Gravedigger",
+            "description": "Dirty, grim stare, broken nose, shovel strapped across her back. Speaks rarely.",
+            "attitude": "neutral",
+            "notes": "Muscle, 10s/hour. Hauls corpses for Nagel at 50s a body. Bribeable. A natural recurring NPC if the PCs treat her well."
+          }
+        ],
+        "traps": [
+          {
+            "name": "The Goblin Crate",
+            "trigger": "Nagel pulls the floor-latch behind the counter as a panic move (or a PC investigates the latch without him).",
+            "effect": "d4+1 goblins burst out and attack everyone in the shop except Nagel. Curse exposure for any PC attacked — hit or miss.",
+            "dr": "Spotting the latch unprompted: DR12 Presence. Disarming/jamming it shut: DR14 Agility with tools."
+          }
+        ],
+        "secrets": [
+          "Nagel's ledger (behind the counter, requires search and a moment of distraction) lists weekly payments to QARG — 50s × bodies — beside daily 'product' counts that match new goblin sightings in the city.",
+          "The back door opens onto an alley. A wide smear of dragged blood runs from this alley to the Derelict Mill.",
+          "Nagel's key, on a chain at his throat, is engraved with the word GRINDER. He will not let it leave his neck willingly."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Time Pressure — Nagel Makes Another Goblin",
+          "text": "Every time the PCs linger, hesitate, haggle, or waste a scene's worth of time HERE: somewhere offstage, Nagel (or one of his goblins) feeds another corpse to the Grinder. Add +1 goblin to the next combat in the Mill, OR raise the Cure price by 5s on the spot."
+        },
+        {
+          "title": "Bribing Qarg",
+          "text": "DR8 Presence if offered more silver than Nagel pays her. She walks. She does not come back to fight on Nagel's side."
+        },
+        {
+          "title": "Nagel's Escape",
+          "text": "Smoke bomb: DR14 Presence to keep eyes on him. If he escapes the shop, he runs straight for the Derelict Mill and arrives at the Grinder floor before the PCs do — making goblins the whole way."
+        }
+      ],
+      "gm_notes": "This scene can resolve a dozen ways. Best outcomes: PCs learn enough to follow Nagel/Qarg to the Mill, or get hired as guards and use access to investigate. Worst outcomes for Nagel: PCs immediately gut him in front of a crowd — possible, but loud, and the Inquisition (or the watch) takes notice. The Crate is Nagel's nuclear option; only deploy it if cornered. Play Nagel craven: he is a smart worm, not a swordsman. If he escapes, the PCs likely chase — that puts them at the Mill anyway. The blood-trail to the Mill is canon and should be obvious to anyone who steps out the back door.",
+      "exits": [
+        {
+          "id": "shoppe-to-streets",
+          "label": "Back out into the streets of Galgenbeck",
+          "target": "galgenbeck-streets",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "shoppe-to-mill",
+          "label": "Follow the blood-trail from the back alley to the Derelict Mill",
+          "target": "derelict-mill-approach",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["hub", "social", "city"]
+    },
+    {
+      "id": "derelict-mill-approach",
+      "title": "The Derelict Mill — Approach & Barricade",
+      "type": "location",
+      "atmosphere": "Slumped wooden walls, windows boarded with grave-planks. The wheel does not turn. A barricade of broken furniture, dead pigs, and what might be a pulpit blocks the door. Behind it, giggling. A long iron snout pokes through a gap, pointed at the gravel path.",
+      "read_aloud": "The mill leans toward the river like a drunk about to fall in. Boards over every window. The wheel hangs dead in the brown water. A wall of trash — chairs piled on bones piled on a smashed pulpit — barricades the front door. From behind it: a giggle. A wet little giggle, multiplied. And from a gap in the trash-wall, a black iron snout points down the path at exactly the height of a man's belly. Someone has chalked a smiling face on the cannon's mouth.",
+      "contents": {
+        "description": "Exterior of the Derelict Mill. A crude barricade (1a) and a cannon (1b) defend the front door, manned by giggling goblins. The cannon fires once on the first PC to step into the gravel path's center. The barricade can be smashed, climbed (DR12 Agility), or sneaked past via the river-side scaffolding (DR12 Agility, slippery). After the first floor is breached, this becomes the PCs' usual entry/exit point.",
+        "items": [
+          "The Cannon — black iron, smiling face chalked on. Loaded with one ball of nails and chain. After firing once, the goblins need a full minute to reload (which they will not get).",
+          "The Barricade — broken church furniture, a dead pig, a pulpit. Searchable for d6 silver and a wooden saint with the face filed off."
+        ],
+        "enemies": [
+          {
+            "name": "Cannon Goblin (×2)",
+            "hp": 6,
+            "morale": "7",
+            "speed": "normal",
+            "attack": "Cannon (see trap), or knife d4 in melee",
+            "special": "Quick — attacks and defence DR14. Ropy skin −d2. Goblin Curse on every attack, hit or miss.",
+            "notes": "Operate the cannon. Giggle constantly. If the cannon misses, they panic and start fistfighting each other over whose fault it was — PCs get a round of free attacks if they close fast."
+          },
+          {
+            "name": "Barricade Goblin (×d4)",
+            "hp": 6,
+            "morale": "7",
+            "speed": "normal",
+            "attack": "Knife or shortbow, d4",
+            "special": "Quick — attacks and defence DR14. Ropy skin −d2. Curse on attack.",
+            "notes": "Throw chamber pots and bones from behind the barricade. Break and flee inside if half are killed."
+          }
+        ],
+        "npcs": [],
+        "traps": [
+          {
+            "name": "The Cannon (1b)",
+            "trigger": "First creature to step into the center of the gravel path within 30 feet of the barricade.",
+            "effect": "Cannonball of nails and chain — d10 damage to the triggering PC, d6 to anyone within 5 feet. After firing, requires a full minute to reload (will not happen).",
+            "dr": "Spotting the cannon snout from cover: DR10 Presence. Dodging the shot once fired: DR14 Agility for half damage."
+          }
+        ],
+        "secrets": [
+          "The cannon is loaded ONCE. If the PCs make the goblins waste the shot (a thrown corpse, a charging dog, a loud noise), it is spent.",
+          "The river side of the mill has rotted scaffolding clinging to it. A DR12 Agility climb avoids the barricade entirely and enters via a broken second-floor window — into the Trap Floor.",
+          "Qarg's blood-trail leads through a gap at the barricade's base. A small dog could slip under. So could a clever PC (DR10 Agility, prone)."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Time Pressure — Nagel Makes Another Goblin",
+          "text": "Every scene of hesitation HERE: Nagel feeds another corpse to the Grinder upstairs. Add +1 goblin to the next combat OR add a +1 morale boost to The Bastard's allies."
+        },
+        {
+          "title": "Sneaking Around the Barricade",
+          "text": "River-side scaffolding: DR12 Agility climb, enters the Trap Floor. Crawling under the barricade gap: DR10 Agility, prone, exposed to one free attack from any barricade goblin who notices."
+        }
+      ],
+      "gm_notes": "The cannon is the signature setpiece of this approach. Lean into it. One ball, one chance — let the PCs feel its weight before deciding. If they waste it (which they should try to do), the fight is much shorter. If they don't, hit the slowest PC. The goblins are not tactical — they giggle, they argue, they panic. Play them like wet rats with knives. The sneak-around option exists; don't volunteer it, but reward PCs who think of climbing or crawling.",
+      "exits": [
+        {
+          "id": "approach-to-ground",
+          "label": "Smash through the barricade — Ground Floor",
+          "target": "mill-ground-floor",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "approach-to-trap-sneak",
+          "label": "Climb the river-side scaffolding — into the Trap Floor (DR12 Agility)",
+          "target": "mill-trap-floor",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "approach-to-streets",
+          "label": "Retreat back to the streets of Galgenbeck",
+          "target": "galgenbeck-streets",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["combat", "trap", "exterior"]
+    },
+    {
+      "id": "mill-ground-floor",
+      "title": "Mill — Ground Floor",
+      "type": "location",
+      "atmosphere": "Sawdust, mildew, and a fresh smear of blood across the floorboards. The old grinding stones squat dead in the middle of the room. Above: footsteps. Below: a closed trapdoor with iron banding.",
+      "read_aloud": "The barricade gives in a clatter of bones and broken pews. Beyond it: the mill's ground floor. The grinding stones — the real ones, for grain — sit dead and dust-furred in the room's center, untouched in years. The floor is a mess of sawdust, kicked-over crates, and one fresh smear of dragged blood that runs from the back door to a ladder in the corner. The ladder goes up. A trapdoor in the floor is banded with iron and shut tight. From upstairs: footsteps and a high, wet laugh.",
+      "contents": {
+        "description": "First room inside. The ground floor is a junk-filled receiving room. Qarg's blood-trail leads from a back door to a ladder going up to the Trap Floor (2). A second trapdoor in the floor (iron-banded, locked) leads down to the Basement (Urvan Krat's body). Goblins drop down from above if combat at the barricade alerted them. This is the first proper combat room.",
+        "items": [
+          "Old grain-grinding stones (the real ones) — useless, immovable, dust-furred.",
+          "Kicked-over crates: d6 silver, a half-empty bottle of bad wine, a journal page from Urvan Krat reading 'the engine downstairs is not for grain'.",
+          "Iron-banded trapdoor in the floor (to Basement) — locked. Picked DR14, smashed DR16 Strength, or opened with either Grinder key."
+        ],
+        "enemies": [
+          {
+            "name": "Goblin (×d4+1)",
+            "hp": 6,
+            "morale": "7",
+            "speed": "normal",
+            "attack": "Knife or shortbow, d4",
+            "special": "Quick — attacks and defence DR14. Ropy skin −d2. Goblin Curse on every attack, hit or miss.",
+            "notes": "Drop down the ladder from the Trap Floor at the sound of fighting, OR are already here loitering if the PCs sneaked in quietly. One has a key-chain at its belt with the brass spare from Urvan's boot (if Nagel and the goblins have already been down there)."
+          }
+        ],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "The journal page is in Urvan Krat's hand. The full journal is on his body in the basement, badly disfigured by Nagel's recent fit of anger.",
+          "Qarg's dragged blood-trail goes UP the ladder, not down — meaning today's bodies have already been delivered to the Grinder.",
+          "The basement trapdoor has been opened recently (DR10 Presence): scuff marks around the iron banding are fresh."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Time Pressure — Nagel Makes Another Goblin",
+          "text": "Every scene of hesitation HERE: Nagel feeds another corpse upstairs. Add +1 goblin to the next combat OR upgrade one ordinary goblin to a 'tougher' one (HP 9, otherwise as goblin)."
+        },
+        {
+          "title": "The Basement Trapdoor",
+          "text": "Locked. Pick DR14, smash DR16 Strength (loud — alerts everyone upstairs), or use either Grinder key. Opens onto a ladder down to Urvan's body."
+        }
+      ],
+      "gm_notes": "The ground floor is the PCs' staging area once they're in. Note whether they go UP (the obvious path, toward the climax) or DOWN (to the basement and the spare key). The basement is a flavor side-trip — Urvan's body, the spare key, the journal — but it's also where a paranoid party can secure their backline. Goblins from upstairs will hear loud noises and come check; smashing the trapdoor is loud. Watch the time-pressure clock: this room is a natural place for PCs to spend too much time prepping.",
+      "exits": [
+        {
+          "id": "ground-to-trap",
+          "label": "Up the ladder — Trap Floor",
+          "target": "mill-trap-floor",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "ground-to-basement",
+          "label": "Down the iron-banded trapdoor — Basement (locked, DR14 pick / DR16 smash)",
+          "target": "mill-basement",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "ground-to-approach",
+          "label": "Back outside to the barricade",
+          "target": "derelict-mill-approach",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["combat", "interior"]
+    },
+    {
+      "id": "mill-trap-floor",
+      "title": "Mill — Fire! Fire! (Trap Floor)",
+      "type": "location",
+      "atmosphere": "Lamp-oil shimmers in puddles between gapped floorboards. The smell of pitch. Three goblin archers grin from a beam overhead, arrows already tipped in rag and dipped in flame. A fourth holds a sloshing bucket and is laughing too hard to aim.",
+      "read_aloud": "You come up into a wide room with a ceiling too high and a floor that gleams in the lamp-light. Oil. Pooled in every crack, slicking every board. Above, three goblins squat on a beam with bows in their hands and rags wrapped around the arrowheads — already burning. A fourth, on the same beam, hugs a bucket sloshing with more oil. He sees you and laughs so hard he nearly falls. The first archer takes aim.",
+      "contents": {
+        "description": "The mill's second floor (3) — labeled FIRE! FIRE! on Nagel's map. The floor is oil-soaked. Three archer goblins on an overhead beam fire flaming arrows. A fourth (the bucket-goblin) tries to soak the PCs with more oil to make them light up better. If a flaming arrow lands on an oil-puddle a PC is standing in, the puddle ignites — d6 fire damage per round until extinguished. The ladder up leads to the Laboratory. The ladder down leads to the Ground Floor.",
+        "items": [
+          "Buckets of lamp oil along the walls — d6 of them, each enough to drench one puddle or one body.",
+          "On the floor among the puddles: scattered silver (d20s) where previous victims fell and were picked clean.",
+          "Three shortbows and a quiver each (looted from dead archers — d4 weapons)."
+        ],
+        "enemies": [
+          {
+            "name": "Archer Goblin (×3)",
+            "hp": 6,
+            "morale": "7",
+            "speed": "normal",
+            "attack": "Flaming arrow, d4 + see special",
+            "special": "Quick — attacks and defence DR14. Ropy skin −d2. Curse on attack. Flaming arrow ignites any oil-puddle it touches (d6 fire/round to anyone in the puddle until smothered, DR10 Agility).",
+            "notes": "Perched on the beam overhead — reaching them in melee requires climbing (DR12 Agility) or pulling the beam down (DR16 Strength, loud and dangerous)."
+          },
+          {
+            "name": "Bucket Goblin (×1)",
+            "hp": 6,
+            "morale": "6",
+            "speed": "normal",
+            "attack": "Splash of oil (no damage; coats target — next fire attack deals +d6) or knife d4 in melee",
+            "special": "Quick — attacks and defence DR14. Ropy skin −d2. Curse on attack. Laughs at his own jokes; can be tricked into spilling the bucket on himself (DR12 Presence).",
+            "notes": "Will absolutely set himself on fire if the PCs are funny enough. If killed while the bucket is full, the bucket spills — coats a 10-foot radius in fresh oil."
+          }
+        ],
+        "npcs": [],
+        "traps": [
+          {
+            "name": "Oil-Slick Floor",
+            "trigger": "Moving across the floor at speed, OR being splashed by the bucket goblin.",
+            "effect": "Slip prone. If a flame source then touches the puddle, ignites: d6 fire/round until extinguished.",
+            "dr": "DR12 Agility to cross at speed without slipping. Smothering oneself: DR10 Agility (drop, roll, or have an ally cover with a cloak)."
+          }
+        ],
+        "secrets": [
+          "If the bucket-goblin spills his bucket, the entire room is at risk. One flaming arrow afterward = the whole floor lights. Goblins on the beam are above the flames; PCs on the floor are not.",
+          "The beam can be brought down with one good strike (DR16 Strength on a support). It kills any goblins on it (d10 fall damage) and may also fall on PCs standing beneath (DR14 Agility to dodge, d6 damage on fail).",
+          "Sneak entry via the river scaffolding window (from Approach) enters HERE, behind the bucket-goblin."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Time Pressure — Nagel Makes Another Goblin",
+          "text": "Every scene of hesitation HERE: Nagel feeds another corpse upstairs. Add +1 goblin to the next combat in the Grinder room OR set The Bastard's Morale upgrade to permanent (already − by default — but his allies get +1 to all attacks for the climax fight)."
+        },
+        {
+          "title": "Setting the Floor on Fire",
+          "text": "Any flame source touching an oil-puddle ignites it: d6 fire/round in the puddle. A fully oil-soaked floor (bucket spilled or two+ arrows landed) becomes one continuous puddle — d6/round to anyone NOT on the beam, the ladders, or solid furniture."
+        },
+        {
+          "title": "Crossing the Floor at Speed",
+          "text": "DR12 Agility to charge across without slipping. Failure: prone. Slow careful movement: no test, but a wasted round."
+        }
+      ],
+      "gm_notes": "This room is a deathtrap by design — the goblins WANT the floor on fire, and they don't care if they survive it (Morale 7 but Nagel made them disposable). The cleanest PC tactic is killing the bucket-goblin first (he is the multiplier) or yanking the beam down. The dirtiest tactic is letting the floor ignite, surviving the dash, and using the fire to clear the rest of the mill — which destroys evidence Nagel needs to keep his scheme running. Note for time pressure: this is the most natural 'we should plan' room. Punish planning with another goblin upstairs.",
+      "exits": [
+        {
+          "id": "trap-to-lab",
+          "label": "Up the ladder — Laboratory",
+          "target": "mill-laboratory",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "trap-to-ground",
+          "label": "Down the ladder — Ground Floor",
+          "target": "mill-ground-floor",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["combat", "trap", "interior"]
+    },
+    {
+      "id": "mill-laboratory",
+      "title": "Mill — The Laboratory",
+      "type": "location",
+      "atmosphere": "Sour amber light. Bubbling pots on warped tables. Glass everywhere. Something foaming beneath one of the tables that is not a spill and not a chemical.",
+      "read_aloud": "The third floor smells of vinegar and rotten oranges. Alchemy tables sag under boiling pots and crooked retorts. Liquid the color of old urine drips into a tray. Cluttered shelves hold jars of teeth, jars of eyes, and one jar of something that is moving. Beneath the central table, foaming up around the table-legs and slowly spreading, is a wide puddle of amber-orange goo. It has no face. It is moving toward you.",
+      "contents": {
+        "description": "Nagel's working laboratory (3). Boiling pots full of half-mixed Goblin Cure, racks of empty bottles, drying labels. An Alchemical Ooze — escaped or deliberately bred — has taken up residence under the central table and is mindlessly creeping outward. The lab is also where the recipe-evidence lives: anyone wanting to PROVE the cure is fake finds it here. The ladder up leads to the Goblin Grinder. The ladder down leads to the Trap Floor.",
+        "items": [
+          "Half-finished bottles of Goblin Cure (d20 bottles) — Nagel's recipe sheet beside them, in his own hand, openly admitting the active ingredient is 'a soothing decoction of distilled goblin sweat which postpones, but does not cure, transformation.' This is the proof Klefunheim wants.",
+          "An alchemical kit (35s value, +1 to any alchemy-related test).",
+          "Jars of teeth, jars of eyes, ONE jar of something moving (a small homunculus — d4 HP, hisses, bites for 1 if released).",
+          "On a clean shelf away from the ooze: 2 doses of Healing Tincture (real this time — d6 HP), 1 dose of Invigorating Elixir (+1 Agility 1 hour, DR12 Toughness or stop heart for 1 round)."
+        ],
+        "enemies": [
+          {
+            "name": "Alchemical Ooze",
+            "hp": 10,
+            "morale": "—",
+            "speed": "slow",
+            "attack": "Acidic splash, d8",
+            "special": "Slow — defence DR10. Gooey −d2. Whenever a PC damages the ooze, they must test Strength DR8 or their weapon becomes stuck to it. If not removed the next round (Strength DR10), the weapon is destroyed.",
+            "notes": "Mindless. Hungry. Drifts toward warmth and motion. Cannot be reasoned with, intimidated, or routed — has no Morale. Will follow a PC through a door but cannot climb a ladder unaided."
+          }
+        ],
+        "npcs": [],
+        "traps": [
+          {
+            "name": "Boiling Pots",
+            "trigger": "Knocking over a table during the ooze fight, OR aiming a strike that hits the workbench instead of the ooze.",
+            "effect": "Boiling Cure splashes outward: d4 damage and DR10 Toughness or vomit for 1 round (lose action).",
+            "dr": "DR10 Agility to dodge if standing adjacent to a knocked-over pot."
+          }
+        ],
+        "secrets": [
+          "The recipe sheet is dated, signed, and incriminating. Carrying it back to Klefunheim doubles his payment. Burning it covers Nagel's tracks but solves nothing.",
+          "The ooze has a weapon in it — a sword and a knife from previous victims, half-dissolved. Skilled retrieval (DR14 Strength + Agility test, fail = burn d4) recovers ONE undamaged weapon of GM's choice.",
+          "If the floor below is on fire when the PCs arrive, the laboratory floor is already starting to smolder. Within d6 rounds the whole place goes up — pots crack, jars burst, the ooze begins to boil but does not die fast enough to matter."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Time Pressure — Nagel Makes Another Goblin",
+          "text": "Every scene of hesitation HERE: Nagel feeds another corpse to the Grinder one floor up. Add +1 goblin to the Grinder room combat. The PCs may HEAR the device thumping through the ceiling — make it audible."
+        },
+        {
+          "title": "Fighting the Ooze",
+          "text": "Damage the ooze → DR8 Strength or weapon sticks. Stuck weapon next round → DR10 Strength to free or weapon is destroyed by acid. Two-handed pulls (an ally helping) reduce DR by 2."
+        },
+        {
+          "title": "Burning the Lab",
+          "text": "If fire from the Trap Floor reaches here (or the PCs deliberately set it): d6 rounds until everything alchemical erupts. Anyone still in the lab takes 2d6 fire damage. The evidence burns. The ooze dies slowly."
+        }
+      ],
+      "gm_notes": "The lab serves three purposes: (1) the ooze fight, (2) the EVIDENCE drop for Hook 3 (Klefunheim), (3) the smell-and-sound of the Grinder running directly overhead — make the players HEAR it. The ooze can be skipped entirely by edging around the room if PCs are willing to leave the recipe sheet behind. The recipe sheet is the cleanest narrative payoff for the noble's hook. Don't forget the ooze has no morale — it does not flee, ever. It will follow them up to the Grinder floor at slow speed if they let it.",
+      "exits": [
+        {
+          "id": "lab-to-grinder",
+          "label": "Up the ladder — The Goblin Grinder",
+          "target": "mill-grinder-floor",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "lab-to-trap",
+          "label": "Down the ladder — Trap Floor",
+          "target": "mill-trap-floor",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["combat", "loot", "evidence", "interior"]
+    },
+    {
+      "id": "mill-grinder-floor",
+      "title": "Mill — The Goblin Grinder",
+      "type": "location",
+      "atmosphere": "A great iron contraption — gears the size of cartwheels, a funnel above wet with the day's work, a chute below from which something just crawled. The smell is corpses and hot metal. A man in a red apron stands at the control bar, key in the lock. Beside him: something taller than a goblin should be, smiling.",
+      "read_aloud": "You come up into the top floor and stop. The room is filled with it — a black iron contraption the size of a wagon, gears teeth-deep in each other, a funnel mouth above slick with red and a chute below smeared with afterbirth and ash. Etched across its side in old letters: THE GOBLIN GRINDER. At the control bar stands Nagel Krat, key turning in the lock, eyes wide. Beside him stands something taller and wronger than a goblin, in a torturer's leather apron, holding a knife. It looks at you. It smiles. 'OH GOOD,' it says. 'FRESH MEAT.' The chute coughs out another goblin, still wet, already running at you.",
+      "contents": {
+        "description": "The climax (4). The Goblin Grinder itself dominates the room — a key-activated, fuel-fed iron device that turns one human corpse into one living, cursed goblin. Nagel Krat is here at the controls, key in the lock. The Bastard supervises, attended by goblin reinforcements (fresh from the chute) and a few barricade-survivor regulars. THE GRINDER PRODUCES ONE NEW GOBLIN PER ROUND while the key is turned and a corpse remains in the funnel. Destroying the Grinder is the win condition — but the device may not go quietly.",
+        "items": [
+          "The Goblin Grinder (device) — large iron contraption. To run: key in lock + fuel (coal, oil, alchemical reagents) + one human corpse in the funnel. To destroy: see Rules. Etched label: THE GOBLIN GRINDER. Maker unknown [CANON CHECK — source does not name who built or labeled it].",
+          "Nagel's key (on a chain around his neck) — the only working key. Spare is on Urvan's body in the Basement.",
+          "Fuel pile: coal and oil drums and a half-empty bag of unidentifiable alchemical reagents.",
+          "Three fresh corpses stacked beside the funnel — pale, eyes open, recognizable to anyone from Galgenbeck who knew them.",
+          "The Bastard's knife (d4 if looted).",
+          "Nagel's apron silver: d10×10 silver coins, scattered when he sheds it to flee or dies."
+        ],
+        "enemies": [
+          {
+            "name": "The Bastard",
+            "hp": 10,
+            "morale": "—",
+            "speed": "normal",
+            "attack": "Knife, d4",
+            "special": "Mutant hide −d4. GOBLIN OVERLORD: allied goblins fighting alongside The Bastard are DR16 defence (including himself) and CANNOT be shaken (Morale −) UNLESS he is killed. Relishes chaos and cruelty.",
+            "notes": "Made from the corpse of a torturer for unsavory royals. Speaks. Mostly to insult. Will not flee — relishes the fight. Killing him drops all goblin defence back to DR14 and restores Morale 7. [CANON CHECK — the unsavory royals are unnamed in source.]"
+          },
+          {
+            "name": "Nagel Krat",
+            "hp": 6,
+            "morale": "6",
+            "speed": "normal",
+            "attack": "Knife, d4",
+            "special": "Smoke bomb — DR14 Presence test or he escapes (out the rear-window pulley to the river — drowns d4 rounds later if not pursued). Carries d10×10s in apron — shedding it makes pursuit DR16 Agility. Has the only working Grinder key on his neck.",
+            "notes": "Has been working the controls. If a PC threatens him, his hands shake too badly to keep the device running smoothly (lose 1 production round per threat). Begs, pleads, offers everything. Will turn on The Bastard in a heartbeat if it saves his skin."
+          },
+          {
+            "name": "Goblin Reinforcement (×d4, +1 per scene of PC hesitation earlier)",
+            "hp": 6,
+            "morale": "7",
+            "speed": "normal",
+            "attack": "Knife or shortbow, d4",
+            "special": "Quick — attacks and defence DR14 (DR16 while The Bastard lives). Ropy skin −d2. Curse on attack. The newly-born ones (from the Grinder mid-fight) come out screaming, wet, naked.",
+            "notes": "While the Grinder runs and a corpse remains in the funnel, ONE new goblin enters the fight at the start of each round. There are 3 corpses to start; once they're gone, no more new goblins. Destroying the funnel mid-fight ends production immediately."
+          }
+        ],
+        "npcs": [],
+        "traps": [
+          {
+            "name": "The Grinder Itself",
+            "trigger": "Being shoved into the funnel (DR14 Strength contest), OR climbing it carelessly to attack the funnel mechanism.",
+            "effect": "Falling in: 2d6 crushing damage, become a corpse the device processes next round. Climbing the gears under attack: DR12 Agility per round or take d6 (gear teeth).",
+            "dr": "DR14 to shove someone in. DR12 Agility to climb the device safely."
+          }
+        ],
+        "secrets": [
+          "Destroying the Grinder (see Rules below) ends the entire goblin epidemic in Galgenbeck — no more corpses become goblins. The existing goblins in the city still exist and still spread the curse, but the supply stops. The Cure becomes obsolete.",
+          "If the Grinder is destroyed VIOLENTLY (smashed gears, cannon, fire, demolition), there is one final eruption: 2d6 fire damage to everyone in the room, and the funnel disgorges one last malformed goblin (HP 12, otherwise as goblin, screams in a human voice). [CANON CHECK — the 'final eruption' is GM extrapolation; source does not specify a destruction backlash.]",
+          "If the Grinder is destroyed CAREFULLY (key turned, fuel cut, gears jammed), no eruption — but Nagel begs to keep it for 'medical research' and will offer increasing bribes (up to all his silver).",
+          "Inscribed inside the funnel rim, only visible during a search of the cooled device, is a maker's mark: a circle of teeth around a single eye. [CANON CHECK — maker unwritten in source; this mark is GM expansion that points at a possible future scenario.]"
+        ]
+      },
+      "rules": [
+        {
+          "title": "Time Pressure — The Grinder is Running",
+          "text": "While Nagel holds the key and a corpse remains in the funnel: ONE new goblin enters the fight at the start of each round, from the chute. There are 3 corpses stacked. Killing Nagel, stealing the key, or destroying the funnel ends production. Bonus goblins from PC hesitation in earlier rooms appear in the FIRST round, already in the fight."
+        },
+        {
+          "title": "Goblin Overlord (The Bastard)",
+          "text": "While The Bastard lives: all allied goblins (and himself) have defence DR16 and Morale −. The instant he dies: defence drops to DR14, Morale returns to 7, and the surviving goblins can be routed."
+        },
+        {
+          "title": "Destroying the Grinder",
+          "text": "Three methods. (1) Carefully: turn the key off + cut the fuel + jam the gears with iron — takes 2 full rounds out of combat. No backlash. (2) Violently: smash the device with heavy weapons (2 HP rounds of attack on the funnel, DR12 Strength) or use fire/cannon/black powder — 1 round. Backlash: 2d6 fire damage to everyone in the room + one last HP 12 malformed goblin from the chute. (3) Fed-it-Nagel: shoving Nagel (or any specific person) into the funnel — DR14 Strength contest — burns out the device immediately on his particular body chemistry. [CANON CHECK — option 3 is GM-canon extrapolation for narrative payoff.]"
+        },
+        {
+          "title": "Nagel Surrenders",
+          "text": "If reduced below half HP, Nagel drops the key, raises his hands, and offers EVERYTHING — silver, the shoppe, his recipe, evidence of who buys his cure. Players' call. Klefunheim pays double for a live Nagel."
+        }
+      ],
+      "gm_notes": "This is the climax. Stage it loud and physical: the GRINDER is a character. Every round it produces a goblin and clangs. The Bastard insults specific PCs by name (or by appearance if PCs are unnamed at the table). Nagel is a coward at the controls — he is not a fighter, he is a counter of coins. Tactical priorities for the PCs: kill The Bastard (drops goblin defence), get the key off Nagel (stops production), or destroy the funnel (ends production but may backlash). The maker's mark inside the funnel is a deliberate seed for future scenarios — flagged CANON CHECK. The fed-it-Nagel option is the most satisfying narrative ending; do not volunteer it, but reward PCs who propose it. The basement (and Urvan's spare key) is a secondary path if the PCs lost Nagel's key during chase.",
+      "exits": [
+        {
+          "id": "grinder-to-lab",
+          "label": "Down the ladder — back to the Laboratory",
+          "target": "mill-laboratory",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "grinder-to-basement",
+          "label": "Down through the central shaft — Basement (only if the floor collapses or the PCs deliberately descend the chute)",
+          "target": "mill-basement",
+          "condition": "Floor collapsed OR PCs descend the corpse-chute deliberately",
+          "locked": true
+        },
+        {
+          "id": "grinder-to-streets",
+          "label": "Out and back to Galgenbeck — the city is changed (if the Grinder is destroyed)",
+          "target": "galgenbeck-streets",
+          "condition": "Goblin Grinder destroyed",
+          "locked": true
+        }
+      ],
+      "visited": false,
+      "tags": ["combat", "climax", "boss", "interior"]
+    },
+    {
+      "id": "mill-basement",
+      "title": "Mill — Basement",
+      "type": "location",
+      "atmosphere": "Dirt floor, low ceiling, the smell of mold and old vomit. A single candle gutters by the body. The body is what is left of a man, with his face mostly hit out of it.",
+      "read_aloud": "The ladder drops into a dirt-floored basement. One candle burns on a barrel near a sprawled corpse — a man in a stained alchemist's apron, dead some weeks, recently and brutally assaulted by someone who came down here for the express purpose. His face is hardly his anymore. The candle is the only light. The corner of the room is heaped with old papers, jars, and one cracked leather-bound journal.",
+      "contents": {
+        "description": "Optional side-trip from the Ground Floor or post-climax destination. Urvan Krat's body lies here, recently and viciously beaten by Nagel in a moment of rage. His belongings are intact: a vial of sour yellow alchemical pain remedy, a SPARE key to the Goblin Grinder (hidden in his boot), and his journal. The journal contains the closest thing to an answer about the Grinder's origin — and a [CANON CHECK] gap that the GM can fill if they want a future hook.",
+        "items": [
+          "Vial of sour yellow liquid (Urvan's alchemical pain remedy) — heals d6+1 HP, dulls senses (-2 Presence for 1 hour).",
+          "Spare Goblin Grinder key, hidden in Urvan's right boot (DR8 Presence to find, or stated search).",
+          "Urvan Krat's leather-bound journal — pages of recipes, complaints about his son, ledger entries for a mill that 'no longer grinds grain.' Late entries: 'the engine downstairs is not for grain — and was not for grain when I bought this place,' and 'Nagel asks questions about the device that I will not answer. He is not ready. He may never be.' [CANON CHECK — source does not detail Urvan's journal contents; this is in-tone GM expansion for the prior-owner mystery flagged in the wiki.]",
+          "Old papers and jars in the corner — d10 silver, a half-burned bill of sale for the mill (the previous owner's name burned off — [CANON CHECK])."
+        ],
+        "enemies": [],
+        "npcs": [
+          {
+            "name": "Urvan Krat (corpse)",
+            "description": "A dead alchemist. Father, mentor, teacher — never very good at any of them. Recently and viciously beaten by his murderer-son, post-mortem, in a fit of pique.",
+            "attitude": "neutral",
+            "notes": "Does not act. Is a body, a question, and the spare key. The poisoning that killed him was assassin's work — Nagel paid someone, or someone beat Nagel to it. The journal hints, does not confirm. [CANON CHECK — the assassin is unnamed in source.]"
+          }
+        ],
+        "traps": [],
+        "secrets": [
+          "The spare Grinder key (in the boot) is a backup if the PCs lost Nagel's key during chase, OR a way to OPERATE the Grinder if a PC has a use for it (questionable).",
+          "Urvan's journal late entries strongly imply he KNEW about the Grinder and CHOSE not to use it. Why he kept the mill, why he kept the device, and what he intended — unwritten. [CANON CHECK — gap explicitly flagged in the wiki.]",
+          "The bill of sale's burned name is fresh — burned recently, not in some old fire. Someone in the room (Nagel, almost certainly) burned it within the last week. He did not want the prior owner traced."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Searching Urvan's Body",
+          "text": "DR8 Presence (or stated boot-search) finds the spare key. DR10 Presence finds the vial. The journal is in plain sight on the barrel. No tests needed for the journal or the corner pile."
+        }
+      ],
+      "gm_notes": "The basement is a flavor cul-de-sac AND a redundancy: if the PCs blew the chance to take Nagel's key (he escaped with it, or fell into the Grinder with it), the spare key here is the backup. The journal is the closest source-canon comes to acknowledging the prior-owner mystery — wiki explicitly flags this as an expansion gap. The maker's mark on the Grinder funnel (in the climax node) and the burned bill of sale here both point to the same future-scenario seed: someone made the Grinder, and that someone is still out there. [CANON CHECK throughout — the source describes Urvan's body, vial, and key but does NOT detail the journal contents, the bill of sale, or any prior-owner trail; those are GM extrapolation in keeping with the wiki's flagged gap.]",
+      "exits": [
+        {
+          "id": "basement-to-ground",
+          "label": "Up the iron-banded trapdoor — Ground Floor",
+          "target": "mill-ground-floor",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["loot", "lore", "underground"]
+    }
+  ],
+  "bestiary": [
+    {
+      "name": "Goblin",
+      "hp": 6,
+      "morale": "7",
+      "speed": "normal",
+      "attack": "Knife or shortbow, d4",
+      "special": "Quick — attacks and defence DR14. Ropy skin −d2. Goblin Curse on every attack (hit or miss): victim transforms in d6 days unless the attacker is killed first.",
+      "notes": "Once human. Eyes still know. Loot: head 7s, captured 150s, dead 20s."
+    },
+    {
+      "name": "The Bastard",
+      "hp": 10,
+      "morale": "—",
+      "speed": "normal",
+      "attack": "Knife, d4",
+      "special": "Mutant hide −d4. Goblin Overlord: allied goblins (and himself) defence DR16, Morale −, until he dies. Relishes chaos and cruelty. Speaks. Insults.",
+      "notes": "Made from a torturer's corpse for unsavory royals. [CANON CHECK — royals unnamed in source.] When killed: goblin defence drops to DR14, Morale returns to 7."
+    },
+    {
+      "name": "Nagel Krat, Alchemist",
+      "hp": 6,
+      "morale": "6",
+      "speed": "normal",
+      "attack": "Knife, d4",
+      "special": "Smoke bomb — DR14 Presence or he escapes. Carries d10×10s in apron (sheddable: pursuit DR16 Agility). Wears the only working Goblin Grinder key on his neck.",
+      "notes": "A smart worm. Begs, pleads, bribes, cries. Runs at the first sign of real harm. Spare Grinder key is on Urvan's body in the basement."
+    },
+    {
+      "name": "Qarg, Gravedigger",
+      "hp": 9,
+      "morale": "7",
+      "speed": "normal",
+      "attack": "Cudgel d6 or Shovel d4",
+      "special": "Filthy furs −d2. Easily bribed: DR8 Presence test if offered more silver than Nagel pays.",
+      "notes": "Muscle for hire. 10s/hour as Shoppe guard, 50s per corpse delivered. Not loyal — paid. A natural recurring NPC."
+    },
+    {
+      "name": "Alchemical Ooze",
+      "hp": 10,
+      "morale": "—",
+      "speed": "slow",
+      "attack": "Acidic splash, d8",
+      "special": "Gooey −d2. Defence DR10. Damaging the ooze: DR8 Strength or weapon sticks. Stuck weapon next round: DR10 Strength to free or destroyed.",
+      "notes": "Mindless. Hungry. No morale. Cannot climb ladders unaided."
+    },
+    {
+      "name": "Archer Goblin (Trap Floor)",
+      "hp": 6,
+      "morale": "7",
+      "speed": "normal",
+      "attack": "Flaming arrow, d4",
+      "special": "Quick — attacks and defence DR14. Ropy skin −d2. Curse on attack. Flaming arrow ignites oil-puddles: d6 fire/round in the puddle until smothered (DR10 Agility).",
+      "notes": "Perched on overhead beam in the Trap Floor. Three of them."
+    },
+    {
+      "name": "Bucket Goblin (Trap Floor)",
+      "hp": 6,
+      "morale": "6",
+      "speed": "normal",
+      "attack": "Splash of oil (no damage; coats target — next fire attack +d6 damage), knife d4 melee",
+      "special": "Quick — attacks and defence DR14. Ropy skin −d2. Curse on attack. Laughs constantly; tricked into spilling on himself DR12 Presence.",
+      "notes": "One per Trap Floor encounter. Killing him while bucket is full spills oil in a 10ft radius."
+    },
+    {
+      "name": "Cannon Goblin (Barricade)",
+      "hp": 6,
+      "morale": "7",
+      "speed": "normal",
+      "attack": "Cannon (d10 to triggering PC, d6 splash within 5ft) or knife d4 melee",
+      "special": "Quick — attacks and defence DR14. Ropy skin −d2. Curse on attack. Cannon: ONE shot, full minute to reload (will not get it).",
+      "notes": "Two of them, manning the cannon at the barricade. If the cannon misses, they fistfight each other — PCs get a round of free attacks."
+    }
+  ]
+}

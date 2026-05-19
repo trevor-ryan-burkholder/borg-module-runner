@@ -1,0 +1,513 @@
+{
+  "meta": {
+    "id": "bloat",
+    "title": "Bloat",
+    "author": "Greg Saunders (map: Dyson Logos; ed./art: Johan Nohr) — MBC Bloat (Mörk Borg Cult: Feretory)",
+    "version": "1.0",
+    "system": "morkborg",
+    "description": "A gluttonous underground labyrinth where Silas the Fattened King consumes the world one body at a time. Six rooms of fat, filth, and ravenous magic.",
+    "startNode": "surface-burrow",
+    "license": "Based on official Mörk Borg content. Independent production by Trevor Burkholder, published under the MÖRK BORG Third Party License. MÖRK BORG is © Ockult Örtmästare Games and Stockholm Kartell."
+  },
+  "nodes": [
+    {
+      "id": "surface-burrow",
+      "title": "The Animal Burrow",
+      "type": "location",
+      "atmosphere": "Wet earth and old grease. Rain hammering the moor. From the hole: a warm, rotten breath that should not come up out of the ground.",
+      "read_aloud": "The storm finds you on the open moor and beats you toward the only shelter for miles — a dark mouth in the hillside, dug wide by something larger than a fox. The dirt at the lip is glassy with rain. Inside the burrow, out of the wind, the smell hits you: old fat, soured meat, and something underneath that is not yet a smell, only a promise of one. The tunnel opens after a few paces. The dirt floor ends. Stairs of carved stone go down.",
+      "contents": {
+        "description": "Surface entrance. A ratbadger-widened animal burrow in a low hillside that turns into a carved stone stairwell descending into the cult labyrinth. This is the entry point Silas himself stumbled through, and the only way down. The Vestibule begins where the stairs end.",
+        "items": [],
+        "enemies": [],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "The stone of the stairwell is older than anything the PCs have seen aboveground. The risers are worn smooth in two long grooves — the dragging tracks of something heavy that came down and never went back up.",
+          "If anyone listens at the stairs: a wet, steady, distant chewing. It does not stop."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Armor & the Crawlspace",
+          "text": "Past the Vestibule the dug tunnel narrows. Heavy or medium armor will not fit through; PCs must strip it off and drag it, or leave it behind. Light armor is fine."
+        }
+      ],
+      "gm_notes": "Frame this as inevitable: the storm is real, the moor is empty, the burrow is the only option. Do not negotiate alternate entrances — there are none. If the PCs are here on a hook (missing villagers / hunting Silas / hiding from inquisitors) drop the hook detail now before the read-aloud. The chewing sound is canon-flavor — Silas, six rooms deep, always eating.",
+      "exits": [
+        {
+          "id": "burrow-to-vestibule",
+          "label": "Down — the stone stairs into the Vestibule",
+          "target": "vestibule",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["start", "surface"]
+    },
+    {
+      "id": "vestibule",
+      "title": "The Vestibule",
+      "type": "location",
+      "atmosphere": "Pitch black. The stink of old fat hangs in the still air. White fungus crawls the walls in soft, pale fingers. Somewhere below, the steady wet sound of someone chewing.",
+      "read_aloud": "The stairs end in a low chamber dug rough by claws, not carved. White fungus spreads across the dirt walls like frost that never thaws. Bones and rags are scattered, mixed with debris, and the only living thing here is hunched in the far corner, breathing through its teeth at you. A ratbadger. Its eyes catch the last of the daylight from the stairwell behind you. It is not afraid.",
+      "contents": {
+        "description": "Cramped earthen vestibule at the foot of the surface stairs, dug by a ratbadger that still lives here. Pitch black past the stairwell light. The walls and ceiling are crawling with white fungus. Debris on the floor: rags, gnawed bones, and d10 silver coins among them. A search reveals a mosaic on the back wall — bloated people in robes and bizarre headdresses enjoying a massive feast. From the Vestibule the only continuation is the carved stone passage onward into the Rotting Larder. Armor will not fit through what comes next.",
+        "items": [
+          "Debris on the floor — d10 silver among gnawed bones and rags.",
+          "Wall mosaic (revealed on a search) — bloated robed figures in bizarre headdresses at an enormous feast. Cult-iconography of the Goddess of Fat and Plenty; no mechanical value but powerful foreshadowing."
+        ],
+        "enemies": [
+          {
+            "name": "Ratbadger",
+            "hp": 5,
+            "morale": "9",
+            "speed": "fast",
+            "attack": "Nasty bite, d4",
+            "special": "Tough hide −d2.",
+            "notes": "Lives here. Will not flee from intruders in its den. Attacks if approached or cornered. Single creature."
+          }
+        ],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "The mosaic's largest figure — a gigantic crowned woman with empty eye-sockets — is unmistakably the same figure as the statue in the Chapel of Filth. The cult expected someone like Silas. Silas just got there first.",
+          "Under the bones in one corner: a half-eaten human hand, fresh. Whoever was carried past here recently did not all make it to the Larder in one piece."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Armor & the Crawlspace Beyond",
+          "text": "The passage from the Vestibule onward was widened by the ratbadger and the original cult, and is too tight for medium or heavy armor. PCs in such armor must strip or leave it before proceeding — or take +DR2 on every physical test inside the labyrinth and risk being stuck in the next narrow choke."
+        }
+      ],
+      "gm_notes": "Let them notice the chewing again before they leave. The ratbadger is the first fight — it is small, it is mean, it is not the threat the labyrinth is. If the PCs talk first: it does not understand them, but it can be driven off with thrown rations or fire. Mark the armor rule now; it matters more when they meet Silas. The white fungus is atmosphere, not edible, not magical — though a paranoid GM is welcome.",
+      "exits": [
+        {
+          "id": "vestibule-to-burrow",
+          "label": "Back — up the stairs to the surface burrow",
+          "target": "surface-burrow",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "vestibule-to-larder",
+          "label": "Forward — tight crawlspace into the Rotting Larder (no medium/heavy armor)",
+          "target": "rotting-larder",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["combat", "loot"]
+    },
+    {
+      "id": "rotting-larder",
+      "title": "The Rotting Larder",
+      "type": "location",
+      "atmosphere": "The hot, sweet stink of rotting flesh. Wet slapping sounds — ceramic hands working meat. Flies, somehow, this deep.",
+      "read_aloud": "The passage opens into a kitchen that is not a kitchen. Three things that were once people stand at long stone trenchers, working. Their skin is ceramic, glazed and cracked, and through the cracks bile runs in thin yellow lines. They are arranging a feast. Mounds of meat going to slime. Tangles of offal. Rags of clothing still on the cuts. Tiny green leaves laid carefully on top of each portion, like garnish. None of the heads turn. The hands keep working.",
+      "contents": {
+        "description": "Long stone chamber used as the Fattened King's kitchen. Three Fleshy Automatons work at huge stone trenchers piled with decayed meat, offal, blood, and the clothes the meat came in. Tiny salad leaves dress each portion. The automatons are 'looking for suitable ingredients' — anything that walks in is potentially an ingredient. From here a slimy, stinking passage leads east-northeast to the Sewage Pit; the south wall opens onto a corridor leading to the Chapel of Filth, where a moldy curtain hides a falling-block tripwire on the way to Automaton Storage.",
+        "items": [
+          "Decayed meat & offal — inedible; tasting it is a DR12 Toughness test or violent sickness for d6 hours (+DR2 on all tests).",
+          "Salad leaves — pretty. The leaves are fresh. Someone is bringing them in from somewhere. (No mechanical value; GM hook.)",
+          "Cookware — heavy ceramic cleavers, hooks, and a meat-fork. Improvised weapons: d4."
+        ],
+        "enemies": [
+          {
+            "name": "Fleshy Automaton (Cook)",
+            "hp": 8,
+            "morale": "—",
+            "speed": "normal",
+            "attack": "Violent shove or cleaver, d6",
+            "special": "Ceramic −d4. If knocked over (DR12 Strength to topple, or any successful attack that drops it below 0 HP), it spills its bile and deactivates permanently.",
+            "notes": "Three of them. They do not stop working unless attacked, unless a non-automaton enters and lingers — then they will set down their tools and come to process the new ingredient. They do not negotiate. They do not speak."
+          }
+        ],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "Underneath one of the trenchers: a half-prepared body, still wearing a wedding ring inscribed with a name (GM's choice — link to a hook NPC if there is one). Worth nothing. Worth everything.",
+          "If a PC watches the automatons work without attacking, they will eventually carry a finished trencher down the south corridor toward room 6. Following at a distance: the automatons trigger the falling-block trap on the way and the PCs see the mechanism activate, then reset. Useful intelligence; brutal price if the PCs are too close."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Knocking an Automaton Over",
+          "text": "Instead of fighting to 0 HP, a PC can attempt to tip a Fleshy Automaton: DR12 Strength (DR10 with help, DR14 if the automaton is bracing). Success spills its contents and ends it. Failure provokes a free attack."
+        },
+        {
+          "title": "Being Taken to the Larder",
+          "text": "Per canon: anyone non-automaton who enters Automaton Storage is taken here for processing. This is the room they will be brought to. Captives are pinned face-down on a trencher; one Toughness DR12 to break free per round, or one rescue attempt by an ally."
+        }
+      ],
+      "gm_notes": "Three automatons here is a hard fight if approached as combat. Reward stealth — the automatons are blind to anyone who acts like they belong (someone wearing the Cutlery-bearer's hunger, or a PC who plays priest after looking into the statue's eyes, walks past unmolested). The 'salad leaves' detail is a free hook — a surface garden somewhere is being raided, or worse, grown. [CANON CHECK] The garnish is explicit in the source; its origin is not. Map: the slimy passage east-northeast goes to Sewage Pit (3); the south corridor goes toward Chapel (4) and Automaton Storage (5), passing the falling-block.",
+      "exits": [
+        {
+          "id": "larder-to-vestibule",
+          "label": "Back — crawlspace to the Vestibule",
+          "target": "vestibule",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "larder-to-sewage",
+          "label": "East — slimy, stinking passage to the Sewage Pit",
+          "target": "sewage-pit",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "larder-to-chapel",
+          "label": "South — corridor toward the Chapel of Filth",
+          "target": "chapel-of-filth",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["combat", "scene"]
+    },
+    {
+      "id": "sewage-pit",
+      "title": "The Sewage Pit",
+      "type": "location",
+      "atmosphere": "Eye-watering. The smell is a physical pressure. A slow, deliberate slurp of something turning over in the dark — not water moving, but waste considering you.",
+      "read_aloud": "The passage opens onto a long pit cut into the stone, sloped down into a sluggish stream of filth. The fleshy automatons drain the Fattened King here. The waste has accreted into a single sliding mound the color of old liver, and it is moving against the current. As you watch, a slow ripple goes through it — and the ripple has the shape of a face, mouthing words it doesn't have the lips to finish. It notices you the same moment you notice it.",
+      "contents": {
+        "description": "Sloped pit-chamber where Silas's filth, carried in by the automatons, has accreted into a sentient sludge — Silas's Filth Made Flesh. The stench is debilitating: all tests in this chamber are at +DR2 from the smell alone. The sludge cannot be killed; it can only be dispersed by enough water (the Chapel's fountain of sweet water is the obvious source). Beneath the sludge, where Silas's metal passes undigested: d6 silver and the Tongue-shaped Knife. Searching the muck triggers the chamber's falling-block trap if the search is careless.",
+        "items": [
+          "d6 silver — beneath the sludge, scattered (Silas swallowed it, never passed it).",
+          "Tongue-shaped Knife — long, curved blade shaped like a tongue. d6 damage. On a hit, the target becomes ravenously hungry and desperately thirsty; they must eat AND drink within the hour or die. A relic of the Goddess of Fat and Plenty cult."
+        ],
+        "enemies": [
+          {
+            "name": "Silas's Filth Made Flesh",
+            "hp": "—",
+            "morale": "—",
+            "speed": "slow",
+            "attack": "Fecal acid burn, d4",
+            "special": "Cannot be killed by any weapon. Only enough clean water will temporarily dissipate it (a bucket from the Chapel's sweet-water fountain disperses it for d6 rounds; a sustained dousing — e.g. diverting the fountain — drives it underground until refilled). When dispersed it leaves a horrendous stench that clings to clothing and skin (+DR2 on all social tests until the wearer is properly washed). All tests inside the chamber are at +DR2 from the stench alone.",
+            "notes": "Treat as a hazard, not an opponent. PCs who try to fight it normally are wasting rounds and HP. Reward the player who runs back for water from the Chapel fountain (room 4)."
+          }
+        ],
+        "npcs": [],
+        "traps": [
+          {
+            "name": "Falling Block (Moldy Curtain Tripwire)",
+            "trigger": "Crossing the corridor between the Chapel area and Automaton Storage without noticing a moldy curtain — OR a careless search of the sludge here that pulls a hidden line.",
+            "effect": "A carved stone block falls from the ceiling. d6 damage to whoever is beneath it.",
+            "dr": "Presence DR14 to spot the moldy curtain / tripwire before triggering. A PC who describes their search carefully spots it automatically."
+          }
+        ],
+        "secrets": [
+          "Anything metal Silas has ever swallowed is in this pit. d6 silver and the Tongue-shaped Knife are the named finds; a generous GM may seed one more cursed bauble — a wedding band, a coin from a foreign mint, a tooth filled with lead.",
+          "The Filth recognizes Silas. It will not attack a PC who is loudly, visibly using the Gourmand's Cutlery to eat — it treats them as kin. Briefly. Until they leave the chamber.",
+          "The sluice empties into a deeper crack in the floor that goes somewhere. The labyrinth is not the bottom of this hole. [CANON CHECK — extrapolation; the source does not say what lies below.]"
+        ]
+      },
+      "rules": [
+        {
+          "title": "Dispersing the Filth",
+          "text": "A thrown bucket of clean water disperses Silas's Filth Made Flesh for d6 rounds. A sustained source — diverted fountain water, a wineskin emptied slowly — keeps it down for as long as it flows. After dispersal: the chamber's +DR2 stench-penalty drops to +DR0 for d6 rounds (the smell returns)."
+        },
+        {
+          "title": "Searching the Sludge",
+          "text": "Reaching into the muck without dispersing it: d4 acid burn per round of searching. With the Filth dispersed: safe but vile. Either way, careless searches trigger the falling block (Presence DR14 to notice first)."
+        },
+        {
+          "title": "The Tongue-shaped Knife (on hit)",
+          "text": "Target must eat AND drink within the hour or die. GM-call whether the satisfaction must be a proper meal or whether a swallowed leaf and a mouthful of water suffices — when in doubt, demand the meal."
+        }
+      ],
+      "gm_notes": "This room is the puzzle of the dungeon. The 'enemy' has no HP — the loot is buried in it — and the answer is back the way the PCs came, in the chapel fountain. Telegraph the fountain when they pass through Chapel of Filth, so they can return for it. If they try to brute-force the Filth: let them waste arrows, let them realize. If they try to grab the knife without dispersing the Filth, let them take d4 per round until they get the message or one of them dies. The Tongue-shaped Knife is a campaign-warping cursed weapon — make sure whoever picks it up understands the curse only fires on a HIT.",
+      "exits": [
+        {
+          "id": "sewage-to-larder",
+          "label": "Back — slimy passage to the Rotting Larder",
+          "target": "rotting-larder",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "sewage-to-chapel",
+          "label": "South — passage to the Chapel of Filth (fetch water from the fountain)",
+          "target": "chapel-of-filth",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["puzzle", "trap", "loot"]
+    },
+    {
+      "id": "chapel-of-filth",
+      "title": "The Chapel of Filth",
+      "type": "location",
+      "atmosphere": "The waste-smell from the sewer mixes with the clean, almost sweet trickle of a fountain. Wet murmuring of voices — prayer in a language no one in the room understands.",
+      "read_aloud": "A round chapel, half-flooded with rancid filth from the pit next door. At its center, on a dais standing in the muck, a statue: a great corpulent woman, robed, crowned, eyes of pale opal that seem to watch the room. Bone-white hands rest on her belly as if cradling it. To one side, against all reason, a small carved fountain bubbles with clean sweet water. Kneeling in the filth at the statue's feet are villagers — six of them, in rough clothes, faces tilted up toward those opal eyes. Behind them, three things of cracked ceramic stand in priests' robes, hands clasped. The villagers do not stop praying when you enter. The priests turn their heads in unison.",
+      "contents": {
+        "description": "The cult's chapel and the Goddess of Fat and Plenty's only known shrine. Half-flooded with filth bled in from the Sewage Pit. The central statue (corpulent woman, opal eyes) compels viewers to visit Silas as priests — DR14 Presence to resist. A clean fountain of sweet water on one side is the dungeon's answer to the Sewage Pit's sludge. Three Fleshy Automatons stand as priests; d6 captured villagers kneel in the muck, mid-conversion. The Gourmand's Cutlery is NOT here anymore — Silas took it; the chapel is where he found it. A corridor north returns toward the Larder; a passage east leads to the Sewage Pit; a corridor southwest goes toward Automaton Storage — and the moldy-curtained falling-block trap.",
+        "items": [
+          "Fountain of sweet water — fills any container in two rounds; the only source of clean water in the labyrinth and the answer to the Filth in the Sewage Pit.",
+          "The statue's opal eyes (two) — each worth ~150 silver to a fence; prying one out is DR12 Strength with a tool. When the first eye is removed, the statue's compulsion ENDS for everyone still in the room. When both are removed, the statue is just stone."
+        ],
+        "enemies": [
+          {
+            "name": "Fleshy Automaton (Priest)",
+            "hp": 8,
+            "morale": "—",
+            "speed": "normal",
+            "attack": "Violent shove, d6",
+            "special": "Ceramic −d4. If knocked over (DR12 Strength), spills its contents and deactivates. While the statue's compulsion is active, the priests will not attack first — they will instead try to herd intruders to kneel before the statue. If the statue is desecrated (eyes removed, statue toppled, etc.) all three automatons attack immediately.",
+            "notes": "Three of them. Acting as priests. They will allow a PC who has failed the DR14 Presence test to pass freely toward the King's Chamber — that PC is now meat-in-transit."
+          }
+        ],
+        "npcs": [
+          {
+            "name": "Captured Villagers (d6)",
+            "description": "Local farmers and one tinker, snatched from the moor above. Filth-streaked, eyes glassy, kneeling in the rancid wash at the statue's feet. They are mid-compulsion — looking, and looking, and looking into the opal eyes.",
+            "attitude": "neutral",
+            "notes": "Cannot be talked out of kneeling while the statue's eyes are intact. Pulled physically away, they go limp and weep. If both opal eyes are removed before the villagers are carried to the King's Chamber, the compulsion breaks — they wake up confused and terrified, and will follow any rescuer back to the surface. If they reach the King's Chamber, they die there."
+          }
+        ],
+        "traps": [
+          {
+            "name": "The Opal Eyes (Compulsion)",
+            "trigger": "Looking into the statue's eyes — voluntarily OR if a Fleshy Automaton priest forces a PC's head up.",
+            "effect": "DR14 Presence test or be compelled to walk to the King's Chamber and offer yourself for dinner. The compelled PC will not fight the journey. They will let companions stop them physically, but as soon as they are free again they will resume walking. Removing both opal eyes breaks the compulsion on everyone affected.",
+            "dr": "Presence DR14 to resist. The test repeats every time the PC looks directly at the statue."
+          }
+        ],
+        "secrets": [
+          "The Gourmand's Cutlery was found in this room, on a small altar that is now empty. The altar still bears the impression of knife and fork in tarnish — and a third impression, smaller, as if for a SPOON that has never been seen. [CANON CHECK — the source mentions only a knife and fork. The third impression is an expansion hook.]",
+          "Removing the FIRST opal eye is enough to break the compulsion on the room. Removing the second is just profit.",
+          "The captured villagers will, if rescued, tell the PCs that the priests took them in pairs — one to here, one straight to the Larder. There are more villagers in the Larder already, dead.",
+          "Following the fountain's outflow channel reveals it runs into the Sewage Pit chamber — clean water in, filth out, the cult understood the architecture as much as the theology."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Visiting the Opal Eyes",
+          "text": "Any PC who looks into the statue's eyes: Presence DR14 or compelled to walk to room 6 and offer themselves to Silas. The compulsion is silent and patient — the PC will allow themselves to be restrained, but resumes the moment they are free."
+        },
+        {
+          "title": "Breaking the Compulsion",
+          "text": "Removing either opal eye (DR12 Strength with a tool, d4 damage to the eye-socket of the statue) ends the compulsion on everyone currently affected. Smashing the statue also works; harder."
+        },
+        {
+          "title": "The Fountain",
+          "text": "Sweet, clean water. Fills a waterskin in two rounds, a bucket in one. The only thing in the dungeon that disperses Silas's Filth Made Flesh in the Sewage Pit."
+        }
+      ],
+      "gm_notes": "This is the hinge of the adventure. The fountain is the answer to room 3. The statue is the trap that drags careless PCs to room 6. The captured villagers are the moral weight — if the PCs ignore them and go straight for Silas, the villagers are gone when they come back. Pace the room: the priests are passive until the PCs commit violence on the statue. Reward thinking. The third altar-impression for the missing 'spoon' is canon-flexible flavor — keep it cryptic. The opal eyes are real loot but their removal is also a moral act: it saves the villagers.",
+      "exits": [
+        {
+          "id": "chapel-to-larder",
+          "label": "North — corridor back toward the Rotting Larder",
+          "target": "rotting-larder",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "chapel-to-sewage",
+          "label": "East — passage to the Sewage Pit",
+          "target": "sewage-pit",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "chapel-to-storage",
+          "label": "Southwest — corridor toward Automaton Storage (moldy curtain ahead; falling-block trap)",
+          "target": "automaton-storage",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "chapel-to-king-compelled",
+          "label": "Southeast — walk to the King's Chamber (compelled PCs only)",
+          "target": "fattened-king",
+          "condition": "Compelled by the opal eyes (DR14 Presence failed)",
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["puzzle", "scene", "hub"]
+    },
+    {
+      "id": "automaton-storage",
+      "title": "Automaton Storage",
+      "type": "location",
+      "atmosphere": "The hot, animal smell of rendered fat. The slow drip of grease into grease. Two pairs of ceramic hands working in tandem — wet, methodical, unhurried.",
+      "read_aloud": "The corridor ends in a wide vault. The floor is strewn with empty ceramic humanoid bodies — torsos, limbs, hollow heads with their tops cut clean off. Three huge stone vats dominate the room. Each is full to the lip with rendered fat, golden and steaming. Two figures lean over the central vat, drawing bile from their own cracked skin into a hollow ceramic head cradled between them. As you watch, a finger twitches inside the head. Then another. Then both their faces turn, in perfect time, toward you.",
+      "contents": {
+        "description": "The labyrinth's manufactory. Where bodies — kidnapped, killed in the Larder, drained of their juices — are rendered down in huge vats of fat, and where the cult's empty ceramic golem-bodies are kept until the Two Original Automatons fill them with bile and bring them to a kind of life. Anyone non-automaton who enters is, by the labyrinth's rule, to be taken to the Larder for processing. The Two Original Automatons are here. Empty ceramic limbs and torsos cover the floor. The corridor west returns toward the Chapel; the corridor south leads to the King's Chamber door.",
+        "items": [
+          "Rendered fat (3 vats) — flammable; a thrown torch sets one vat alight for d6 damage per round to anyone within 5ft. Burning all three is enough heat to destroy any empty ceramic bodies in the room and very likely collapse the chamber. GM-call on the consequences for the labyrinth above.",
+          "Empty ceramic humanoid bodies — d6 of them, scattered. Heavy and awkward; one could be carried out (DR12 Strength) as a dark trophy or for resale as cursed art."
+        ],
+        "enemies": [
+          {
+            "name": "Original Fleshy Automaton",
+            "hp": 8,
+            "morale": "—",
+            "speed": "normal",
+            "attack": "Violent shove or ceramic fist, d6",
+            "special": "Ceramic −d4. If knocked over (DR12 Strength), spills its bile and deactivates. The two ORIGINAL automatons are the only ones in the labyrinth who can animate new automatons — destroying both shuts down the labyrinth's production line. [CANON CHECK — whether the two originals are mechanically stronger than the newer automatons is unspecified in the source; treat as identical stat-wise.]",
+            "notes": "Two of them, the founders. They will not retreat. If the PCs are not already known to be 'ingredients', the originals will attempt to subdue rather than kill — wrestle them down and drag them to the Larder. Anyone reduced to 0 HP here is not killed; they are processed."
+          }
+        ],
+        "npcs": [],
+        "traps": [
+          {
+            "name": "Falling Block (Moldy Curtain Tripwire) — on the way in",
+            "trigger": "Approaching this room from the Chapel corridor without noticing a moldy curtain stretched across the passage.",
+            "effect": "A carved stone block falls from the ceiling. d6 damage to the lead character.",
+            "dr": "Presence DR14 to spot the curtain and the wire behind it. A careful described search spots it automatically. Once triggered, the block must be reset by hand — it will not fire a second time on the same approach."
+          }
+        ],
+        "secrets": [
+          "The hollow heads have small marks scratched on the inside of their crowns — count-tallies. The number is in the dozens. The cult was prolific. Silas is only the latest tenant.",
+          "Anyone reduced to 0 HP in this room is dragged, not killed, and woken up in the Larder pinned to a trencher. Mechanically: they have one chance to escape (DR12 Toughness or DR12 Strength) before they are 'prepared'.",
+          "Igniting the vats is a desperate option — d6 per round to anyone in the room, including the burner, including the originals. The originals do not flee fire. They will keep working."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Processed, Not Killed",
+          "text": "A non-automaton dropped to 0 HP in this room is NOT killed — the originals will carry them to the Larder. The PC wakes pinned to a trencher with one chance to escape (DR12 Toughness or Strength). Allies can intervene at the Larder."
+        },
+        {
+          "title": "Burning the Vats",
+          "text": "A torch into a vat of rendered fat ignites it: d6 damage per round to everyone within 5ft. All three vats burning at once: the room becomes uninhabitable in d4 rounds; ceilings begin to crack."
+        },
+        {
+          "title": "Destroying the Production Line",
+          "text": "If both Original Automatons are destroyed, no new Fleshy Automatons can be made. Existing automatons (in the Larder, the Chapel, anywhere) continue to function until destroyed individually."
+        }
+      ],
+      "gm_notes": "Tactically: the two originals + a possible torch-the-vats option + the falling-block trap on the way in. Don't let the PCs forget the trap on the way out unless they reset it. The 'processed not killed' rule is generous — let the players who drop here have the horror-show moment of waking up on a trencher with a Fleshy Automaton in priest robes neatly arranging garnish across their bare belly. The south door to the King's Chamber is too small for Silas to pass — but normal-sized PCs walk through fine.",
+      "exits": [
+        {
+          "id": "storage-to-chapel",
+          "label": "West — corridor back to the Chapel of Filth (re-arm or reset the falling block!)",
+          "target": "chapel-of-filth",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "storage-to-king",
+          "label": "South — small stone door to the King's Chamber (Silas cannot fit through)",
+          "target": "fattened-king",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["combat", "trap", "scene"]
+    },
+    {
+      "id": "fattened-king",
+      "title": "The Fattened King's Chamber",
+      "type": "location",
+      "atmosphere": "Heat from a body that should not be alive. The room is full of breath. The smell of sweat and digestion and a wet, constant chewing.",
+      "read_aloud": "The small stone door opens into a vaulted chamber, and the chamber is one piece of meat. Silas — what is left of him — fills it shoulder to shoulder, ceiling to floor. His skin is greased to a shine. His eyes have rolled almost entirely back. In one fat-pillowed hand, almost lost in the flesh, gleams a beautiful little knife. In the other, a beautiful little fork. He is eating. He has not stopped eating. He sees you. He is delighted. He gestures with the Cutlery — invitingly, lovingly — and the room exhales a wet, warm wind that smells of every bad thing a body can make.",
+      "contents": {
+        "description": "The terminus. Silas the Fattened King fills the chamber — too vast to leave through the door he came in through. He cannot pursue PCs. He CAN eat them. He wields the Gourmand's Cutlery (knife and fork) and is fed by the Fleshy Automatons through a small slot above the door. The chamber has no other exits — fight, parley, or flee back through the small door.",
+        "items": [
+          "The Gourmand's Cutlery — beautiful knife and fork. Allows the wielder to eat ANYTHING. The wielder becomes famished and must eat; everything tastes wonderful. d4 damage in combat. Curse: any new wielder who picks it up becomes the next Silas if not careful. Recovering it requires destroying Silas or prying it from his grip after he dies.",
+          "Inside Silas (after death) — anything he has eaten that is not yet digested. GM-call: the source notes only metal survives him. Possibilities: another small relic, a swallowed signet ring belonging to a hook-NPC, the bones of someone the PCs were sent to find."
+        ],
+        "enemies": [
+          {
+            "name": "Silas the Fattened King",
+            "hp": 20,
+            "morale": "9",
+            "speed": "slow",
+            "attack": "Gourmand's Cutlery, d4 + Engulf",
+            "special": "No armour. Cannot leave the chamber. ENGULF: on a successful hit, target tests Strength DR10 or is partially swallowed for d6 chewing damage that round (and the round after, until pulled free by an ally — DR12 Strength). FLATULENCE: every time Silas takes damage he loses control of his body — all in the room test Toughness DR14 or gag for d3 rounds, all tests at +2 DR (cumulative across failures).",
+            "notes": "The boss. Slow but devastating in melee. Cannot pursue. Can be starved out: deny him the automatons (destroy them all) and he eventually consumes himself — d6 days, GM-call. The Cutlery is on his person; recovering it is its own moral hazard."
+          }
+        ],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "Silas can still speak, between mouthfuls. He will offer the PCs anything — gold, women, the kingship of his kitchen — for one more course. He believes everything he is saying.",
+          "Killing Silas does NOT destroy the Gourmand's Cutlery. Anyone who picks it up will be tempted (Presence DR12 first time, +DR2 each subsequent time within an hour) to taste something. The first taste begins the cycle. [CANON CHECK — whether the Cutlery's compulsion can be permanently broken (smashed in the fountain? returned to the empty altar? thrown into the Sewage Pit?) is unwritten. GM-call.]",
+          "If both Original Automatons in Storage are dead, Silas cannot be fed. He will, over d6 days, eat what he can reach — including himself.",
+          "Inside Silas's belly — if cut open after death — a single small intact item from one of the captured villagers' bodies. Tie this to a hook-NPC if you have one. He could not digest love."
+        ]
+      },
+      "rules": [
+        {
+          "title": "The Door is Too Small",
+          "text": "Silas cannot pursue. PCs can retreat through the door at any time without triggering an opportunity strike. He will scream, plead, and bargain. The Cutlery, if dropped, can be hooked with a long stick or rope from the doorway."
+        },
+        {
+          "title": "Engulf",
+          "text": "On a successful Cutlery hit: target tests Strength DR10. Failure: partially swallowed, d6 chewing damage immediately and again each round until freed. An ally can pull the victim free with a DR12 Strength test (one attempt per round). A swallowed PC cannot attack."
+        },
+        {
+          "title": "Flatulence",
+          "text": "Every time Silas takes damage: all in the chamber test Toughness DR14 or gag for d3 rounds. Gagging characters take +2 DR on all tests, CUMULATIVE — every failure stacks. The gag clears when the rounds elapse or the PC leaves the chamber."
+        },
+        {
+          "title": "Recovering the Cutlery",
+          "text": "After Silas's death the Cutlery can be taken. First handler tests Presence DR12 or feels a small, friendly hunger. Each later opportunity to eat with it: +DR2, cumulative within the hour. Failing means a single bite. A single bite is rarely just one."
+        }
+      ],
+      "gm_notes": "Climax. Play Silas as a man who has not been a man in months — joyful, agonized, generous, ravenous. He believes the PCs are guests. He has rooms for them in his stomach. Mechanically he is grindable — HP 20, no armour, only a d4 weapon — BUT the Flatulence stack will wreck a slow party, and Engulf is a real threat if the PCs are unlucky on initiative. Smart parties realize they can starve him from the doorway. Cruel parties wear masks against the gag and butcher him at range. The Cutlery is the real prize, the real curse, and the real campaign hook. Do not destroy it easily.",
+      "exits": [
+        {
+          "id": "king-to-storage",
+          "label": "Back — through the small stone door to Automaton Storage",
+          "target": "automaton-storage",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["boss", "climax", "end"]
+    }
+  ],
+  "bestiary": [
+    {
+      "name": "Ratbadger",
+      "hp": 5,
+      "morale": "9",
+      "speed": "fast",
+      "attack": "Nasty bite, d4",
+      "special": "Tough hide −d2.",
+      "notes": "Vestibule (room 1). Lives in the burrow it dug. Source: MBC Bloat."
+    },
+    {
+      "name": "Fleshy Automaton",
+      "hp": 8,
+      "morale": "—",
+      "speed": "normal",
+      "attack": "Violent shove, d6",
+      "special": "Ceramic −d4. If knocked over (DR12 Strength), spills its bile and deactivates permanently.",
+      "notes": "3 in the Larder, 3 in the Chapel (acting as priests), 2 originals in Automaton Storage. Source: MBC Bloat."
+    },
+    {
+      "name": "Silas's Filth Made Flesh",
+      "hp": "—",
+      "morale": "—",
+      "speed": "slow",
+      "attack": "Fecal acid burn, d4",
+      "special": "Cannot be killed by any weapon. Only enough clean water dissipates it temporarily. All tests in the chamber are at +DR2 from the stench. Dispersal leaves a horrendous stench (+DR2 on social tests until properly washed).",
+      "notes": "Sewage Pit (room 3). Source: MBC Bloat."
+    },
+    {
+      "name": "Silas the Fattened King",
+      "hp": 20,
+      "morale": "9",
+      "speed": "slow",
+      "attack": "Gourmand's Cutlery, d4 + Engulf",
+      "special": "No armour. Cannot leave the chamber. ENGULF: hit target tests Strength DR10 or partially swallowed for d6 chewing damage (continues until pulled free, DR12 Strength). FLATULENCE: each time Silas takes damage, all in the room test Toughness DR14 or gag for d3 rounds, all tests at +2 DR (cumulative).",
+      "notes": "The Fattened King's Chamber (room 6). The boss. Source: MBC Bloat."
+    }
+  ]
+}

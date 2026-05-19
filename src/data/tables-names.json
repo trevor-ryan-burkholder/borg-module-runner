@@ -1,0 +1,12 @@
+{
+  "source": "MÖRK BORG Bare Bones Edition, p.1 (d6 then d8)",
+  "note": "Flattened from the d6×d8 grid in the source. The dice mechanic is preserved in source attribution but not at runtime — roll() picks one uniformly.",
+  "entries": [
+    "Aerg-Tval", "Agn", "Arvant", "Belsum", "Belum", "Brint", "Börda", "Daeru",
+    "Eldar", "Felban", "Gotven", "Graft", "Grin", "Grittr", "Haerü", "Hargha",
+    "Harmug", "Jotna", "Karg", "Karva", "Katla", "Keftar", "Klort", "Kratar",
+    "Kutz", "Kvetin", "Lygan", "Margar", "Merkari", "Nagl", "Niduk", "Nifehl",
+    "Prügl", "Qillnach", "Risten", "Svind", "Theras", "Therg", "Torvul", "Törn",
+    "Urm", "Urvarg", "Vagal", "Vatan", "Von", "Vrakh", "Vresi", "Wemut"
+  ]
+}

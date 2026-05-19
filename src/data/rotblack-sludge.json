@@ -1,0 +1,1273 @@
+{
+  "meta": {
+    "id": "rotblack-sludge",
+    "title": "Rotblack Sludge, or The Shadow King's Lost Heir",
+    "author": "Pelle Nilsson, Johan Nohr (Mörk Borg core book)",
+    "version": "1.0",
+    "system": "morkborg",
+    "description": "The Shadow King's heir is missing. Retrieve him discreetly from the Accursed Den. Fifteen rooms, cannibal warlock, glass-house cultist, intestine-creature in the depths, and the rotblack sludge that floods the lower chambers.",
+    "startNode": "seer-briefing",
+    "license": "Based on official Mörk Borg content (Rotblack Sludge is the bundled intro module from the core book). Independent production by Trevor Burkholder, published under the MÖRK BORG Third Party License. MÖRK BORG is © Ockult Örtmästare Games and Stockholm Kartell."
+  },
+  "nodes": [
+    {
+      "id": "seer-briefing",
+      "title": "The Masked Seer",
+      "type": "scene",
+      "atmosphere": "Iron clatter. The smell of burnt hair from the executioner's brazier. Somewhere behind a curtain, a small bell rings once — and the guards stop moving.",
+      "read_aloud": "You were caught with heretical things you should not have touched, and the sentence has already been spoken. The block has your name on it. You are dragged not toward it but past it — through a curtain, into a low room with no windows, where a figure waits in a porcelain mask the color of an old tooth. The mask has too many small holes for eyes. When the figure speaks, it sounds like several people trying to agree on one voice.\n\n\"You are dead. Or you are useful. Decide.\n\nThe Shadow King's one true heir is missing — his son Aldon. Without him, the throne passes to the King's imbecile brother and worse things than that. The boy is in the Accursed Den. Bring him out. Discreetly. We will not ask how, and no one will ever know you were there.\n\nDo this and you live. Wealth, also, if you survive enough of yourself to spend it. Refuse and the block is still warm.\"\n\nThe Seer waits. The bell does not ring again.",
+      "contents": {
+        "description": "The framing scene. A masked Courtier of the Shadow King — never named — offers the PCs their lives in exchange for retrieving Aldon from the Accursed Den. Use this scene to set tone, deliver the scrying, hand out provisions if generous, and dump the PCs at the cave mouth of the Den. The Seer is a real Courtier of the Shadow King line and means exactly what is said; betrayal-by-omission lies in what is NOT said (the d8 of scryings, half of which are lies).",
+        "items": [
+          "Provisions, at GM discretion: a lantern with d6+2 hours of oil; rations for one day; a length of rope; a chalk stub for marking rooms; one each of the PCs' confiscated weapons returned without ceremony.",
+          "A folded square of black silk bearing the Shadow King's sigil — proof to any of his servants that the bearer acts under his authority. Useless inside the Den. Worth something outside it."
+        ],
+        "enemies": [],
+        "npcs": [
+          {
+            "name": "The Masked Seer (unnamed Courtier of the Shadow King)",
+            "description": "A figure in a porcelain mask the color of an old tooth, pierced with too many small holes for eyes. Voice like several people agreeing on one voice. Gender unguessable, age unguessable, height beneath robes unguessable.",
+            "attitude": "neutral",
+            "notes": "Will not bargain except on terms already offered. Cannot be intimidated and will not draw a weapon. If attacked, the bell rings and the guards return — the scene ends in execution. If asked questions outside the scryings, answers in riddles. The Seer is loyal to the Shadow King line, not to the PCs; will let them die without flinching if it serves the heir's recovery."
+          }
+        ],
+        "traps": [],
+        "secrets": [
+          "The Seer's mask has too many eye-holes because the wearer is not one person. The voice is the consensus of a Courtier ritual. [CANON CHECK — this is implied flavor only; canon never confirms.]",
+          "The Seer knows that some of the scryings are lies. The Seer does not know which ones. The Shadow King's court receives mixed visions and the Courtier delivers all of them, equally.",
+          "If the PCs ask for an eye to use as a key, the Seer says nothing for a long moment, then offers a small pouch containing a single, fresh, lidded eye, blue, packed in salt. \"Return what you do not need.\" [Optional — GM call; skips the canon hunt for an eye but loses thematic weight.]"
+        ]
+      },
+      "rules": [
+        {
+          "title": "The Seer's Scrying (d8 — read all eight aloud, mix truths and lies)",
+          "text": "1 — 'A glass house in the deep, and a woman who reads alone there.' (TRUE — Lesdy in the Greenhouse.) 2 — 'They eat their own kind. They are not many. They are enough.' (TRUE — cannibals; Fletcher's court.) 3 — 'A vast creature of intestines waits beneath, in the black sludge.' (TRUE — the Gutworm.) 4 — 'The boy may not wish to come home.' (TRUE — Aldon is corrupted.) 5 — 'Gases that drive the intruder mad seep from the walls.' (LIE.) 6 — 'The lamp-oil there is touched by blood and burns hungry.' (LARGELY UNTRUE.) 7 — 'An ancient man waits in the dark. Avoid him.' (LIE — there is no such man, unless the GM places one to reward paranoia.) 8 — GM choice: roll again, invent a new lie, or speak a sudden flat truth ('You will not all come back.')."
+        },
+        {
+          "title": "The Deal",
+          "text": "If the PCs refuse, the scene ends. They are executed. Start over with new PCs. If they accept, they are blindfolded, walked through tunnels for what feels like hours, and left at a black opening in a hill the color of a bruise. Their gear is on the ground. The blindfolds are gone. No one is behind them when they turn around."
+        },
+        {
+          "title": "Random Encounters Inside the Den",
+          "text": "After each scene of significant activity OR when the PCs move through a corridor/staircase, roll d6. On 1: roll Encounter Table A (violent). On 2: roll Encounter Table B (weird — once per scenario each). On 3+: nothing. Tables are in the Rules Panel and on each random-encounter-flagged room (Pump, Chain, Debris)."
+        },
+        {
+          "title": "Encounter Table A — Violent (d6)",
+          "text": "1 — d4 Dusk Gnoums crawl from a wall-hole, knives out. 2 — A pair of sharp-toothed guards on patrol, drunk on bone-wine. 3 — A single Mongrel, off its leash, sniffing for fresh meat. 4 — d2 Goblins in from the surface tunnels, ropy-skinned and twanging little bows. 5 — A Nesting Death drops from a bone-nest in the ceiling, wins initiative on 1–4. 6 — d2 of Fletcher's cannibal acolytes, lean and grinning."
+        },
+        {
+          "title": "Encounter Table B — Weird (d4, each once per scenario)",
+          "text": "1 — The Distraught Spirit manifests, pleading with the PCs to end the Gutworm. Knows it lives in the sludge; remembers the sound of it. Dissolves once heard out. 2 — Sagsobuth manifests — shapeless, face a vortex of light. Will trade: violet poison (30s, DR14, 2d10 dmg, d4+1 doses); Beechwood Tube (30s, protean scroll with a new Power each dawn, misinterpret on 1–3). Cannot be harmed. If provoked, explodes (2d10 split among the group). 3 — Sudden Silence: all sound ceases for d4 rounds. Spells fail. Combat continues in unbearable hush. 4 — A sarcophagus appears in the room, lid askew. Anyone climbing in is teleported to a random other room in the Den (GM rolls 1d15)."
+        }
+      ],
+      "gm_notes": "This is the opening scene and the GM's chance to set every tone for the rest of the dungeon: the Shadow King's reach is total, the PCs are disposable, and the source of their information is openly unreliable. Read all eight scryings, deliver them flat. Do not flag which are lies — the PCs paying with their lives for the wrong inference is the entire point. The Seer is a useful recurring archetype; never name them. If the PCs ask where the Den is, the Seer says 'underground.' That is the whole answer. After acceptance, jump straight to the den-entrance node. [CANON CHECK — the Seer's identity, gender, and the porcelain-mask detail are an extrapolation of 'masked Courtier of the Shadow King.' The core book gives only the role.]",
+      "exits": [
+        {
+          "id": "seer-to-entrance",
+          "label": "Accept the deal — you are left at the mouth of the Accursed Den",
+          "target": "den-entrance",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "seer-refuse",
+          "label": "Refuse — return to the block (scenario ends)",
+          "target": "seer-briefing",
+          "condition": "Roll up new PCs",
+          "locked": true
+        }
+      ],
+      "visited": false,
+      "tags": ["start", "scene", "npc"]
+    },
+    {
+      "id": "den-entrance",
+      "title": "Room 1 — The Den Mouth",
+      "type": "location",
+      "atmosphere": "A throat in the hill. The air coming out of it is wet and warm and smells faintly of cooking. Somewhere far inside, something laughs, then stops laughing.",
+      "read_aloud": "The opening is unworked stone, a vertical mouth in a hillside the color of an old bruise. A staircase falls into it. Each step is worn shallow in the middle by feet that came down and did not come back up. At the bottom: a passage. A torch burns in a crude iron bracket halfway down. Someone replaced it recently.",
+      "contents": {
+        "description": "The cave mouth and a descending staircase. A still-burning torch in a wall bracket means someone tends this entrance — Fletcher's people. The stair opens into a short antechamber that branches: one way to the Guard Room (Room 2), the other to a sloping passage that descends past the upper rooms into the lower, sludge-flooded chambers. PCs entering with any pretense of stealth should hear voices from the Guard Room ahead.",
+        "items": [
+          "Burning torch in iron bracket (replaceable; full hour of light remains).",
+          "Boot-scrapes and a single greasy thumbprint on the wall in old blood — not the PCs' party. Someone else came down here recently, alone."
+        ],
+        "enemies": [],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "The thumbprint is Lesdy's. She passed through here ten days ago and has not climbed back out. [CANON CHECK — extrapolation; canon places her in the Greenhouse but does not name her route in.]",
+          "If a PC listens at the foot of the stair: distant chanting from below, water dripping, and once — clearly — a voice calling a name. The name is not Aldon."
+        ]
+      },
+      "rules": [],
+      "gm_notes": "Set the tone. The torch is the first sign the Den is occupied, not abandoned. There is no encounter here yet — let the players catch their breath, organize, and choose a marching order. If they want to ambush the Guard Room, give them the chance.",
+      "exits": [
+        {
+          "id": "entrance-to-guard",
+          "label": "Forward — voices ahead, into the Guard Room",
+          "target": "guard-room",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "entrance-to-corridor",
+          "label": "Side passage — a sloping corridor descending past the upper rooms",
+          "target": "upper-corridor",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["start", "entrance"]
+    },
+    {
+      "id": "guard-room",
+      "title": "Room 2 — Guard Room",
+      "type": "location",
+      "atmosphere": "Sweat, woodsmoke, and the iron tang of an unwiped cleaver. The light is brown — tallow, not oil.",
+      "read_aloud": "A wide low chamber lit by a single sputtering tallow candle and the embers of a small cookfire. Three guards lounge here, mostly armored, sharp-toothed by deliberate filing. They are eating something stringy that does not move on its own anymore. A heavy door bolted on this side leads deeper. A trapdoor in the floor is fastened with chain. The smell from the trapdoor is unmistakable — sludge.",
+      "contents": {
+        "description": "Fletcher's first line. Three sharp-toothed guards — filed teeth, leather and chain armor, all armed. They are not vigilant; they assume anyone who walks in is one of their own. A surprise round is plausible. The heavy door (bolted from this side) leads to the Library / Bedroom (Room 3). The chained trapdoor opens onto a slick stone shaft down to the Pump Room (Room 8) and from there to the sludge-flooded lower chambers.",
+        "items": [
+          "Three sets of patchwork armor (leather + chain, −d3 if scavenged whole).",
+          "Three filed-tooth grins — a guard's tooth is worth 1s to a Galgenbeck collector of curios.",
+          "A wineskin of bone-wine. One swallow: −1 Presence for an hour, +1 to all attacks against humans, and you will eat literally anything put in front of you (GM call on what 'anything' looks like).",
+          "Cookpot containing the unidentifiable remainder of someone's leg.",
+          "Iron ring of three keys — one fits the bolted door north, one fits the trapdoor chain, one fits nothing the PCs will ever find. [CANON CHECK]"
+        ],
+        "enemies": [
+          {
+            "name": "Sharp-Toothed Guard",
+            "hp": 7,
+            "morale": "8",
+            "speed": "normal",
+            "attack": "Cleaver or filed knife, d6",
+            "special": "Patchwork armor −d3. If a guard's bite connects (specify before attacking, swap d6 weapon damage for a d4 bite), test Toughness DR12 or contract a low fever for d6 days (−1 to all tests). They are filing their teeth for show, but the bite still works.",
+            "notes": "Three of them. Will fight to morale; they break easily if two of the three drop. One will flee toward the Forge to warn Fletcher if not silenced."
+          }
+        ],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "The chain on the trapdoor is not to keep things in. It is to keep things out — Fletcher does not want the Gutworm climbing the shaft on a slow night.",
+          "The guards know Lesdy is in the Greenhouse and they are afraid of her. They will not say her name; they will spit and call her 'the gentlewoman.' Captured guards interrogated about her give one useful sentence: 'She reads.' Then they stop talking."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Bone-Wine",
+          "text": "One swallow: −1 Presence for an hour, +1 to all attacks against humans for the same hour, and the drinker will eat any organic matter offered to them, no save. d6 swallows per skin."
+        },
+        {
+          "title": "Fleeing Guard",
+          "text": "If one survives unsilenced, they sprint down the side corridor toward the Forge / Slaughterhouse (Room 7) to warn Fletcher. Fletcher will not leave his slaughterhouse, but he will be ready when the PCs arrive — full HP and his bull-whip lit."
+        }
+      ],
+      "gm_notes": "The first proper fight. Three guards is a fair test of a low-level party — let one go down quickly to a lucky hit so the players feel competent, then make the other two work for it. The trapdoor chain is a Chekhov's chain: someone WILL eventually open it, and what comes up is either nothing, or the Gutworm.",
+      "exits": [
+        {
+          "id": "guard-to-entrance",
+          "label": "Back — staircase to the Den Mouth",
+          "target": "den-entrance",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "guard-to-library",
+          "label": "Bolted door north — into the Library / Bedroom (Room 3)",
+          "target": "library-bedroom",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "guard-to-pump",
+          "label": "Chained trapdoor down — shaft to the Pump Room (Room 8)",
+          "target": "pump-room",
+          "condition": "Chain unlocked or broken",
+          "locked": false
+        },
+        {
+          "id": "guard-to-corridor",
+          "label": "Side door — into the upper corridor (toward Rooms 4–7)",
+          "target": "upper-corridor",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["combat", "loot"]
+    },
+    {
+      "id": "library-bedroom",
+      "title": "Room 3 — The Library / Bedroom",
+      "type": "location",
+      "atmosphere": "Cold and dry, unlike everywhere else. Three skeletons lie neatly on three cots as if put there to rest. The books are bound in skins that still hold the shape of their original owners.",
+      "read_aloud": "Stone shelves crammed with rotting books. Three iron-frame cots, each holding a skeleton laid out with their hands folded across their chests — neat, ceremonial. A reading-stand at the center holds a single open volume, its pages thick and dark. The air here is dry where the rest of the Den is damp. The skeletons do not look like they died here. They look like they were brought here and tucked in.",
+      "contents": {
+        "description": "A library-bedroom hybrid. Three skeletons rest on cots. The shelves contain obscure necromantic and theological texts — most are too rotten to use. The open volume on the stand is a primer of necromantic Powers, mostly faded. Reading it aloud is largely meaningless except for the trap-phrase below: shouting 'You dead, arise!' summons the Tired Crystal Demon.",
+          "items": [
+            "Rotting books — 1d6 are intact enough to grant a single GM-chosen Power (one-shot scroll) to a literate PC who spends d6 hours studying. Each Power roll is misinterpreted on 1–3 instead of 1.",
+            "On the open stand: a primer with the phrase 'You dead, arise!' clearly marked. Reading it silently does nothing. Speaking it triggers the Crystal Demon.",
+            "The three skeletons wear identical wool nightshirts of high quality. Each pocket contains a single dried fig and a wooden token marked with the same rune."
+          ],
+        "enemies": [],
+        "npcs": [
+          {
+            "name": "Tired Crystal Demon",
+            "description": "Summoned only by speaking 'You dead, arise!' from the primer. Shudders into being like a refraction of itself. Cannot be harmed.",
+            "attitude": "hostile",
+            "notes": "Drains the text from ONE scroll the readers carry (GM picks the most useful — the demon is hungry, not random). Then emits a Mental Shockwave: every PC tests Presence DR12 or cannot use Powers for the rest of the scenario AND loses d6 HP. After the shockwave it vanishes with a small relieved sound, as if it had finally gotten to leave."
+          }
+        ],
+        "traps": [],
+        "secrets": [
+          "The three skeletons are not the demon's victims. They are previous readers who came here, said the words, and were drained. Their nightshirts are clean because someone (Fletcher? An earlier occupant?) keeps tending them.",
+          "The wooden tokens in the nightshirt pockets match a glyph carved on the underside of the reading-stand. The glyph means 'silent.' Whoever put the tokens there was warning the next reader: do not speak.",
+          "The demon does not have to be summoned. The room is safe if no one reads aloud. The trap is the eagerness of a literate adventurer."
+        ]
+      },
+      "rules": [
+        {
+          "title": "The Trap-Phrase",
+          "text": "Speaking 'You dead, arise!' aloud — in any language, in any tone — summons the Tired Crystal Demon. It cannot be harmed. It drains one scroll the party carries (GM picks). Then ALL PCs in the room test Presence DR12 or lose d6 HP and cannot use Powers for the rest of the scenario."
+        },
+        {
+          "title": "Studying the Books",
+          "text": "A literate PC spending d6 uninterrupted hours with the intact books may roll a random Power or scroll (GM table). The Power is one-shot and is misinterpreted on a d20 roll of 1–3 instead of 1, because the books are corrupted by the demon's leavings."
+        }
+      ],
+      "gm_notes": "Iconic Mörk Borg gotcha — the trap is reading. Lean into the players' instinct to investigate every text. If they ask 'what does the book say?' read them the trap phrase as text on the page, not as speech. Wait for someone to read it aloud. Do not foreshadow. The demon's drain is brutal but not lethal — the scenario rewards survival, not perfection. [CANON CHECK — three skeletons in identical nightshirts is an embellishment; canon describes the room as having slumbering skeletons and the demon trigger, but the figs and tokens are added for flavor.]",
+      "exits": [
+        {
+          "id": "library-to-guard",
+          "label": "Back — bolted door to the Guard Room (Room 2)",
+          "target": "guard-room",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "library-to-corridor",
+          "label": "Side passage — to the upper corridor (Rooms 4–7)",
+          "target": "upper-corridor",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["puzzle", "treasure", "trap"]
+    },
+    {
+      "id": "upper-corridor",
+      "title": "The Upper Corridor",
+      "type": "transition",
+      "atmosphere": "A wandering stone gut of a hallway. The floor slopes gently down. Every fifth step, a wet patch you do not look at twice.",
+      "read_aloud": "The corridor bends and bends again. Doors stud the walls — some heavy, some makeshift — and at the far end the floor opens into a downward stair. Somewhere ahead a child is laughing. Or crying. The acoustics will not commit.",
+      "contents": {
+        "description": "The arterial corridor connecting the upper rooms of the Den. Branches: Prisoners' Cells (Room 4), Dining Hall (Room 5), Kitchen (Room 6), Forge/Slaughterhouse (Room 7). At the far end, a stair down leads to the Pump Room (Room 8). Use as a hub. Roll for a random encounter (d6 on the random encounter rule) when PCs first arrive.",
+        "items": [],
+        "enemies": [],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "The laughing-crying is coming from Room 4 (the cells) and from Room 6 (the kitchen) at the same time. The acoustics make it sound like one source until the PCs identify which doorway it loudens at."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Hub Random Encounter",
+          "text": "First time the PCs enter, roll d6: 1 — Table A (violent). 2 — Table B (weird). 3+ — nothing. See Encounter Tables in the briefing rules."
+        }
+      ],
+      "gm_notes": "Hub. Use to gate exploration order. Let the players pick which door to try first.",
+      "exits": [
+        {
+          "id": "corridor-to-cells",
+          "label": "Heavy iron door — Prisoners' Cells (Room 4)",
+          "target": "prisoners-cells",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "corridor-to-dining",
+          "label": "Open archway — Dining Hall (Room 5)",
+          "target": "dining-hall",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "corridor-to-kitchen",
+          "label": "Soot-stained door — Kitchen (Room 6)",
+          "target": "kitchen",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "corridor-to-forge",
+          "label": "Heavy oak door, hot to touch — Forge / Slaughterhouse (Room 7)",
+          "target": "forge-slaughterhouse",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "corridor-to-pump",
+          "label": "Stair down — to the Pump Room (Room 8)",
+          "target": "pump-room",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "corridor-to-entrance",
+          "label": "Back — toward the Den Mouth",
+          "target": "den-entrance",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["hub"]
+    },
+    {
+      "id": "prisoners-cells",
+      "title": "Room 4 — Prisoners' Cells",
+      "type": "location",
+      "atmosphere": "The smell of long-held bodies. The sound of a man explaining something patiently to a wall.",
+      "read_aloud": "A row of four iron cages set into a low alcove. Three are occupied. In one: a thin woman whose arms have been replaced with bundled willow-switches that move on their own. In the second: a man explaining something patiently and at length to the wall. In the third: a small heap that may once have been a child, breathing. The fourth cage stands open. The straw in it is recent.",
+      "contents": {
+        "description": "Four cells, three occupied by mad prisoners. None will be of strategic use to the PCs but each has a fragment of information about the Den, delivered as madness. The fourth cell is recently empty — its occupant was taken to the Forge / Slaughterhouse within the last day. The cells are bolted from outside; PCs can release prisoners but should not expect gratitude or coherence.",
+        "items": [
+          "A ring of cell keys hangs on a peg by the door. The peg is just out of reach of any prisoner's arm.",
+          "A small carved figurine of a one-eyed king on the floor of the empty cell. (King Lenard II — the previous occupant was carving it.)"
+        ],
+        "enemies": [],
+        "npcs": [
+          {
+            "name": "The Willow-Armed Woman",
+            "description": "Arms have been replaced — possibly by Fletcher, possibly by something older — with bundled willow-switches that move on their own. She is calm. She remembers being a courier.",
+            "attitude": "neutral",
+            "notes": "If asked the right question, she will say: 'The boy's room is opened by an eye. The statue wants an eye. I gave them mine but it was not the right color.' Both her eyes are intact. The line is true regardless."
+          },
+          {
+            "name": "The Wall-Speaker",
+            "description": "A bearded man explaining the design of a mechanism — a pump? a clock? — patiently to a wall. He does not see the PCs.",
+            "attitude": "neutral",
+            "notes": "If interrupted, repeats one phrase: 'The pump moves the sludge UP. Not down. Up. UP.' Then resumes his lecture. He is right — the Pump Room (Room 8) feeds sludge UPWARD into the upper chambers under the wrong conditions. Fletcher will not let the PCs anywhere near it."
+          },
+          {
+            "name": "The Small Heap",
+            "description": "A figure curled in straw. Breathing. Will not speak, will not look up.",
+            "attitude": "neutral",
+            "notes": "If a PC lifts the heap gently and speaks softly, it weeps once and dies. No further information. If a PC hits the heap, the heap is unaffected — there is nothing in there to hit. [CANON CHECK — the cell occupants are extrapolations from 'cells of mad prisoners'; canon does not name or detail them.]"
+          }
+        ],
+        "traps": [],
+        "secrets": [
+          "The empty cell's occupant — a quiet, polite scholar — was eaten last night. The carved figurine of Lenard II is the only thing left of him. The carving is good; he knew the king's likeness.",
+          "Released prisoners will wander into the corridor and almost certainly die. The Willow-Armed Woman may follow the PCs for a single scene if treated kindly; she has no combat stats but will point at correct doors twice."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Releasing a Prisoner",
+          "text": "The cell keys are on a peg outside the cages. A PC may release any or all. Released prisoners do not fight. They wander. Use them as flavor, never as muscle."
+        }
+      ],
+      "gm_notes": "Pure atmosphere. The Wall-Speaker's pump information is genuinely useful — pay him off later if a PC remembers his words at the Pump Room. The carved figurine is the easiest hint in the dungeon that the statue of Lenard II matters; let players who pocket it use it later as an excuse to recognize the Statue Room.",
+      "exits": [
+        {
+          "id": "cells-to-corridor",
+          "label": "Back — to the Upper Corridor",
+          "target": "upper-corridor",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["roleplay", "npc"]
+    },
+    {
+      "id": "dining-hall",
+      "title": "Room 5 — Dining Hall",
+      "type": "location",
+      "atmosphere": "A long table set for a feast that never starts. Candles burning low. A man at the far end has been crying for a long time.",
+      "read_aloud": "A long oak table dominates the room, laid for twelve — pewter plates, tarnished cups, candles burned down to grease. The food on the plates is fresh but cold: ribs, livers, things in sauce that may have names. At the far end of the table sits a bearded man in a once-fine coat, weeping silently into his folded hands. He has not yet touched his plate. He looks up when you enter and his face does not change.",
+      "contents": {
+        "description": "Fletcher's dining hall, set for a court he can no longer fill. The bearded man at the head is a former trader who came to negotiate something with Fletcher and was given a permanent seat. He has been here months. He will not stand. He will eat if forced, and what is on his plate is human. He knows several things about the Den but his sanity is gone.",
+        "items": [
+          "Twelve pewter plates of cooled human flesh, variously prepared. Worth nothing. Burn one and the smell brings d2 guards from the corridor on a 1–2 on d6.",
+          "A silver candelabra (5s) on the table — heavy enough to use as an improvised mace (d6, two-handed).",
+          "Under the bearded man's plate: a folded sheet of vellum with a child's handwriting. 'Father — please.' Unsigned. Aldon's? The trader's daughter's? Unwritten."
+        ],
+        "enemies": [],
+        "npcs": [
+          {
+            "name": "The Sad Bearded Man",
+            "description": "Once-fine coat now grease-stained. Hair and beard untrimmed. Weeps continuously without sound. Will not stand. Will not fight. Will speak in long, gentle sentences that make perfect sense and answer no question asked.",
+            "attitude": "neutral",
+            "notes": "Knows: Fletcher's name (will not say it); the location of the Greenhouse (will draw it on the table in spilled wine if a PC asks gently); that 'the boy' is on the other side of the statue. Will not eat unless put in front of his face; if forced, eats placidly. Cannot be saved. If the PCs try to carry him out, he goes limp and weighs four times what a man should. He stays here. [CANON CHECK — the 'sad bearded man in the dining hall' is canonical; details extrapolated.]"
+          }
+        ],
+        "traps": [],
+        "secrets": [
+          "The vellum note was written by Aldon, in childish handwriting, before his corruption. If a PC shows it to Aldon later, Aldon stares at it for one round and then sets it on fire with a candle.",
+          "The candelabra is solid silver and has the Shadow King's sigil etched on the base, scratched out badly. Stolen, then claimed."
+        ]
+      },
+      "rules": [],
+      "gm_notes": "Quiet horror scene. Do not let the PCs 'rescue' the bearded man — he is part of the dungeon now. If they insist, let him die en route from his own willing weight. The note is the bridge to humanizing Aldon, if the GM wants that arc; otherwise it is just a cruel thing in a cruel room.",
+      "exits": [
+        {
+          "id": "dining-to-corridor",
+          "label": "Back — to the Upper Corridor",
+          "target": "upper-corridor",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "dining-to-kitchen",
+          "label": "Service door — to the Kitchen (Room 6)",
+          "target": "kitchen",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["roleplay", "npc"]
+    },
+    {
+      "id": "kitchen",
+      "title": "Room 6 — Kitchen",
+      "type": "location",
+      "atmosphere": "A wall of heat. The cookfire is always lit. Strung from the ceiling: ropes of dried meat, wrong shapes.",
+      "read_aloud": "The kitchen is small and packed and unbearably hot. Iron pots simmer over a constant fire. Strips of dark meat hang in long curtains from the ceiling beams. A heavy cleaver sits half-buried in a chopping block. A figure in a leather apron is here, back to you, chopping something with great patience.",
+      "contents": {
+        "description": "Fletcher's working kitchen. One cannibal cook is here — Fletcher's acolyte, devoted, dangerous if turned to. The cook does not look up when the PCs enter; the cook assumes anyone here is one of theirs. Surprise round likely. The cook will not pursue if the PCs flee. A trapdoor in the floor opens into a small pantry which connects, via a flooded passage, to the Pump Room.",
+        "items": [
+          "Heavy cleaver — d6, one-handed.",
+          "Ropes of dried human flesh (do not eat).",
+          "A small ceramic jar at the back of the spice shelf holds 30s — the cook's hoard.",
+          "Iron pot of marrow-stew. Anyone eating it: test Toughness DR10 or contract a slow taste for human meat (−1 Presence in towns until cured)."
+        ],
+        "enemies": [
+          {
+            "name": "Cannibal Cook",
+            "hp": 9,
+            "morale": "7",
+            "speed": "normal",
+            "attack": "Cleaver, d6",
+            "special": "Leather apron −d1. If surprised, the cook fights with the cleaver. If not surprised, the cook screams once — bringing d2 sharp-toothed guards from the corridor on the next round — then fights.",
+            "notes": "[CANON CHECK — Fletcher's cannibal court is canon; individual cook is an extrapolation. Use as a low-stakes encounter."
+          }
+        ],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "The pantry trapdoor connects via a short crawl to the Pump Room. A small, agile PC can use it to bypass the corridor.",
+          "Tucked behind the meat-curtain: a folded apron with the Shadow King's sigil. The cook wears Aldon's father's apron when butchering."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Marrow-Stew Taste",
+          "text": "Anyone eating from the pot: Toughness DR10 or develop a slow craving. In any settled town, the PC subtracts 1 from Presence tests for social interaction until the craving is purged by a priest, a Powers-using healer, or a month of clean living."
+        }
+      ],
+      "gm_notes": "Quick fight, mostly flavor. Use the cook's scream as the audio cue that the Den knows the PCs are here, if no other alarm has been raised yet.",
+      "exits": [
+        {
+          "id": "kitchen-to-corridor",
+          "label": "Back — to the Upper Corridor",
+          "target": "upper-corridor",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "kitchen-to-dining",
+          "label": "Service door — to the Dining Hall (Room 5)",
+          "target": "dining-hall",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "kitchen-to-pump",
+          "label": "Pantry trapdoor — crawl to the Pump Room (Room 8) (small PCs only without DR12 Agility)",
+          "target": "pump-room",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["combat", "loot"]
+    },
+    {
+      "id": "forge-slaughterhouse",
+      "title": "Room 7 — Forge / Slaughterhouse",
+      "type": "location",
+      "atmosphere": "Heat like a held breath. The clang of iron on iron in a slow rhythm. The smell is sweet, then very wrong.",
+      "read_aloud": "A great vaulted chamber. A forge burns at the far end; iron hooks descend from the ceiling on chains, each one carrying something human. At the anvil stands a giant — seven feet tall, built like a grizzly, sooty and bald and crawling with tattoos. He is hammering something flat. He turns to look at you. His teeth are filed. His skin is the color of old leather. The flail at his belt is glowing a low, sullen red.\n\n'You walked all the way down here. Sit. Eat.'",
+      "contents": {
+        "description": "Fletcher's domain and the heart of the Den. Hanging meat. A working forge. A great iron anvil. Fletcher himself, vast and confident, will speak before he attacks — invite the PCs to eat, learn what they want, then attempt to recruit them or kill them. He is too large to fit through the narrow Tunnel (Room 10) to the Greenhouse, which he resents bitterly. He wants Aldon as leverage against the Shadow King. If the PCs claim they are here for Aldon, he will laugh and say so is he.",
+        "items": [
+          "Forge tools (tongs, hammer — improvised d4).",
+          "Red-hot flail — Fletcher's weapon; if recovered after his death, d8 + severe burn (Agility tests at −2 for a day to anyone hit).",
+          "Iron hooks: a dozen of them, each holding a body in varying states of butchery. One of the bodies is the previous cell-prisoner from Room 4.",
+          "Hanging on the far wall: an oddly-shaped iron key — the key between the Debris Room (15) and the Statue Room (12). Fletcher keeps it on his person if a fight starts; on the wall otherwise."
+        ],
+        "enemies": [
+          {
+            "name": "Fletcher, the Cannibal Warlock",
+            "hp": 20,
+            "morale": "—",
+            "speed": "normal",
+            "attack": "Red-hot flail, d8 + severe burn (Agility tests −2 for a day)",
+            "special": "Hardened skin −d4. Uses a Power every third round (automatic success). d4: 1–2 NINE VIOLET SIGNS UNKNOT THE STORM — d2 bolts of lightning, d6 each. 3 DAEMON OF CAPILLARIES — one creature chokes for d6 rounds, d4 dmg/rd. 4 ICH-BIN-LUFT — Fletcher invisible for next two rounds (can still attack). When Fletcher takes damage, big chunks of human flesh rain from nowhere in sympathy — the attacking PC tests Agility DR8 or takes d4 damage.",
+            "notes": "Will speak before fighting. Will offer to recruit the PCs (split Aldon, share the Den). Cannibal warlock who has ruled the Den by force since being thrown in by his necromancer masters. Hates Lesdy, cannot reach her. If reduced to 5 HP or fewer he does not flee — he doubles down and uses ICH-BIN-LUFT on his next turn. Source: Rotblack Sludge, p.4."
+          }
+        ],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "Fletcher genuinely cannot fit through the Tunnel (Room 10). If the PCs flee into it he cannot follow.",
+          "If offered an alliance against Lesdy, Fletcher will accept. He will not honor it — he will lead the PCs into the Greenhouse, watch Lesdy kill some of them, and finish whoever survives.",
+          "The oddly-shaped key is necessary to open the door from the Debris Room (15) to the Statue Room (12), which is the most direct route to Aldon. Without it, the PCs reach the Statue Room only by descending through the Pump Room and the sludge — i.e. risking the Gutworm."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Fletcher's Sympathy",
+          "text": "Each time Fletcher takes damage, the attacking PC tests Agility DR8. Failure: d4 damage from a rain of human flesh from no apparent source."
+        },
+        {
+          "title": "Fletcher's Powers Cycle",
+          "text": "Every third round, Fletcher casts one Power, automatic success. Roll d4: 1–2 NINE VIOLET SIGNS. 3 DAEMON OF CAPILLARIES. 4 ICH-BIN-LUFT."
+        },
+        {
+          "title": "The Oddly-Shaped Key",
+          "text": "On the wall, or on Fletcher's belt during combat. Opens the door between the Debris Room (15) and the Statue Room (12) and nothing else."
+        }
+      ],
+      "gm_notes": "The hardest fight in the Den. Run Fletcher as menacing but bored — the PCs are not his first visitors and will not be his last. The flesh-rain mechanic is signature: describe it in detail the first time it happens. The Power cycle is automatic; do not roll to see if it works, just roll which one and apply it. If the party negotiates: Fletcher will pretend interest in exchange for them killing Lesdy. He WILL betray them. The Debris→Statue key is a major loot drop; if Fletcher is bypassed, the only route to Aldon goes through the sludge. Source: Rotblack Sludge p.4.",
+      "exits": [
+        {
+          "id": "forge-to-corridor",
+          "label": "Back — to the Upper Corridor",
+          "target": "upper-corridor",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "forge-to-debris",
+          "label": "Iron door (Fletcher's key) — to the Debris Room (15)",
+          "target": "debris-room",
+          "condition": "Oddly-shaped key (Fletcher's)",
+          "locked": true
+        }
+      ],
+      "visited": false,
+      "tags": ["combat", "boss"]
+    },
+    {
+      "id": "pump-room",
+      "title": "Room 8 — Pump Room",
+      "type": "location",
+      "atmosphere": "Wet stone. The smell of sulfur and rot. A great wooden pump-wheel slumped to one side; the pit beneath it glistens.",
+      "read_aloud": "A round chamber with a massive wooden pump-wheel rotted half off its axle. The floor slopes down to a circular pit in the center, ringed with black slime. Something dark and slow is moving in the pit. Two stone passages lead out: one down to a flooded chamber, one across a slick stone bridge.",
+      "contents": {
+        "description": "An old machine room. The pump no longer works correctly — when activated it pushes sludge UPWARD through hidden channels into the upper rooms (the Wall-Speaker in Room 4 was right about this). The pit at the center is one of the access points to the Rotblack Sludge itself; the Gutworm can rise here. Random encounters trigger in this room — roll Table A or B on entry.",
+        "items": [
+          "Three pump-levers, two broken, one functional. Operating the working lever for one full round causes black sludge to rise from the pit by one foot AND from drains in Rooms 2, 5, 7 (a thin coating on the floor). For each minute of operation, accumulates 1 foot of sludge in the upper rooms.",
+          "Old foreman's logbook on a shelf — pages stuck together with rot, but one page legible: 'do not run pump after the worm starts answering.'"
+        ],
+        "enemies": [],
+        "npcs": [],
+        "traps": [
+          {
+            "name": "The Sludge Pit",
+            "trigger": "PC falls or steps into the central pit (DR12 Agility to cross on the rim).",
+            "effect": "Contact with the sludge: d6 damage, test Toughness DR12 or take d6 more next round as the burn deepens. Submerged: d10 damage AND roll Gutworm check (see Rules).",
+            "dr": "Agility DR12 to skirt; Toughness DR12 after contact."
+          }
+        ],
+        "secrets": [
+          "Operating the pump for three full rounds awakens the Gutworm and brings it up to this room. This is a nuclear option — the PCs can flood Fletcher's upper rooms AND draw the Gutworm out of the lower chambers. Used cleverly, this kills Fletcher. Used carelessly, it kills the PCs.",
+          "There is a small ledge ABOVE the pit, accessible by climbing the broken pump-wheel (DR10 Agility). From the ledge, a hidden niche holds a coil of magicked rope (50ft, will hold any weight, but knots themselves at the worst moment — GM call once per scenario)."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Sludge Contact",
+          "text": "Touching the sludge: d6 damage; Toughness DR12 or d6 more next round. Submerged: d10. Breathing it in: instant Toughness DR16 or die. The sludge does not stop being lethal because someone got used to it."
+        },
+        {
+          "title": "Gutworm Check (swimming/submerged in sludge)",
+          "text": "Every swim through the sludge: 1–2 on d6 the Gutworm bites (d10 damage); test Agility DR6 when bitten to avoid being devoured (instant death). Yes, DR6. Avoid being devoured, not bitten."
+        },
+        {
+          "title": "Operating the Pump",
+          "text": "Round 1: sludge rises 1 foot in this pit; thin coating in upper rooms. Round 2: pit rises another foot; ankle-deep in upper rooms; PCs in upper rooms test Toughness DR10 or d4 burn. Round 3: Gutworm rises here. After round 3, sludge floods the upper rooms knee-deep; movement halved; d4 burn per round to anyone standing in it."
+        },
+        {
+          "title": "Random Encounter Room",
+          "text": "Roll d6 on first entry: 1 — Table A. 2 — Table B. 3+ — nothing. (Pump, Chain, Debris are the three random-encounter rooms in the Den.)"
+        }
+      ],
+      "gm_notes": "Strategic node. The pump is a player-actuated weapon of mass destruction. Telegraph the danger heavily — the foreman's note is the warning. Do not stop them from using it if they decide to. The Distraught Spirit, if it manifests here under Table B, will plead specifically for them NOT to run the pump (it knows the worm wakes). Source: Rotblack Sludge p.5.",
+      "exits": [
+        {
+          "id": "pump-to-corridor",
+          "label": "Up — stair to the Upper Corridor",
+          "target": "upper-corridor",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "pump-to-guard",
+          "label": "Up — chained trapdoor shaft to the Guard Room (Room 2)",
+          "target": "guard-room",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "pump-to-sludge",
+          "label": "Down — flooded passage to the Sludge Chamber (Room 9)",
+          "target": "sludge-chamber",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "pump-to-chain",
+          "label": "Across the stone bridge — to the Chain Room (Room 14)",
+          "target": "chain-room",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "pump-to-kitchen",
+          "label": "Crawl up — pantry trapdoor to the Kitchen (Room 6)",
+          "target": "kitchen",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["hub", "trap", "random-encounter"]
+    },
+    {
+      "id": "sludge-chamber",
+      "title": "Room 9 — The Sludge Chamber",
+      "type": "location",
+      "atmosphere": "A black mirror of liquid hate. Steam in slow curls. The walls are wet. Something is breathing in the dark, and it is not the PCs.",
+      "read_aloud": "The chamber opens into a vast cistern. A lake of utterly black liquid fills it from wall to wall — the Rotblack Sludge itself. Steam rises in slow lazy curls. Stone pillars rise out of the surface at unpredictable intervals. At the far side: a stone shore and an arch. Somewhere under the surface, something long is moving. The wake reaches the far wall and slowly returns.",
+      "contents": {
+        "description": "The first of the lower chambers actually flooded by the Rotblack Sludge. Pillar-stepping across is possible (DR12 Agility per pillar; d4 pillars to cross) and is the safe route. Wading or swimming is suicidal — the Gutworm hunts here. A small stone shore on the far side leads to the Greenhouse Tunnel (Room 10). The Gutworm can reach this room (canon).",
+        "items": [
+          "A drowned man's hand is curled around a pillar near the entrance. In the fist: a single ruby earring (10s) and a torn corner of vellum reading '...green house...'",
+          "A flat-bottomed coracle, half-rotted, drifting upturned at the far shore. Will hold one PC at a time; DR12 Agility per round to balance; better than swimming, worse than pillars."
+        ],
+        "enemies": [],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "If a torch is held low over the sludge, the surface bubbles in response. The Gutworm is attracted to flame.",
+          "Beneath one of the central pillars, a stone niche underwater holds a small chest — 200s and a single Unclean Scroll. Retrieval requires submerging (Gutworm check, see rules). Very few PCs will think it is worth it. Some will."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Crossing on Pillars",
+          "text": "DR12 Agility to step from pillar to pillar. 4 pillars to cross. Fail: fall into sludge. Sludge contact: d6 + Toughness DR12 or d6 more next round. Submerged: d10 + Gutworm check (1–2 on d6 the worm bites)."
+        },
+        {
+          "title": "The Gutworm Patrols Here",
+          "text": "The Gutworm can easily reach Rooms 9, 12, and 15. Any PC submerged in the sludge in this room rolls Gutworm check (d6, 1–2 it bites: d10 damage; on bite, Agility DR6 or be devoured, dying instantly)."
+        }
+      ],
+      "gm_notes": "Make the sludge feel like the third party in every interaction. The PCs are not fighting each other or the Gutworm — they are negotiating with the floor. Source: Rotblack Sludge p.5–6.",
+      "exits": [
+        {
+          "id": "sludge-to-pump",
+          "label": "Back — up to the Pump Room (Room 8)",
+          "target": "pump-room",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "sludge-to-tunnel",
+          "label": "Far shore — narrow archway to the Greenhouse Tunnel (Room 10)",
+          "target": "greenhouse-tunnel",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["trap", "gutworm-reachable"]
+    },
+    {
+      "id": "greenhouse-tunnel",
+      "title": "Room 10 — The Narrow Tunnel",
+      "type": "location",
+      "atmosphere": "Damp warm stone, narrowing. The walls remember pressing against shoulders not yours. Far ahead: green light through a crack.",
+      "read_aloud": "The passage narrows almost at once. Your shoulders brush the walls. The stone is smooth, polished by bodies. Ahead, a long way off but bright in the dark: a slit of green light. Plants grow somewhere down there. Plants do not grow in the Den.",
+      "contents": {
+        "description": "A long narrow tunnel between the lower sludge chamber and the Greenhouse. Fletcher cannot fit through. Anyone in plate armor must shed it (DR14 Strength to squeeze through otherwise — and stuck PCs at full mass risk failure). The far end opens directly into the Greenhouse (Room 11).",
+        "items": [
+          "Polished by bodies — countless prior travelers have squeezed through here. None of them came back.",
+          "Wedged in a crack at shoulder-height: a small enamel pin in the shape of a moth. Worth 5s; matches a set Lesdy wears in her hair."
+        ],
+        "enemies": [],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "Fletcher's bulk literally cannot pass this point. If the PCs flee here from Fletcher, he stops at the entrance and screams. The screams carry; Lesdy hears them.",
+          "If a PC sheds heavy armor here and continues, mark which PC and which armor — Lesdy's hosts will know and target that PC first as 'the one too small for the warlock to send.'"
+        ]
+      },
+      "rules": [
+        {
+          "title": "Squeezing Through",
+          "text": "Light armor or no armor: free. Medium armor: DR10 Strength or be stuck a round. Heavy armor: DR14 Strength; failure means stuck, requiring assistance and a DR12 Strength from helpers, OR ditching the armor. Fletcher (and any creature his size) cannot pass at all."
+        }
+      ],
+      "gm_notes": "Mechanical chokepoint and atmospheric showpiece. The enamel pin foreshadows Lesdy and rewards observant PCs. Source: Rotblack Sludge p.6.",
+      "exits": [
+        {
+          "id": "tunnel-to-sludge",
+          "label": "Back — to the Sludge Chamber (Room 9)",
+          "target": "sludge-chamber",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "tunnel-to-greenhouse",
+          "label": "Forward — into the green light, the Greenhouse (Room 11)",
+          "target": "greenhouse",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["transition", "puzzle"]
+    },
+    {
+      "id": "greenhouse",
+      "title": "Room 11 — The Greenhouse",
+      "type": "location",
+      "atmosphere": "Hot, stuffy, lit by dim moonlight through a glass roof that should not be here. Palms and cacti and night-blooming flowers. A woman reads in a chair, alone.",
+      "read_aloud": "The tunnel opens into a small impossible garden. A glass roof arches overhead, moonlight falling through it in pale columns. Palms, cacti, flowers that have no business in the dark — all growing, all healthy. The air is hot and wet and smells of pollen. In a chair at the center sits a woman with long dark hair, dressed in a gunny sack with armholes, reading a thick book. She looks up when you arrive. She smiles.\n\n'Oh — finally. Sit. Eat. You must be tired.'\n\nFrom the foliage, three young figures emerge. They are dressed in rags. They are smiling too.",
+      "contents": {
+        "description": "Lesdy's domain. A glass-roofed greenhouse under moonlight — impossible, beautiful, lethal. Lesdy receives the PCs warmly and offers food and rest. She is manipulative. She wants the PCs to kill the Gutworm so SHE can pass through to the deeper caves and consume the sludge safely. She does not say this. She seeks to turn the Gutworm against Fletcher; she will turn the PCs to the same end. Her three hosts are zealous and will fight to the death.",
+        "items": [
+          "A spread of real food on a small table — bread, dried fruit, water. Safe to eat. Lesdy is not Fletcher.",
+          "Lesdy's book: a personal journal of her sludge experiments. Reading reveals her plan, her failures, and one Unclean Scroll she has copied out (one-shot, GM-rolled).",
+          "Three sets of long knives.",
+          "A small lacquered box on a side table holds Lesdy's enamel moth pins (a matched set; one is missing). 10s."
+        ],
+        "enemies": [
+          {
+            "name": "The Three Hosts (each)",
+            "hp": 7,
+            "morale": "—",
+            "speed": "normal",
+            "attack": "Long knife, d6",
+            "special": "No armor. Will not flee. Chant in unison while attacking: 'Lesdy… Lusi… Lesdy… the chosen, the delightful!' Cannot be intimidated, cannot be reasoned with, cannot be charmed.",
+            "notes": "Young, dressed in rags, zealous. Lesdy fights through them. Source: Rotblack Sludge p.6."
+          }
+        ],
+        "npcs": [
+          {
+            "name": "Lesdy",
+            "description": "Long dark hair. Dressed in a gunny sack with armholes. Reads alone. Speaks gently. Smiles too much.",
+            "attitude": "neutral",
+            "notes": "HP 5, Morale 4 (lowest of any boss-tier NPC in canon), no armor, unarmed attack d4. Rarely fights herself — she fights through her three hosts. Her real goal: reach the deep caves beneath the Rotblack Sludge by controlling the Gutworm via sludge consumption. The Gutworm attacks her on sight. She believes the PCs can either kill the Gutworm for her OR distract Fletcher long enough that she can try again. She will offer to ally with the PCs against Fletcher, and she means it — for as long as it serves her. Source: Rotblack Sludge p.6."
+          }
+        ],
+        "traps": [],
+        "secrets": [
+          "Lesdy's hosts chant Lusi's name — the goddess of Denial. Whether Lesdy is a true Lusi-cultist or a syncretist is unwritten. The PCs may be the first outsiders to hear it.",
+          "If the PCs ally with Lesdy and bring her Aldon's body (alive or dead), she will trade them the Beechwood Tube scroll she copied AND a sealed letter naming Fletcher's necromancer masters in Sarkash. [CANON CHECK — letter is GM extrapolation; the masters are canon but unnamed.]",
+          "The glass roof was built by Lesdy's hosts brick-by-glass-brick over years. Smashing it brings down the chamber, killing Lesdy and burying the tunnel out. The PCs would have to leave via the deep caves below — which Lesdy never reached and no map of the Den details."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Hospitality",
+          "text": "If the PCs accept food and rest, they recover d4 HP and one Power slot. Lesdy will speak gently to them and ask about Fletcher. She will not attack first. She will let them leave."
+        },
+        {
+          "title": "Lesdy's Ask",
+          "text": "If pressed, she will say: she wants the Gutworm dead. She will not pay for it (she has nothing the PCs would value). She will say she shares an enemy with them. Roleplay this — Lesdy is the closest thing to a friend the PCs will find in the Den, and the friendship is partial and conditional."
+        }
+      ],
+      "gm_notes": "Run Lesdy as warm, intelligent, and frankly relieved to see other thinking beings. Do not telegraph her manipulativeness — let the PCs discover it. Her hosts react to ANY hostile gesture toward Lesdy (drawing a weapon counts) by attacking instantly and unflinchingly. The chant 'Lesdy… Lusi… Lesdy…' is canonical; deliver it flat and unsettling. If combat starts, Lesdy will defend herself but mostly hide — her Morale 4 means she breaks easily if her hosts fall. A surrendered Lesdy will not surrender her secrets, but she will surrender her body. Source: Rotblack Sludge p.6.",
+      "exits": [
+        {
+          "id": "greenhouse-to-tunnel",
+          "label": "Back — through the narrow tunnel (Room 10)",
+          "target": "greenhouse-tunnel",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "greenhouse-to-deep",
+          "label": "Hidden floor-grate — descent into the deep caves below (uncharted, see secrets)",
+          "target": "greenhouse",
+          "condition": "Uncharted by canon — GM expansion territory",
+          "locked": true
+        }
+      ],
+      "visited": false,
+      "tags": ["roleplay", "boss", "treasure"]
+    },
+    {
+      "id": "statue-room",
+      "title": "Room 12 — The Statue Room",
+      "type": "location",
+      "atmosphere": "The smell of sulfur and the Rotblack Sludge — close, very close. A vast black statue dominates the room. It only has one eye.",
+      "read_aloud": "The chamber is dim and reeks of sulfur and the black sludge that lapped somewhere very near. At its center stands a great black statue: a king in old armor, crowned, regal. He has one eye. The other is an obvious cavity, deep enough to take a thumb. Dried bloodstains run from the socket down the statue's cheek. Behind the statue: a heavy door of plain dark wood. Bolted from this side, but with no handle. The handle is the statue itself.",
+      "contents": {
+        "description": "Room 12 in canon. Black statue of the one-eyed King Lenard II, presumed prior Shadow King. Stinks of sulfur and Rotblack Sludge. The eye-cavity has bloodstains in it from previous adventurers who solved this puzzle the hard way. Placing an eye in the socket opens the door behind the statue with a loud crack — the door leads to the Son's Room (Room 13), where Aldon waits. The Gutworm can reach this room (canon).",
+        "items": [
+          "The statue of King Lenard II — black stone, one-eyed, crowned. Cannot be moved (weighs as much as a wagon).",
+          "Behind the statue, on the floor: an old eye, mostly desiccated, brown. Will work in the socket but will be ejected by the mechanism within an hour as the statue 'rejects' it for being too old. [GM call — using a fresh eye is the canonical solve.]"
+        ],
+        "enemies": [],
+        "npcs": [],
+        "traps": [
+          {
+            "name": "The Statue's Reach (optional)",
+            "trigger": "Inserting any object other than an eye into the socket.",
+            "effect": "The statue's stone arm moves — slow, slow — and reaches for the inserter. DR12 Agility to dodge. Hit: d6 damage. The arm then resets.",
+            "dr": "Agility DR12"
+          }
+        ],
+        "secrets": [
+          "The bloodstains in the socket are from at least four different bleedings — at least four prior adventurers have solved this puzzle the hard way. None of them ever came back through. The PCs are walking a worn path.",
+          "An eye placed in the socket opens the door — and the eye is consumed. The PC's eye is not retrievable.",
+          "If Fletcher is dead and his oddly-shaped key is recovered, the PCs can reach Room 13 via Room 15 (Debris Room) → Room 12 instead, BUT must still place an eye to open the door from Room 12 to Room 13. The key opens 15→12, not 12→13."
+        ]
+      },
+      "rules": [
+        {
+          "title": "The Eye-Socket Key",
+          "text": "Place a fresh (living or recently dead) eye in King Lenard II's socket. The door to the Son's Room (Room 13) opens with a loud crack. The eye is consumed. A PC sacrificing their own eye: −1 Presence permanently, but they will be the only one who ever can. The mad prisoners in Room 4 have eyes; Fletcher has both his; the guards have eyes; the PCs have eyes."
+        },
+        {
+          "title": "Gutworm Reachable",
+          "text": "The Gutworm can reach this room. If the PCs spend more than a few minutes here, roll d6: 1–2 the worm rises through a fissure in the floor, attacks once, retreats. d10 damage to nearest PC; bitten PC tests Agility DR6 or is devoured."
+        }
+      ],
+      "gm_notes": "THE iconic puzzle of Rotblack Sludge. Do not soften it. The cruelty index of the dungeon — give up an eye or take one. Let the players brainstorm. Their own eye is a real option: it works and it is awful. The Willow-Armed Woman's line in Room 4 ('I gave them mine but it was not the right color') hints that not all eyes work — but actually any fresh eye does. Her eye was fine. She was lying or remembering wrong. Source: Rotblack Sludge p.7, King Lenard II wiki entry.",
+      "exits": [
+        {
+          "id": "statue-to-debris",
+          "label": "Iron door (Fletcher's key) — to the Debris Room (Room 15)",
+          "target": "debris-room",
+          "condition": "Oddly-shaped key (Fletcher's)",
+          "locked": true
+        },
+        {
+          "id": "statue-to-sons-room",
+          "label": "Door behind the statue — to the Son's Room (Room 13) (requires eye in socket)",
+          "target": "sons-room",
+          "condition": "Eye placed in King Lenard II's socket",
+          "locked": true
+        },
+        {
+          "id": "statue-to-chain",
+          "label": "Side passage — to the Chain Room (Room 14)",
+          "target": "chain-room",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["puzzle", "gutworm-reachable"]
+    },
+    {
+      "id": "sons-room",
+      "title": "Room 13 — The Son's Room",
+      "type": "location",
+      "atmosphere": "Surprisingly bright. A bench, a small table, a wall of personal effects. A pudgy young man sits with a femur between his teeth.",
+      "read_aloud": "The door cracks open and light spills out — proper lamplight, warm. The room beyond is almost cozy. A bench against one wall. A small table with a half-eaten plate. A row of personal effects on a shelf — combs, a silver buckle, a wooden horse. On the bench sits a pudgy young man in once-fine clothes, gnawing a human femur with great concentration. He looks up. He smiles around the bone.\n\n'Oh,' he says, 'are you new? You look new. Sit down. He doesn't let me have visitors.'\n\nOn the wall behind him hangs a long black bullwhip carved with runes you do not recognize.",
+      "contents": {
+        "description": "Aldon's chamber. The Shadow King's one true heir, sealed here by the eye-puzzle. He is pudgy, arrogant, casually cannibalistic, and does not want to leave. Fletcher visits him; nobody else does. Aldon believes himself to be a kind of prince of this place. He will speak with the PCs at length. He will not go with them willingly. Persuading him is a Presence challenge (DR16). Forcing him is a fight Aldon cannot win but will not concede without bloodshed.",
+        "items": [
+          "Aldon's bullwhip: cryptic runes, d4 base + d4 necro-plasmic shock damage on hit. Aldon will fight with this if attacked.",
+          "Personal effects: a silver buckle (5s), a fine comb (1s), a wooden horse (worthless to anyone but Aldon).",
+          "Half-eaten plate of dressed meat. Human. Aldon prepared it himself."
+        ],
+        "enemies": [
+          {
+            "name": "Aldon",
+            "hp": 10,
+            "morale": "—",
+            "speed": "normal",
+            "attack": "Runic bullwhip, d4 + d4 necro-plasmic shock",
+            "special": "No armor. Will not flee, will not surrender — he believes himself untouchable. Necro-plasmic shock: failed Toughness DR10 means the struck PC is also at −1 to their next attack as their muscles spasm.",
+            "notes": "[CANON CHECK — Aldon has no canonical stat block; this is interpolated from his described arrogance, his bullwhip's d4+d4 damage, and the assumption that he is a corrupted noble with no combat training. Source: Aldon wiki, Rotblack Sludge p.7."
+          }
+        ],
+        "npcs": [
+          {
+            "name": "Aldon, the Shadow King's Heir",
+            "description": "Pudgy, arrogant, dressed in once-fine clothes now stained. Eats bones. Speaks with the easy confidence of a child king. Filed teeth, like the guards.",
+            "attitude": "neutral",
+            "notes": "Believes the Den is his court and Fletcher is his vassal. Will speak amiably to the PCs. Will refuse to leave. If physically restrained, will scream — guards do not come (the eye-locked door is one-way auditory) but Aldon will fight back with the bullwhip the moment he is loose. If the PCs convince him his father wants him home (DR16 Presence — or DR14 if they show him the vellum note from the Dining Hall), Aldon will go quietly but watchfully. If carried out unconscious, he will try to murder his rescuers the first night they sleep."
+          }
+        ],
+        "traps": [],
+        "secrets": [
+          "Aldon knows Fletcher's name. He has heard Fletcher's plans. He will not share them — he likes Fletcher in his way.",
+          "If a PC shows Aldon the carved figurine of Lenard II (from Room 4), Aldon goes still for one full round, then puts down the bone he was gnawing. He will not say what he is thinking. He may be remembering being a person.",
+          "If the PCs return Aldon to the Shadow King alive but corrupted, the King will pay them, and within a year Aldon will kill his father and the imbecile brother and rule. The Shadow King knows this is possible and accepts the risk. [CANON CHECK — extrapolation; canon is silent on the long-term consequence.]"
+        ]
+      },
+      "rules": [
+        {
+          "title": "Convincing Aldon",
+          "text": "Presence DR16 to persuade him to leave willingly. DR14 if showing him the vellum note from the Dining Hall. DR12 if showing him the carved figurine from the Prisoners' Cells. Failure: he refuses; further attempts in the same conversation at +2 DR each."
+        },
+        {
+          "title": "Necro-Plasmic Shock",
+          "text": "Any hit by Aldon's bullwhip: target tests Toughness DR10 or suffers −1 to their next attack as muscles spasm."
+        }
+      ],
+      "gm_notes": "The scenario's emotional center. Aldon is a child who has been alone in the dark with a cannibal. He is funny and personable and absolutely ruined. Let the players try to talk him out. Reward creative attempts (the figurine, the note, mentioning his father by name). If they choose to knock him out and carry him, the trip back through the Den is twice as dangerous and Aldon, once revived, is hostile. Source: Aldon wiki, Rotblack Sludge p.7.",
+      "exits": [
+        {
+          "id": "sons-to-statue",
+          "label": "Back — through the door behind the statue, to the Statue Room (Room 12)",
+          "target": "statue-room",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["roleplay", "boss", "objective"]
+    },
+    {
+      "id": "chain-room",
+      "title": "Room 14 — The Chain Room",
+      "type": "location",
+      "atmosphere": "Iron chains hang from every part of the ceiling, swinging in no draft. They clink against each other softly. Random patterns.",
+      "read_aloud": "The room is webbed with hanging iron chains, every one rusted, every one fitted at the bottom with a meat-hook. The chains hang at different lengths and they sway, slowly, when there is no wind to move them. Walking through is going to require ducking. The chains clink against each other in patterns that almost mean something.",
+      "contents": {
+        "description": "A torture chamber, long disused. Hanging chains and meat-hooks fill the room. Moving through requires ducking and weaving (DR10 Agility per round; failure: a chain wraps a PC and a meat-hook scores them for d2 damage). Random encounters trigger here — roll Table A or B on first entry. A side passage from this room leads to the Debris Room (15). A door east opens into the Statue Room (12).",
+        "items": [
+          "Hundreds of chains, hundreds of meat-hooks. Two or three are detachable — improvised flail d4, two-handed.",
+          "On the floor under one of the chains: a small leather satchel. Inside: 30s, a flint, and a folded map of the upper Den drawn by a former prisoner. The map is mostly right but has Room 7 marked WRONG — labeled 'EMPTY.' The previous owner never got to update it."
+        ],
+        "enemies": [],
+        "npcs": [],
+        "traps": [
+          {
+            "name": "Chains and Hooks",
+            "trigger": "Moving through the room without ducking carefully.",
+            "effect": "Agility DR10 per round of movement. Failure: a meat-hook scores the PC for d2 damage and the PC must spend the next round untangling.",
+            "dr": "Agility DR10"
+          }
+        ],
+        "secrets": [
+          "The chains sway in a pattern. Listening for one full minute (no other action), a PC may test Presence DR12 to identify the pattern as a slow code — three short, one long. It spells, over and over: 'HELP.' Source: a long-dead prisoner who hooked themselves into the chains and let their last weight pull them in a rhythm.",
+          "Three meat-hooks have small carved marks on them: a sun, a moon, a star. Pulling them in the order star-sun-moon causes a section of floor to drop open into a small alcove below containing a single Unclean Scroll (one-shot, GM rolls). Any other order causes the section to drop the puller instead — d6 falling damage."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Walking the Chains",
+          "text": "Each round of careful movement through the room: Agility DR10. Failure: d2 hook damage AND a round lost untangling."
+        },
+        {
+          "title": "Random Encounter Room",
+          "text": "Roll d6 on first entry: 1 — Table A. 2 — Table B. 3+ — nothing."
+        }
+      ],
+      "gm_notes": "An obstacle room, a Distraught Spirit potential trigger, and a small secret reward for slow players. Source: Rotblack Sludge p.7 (random encounter room).",
+      "exits": [
+        {
+          "id": "chain-to-statue",
+          "label": "Door east — to the Statue Room (Room 12)",
+          "target": "statue-room",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "chain-to-debris",
+          "label": "Side passage — to the Debris Room (Room 15)",
+          "target": "debris-room",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "chain-to-pump",
+          "label": "Back across the stone bridge — to the Pump Room (Room 8)",
+          "target": "pump-room",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["trap", "random-encounter"]
+    },
+    {
+      "id": "debris-room",
+      "title": "Room 15 — The Debris Room",
+      "type": "location",
+      "atmosphere": "A collapsed corner of the Den. Stone rubble, splintered timber, and standing pools of black sludge. The Gutworm has been here. The PCs can see where.",
+      "read_aloud": "The chamber is half-collapsed. A great fall of rock has buried one corner. Pools of black sludge stand on the floor — the level rises and falls. Splintered timbers and parts of furniture half-submerged. In the rubble: things that used to be people. Across the room: a heavy iron door, oddly shaped, with an oddly-shaped keyhole. The keyhole is the size of a fist.",
+      "contents": {
+        "description": "Room 15, the lowest and most damaged chamber of the Den. The Gutworm can reach this room and has — there are clear furrows where its body passed. Standing pools of sludge make movement dangerous. A heavy iron door (Fletcher's oddly-shaped key) leads to the Statue Room (Room 12) — this is the alternate route to Aldon. Random encounters trigger here.",
+        "items": [
+          "Rubble pile contains, after a round of digging (Strength DR10): a coin pouch (15s), a cracked silver mirror (worth nothing as treasure but reflects sludge-creatures correctly if they hide via mundane camouflage), and a child's shoe (Aldon's, from years ago).",
+          "Splintered furniture: a writing desk, ruined. A page of legible writing survives, addressed to the Shadow King, signed by a name that is illegible. It is a ransom note from Fletcher, never sent."
+        ],
+        "enemies": [],
+        "npcs": [],
+        "traps": [
+          {
+            "name": "Sludge Pools",
+            "trigger": "Stepping in a sludge pool (DR10 Agility to skirt them, several patches in the room).",
+            "effect": "Contact: d4 burn AND Toughness DR10 or d4 more next round.",
+            "dr": "Agility DR10 to skirt; Toughness DR10 after contact."
+          }
+        ],
+        "secrets": [
+          "The Gutworm rises here on a 1–3 on d6 (instead of 1–2) because the sludge level fluctuates. PCs spending more than a round here without leaving roll the Gutworm check. The worm in this room rises through a wide collapsed seam in the floor and can take an entire round to fully emerge — giving fleeing PCs a single round's grace.",
+          "The ransom note: 'Send the gold by Lesdy's old route, the eastern road. Or the boy comes home in pieces, like the others.' Fletcher signed it in pig-blood. He never sent it. He was going to. He could not decide whether the King would pay.",
+          "Buried in the rubble — DR16 Strength to clear in an hour, DR12 to half-clear in three hours — is the original entrance the necromancers used to throw Fletcher in. It leads to a Sarkash forest path. Untraveled in years."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Gutworm Reachable",
+          "text": "Gutworm rises here on a 1–3 on d6 each round the PCs remain. d10 damage on bite; Agility DR6 or be devoured."
+        },
+        {
+          "title": "Random Encounter Room",
+          "text": "Roll d6 on first entry: 1 — Table A. 2 — Table B. 3+ — nothing."
+        },
+        {
+          "title": "The Oddly-Shaped Door",
+          "text": "Opens only with Fletcher's oddly-shaped key. Connects directly to the Statue Room (12). Cannot be picked, broken, or forced — the door is the same black stone as the Lenard II statue and the mechanism is keyed to the key alone."
+        }
+      ],
+      "gm_notes": "The hidden back door. PCs who killed Fletcher and took the key have a near-direct path here from his Forge → Debris → Statue → Son's Room. PCs who avoided Fletcher must take the longer route through Pump → Sludge Chamber → Greenhouse, OR brave the Sludge Chamber and come up through Statue Room directly (Statue Room is reached from Pump → Chain → Statue, also). The rubble-buried original entrance is an escape route the Seer did not mention — it bypasses returning to the Shadow King's court entirely, if the PCs prefer to vanish. Source: Rotblack Sludge p.7.",
+      "exits": [
+        {
+          "id": "debris-to-chain",
+          "label": "Side passage — to the Chain Room (Room 14)",
+          "target": "chain-room",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "debris-to-statue",
+          "label": "Iron door (Fletcher's key) — to the Statue Room (Room 12)",
+          "target": "statue-room",
+          "condition": "Oddly-shaped key (Fletcher's)",
+          "locked": true
+        },
+        {
+          "id": "debris-to-forge",
+          "label": "Iron door (Fletcher's key) — back to the Forge / Slaughterhouse (Room 7)",
+          "target": "forge-slaughterhouse",
+          "condition": "Oddly-shaped key (Fletcher's)",
+          "locked": true
+        },
+        {
+          "id": "debris-to-escape",
+          "label": "Buried original entrance — Sarkash forest path (clear rubble: DR16 Strength)",
+          "target": "escape",
+          "condition": "Rubble cleared",
+          "locked": true
+        }
+      ],
+      "visited": false,
+      "tags": ["trap", "gutworm-reachable", "random-encounter", "secret-exit"]
+    },
+    {
+      "id": "escape",
+      "title": "Out of the Den",
+      "type": "scene",
+      "atmosphere": "The first true air in days. Cold, mineral, smelling of pine. Behind you the hill is a closed mouth.",
+      "read_aloud": "You crawl out into a stand of dead pine and crooked aspen. The sky is the color of old bruise. There is no path back the way you came — the Den's mouth is on the other side of the hill, or three hills over, or somewhere your bones do not remember. If you have Aldon: he is here. If you have his body: it is heavier than it should be. If you have neither: you are still alive, which is more than most.\n\nNow: the Shadow King's court is a week's walk east. The wilderness is in every other direction. Decide what kind of people you were down there.",
+      "contents": {
+        "description": "The closing scene. The PCs are out — through the Debris Room's buried original entrance, OR back up through the Den Mouth if they walked it. Three outcomes branch from here: return Aldon to the Shadow King (the deal as offered), flee with or without Aldon and start a new life, or return Aldon's corpse and lie about what happened. The Seer is not present. The PCs are alone in the wilderness with whatever they brought out.",
+        "items": [
+          "Whatever the PCs looted from the Den.",
+          "Aldon, alive or dead or unwilling, if recovered."
+        ],
+        "enemies": [],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "If the PCs return Aldon ALIVE to the Shadow King: full payment, freedom, wealth. Within a year, Aldon will likely murder his father (GM call).",
+          "If the PCs return Aldon DEAD: the Shadow King pays half and asks no questions, then orders the PCs killed within a week to silence them.",
+          "If the PCs DO NOT return: the Shadow King's agents will look for them for a year, then forget. The world is dying. There is more to do."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Endings",
+          "text": "1. RETURN ALDON ALIVE — full payment, the Seer never speaks to you again, wealth and freedom, and your name on a list. 2. RETURN ALDON DEAD — half payment, terse thanks, the King's quiet order to silence you. 3. FLEE — keep what you took, fear pursuit for a year, then disappear into the dying world. 4. STAY IN THE DEN — declare yourselves rulers of the Accursed Den (Fletcher's old role). GM decides what comes next; mostly: prisoners, cannibals, and the worm."
+        }
+      ],
+      "gm_notes": "Open ending. Reward the players' choices — none of the four endings should feel wrong. Mörk Borg has no good endings, only ones that fit. If Aldon is alive and willing, surprise the players with a final whip-attack as they hand him over to the Seer; he wanted to be Shadow King, not a prisoner. [CANON CHECK — endings are GM extrapolations; canon offers the recovery objective and the Seer's promise of wealth but does not script outcomes.]",
+      "exits": [
+        {
+          "id": "escape-to-seer",
+          "label": "East — the Shadow King's court, a week's walk (scenario ends)",
+          "target": "escape",
+          "condition": "Scenario complete",
+          "locked": true
+        },
+        {
+          "id": "escape-flee",
+          "label": "Any other direction — into the dying world (scenario ends)",
+          "target": "escape",
+          "condition": "Scenario complete",
+          "locked": true
+        }
+      ],
+      "visited": false,
+      "tags": ["end", "scene"]
+    }
+  ],
+  "bestiary": [
+    {
+      "name": "Sharp-Toothed Guard",
+      "hp": 7,
+      "morale": "8",
+      "speed": "normal",
+      "attack": "Cleaver or filed knife, d6",
+      "special": "Patchwork armor −d3. Bite (swap d6 for d4): Toughness DR12 or low fever for d6 days (−1 to all tests).",
+      "notes": "Fletcher's foot soldiers. Filed teeth, leather + chain. Encountered in Room 2, in random encounters, and as Cook reinforcements. Source: Rotblack Sludge."
+    },
+    {
+      "name": "Cannibal Cook",
+      "hp": 9,
+      "morale": "7",
+      "speed": "normal",
+      "attack": "Cleaver, d6",
+      "special": "Leather apron −d1. If alerted, screams once before fighting — brings d2 Sharp-Toothed Guards on next round.",
+      "notes": "[CANON CHECK — cook is extrapolated from Fletcher's canonical 'court of cannibals.' Use as a low-stakes single encounter in Room 6."
+    },
+    {
+      "name": "Fletcher, the Cannibal Warlock",
+      "hp": 20,
+      "morale": "—",
+      "speed": "normal",
+      "attack": "Red-hot flail, d8 + severe burn (Agility tests −2 for a day)",
+      "special": "Hardened skin −d4. Every third round, automatic Power (d4): 1–2 NINE VIOLET SIGNS UNKNOT THE STORM (d2 lightning bolts, d6 each). 3 DAEMON OF CAPILLARIES (one creature chokes d6 rounds, d4/rd). 4 ICH-BIN-LUFT (invisible 2 rounds, can attack). Sympathy: each hit on Fletcher, attacker tests Agility DR8 or takes d4 from flesh-rain.",
+      "notes": "Seven feet tall, sooty, bald, tattooed. Cannot fit through Room 10's tunnel. Rules the Accursed Den. Source: Rotblack Sludge p.4, Fletcher wiki."
+    },
+    {
+      "name": "Lesdy",
+      "hp": 5,
+      "morale": "4",
+      "speed": "normal",
+      "attack": "Unarmed, d4 (rarely fights herself)",
+      "special": "No armor. Fights through her three hosts. Lowest Morale of any boss-tier NPC in canon. Will offer hospitality and alliance against Fletcher.",
+      "notes": "Long dark hair, gunny sack. Reads alone in the Greenhouse. Seeks to control the Gutworm via sludge consumption to reach the deep caves below. Source: Rotblack Sludge p.6, Lesdy wiki."
+    },
+    {
+      "name": "Lesdy's Host (each, x3)",
+      "hp": 7,
+      "morale": "—",
+      "speed": "normal",
+      "attack": "Long knife, d6",
+      "special": "No armor. Will not flee. Chant 'Lesdy… Lusi… Lesdy… the chosen, the delightful!' while attacking. Immune to fear, charm, parley.",
+      "notes": "Young, dressed in rags, zealous. Three of them. Source: Rotblack Sludge p.6."
+    },
+    {
+      "name": "Aldon",
+      "hp": 10,
+      "morale": "—",
+      "speed": "normal",
+      "attack": "Runic bullwhip, d4 + d4 necro-plasmic shock",
+      "special": "No armor. Necro-plasmic shock: hit target tests Toughness DR10 or −1 to next attack. Will not surrender; will not flee.",
+      "notes": "[CANON CHECK — Aldon has no canonical stat block; numbers interpolated from his arrogance, his bullwhip's listed damage, and lack of training. Source: Aldon wiki, Rotblack Sludge p.7."
+    },
+    {
+      "name": "Gutworm",
+      "hp": 50,
+      "morale": "—",
+      "speed": "normal",
+      "attack": "Razor-sharp teeth, d10 — Agility DR6 or devoured (instant death)",
+      "special": "Thick hide −d6. Hides in the Rotblack Sludge. Can reach Rooms 9, 12, and 15. Every swim through the sludge: 1–2 on d6 the Gutworm bites. Attracted to flame.",
+      "notes": "Unfathomably long, thick as an oak. Cannot be reasoned with. Boss-tier; not intended to be fought conventionally — drown the upper rooms via the pump and engage on dry-ish stone, or avoid entirely. Source: Rotblack Sludge p.8, Gutworm wiki."
+    },
+    {
+      "name": "Dusk Gnoum",
+      "hp": 4,
+      "morale": "7",
+      "speed": "fast",
+      "attack": "Knife, d4",
+      "special": "No armor. DR14 to hit them — small and quick.",
+      "notes": "Crawl from wall-holes, climb walls. Encountered in d4 packs. Random Encounter Table A. Source: Rotblack Sludge."
+    },
+    {
+      "name": "Mongrel",
+      "hp": 8,
+      "morale": "9",
+      "speed": "fast",
+      "attack": "Bite, d4 +1 (infection: Toughness DR12 or sicken)",
+      "special": "No armor. Massive black dog, shaggy oily fur.",
+      "notes": "Random Encounter Table A. Source: Rotblack Sludge."
+    },
+    {
+      "name": "Nesting Death",
+      "hp": 12,
+      "morale": "—",
+      "speed": "fast",
+      "attack": "Bite, d4 — Toughness DR12 or freeze (tests DR+2 for one hour)",
+      "special": "Thick carapace −d2. Wins initiative on 1–4. Drops from a bone-nest in the ceiling.",
+      "notes": "Hound-sized spider. Random Encounter Table A. Source: Rotblack Sludge."
+    },
+    {
+      "name": "Goblin (Seth)",
+      "hp": 6,
+      "morale": "7",
+      "speed": "normal",
+      "attack": "Knife or shortbow, d4",
+      "special": "Ropy skin −d2. Quick — attacks and defense at DR14. Carries the Goblin Curse: hit-or-miss, exposed PCs warp into goblins in d6 days unless the carrier is killed first.",
+      "notes": "Wanders in from Sarkash tunnels. Random Encounter Table A. Source: Bare Bones p.58."
+    },
+    {
+      "name": "Cannibal Acolyte",
+      "hp": 8,
+      "morale": "8",
+      "speed": "normal",
+      "attack": "Cleaver or fang-knife, d6",
+      "special": "Leather scraps −d1. Pair up; grin while attacking; show filed teeth.",
+      "notes": "[CANON CHECK — acolytes are extrapolations from Fletcher's canonical 'court of cannibals.' Use for Random Encounter Table A entry 6."
+    },
+    {
+      "name": "Tired Crystal Demon",
+      "hp": 0,
+      "morale": "—",
+      "speed": "normal",
+      "attack": "None (cannot be harmed)",
+      "special": "Triggered ONLY by speaking 'You dead, arise!' in Room 3. Drains one scroll from the party. Mental Shockwave: all PCs in room test Presence DR12 or lose d6 HP and cannot use Powers for the rest of the scenario. Then vanishes.",
+      "notes": "Cannot be fought. The trap is the eagerness of a literate adventurer. Source: Rotblack Sludge p.6, Tired Crystal Demon wiki."
+    },
+    {
+      "name": "Distraught Spirit",
+      "hp": 0,
+      "morale": "—",
+      "speed": "normal",
+      "attack": "None",
+      "special": "No stat block. Pleads with PCs to end the Gutworm. Knows the worm hides in the sludge. Dissolves once heard out. Once-per-scenario encounter (Table B, result 1).",
+      "notes": "Manifests in the Pump Room, Chain Room, or Debris Room. The spirit's name is forgotten; its hate of the worm is not. Source: Rotblack Sludge p.III, Distraught Spirit wiki."
+    },
+    {
+      "name": "Sagsobuth",
+      "hp": 0,
+      "morale": "—",
+      "speed": "normal",
+      "attack": "Provoked Explosion: 2d10 damage distributed among the group",
+      "special": "Cannot be harmed. Will not attack unless provoked. Interdimensional trader; shapeless, face a vortex of light. Once-per-scenario encounter (Table B, result 2).",
+      "notes": "Trades: VIOLET POISON 30s (DR14, 2d10 damage, d4+1 doses); BEECHWOOD TUBE 30s (protean scroll, new unclean Power each dawn, one use, misinterpret on 1–3). Source: Rotblack Sludge, Sagsobuth wiki."
+    }
+  ]
+}

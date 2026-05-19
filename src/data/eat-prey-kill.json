@@ -1,0 +1,771 @@
+{
+  "meta": {
+    "id": "eat-prey-kill",
+    "title": "Eat Prey Kill",
+    "author": "Karl Druid (MBC: Eat Prey Kill)",
+    "version": "1.0",
+    "system": "morkborg",
+    "description": "When stomachs growl and there's no inn in sight, roll for Presence and succeed to see what potential feasts you find. Regional bestiary + hunting rules. Not a scenario — a supplement.",
+    "startNode": "hunting-rules",
+    "license": "Based on official Mörk Borg content. Independent production by Trevor Burkholder, published under the MÖRK BORG Third Party License. MÖRK BORG is © Ockult Örtmästare Games and Stockholm Kartell."
+  },
+  "nodes": [
+    {
+      "id": "hunting-rules",
+      "title": "The Hunt",
+      "type": "location",
+      "atmosphere": "The road has no inn. The pack has no rations. The land around you is sick, but it is also full of meat — meat that walks, meat that watches, meat that watches you back.",
+      "read_aloud": "Your stomach is a closed fist. The last bread was three days back and the last clean water before that. There is no village on this horizon and no smoke on any of them. But the land moves. Something out there is also hungry. Roll Presence. Succeed, and you spot what is worth hunting before it spots you. Fail, and you can still find things to kill — but the hunt will go wrong before the meat goes in the pot.",
+      "contents": {
+        "description": "Hub node. The party is starving on the road in one of the four regions of the Dying Lands. The GM picks the region (or asks where the PCs are) and exits to the corresponding regional table. Each regional node holds a d6 hunting table of native beasts plus their stat blocks for the inevitable combat. Returning to this hub re-runs the hunt — different region, different prey, same hunger.",
+        "items": [
+          "Meat as rations: a killed beast feeds the party for day-rations equal to its HP (GM-reasonable for size).",
+          "How many? If the entry lists a die in parentheses (d4, d6, d8), roll it. Otherwise, one."
+        ],
+        "enemies": [],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "The d10 In the Belly of the Beast table includes a human femur covered in arcane runes — it opens any magically sealed door, then turns to salt, cursing its owner. [CANON CHECK — major item, prime hook for an entire scenario.]",
+          "Mishap 8 names an earthbound mud shaman whose beast you may have just butchered. He has not forgotten. The Earthbound are a faction with a long memory and short patience."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Spotting Prey (Presence)",
+          "text": "Roll Presence DR12 to see what potential feast presents itself. Success: roll d6 on the region's hunting table — the GM describes the beast's signs (tracks, calls, droppings, drifting feathers). Failure: the party still finds something to kill, but roll d10 on Hunting Mishaps before the hunt resolves."
+        },
+        {
+          "title": "How Much Meat",
+          "text": "Day-rations recovered from a killed beast equal its HP (or GM-reasonable for size and grotesquerie). A Steppe Wolfe (HP 16) feeds the party 16 day-rations of stringy, wrong-tasting meat. A Mulch-squirrel (HP 1) is a single greasy mouthful for one PC. Spoiled, cursed, or contaminated meat does not count."
+        },
+        {
+          "title": "How Many",
+          "text": "If the bestiary entry lists a die in parentheses after the creature (d4, d6, d8, d20), roll it to determine how many show up. Otherwise, one."
+        },
+        {
+          "title": "Hunting Mishaps (d10)",
+          "text": "1 — The beast is infested with exploding ticks. 2 — Another hunting party is nearby and they saw the prey first. 3 — Another, larger predator is also stalking this kill. 4 — Scavengers have followed the blood trail. 5 — The beast is undead, controlled by a mad necromancer hiding in the brush. 6 — The beast's lair is closer than the kill site — its kin will return. 7 — The beast is sick. The meat is contagious and inedible. 8 — The beast belongs to an earthbound mud shaman who watches from the treeline. 9 — Locals have painted this beast holy. Killing it is sacrilege in the next village. 10 — The hunt drags both parties into poisonous thorns, unstable ice, or a collapsing ravine — DR14 Agility or d6 damage and lose the kill."
+        },
+        {
+          "title": "In the Belly of the Beast (d10)",
+          "text": "Roll once per cleaned carcass if the GM is feeling generous. 1 — Priest's remains (possibly an undiscovered scroll). 2 — A long angry flesh worm, still alive and angry. 3 — One of the beast's spawn, still alive — adopt it or eat it. 4 — A sharp bone usable as a piercing weapon (2d4). 5 — A lich's skull with ruby eyes (25s each). 6 — d6 silver. 7 — The remains of a child a nearby village seeks alive. 8 — Broken glass that may have contaminated the meat (DR12 Toughness or d4 damage). 9 — A black tube of hallucinogenic powder — Presence DR12 to see and speak with spirits. 10 — A human femur covered in arcane runes that opens any magically sealed door, then turns to salt, cursing its owner forever. [CANON CHECK]"
+        }
+      ],
+      "gm_notes": "This is a reference supplement, not a scenario. There is no win condition and no end node. Use it whenever the PCs are starving on the road in one of the four mapped regions. Pick a region (or ask the players where they think they are) and exit there. Run the hunt: Presence test, regional d6, combat, butchering, then optionally roll d10 In the Belly of the Beast. The Mishap table is for failed Presence tests — it twists an easy meal into a disaster. The 'human femur' on the Belly table is a wholly disproportionate magic item embedded in a hunting supplement; treat it as a flagged hook. If the PCs find it, they have stumbled into a plot you do not yet have written. Other regions — Kergüs, Bergen Chrypt, Western Kingdom, Endless Sea, Valley of the Unfortunate Undead — exist in the source with their own d6 tables but are not yet modeled here. [CANON CHECK — expansion target.]",
+      "exits": [
+        {
+          "id": "hub-to-tveland",
+          "label": "Tveland — flat moors, plague-wracked hovels, wolves on the wind",
+          "target": "tveland-region",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "hub-to-sarkash",
+          "label": "Sarkash — black forest, wet bark, things that scream like men",
+          "target": "sarkash-region",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "hub-to-graven-tosk",
+          "label": "Graven-Tosk — the cemetery-region, fog and mausolea and worse",
+          "target": "graven-tosk-region",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "hub-to-grift",
+          "label": "Grift — alleys and bridges and basements, never a true wild",
+          "target": "grift-region",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["start", "reference", "hub"]
+    },
+    {
+      "id": "tveland-region",
+      "title": "Tveland — The Hungry Steppe",
+      "type": "location",
+      "atmosphere": "Flat moors that go on past the eye. Wind across grass the color of old straw. Somewhere in the middle distance, a hovel coughs smoke that smells of sickness. The herds are out there. So is what hunts the herds.",
+      "read_aloud": "The land lies down. There is nothing standing taller than your knee for a long bowshot in every direction except the wind, and the wind does not stand — it leans. You smell wet wool and rot. Something has been eating well out here, and what eats it is not what you have words for.",
+      "contents": {
+        "description": "The cold steppes of Tveland. Six native beasts on the hunting table. Most go in herds. None go quietly. The bigger creatures (Steppe Wolfe, Tusked Bison, Feral Horses) are kill-or-be-killed; the Antideer and Ratbit are traps wearing fur; the Flayed Vultures are what arrives after you've already lost.",
+        "items": [
+          "Tveland day-rations from a successful hunt: see each beast's HP for ration count.",
+          "Antlers, tusks, pelts, and the occasional ten-inch claw can be sold or kept as trophies — GM call on price."
+        ],
+        "enemies": [
+          {
+            "name": "Antideer",
+            "hp": 7,
+            "morale": "6",
+            "speed": "normal",
+            "attack": "Antlers, d6",
+            "special": "Tough skin −d2. After eating Antideer meat, pass a DR12 Presence test to live with yourself — failure lowers Presence by 1.",
+            "notes": "Tastes like venison, but isn't. Watches you with eyes that are almost — but not quite — the eyes of a deer. Tveland. Source: MBC Eat Prey Kill p.4."
+          },
+          {
+            "name": "Flayed Vultures",
+            "hp": 3,
+            "morale": "—",
+            "speed": "normal",
+            "attack": "Bite/Claws, d4",
+            "special": "Fearless climbers — will scale a sheer rockface, a tower wall, or a man's body with the same patient grip. Cannot fly.",
+            "notes": "Encountered in flocks of d8. Skinless birds, raw red feet. They pull themselves up the cliffs and wait for what falls down. Tveland. Source: MBC Eat Prey Kill p.4."
+          },
+          {
+            "name": "Ratbit",
+            "hp": 6,
+            "morale": "—",
+            "speed": "normal",
+            "attack": "Claws, d8",
+            "special": "Digs. The hole is human-sized. The claws that dug it are ten inches long — ten inches of reach from inside the tunnel mouth.",
+            "notes": "In a hole in the ground there lives a Ratbit. The hole is large enough for a man, because a man is what it eats. Tveland. Source: MBC Eat Prey Kill p.4."
+          },
+          {
+            "name": "Feral Horses",
+            "hp": 8,
+            "morale": "—",
+            "speed": "fast",
+            "attack": "Bite/Kick, d6",
+            "special": "Tough skin −d2. Carnivorous — a bite is as much to be feared as a kick.",
+            "notes": "Encountered in herds of d4. Once mounts, once trained. Now they run in packs of four, hunting whatever the steppe wolves leave standing. Their teeth grew back wrong. Tveland. Source: MBC Eat Prey Kill p.4."
+          },
+          {
+            "name": "Steppe Wolfe",
+            "hp": 16,
+            "morale": "—",
+            "speed": "fast",
+            "attack": "Bite, d6",
+            "special": "Tough skin −d2. Hunts with a pack of d8 lesser wolves. Outlast it for d4 rounds and the pack might leave you alone — the lanky Steppe Wolfe has long legs but a short patience.",
+            "notes": "The lanky one. Longer in the leg than any wolf has right to be. The pack follows where the Wolfe leads. Tveland. Source: MBC Eat Prey Kill p.4."
+          },
+          {
+            "name": "Tusked Bison",
+            "hp": 16,
+            "morale": "10",
+            "speed": "normal",
+            "attack": "Tusks, d8",
+            "special": "Tough skin −d4. Fighting one means fighting d4 more — the herd does not abandon its own.",
+            "notes": "Patient. Gentle. An entire wall of dark wool and yellow tusks the moment one of them screams. The steppe-hunters call them kind, because the dead cannot disagree. Tveland. Source: MBC Eat Prey Kill p.4."
+          }
+        ],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "The herds of Feral Horses share territory with the Steppe Wolfe packs — if combat with one is loud, the other may arrive within d4 rounds, drawn by the noise of dying.",
+          "An Antideer herd may be a single beast multiplied in the eye of a Presence-lowered hunter. The PCs may already have eaten one without knowing."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Tveland Hunt (d6)",
+          "text": "Roll d6 on this region's hunting table to determine what feast presents itself: 1 Antideer · 2 Flayed Vultures (d8) · 3 Ratbit · 4 Feral Horses (d4) · 5 Steppe Wolfe (+ pack of d8) · 6 Tusked Bison (+ d4 more)."
+        }
+      ],
+      "gm_notes": "Tveland's hunting table runs from quiet horrors (Antideer, Ratbit) at the low end to outright war (Steppe Wolfe pack, Tusked Bison herd) at the high. A starving party rolling 5 or 6 is in the same trouble as a party that failed the Presence test entirely. The Antideer's Presence-loss is permanent unless the GM rules otherwise — be honest with the players about the cost before they butcher it. Flayed Vultures are the cleanup crew if the hunt goes badly: have a flock of d8 arrive at the edge of any failed Tveland encounter to pick over the dying.",
+      "exits": [
+        {
+          "id": "tveland-to-hub",
+          "label": "Back to the road — the hunting rules",
+          "target": "hunting-rules",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "tveland-to-sarkash",
+          "label": "South — into the black forest of Sarkash",
+          "target": "sarkash-region",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "tveland-to-graven-tosk",
+          "label": "East — toward the fog of Graven-Tosk",
+          "target": "graven-tosk-region",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "tveland-to-grift",
+          "label": "Long road — to the bridges of Grift",
+          "target": "grift-region",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["region", "bestiary"]
+    },
+    {
+      "id": "sarkash-region",
+      "title": "Sarkash — The Forest That Listens",
+      "type": "location",
+      "atmosphere": "The forest is too quiet, and then it is too loud. Wet bark. Black needles underfoot. Somewhere distant, a voice is calling for help. It is not a voice.",
+      "read_aloud": "Sarkash takes the sound out of your boots. You walk and there is no walking. Above you the canopy is so dense it makes a second sky, a lower one, made of needles. Then, far off — a man, screaming. He is asking you to help him. You begin to move toward him before you have decided to.",
+      "contents": {
+        "description": "The black forest of Sarkash. Six native beasts. The Howler Bear and Throat-cutting Warbler weaponize sound; the Skelelk and Dredgehog wear their armor on the outside; the Mulch-squirrels are a sad meal; the Carrion Owls are a portent. The forest itself is the seventh enemy — visibility is poor, sound is wrong, and the trees move at the corners of the eye.",
+        "items": [
+          "Sarkash day-rations from a successful hunt: see each beast's HP for ration count.",
+          "Dredgehog daggers may be salvageable as improvised d4 piercing weapons (GM call).",
+          "Skelelk exoskeleton plates can be lashed into ablative armor — GM call on tier."
+        ],
+        "enemies": [
+          {
+            "name": "Skelelk",
+            "hp": 9,
+            "morale": "8",
+            "speed": "normal",
+            "attack": "Antlers, d6",
+            "special": "Exoskeleton −d6. The skeleton is worn outside the meat. Blunt weapons always deal maximum damage; the cage of bone cracks but does not give.",
+            "notes": "Encountered in groups of d4. Bring axes, not blades. Sarkash. Source: MBC Eat Prey Kill p.5."
+          },
+          {
+            "name": "Dredgehog",
+            "hp": 14,
+            "morale": "10",
+            "speed": "slow",
+            "attack": "Bite/Daggers, d6",
+            "special": "Daggerback −d6. When provoked, rolls into a big ball of murder. Missing an attack against the beast means you strike a dagger and take d4 damage.",
+            "notes": "Its spines are not quills, they are knives — long, thin, oiled-dark in the Sarkash damp. Sarkash. Source: MBC Eat Prey Kill p.5."
+          },
+          {
+            "name": "Carrion Owls",
+            "hp": 2,
+            "morale": "—",
+            "speed": "normal",
+            "attack": "Bite/Claws, d4",
+            "special": "Strict carrion-eaters — they only eat what died the night before. They follow battles, executions, and bedside vigils for the moment.",
+            "notes": "If a flock of Carrion Owls is circling, something near you is going to die in the next day. They are never wrong. Sarkash. Source: MBC Eat Prey Kill p.5."
+          },
+          {
+            "name": "Throat-cutting Warbler",
+            "hp": 1,
+            "morale": "—",
+            "speed": "fast",
+            "attack": "Beak, d10",
+            "special": "Tiny. Attacks and defence against the warbler are DR14. The sharpest beak and the best aim of all birds in Sarkash — favors the carotid.",
+            "notes": "A bright little bird that sings sweet enough to charm. Then it dives. Sarkash. Source: MBC Eat Prey Kill p.5."
+          },
+          {
+            "name": "Mulch-squirrels",
+            "hp": 1,
+            "morale": "3",
+            "speed": "fast",
+            "attack": "Bite/Claws, 1 damage",
+            "special": "Diet of pure leaf-rot and black soil. The meat is brown all the way through and tastes of the forest floor.",
+            "notes": "Encountered in nests of d4. Fat little things made entirely of mulch. The worst meal in the forest, but a meal. Sarkash. Source: MBC Eat Prey Kill p.5."
+          },
+          {
+            "name": "Howler Bear",
+            "hp": 18,
+            "morale": "—",
+            "speed": "normal",
+            "attack": "Bite/Claws, d8",
+            "special": "Skin −d2. Lures prey by wailing like dying men. Some Howler Bears even form words. Common cries include 'HELP' and 'I'M BEING EATEN BY A HOWLER BEAR.'",
+            "notes": "If you hear a man screaming for help in Sarkash, assume he is a bear until you have seen otherwise. The woods echo with screaming, and you do not know, anymore, what is a man and what is a bear. Sarkash. Source: MBC Eat Prey Kill p.5."
+          }
+        ],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "If the GM is feeling cruel, the first Howler Bear cry the PCs hear is genuine — a real man, really being eaten. The second one isn't.",
+          "Carrion Owls circling the party means a death within 24 hours. The owls are never wrong. The PCs are not told whose."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Sarkash Hunt (d6)",
+          "text": "Roll d6 on this region's hunting table to determine what feast presents itself: 1 Skelelk (d4) · 2 Dredgehog · 3 Carrion Owls · 4 Throat-cutting Warbler · 5 Mulch-squirrels (nest of d4) · 6 Howler Bear."
+        }
+      ],
+      "gm_notes": "Sarkash is the most atmospheric region — lean on sound. The Howler Bear is the headline encounter; deploy its mimicry liberally even when the d6 doesn't roll a 6. The Throat-cutting Warbler is the trickiest stat block in the booklet — 1 HP but DR14 to hit and a d10 beak strike to the throat. Reward careful play, but be honest about the threat. Carrion Owls are flavor and omen as much as encounter; if they show on a failed Presence test, the mishap should be that something the party has already done is about to come back for them.",
+      "exits": [
+        {
+          "id": "sarkash-to-hub",
+          "label": "Back to the road — the hunting rules",
+          "target": "hunting-rules",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "sarkash-to-tveland",
+          "label": "North — onto the steppes of Tveland",
+          "target": "tveland-region",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "sarkash-to-graven-tosk",
+          "label": "East — through the fog into Graven-Tosk",
+          "target": "graven-tosk-region",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "sarkash-to-grift",
+          "label": "South — out of the trees toward Grift",
+          "target": "grift-region",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["region", "bestiary"]
+    },
+    {
+      "id": "graven-tosk-region",
+      "title": "Graven-Tosk — The Cemetery's Fog",
+      "type": "location",
+      "atmosphere": "The cemetery does not have edges. The fog walks with you. Every stone is a marker for someone. Some of them are still here.",
+      "read_aloud": "The fog of Graven-Tosk comes up to your knees and then your throat. You smell wet stone and bone-dust. Something is moving in the mausolea — chittering, then quiet, then chittering again. There are no birds. There is the sound of birds.",
+      "contents": {
+        "description": "The cemetery-region. Six native fauna, all of which live on, in, or beside the dead. The Giant Skull Moth and Half-billed Raven hunt from above; the Twice-grown Corpse Fly and Meatroach lay eggs in living and dead alike; the Unbred Mutts wait by graves they will not leave; the Grim-toothed Squirrel cracks the bones the others left behind. None of this fauna would exist anywhere else.",
+        "items": [
+          "Graven-Tosk day-rations from a successful hunt: see each beast's HP for ration count.",
+          "Meatroach meat is a delicacy if cooked right. Otherwise it kills you.",
+          "Grim-toothed Squirrel meat — fed on marrow — is the alchemist's puzzle. GM call on what it does."
+        ],
+        "enemies": [
+          {
+            "name": "Giant Skull Moth",
+            "hp": 3,
+            "morale": "—",
+            "speed": "normal",
+            "attack": "Stinger, d4 + special",
+            "special": "DR14 Toughness or d4 damage and become infected (GM call on what with).",
+            "notes": "Bears the shape and size of a human skull on its tar-black wings. Drifts through the mausoleum-rows like a face that forgot its body. Graven-Tosk. Source: MBC Eat Prey Kill p.6."
+          },
+          {
+            "name": "Twice-grown Corpse Fly",
+            "hp": 4,
+            "morale": "—",
+            "speed": "fast",
+            "attack": "Bite, d4 + special",
+            "special": "Exoskeleton −d4. Test Toughness DR12 or become host for a dozen freshly laid fly eggs. Extract them within d6 days or watch them hatch in your corpse.",
+            "notes": "The first cycle was a fly that hatched in a corpse. The second is you. Bursts out of urns and skulls. Graven-Tosk. Source: MBC Eat Prey Kill p.6 / Graves Left Wanting p.11."
+          },
+          {
+            "name": "Unbred Mutts",
+            "hp": 8,
+            "morale": "—",
+            "speed": "normal",
+            "attack": "Bite, d6",
+            "special": "No morale. Will not break off. Whatever is between them and the grave they came from, they will bite through.",
+            "notes": "Encountered in packs of d6. Said to be the descendants of pedigreed dogs waiting by the graves of their late masters. Some say they're the same dogs, still waiting. Graven-Tosk. Source: MBC Eat Prey Kill p.6 / Graves Left Wanting p.7."
+          },
+          {
+            "name": "Grim-toothed Squirrel",
+            "hp": 2,
+            "morale": "6",
+            "speed": "fast",
+            "attack": "Bite, d6",
+            "special": "Teeth designed for bone. It can crack a femur. It can crack a finger more easily.",
+            "notes": "Where a normal squirrel goes for nuts, this one goes for the knuckles. Haunts the older mausolea and works the cracked-open coffins. Graven-Tosk. Source: MBC Eat Prey Kill p.6."
+          },
+          {
+            "name": "Meatroach",
+            "hp": 4,
+            "morale": "—",
+            "speed": "fast",
+            "attack": "Bite, d4",
+            "special": "Exoskeleton −d4. Has a poisonous murder-appendix that must be removed before cooking (DR16 Agility). Failure spoils the meat — eating it requires a DR14 Toughness or d8 damage.",
+            "notes": "A delicacy, if cooked right. If not, you die. Palm-sized and oily. The Roach Herder of Graven-Tosk breeds them. Graven-Tosk. Source: MBC Eat Prey Kill p.6."
+          },
+          {
+            "name": "Half-billed Raven",
+            "hp": 2,
+            "morale": "—",
+            "speed": "fast",
+            "attack": "Beak/Choking tongue, d4/special",
+            "special": "DR12 Agility to avoid the tongue or d4 damage per round until DR14 Strength succeeds or the raven dies. The tongue is the worse half.",
+            "notes": "Encountered in murders of d4. The lower jaw is gone — in its place is a long, gluey tongue that reaches and clutches. Tastes of grave water. Graven-Tosk. Source: MBC Eat Prey Kill p.6 / Graves Left Wanting p.7."
+          }
+        ],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "The Roach Herder (if encountered in Graves Left Wanting) breeds Meatroaches in scale. There may be a much larger specimen somewhere in Graven-Tosk than the d4-damage bite suggests.",
+          "An Unbred Mutt that lets the party pass is a Mutt whose grave the party has not yet disturbed. Disturb it and the same Mutt returns."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Graven-Tosk Hunt (d6)",
+          "text": "Roll d6 on this region's hunting table to determine what feast presents itself: 1 Giant Skull Moth · 2 Twice-grown Corpse Flies · 3 Unbred Mutts (pack of d6) · 4 Grim-toothed Squirrel · 5 Meatroach · 6 Half-billed Raven (murder of d4)."
+        }
+      ],
+      "gm_notes": "Graven-Tosk fauna shares heavily with Graves Left Wanting — if you're running both, the encounter tables overlap. None of the Graven-Tosk beasts give clean meat. The Meatroach is delicacy-or-poison and the Agility DR16 to remove the appendix is brutal; treat a failed roll as a real consequence. The Twice-grown Corpse Fly egg infestation is a slow-burn body horror — set a d6-day timer and let the players forget about it. The Giant Skull Moth's 'infection' is intentionally undefined — pick something appropriate to your campaign (rotting wound, dream-sickness, dead-tongue plague). The cemetery is foggy and the fog moves — the hunt may also become a navigation problem.",
+      "exits": [
+        {
+          "id": "graven-tosk-to-hub",
+          "label": "Back to the road — the hunting rules",
+          "target": "hunting-rules",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "graven-tosk-to-tveland",
+          "label": "West — back to the open steppes of Tveland",
+          "target": "tveland-region",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "graven-tosk-to-sarkash",
+          "label": "West — into the black forest of Sarkash",
+          "target": "sarkash-region",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "graven-tosk-to-grift",
+          "label": "South — to the bridge-city of Grift",
+          "target": "grift-region",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["region", "bestiary"]
+    },
+    {
+      "id": "grift-region",
+      "title": "Grift — Streets, Cellars, and the Bridges Above",
+      "type": "location",
+      "atmosphere": "There is no wild in Grift. There is only what the city has not yet eaten. Alleys narrower than a man's shoulders. Cellars warmer than they should be. Above it all, the bridges, and above the bridges, the gulls.",
+      "read_aloud": "Grift smells of bridge-tar and old fish and the kind of smoke that wants to settle in your hair. Something with too many legs runs across the courtyard behind you. You do not turn. You have not eaten in three days, and in Grift, the meat is in the cellars and the meat is in the gutters and the meat is in the alley with the broken lantern.",
+      "contents": {
+        "description": "The city. The 'hunt' in Grift is scavenging — there is no game in the traditional sense. Six urban beasts, all of which think of the city as their territory and the PCs as competition. The Lentil Lice encounter is a brawl with d6 starved peasants over a corpse; the Straw-Lion is a trapper's nightmare hiding in plain sight; the Múrder Gulls flock by the score along the Múr.",
+        "items": [
+          "Grift day-rations from a successful hunt: see each beast's HP for ration count.",
+          "Múrder Gull putty (hardens to stone in wind) may have alchemical uses — sealing wax, false stone. GM call. The Merchant may know.",
+          "A corpse with Lentil Lice in it feeds the party for the corpse's worth of mouthfuls, if you can fight off the peasants first."
+        ],
+        "enemies": [
+          {
+            "name": "Uncommon Rats",
+            "hp": 6,
+            "morale": "—",
+            "speed": "fast",
+            "attack": "Bite/Claws, d8/d6",
+            "special": "Twin attack profile — Bite d8 and Claws d6 in the same round. They grip and rend.",
+            "notes": "Encountered in packs of d4. Large like hounds but with twice the spite and thrice the teeth. The bridge-watchmen keep a cudgel by the door. They do not always make it home. Grift. Source: MBC Eat Prey Kill p.7."
+          },
+          {
+            "name": "Cellar Crabs",
+            "hp": 6,
+            "morale": "—",
+            "speed": "normal",
+            "attack": "Bite/Claws, d6",
+            "special": "Shell −d4. Despite the name, found in any number of cold, dark places — not only cellars. When you hear the clickety clack of their 20-inch legs, leave.",
+            "notes": "Encountered in groups of d4. Quiet-things, dark-things. The cooking is straightforward. The catching is not. Grift. Source: MBC Eat Prey Kill p.7."
+          },
+          {
+            "name": "Nameless & Tameless Strays",
+            "hp": 4,
+            "morale": "—",
+            "speed": "fast",
+            "attack": "Bite, d4",
+            "special": "No fear, no master, no name. They will eat anything that does not eat them first. When they bite they do not let go.",
+            "notes": "Encountered in packs of d8. The streets of Grift are home to many. They sleep in doorways and starve in alleys and they do not bark. Grift. Source: MBC Eat Prey Kill p.7."
+          },
+          {
+            "name": "Straw-Lion",
+            "hp": 14,
+            "morale": "—",
+            "speed": "slow",
+            "attack": "Pincers/Jaws, special/d8",
+            "special": "Exoskeleton −d6. DR14 Agility or be pulled into the jaws — d8 damage instantly and every round until DR18 Strength succeeds or the lion dies. If broken or pushed to negative HP inside the jaws but rescued that same round, you survive with a half-botched lobotomy: Presence reduced to −3.",
+            "notes": "Hides in piles of straw — barns, collapsed stables, unswept corners of the market floor. It eats the brain and discards the rest. Grift. Source: MBC Eat Prey Kill p.7."
+          },
+          {
+            "name": "Lentil Lice",
+            "hp": 4,
+            "morale": "7",
+            "speed": "normal",
+            "attack": "Knife/Femur, d4",
+            "special": "Lentil Lice are the size of rice and live inside corpses. They don't eat you — at least not until you're dead. The encounter is a fight against d6 starved peasants competing for the same corpse-meal (stats listed: HP 4, Morale 7, Knife/Femur d4).",
+            "notes": "Encountered as a brawl with d6 starved peasants over a louse-infested corpse. The lice are good eating if you can get to them first. Grift's poor know to keep a femur in hand. Grift. Source: MBC Eat Prey Kill p.7."
+          },
+          {
+            "name": "Múrder Gulls",
+            "hp": 2,
+            "morale": "—",
+            "speed": "fast",
+            "attack": "Beak, d4",
+            "special": "Encountered in flocks of d20. Sawtooth beaks. A flock can pull a man apart. They nest in hollows along the Múr's banks, shaped from sticky putty spewn from their gullets that hardens to stone in the wind.",
+            "notes": "Twenty of them in the sky over Grift is not unusual. Twenty of them on a man is a brief story. Grift. Source: MBC Eat Prey Kill p.7."
+          }
+        ],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "The Straw-Lion's Presence-to-negative-three lobotomy outcome is permanent. A PC who survives this way is functionally a different character — play it.",
+          "The Lentil Lice encounter is the only one in the book where the 'beast' is a fellow human. The starved peasants are the real opponents — the lice are dressing. Be prepared to roleplay desperate, hungry people who are not evil, only first to the corpse."
+        ]
+      },
+      "rules": [
+        {
+          "title": "Grift Hunt (d6)",
+          "text": "Roll d6 on this region's hunting table to determine what scavenged feast presents itself: 1 Uncommon Rats (pack of d4) · 2 Cellar Crabs (d4) · 3 Nameless & Tameless Strays (pack of d8) · 4 Straw-Lion · 5 Lentil Lice (with d6 starved peasants) · 6 Múrder Gulls (flock of d20)."
+        }
+      ],
+      "gm_notes": "Grift is the urban region — there is no wilderness here, only the city's underside. Treat 'spotting prey' as scavenging rather than hunting: rooting through cellars, alleys, rooftops, the underbridge hollows along the Múr. The Straw-Lion is the deadliest single creature in the supplement — its grab-and-grind cycle can kill a PC in two rounds without a Strength save. Telegraph the straw piles. The Lentil Lice encounter is the social-horror entry: the actual fight is against d6 starved peasants who got there first. Let the players hesitate. The Múrder Gulls in flocks of d20 are an extinction event — a single d4 from each, twenty times, will end a party. Reserve them for the open bridges and rooftops where the PCs can retreat indoors.",
+      "exits": [
+        {
+          "id": "grift-to-hub",
+          "label": "Back to the road — the hunting rules",
+          "target": "hunting-rules",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "grift-to-tveland",
+          "label": "North — out to the steppes of Tveland",
+          "target": "tveland-region",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "grift-to-sarkash",
+          "label": "North — into the black forest of Sarkash",
+          "target": "sarkash-region",
+          "condition": null,
+          "locked": false
+        },
+        {
+          "id": "grift-to-graven-tosk",
+          "label": "North — into the cemetery-fog of Graven-Tosk",
+          "target": "graven-tosk-region",
+          "condition": null,
+          "locked": false
+        }
+      ],
+      "visited": false,
+      "tags": ["region", "bestiary"]
+    }
+  ],
+  "bestiary": [
+    {
+      "name": "Antideer",
+      "hp": 7,
+      "morale": "6",
+      "speed": "normal",
+      "attack": "Antlers, d6",
+      "special": "Tough skin −d2. After eating Antideer meat, pass a DR12 Presence test to live with yourself — failure lowers Presence by 1.",
+      "notes": "Tveland. Tastes like venison, but isn't. Source: MBC Eat Prey Kill p.4."
+    },
+    {
+      "name": "Flayed Vultures",
+      "hp": 3,
+      "morale": "—",
+      "speed": "normal",
+      "attack": "Bite/Claws, d4",
+      "special": "Fearless climbers. Cannot fly. Flocks of d8.",
+      "notes": "Tveland. Skinless birds. Source: MBC Eat Prey Kill p.4."
+    },
+    {
+      "name": "Ratbit",
+      "hp": 6,
+      "morale": "—",
+      "speed": "normal",
+      "attack": "Claws, d8",
+      "special": "Digs human-sized holes. Ten-inch claws give ten-inch reach from inside the tunnel mouth.",
+      "notes": "Tveland. Eats men, not rabbits. Source: MBC Eat Prey Kill p.4."
+    },
+    {
+      "name": "Feral Horses",
+      "hp": 8,
+      "morale": "—",
+      "speed": "fast",
+      "attack": "Bite/Kick, d6",
+      "special": "Tough skin −d2. Carnivorous. Herds of d4.",
+      "notes": "Tveland. Their teeth grew back wrong. Source: MBC Eat Prey Kill p.4."
+    },
+    {
+      "name": "Steppe Wolfe",
+      "hp": 16,
+      "morale": "—",
+      "speed": "fast",
+      "attack": "Bite, d6",
+      "special": "Tough skin −d2. Pack of d8 lesser wolves. Outlast d4 rounds and the pack might leave.",
+      "notes": "Tveland. The lanky one. Source: MBC Eat Prey Kill p.4."
+    },
+    {
+      "name": "Tusked Bison",
+      "hp": 16,
+      "morale": "10",
+      "speed": "normal",
+      "attack": "Tusks, d8",
+      "special": "Tough skin −d4. Fighting one means fighting d4 more.",
+      "notes": "Tveland. Patient until they aren't. Source: MBC Eat Prey Kill p.4."
+    },
+    {
+      "name": "Skelelk",
+      "hp": 9,
+      "morale": "8",
+      "speed": "normal",
+      "attack": "Antlers, d6",
+      "special": "Exoskeleton −d6. Blunt weapons always deal maximum damage. Groups of d4.",
+      "notes": "Sarkash. Bones worn on the outside. Source: MBC Eat Prey Kill p.5."
+    },
+    {
+      "name": "Dredgehog",
+      "hp": 14,
+      "morale": "10",
+      "speed": "slow",
+      "attack": "Bite/Daggers, d6",
+      "special": "Daggerback −d6. Missing an attack means striking a dagger — take d4 damage.",
+      "notes": "Sarkash. Daggers on its back. Source: MBC Eat Prey Kill p.5."
+    },
+    {
+      "name": "Carrion Owls",
+      "hp": 2,
+      "morale": "—",
+      "speed": "normal",
+      "attack": "Bite/Claws, d4",
+      "special": "Only eat what died the night before — never older, never fresh-killed. They are never wrong about the hour.",
+      "notes": "Sarkash. Source: MBC Eat Prey Kill p.5."
+    },
+    {
+      "name": "Throat-cutting Warbler",
+      "hp": 1,
+      "morale": "—",
+      "speed": "fast",
+      "attack": "Beak, d10",
+      "special": "Tiny. Attacks and defence against the warbler are DR14. Favors the carotid.",
+      "notes": "Sarkash. The sharpest beak in the forest. Source: MBC Eat Prey Kill p.5."
+    },
+    {
+      "name": "Mulch-squirrels",
+      "hp": 1,
+      "morale": "3",
+      "speed": "fast",
+      "attack": "Bite/Claws, 1 damage",
+      "special": "Diet of pure leaf-rot. Meat tastes of forest floor. Nests of d4.",
+      "notes": "Sarkash. The worst meal in the forest, but a meal. Source: MBC Eat Prey Kill p.5."
+    },
+    {
+      "name": "Howler Bear",
+      "hp": 18,
+      "morale": "—",
+      "speed": "normal",
+      "attack": "Bite/Claws, d8",
+      "special": "Skin −d2. Lures prey by wailing like dying men. Some form words: 'HELP' and 'I'M BEING EATEN BY A HOWLER BEAR.'",
+      "notes": "Sarkash. The headline horror of the forest. Source: MBC Eat Prey Kill p.5."
+    },
+    {
+      "name": "Giant Skull Moth",
+      "hp": 3,
+      "morale": "—",
+      "speed": "normal",
+      "attack": "Stinger, d4 + special",
+      "special": "DR14 Toughness or d4 damage and become infected.",
+      "notes": "Graven-Tosk. A human skull on tar-black wings. Source: MBC Eat Prey Kill p.6."
+    },
+    {
+      "name": "Twice-grown Corpse Fly",
+      "hp": 4,
+      "morale": "—",
+      "speed": "fast",
+      "attack": "Bite, d4 + special",
+      "special": "Exoskeleton −d4. Toughness DR12 or become host for a dozen eggs. Extract within d6 days or hatch.",
+      "notes": "Graven-Tosk. The second cycle is you. Source: MBC Eat Prey Kill p.6."
+    },
+    {
+      "name": "Unbred Mutts",
+      "hp": 8,
+      "morale": "—",
+      "speed": "normal",
+      "attack": "Bite, d6",
+      "special": "No morale. Will not break off. Packs of d6.",
+      "notes": "Graven-Tosk. Still waiting at the graves. Source: MBC Eat Prey Kill p.6."
+    },
+    {
+      "name": "Grim-toothed Squirrel",
+      "hp": 2,
+      "morale": "6",
+      "speed": "fast",
+      "attack": "Bite, d6",
+      "special": "Teeth designed for bone. Cracks femurs. Cracks fingers more easily.",
+      "notes": "Graven-Tosk. Goes for the knuckles, not the nuts. Source: MBC Eat Prey Kill p.6."
+    },
+    {
+      "name": "Meatroach",
+      "hp": 4,
+      "morale": "—",
+      "speed": "fast",
+      "attack": "Bite, d4",
+      "special": "Exoskeleton −d4. Murder-appendix must be removed before cooking (DR16 Agility) or DR14 Toughness when eating or d8 damage.",
+      "notes": "Graven-Tosk. A delicacy, if cooked right. Source: MBC Eat Prey Kill p.6."
+    },
+    {
+      "name": "Half-billed Raven",
+      "hp": 2,
+      "morale": "—",
+      "speed": "fast",
+      "attack": "Beak/Choking tongue, d4/special",
+      "special": "DR12 Agility or d4 per round from the tongue until DR14 Strength succeeds or raven dies. Murders of d4.",
+      "notes": "Graven-Tosk. The tongue is the worse half. Source: MBC Eat Prey Kill p.6."
+    },
+    {
+      "name": "Uncommon Rats",
+      "hp": 6,
+      "morale": "—",
+      "speed": "fast",
+      "attack": "Bite/Claws, d8/d6",
+      "special": "Twin attack profile in the same round. Packs of d4.",
+      "notes": "Grift. Large like hounds, twice the spite. Source: MBC Eat Prey Kill p.7."
+    },
+    {
+      "name": "Cellar Crabs",
+      "hp": 6,
+      "morale": "—",
+      "speed": "normal",
+      "attack": "Bite/Claws, d6",
+      "special": "Shell −d4. Twenty-inch legs. Groups of d4.",
+      "notes": "Grift. Cold, dark places — not only cellars. Source: MBC Eat Prey Kill p.7."
+    },
+    {
+      "name": "Nameless & Tameless Strays",
+      "hp": 4,
+      "morale": "—",
+      "speed": "fast",
+      "attack": "Bite, d4",
+      "special": "No fear, no master, no name. Will not let go when they bite. Packs of d8.",
+      "notes": "Grift. The dogs that forgot. Source: MBC Eat Prey Kill p.7."
+    },
+    {
+      "name": "Straw-Lion",
+      "hp": 14,
+      "morale": "—",
+      "speed": "slow",
+      "attack": "Pincers/Jaws, special/d8",
+      "special": "Exoskeleton −d6. DR14 Agility or pulled in for d8/round until DR18 Strength or lion dies. Survive-with-lobotomy: Presence to −3.",
+      "notes": "Grift. Hides in straw, eats the brain. Source: MBC Eat Prey Kill p.7."
+    },
+    {
+      "name": "Lentil Lice",
+      "hp": 4,
+      "morale": "7",
+      "speed": "normal",
+      "attack": "Knife/Femur, d4",
+      "special": "Stat block is the d6 starved peasants fighting the party for the corpse. The lice themselves are food, not foe.",
+      "notes": "Grift. The social-horror entry — desperate people, not monsters. Source: MBC Eat Prey Kill p.7."
+    },
+    {
+      "name": "Múrder Gulls",
+      "hp": 2,
+      "morale": "—",
+      "speed": "fast",
+      "attack": "Beak, d4",
+      "special": "Flocks of d20. Sawtooth beaks. Sticky putty from their gullets hardens to stone in wind.",
+      "notes": "Grift. Twenty on a man is a brief story. Source: MBC Eat Prey Kill p.7."
+    }
+  ]
+}

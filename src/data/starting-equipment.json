@@ -1,0 +1,37 @@
+{
+  "source": "Mörk Borg-style equipment, paraphrased from Bare Bones edition tables.",
+  "weapons": [
+    { "name": "Femur or rock", "damage": "d4", "tier": 1 },
+    { "name": "Knife", "damage": "d4", "tier": 1 },
+    { "name": "Shortbow", "damage": "d4", "tier": 2 },
+    { "name": "Shield (and a one-hander)", "damage": "d4 +1 def", "tier": 2 },
+    { "name": "Staff", "damage": "d4", "tier": 3 },
+    { "name": "Sword", "damage": "d6", "tier": 4 },
+    { "name": "Crossbow", "damage": "d6", "tier": 5 },
+    { "name": "Warhammer", "damage": "d8", "tier": 6 },
+    { "name": "Flail", "damage": "d8", "tier": 7 },
+    { "name": "Greatsword (two-handed)", "damage": "d10", "tier": 8 }
+  ],
+  "armor": [
+    { "name": "No armor", "absorb": "—", "tier": 1 },
+    { "name": "Light (cloth, padded)", "absorb": "-d2 dmg, no Agl penalty", "tier": 2 },
+    { "name": "Medium (chainmail)", "absorb": "-d4 dmg, +2 Agl test dr", "tier": 3 },
+    { "name": "Heavy (plate)", "absorb": "-d6 dmg, +4 Agl test dr, no swimming", "tier": 4 }
+  ],
+  "rations": [
+    "Dried mystery meat (4 days)",
+    "Stale ration bread (4 days)",
+    "Skin of cheap wine (3 swigs)"
+  ],
+  "trinkets": [
+    "A length of dirty rope (10 paces).",
+    "An iron lantern. Half-full of fish oil.",
+    "Three rusted iron spikes.",
+    "A waterskin, mostly full.",
+    "Tinderbox with damp tinder.",
+    "Three torches that won't last the hour.",
+    "A small mirror, cracked.",
+    "Chalk, white.",
+    "A holy symbol, the wrong god."
+  ]
+}
