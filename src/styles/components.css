@@ -2603,6 +2603,65 @@ html[data-system='ronin-borg'] .gm-notes__body {
   font-size: 0.75rem;
   font-family: inherit;
 }
+/* Side-based initiative banner — Mörk Borg: each side rolls d6, higher first. */
+.combat-init {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.8rem;
+  padding: 0.5rem 0.8rem;
+  background: var(--black);
+  border-bottom: 1px solid var(--red);
+}
+.combat-init__verdict {
+  font-family: var(--font-display, inherit);
+  font-size: 1.05rem;
+  letter-spacing: 0.08em;
+  color: var(--yellow);
+  flex: 1;
+}
+.combat-init__rolls {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.combat-init__rolls strong {
+  color: var(--bone);
+}
+
+.combat-side {
+  border-bottom: 2px solid var(--black);
+}
+.combat-side__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  padding: 0.35rem 0.8rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  background: var(--darker);
+  color: var(--muted);
+}
+.combat-side--first .combat-side__head {
+  color: var(--white);
+  border-left: 3px solid var(--yellow);
+}
+.combat-side__badge {
+  font-family: var(--font-body, inherit);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--yellow);
+  color: var(--black);
+  padding: 0.05rem 0.4rem;
+}
+.combat-side__empty {
+  padding: 0.5rem 0.8rem;
+  color: var(--muted);
+  font-style: italic;
+  font-size: 0.85rem;
+}
+
 .enemy-grid__cta {
   margin-bottom: 0.6rem;
   text-align: right;
@@ -2778,6 +2837,25 @@ html[data-system='ronin-borg'] .gm-notes__body {
   border: 1px solid var(--yellow-dim);
   padding: 0.3rem 0.4rem;
   font-family: inherit;
+}
+.dungeon-gen__controls select {
+  display: block;
+  margin-top: 0.2rem;
+  background: var(--black);
+  color: var(--bone);
+  border: 1px solid var(--yellow-dim);
+  padding: 0.3rem 0.4rem;
+  font-family: inherit;
+}
+/* Settlement generator reuses the dungeon-gen layout; only extras here. */
+.settlement-gen__hint {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-style: italic;
+  margin: 0.2rem 0 0;
+}
+.builder__generate {
+  white-space: nowrap;
 }
 .dungeon-gen__preview {
   overflow-y: auto;

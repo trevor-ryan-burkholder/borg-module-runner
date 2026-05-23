@@ -29,9 +29,10 @@ import DiceTray from './components/DiceTray.jsx';
 import MiseryTracker from './components/MiseryTracker.jsx';
 import MapView from './components/MapView.jsx';
 import NpcGenerator from './components/NpcGenerator.jsx';
-import CombatTracker, { buildCombatants } from './components/CombatTracker.jsx';
+import CombatTracker, { buildCombatants, rollSideInitiative } from './components/CombatTracker.jsx';
 import OverlandTravel from './components/OverlandTravel.jsx';
 import DungeonGenerator from './components/DungeonGenerator.jsx';
+import SettlementGenerator from './components/SettlementGenerator.jsx';
 import AmbientMixer from './components/AmbientMixer.jsx';
 import Bestiary from './components/Bestiary.jsx';
 import RandomTables from './components/RandomTables.jsx';
@@ -68,6 +69,7 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
   const [combatOpen, setCombatOpen] = useState(false);
   const [travelOpen, setTravelOpen] = useState(false);
   const [dungeonOpen, setDungeonOpen] = useState(false);
+  const [settlementOpen, setSettlementOpen] = useState(false);
   const [ambientOpen, setAmbientOpen] = useState(false);
   const [bestiaryOpen, setBestiaryOpen] = useState(false);
   const [tablesOpen, setTablesOpen] = useState(false);
@@ -88,7 +90,7 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
         enemies: enemies ?? [],
         partyMembers: state.partyState.members,
       });
-      setCombat({ active: true, round: 1, combatants });
+      setCombat({ active: true, round: 1, combatants, initiative: rollSideInitiative() });
       setCombatOpen(true);
     },
     [setCombat, state.partyState.members]
@@ -136,6 +138,7 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
       // (e.g. the bestiary search box) has focus — otherwise the user is trapped.
       if (e.key === 'Escape') {
         if (dungeonOpen) setDungeonOpen(false);
+        else if (settlementOpen) setSettlementOpen(false);
         else if (builderOpen) setBuilderOpen(false);
         else if (pickerOpen) setPickerOpen(false);
         else if (shareOpen) setShareOpen(false);
@@ -199,13 +202,16 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
         case 'r':
           setTablesOpen((o) => !o);
           break;
+        case 'g':
+          setSettlementOpen((o) => !o);
+          break;
         default:
           break;
       }
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [state.history.length, goBack, builderOpen, pickerOpen, shareOpen, mapOpen, rulesOpen, miseryOpen, diceOpen, partyOpen, npcOpen, combatOpen, travelOpen, dungeonOpen, ambientOpen, bestiaryOpen, tablesOpen]);
+  }, [state.history.length, goBack, builderOpen, pickerOpen, shareOpen, mapOpen, rulesOpen, miseryOpen, diceOpen, partyOpen, npcOpen, combatOpen, travelOpen, dungeonOpen, settlementOpen, ambientOpen, bestiaryOpen, tablesOpen]);
 
   return (
     <>
@@ -355,6 +361,15 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
             title="Generate a dungeon"
           >
             ✦ dungeon
+          </button>
+          <button
+            type="button"
+            className="iconbtn"
+            onClick={() => setSettlementOpen((o) => !o)}
+            title="Generate a settlement (G)"
+            aria-pressed={settlementOpen}
+          >
+            ⌂ town
           </button>
           <button
             type="button"
@@ -542,6 +557,20 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
         }}
       />
 
+      <SettlementGenerator
+        open={settlementOpen}
+        onClose={() => setSettlementOpen(false)}
+        onRun={(generatedAdventure) => {
+          const v = validateAdventure(generatedAdventure);
+          if (!v.ok) {
+            window.alert(`Generated settlement is malformed: ${v.errors.join(' · ')}`);
+            return;
+          }
+          setSettlementOpen(false);
+          onLoadEphemeral(generatedAdventure);
+        }}
+      />
+
       {shareOpen && (
         <ShareDialog adventure={adventure} onClose={() => setShareOpen(false)} />
       )}
@@ -549,7 +578,7 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
       <footer className="app-foot">
         <small>{adventure.meta.license}</small>
         <small className="app-foot__keys">
-          shortcuts: ? rules · b back · l library · m map · d dice · k calendar · p party · n npc · c combat · t travel · a ambient · e bestiary · r tables · s share · esc close
+          shortcuts: ? rules · b back · l library · m map · d dice · k calendar · p party · n npc · c combat · t travel · a ambient · e bestiary · r tables · g town · s share · esc close
         </small>
       </footer>
     </>

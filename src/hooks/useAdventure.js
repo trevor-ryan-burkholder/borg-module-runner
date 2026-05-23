@@ -33,6 +33,7 @@ const initialCombatState = {
   active: false,
   round: 0,
   combatants: [],
+  initiative: { party: null, enemies: null },
 };
 
 function freshState(startNode) {

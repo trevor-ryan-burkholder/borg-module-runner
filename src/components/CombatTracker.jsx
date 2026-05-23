@@ -1,33 +1,17 @@
-import { useMemo, useState } from 'react';
-import { rollDie, rollDice } from '../utils/dice.js';
+import { useState } from 'react';
+import { rollDice } from '../utils/dice.js';
+import { rollSideInitiative, parseMorale, buildCombatants } from '../utils/combat.js';
+
+// Re-export so existing importers (App.jsx) keep a stable surface.
+export { rollSideInitiative, buildCombatants };
 
 const COMMON_CONDITIONS = [
   'broken', 'bleeding', 'on fire', 'frightened', 'prone', 'restrained', 'blinded', 'poisoned',
 ];
 
-let seq = 0;
-const nextId = () => `c-${Date.now()}-${++seq}`;
-
-function rollInitiative() {
-  return rollDie(6);
-}
-
-function parseMorale(value) {
-  if (value == null) return null;
-  if (typeof value === 'number') return value;
-  const m = String(value).match(/\d+/);
-  return m ? parseInt(m[0], 10) : null;
-}
-
 export default function CombatTracker({ open, onClose, combatState, setCombat, endCombat }) {
   const [moraleResult, setMoraleResult] = useState(null);
   const [conditionDraft, setConditionDraft] = useState({});
-
-  const sorted = useMemo(() => {
-    return combatState.combatants
-      .map((c, i) => ({ ...c, _idx: i }))
-      .sort((a, b) => b.initiative - a.initiative);
-  }, [combatState.combatants]);
 
   if (!open) return null;
   if (!combatState.active) {
@@ -43,6 +27,14 @@ export default function CombatTracker({ open, onClose, combatState, setCombat, e
       </aside>
     );
   }
+
+  const initiative = combatState.initiative ?? { party: null, enemies: null };
+  const first =
+    initiative.party == null || initiative.enemies == null
+      ? null
+      : initiative.party >= initiative.enemies
+        ? 'party'
+        : 'enemies';
 
   const damageBy = (id, delta) => {
     setCombat((cs) => ({
@@ -98,28 +90,6 @@ export default function CombatTracker({ open, onClose, combatState, setCombat, e
     }));
   };
 
-  const reorder = (id, dir) => {
-    setCombat((cs) => {
-      // Reorder within the initiative-sorted view, then write back.
-      const view = cs.combatants.slice().sort((a, b) => b.initiative - a.initiative);
-      const idx = view.findIndex((c) => c.id === id);
-      const swap = idx + dir;
-      if (idx < 0 || swap < 0 || swap >= view.length) return cs;
-      // Swap initiatives so the order changes deterministically.
-      const a = view[idx];
-      const b = view[swap];
-      const aInit = a.initiative;
-      const bInit = b.initiative;
-      // If equal, nudge by 0.5 to disambiguate.
-      const swapped = cs.combatants.map((c) => {
-        if (c.id === a.id) return { ...c, initiative: dir < 0 ? Math.max(aInit, bInit) + 0.5 : Math.min(aInit, bInit) - 0.5 };
-        if (c.id === b.id) return { ...c, initiative: dir < 0 ? Math.min(aInit, bInit) - 0.5 : Math.max(aInit, bInit) + 0.5 };
-        return c;
-      });
-      return { ...cs, combatants: swapped };
-    });
-  };
-
   const rollMorale = (c) => {
     const target = parseMorale(c.morale);
     if (target == null) {
@@ -138,6 +108,90 @@ export default function CombatTracker({ open, onClose, combatState, setCombat, e
   };
 
   const nextRound = () => setCombat((cs) => ({ ...cs, round: cs.round + 1 }));
+  const rerollInitiative = () =>
+    setCombat((cs) => ({ ...cs, initiative: rollSideInitiative() }));
+
+  const renderCombatant = (c) => {
+    const moraleScore = parseMorale(c.morale);
+    return (
+      <li
+        key={c.id}
+        className={`combatant combatant--${c.kind} ${c.dead ? 'combatant--dead' : ''}`}
+      >
+        <div className="combatant__top">
+          <span className="combatant__kind">{c.kind === 'pc' ? '☉' : '☠'}</span>
+          <span className="combatant__name">{c.name}</span>
+        </div>
+
+        <div className="combatant__row">
+          <span className="combatant__label">HP</span>
+          <button type="button" className="iconbtn" onClick={() => damageBy(c.id, -1)}>−</button>
+          <input
+            type="number"
+            value={c.hp}
+            onChange={(e) => setHp(c.id, e.target.value)}
+            className="combatant__hp-input"
+            aria-label="HP"
+          />
+          <span className="combatant__hpmax">/ {c.hpMax}</span>
+          <button type="button" className="iconbtn" onClick={() => damageBy(c.id, +1)}>+</button>
+          {c.kind === 'enemy' && moraleScore != null && (
+            <button type="button" className="iconbtn" onClick={() => rollMorale(c)}>
+              morale ({c.morale})
+            </button>
+          )}
+          <label className="combatant__dead">
+            <input type="checkbox" checked={!!c.dead} onChange={() => toggleDead(c.id)} />
+            dead
+          </label>
+        </div>
+
+        {moraleResult?.id === c.id && (
+          <p className="combatant__morale-result">{moraleResult.text}</p>
+        )}
+
+        <div className="combatant__conditions">
+          {c.conditions.map((cond) => (
+            <button
+              key={cond}
+              type="button"
+              className="condition-chip"
+              onClick={() => removeCondition(c.id, cond)}
+              title="Click to remove"
+            >
+              {cond} ✕
+            </button>
+          ))}
+          <select
+            className="condition-add"
+            value={conditionDraft[c.id] ?? ''}
+            onChange={(e) => {
+              if (e.target.value === '__custom__') {
+                const custom = window.prompt('Condition:');
+                if (custom) addCondition(c.id, custom);
+              } else if (e.target.value) {
+                addCondition(c.id, e.target.value);
+              }
+              setConditionDraft((d) => ({ ...d, [c.id]: '' }));
+            }}
+          >
+            <option value="">+ condition</option>
+            {COMMON_CONDITIONS.map((k) => (
+              <option key={k} value={k}>{k}</option>
+            ))}
+            <option value="__custom__">other…</option>
+          </select>
+        </div>
+      </li>
+    );
+  };
+
+  const sides = [
+    { key: 'party', label: 'THE PARTY', glyph: '☉', members: combatState.combatants.filter((c) => c.kind === 'pc') },
+    { key: 'enemies', label: 'ENEMIES', glyph: '☠', members: combatState.combatants.filter((c) => c.kind === 'enemy') },
+  ];
+  // The side that won initiative is shown on top.
+  if (first === 'enemies') sides.reverse();
 
   return (
     <aside className="combat-tracker" role="dialog" aria-label="Combat tracker">
@@ -150,118 +204,40 @@ export default function CombatTracker({ open, onClose, combatState, setCombat, e
         </div>
       </header>
 
-      <ul className="combat-list">
-        {sorted.map((c) => (
-          <li
-            key={c.id}
-            className={`combatant combatant--${c.kind} ${c.dead ? 'combatant--dead' : ''}`}
-          >
-            <div className="combatant__top">
-              <span className="combatant__init" title="Initiative">{c.initiative}</span>
-              <span className="combatant__kind">{c.kind === 'pc' ? '☉' : '☠'}</span>
-              <span className="combatant__name">{c.name}</span>
-              <div className="combatant__reorder">
-                <button type="button" className="iconbtn" onClick={() => reorder(c.id, -1)} title="Move up">▲</button>
-                <button type="button" className="iconbtn" onClick={() => reorder(c.id, +1)} title="Move down">▼</button>
-              </div>
-            </div>
+      <div className="combat-init">
+        <div className="combat-init__verdict">
+          {first === 'party' && '☉ THE PARTY ACTS FIRST'}
+          {first === 'enemies' && '☠ THE ENEMIES ACT FIRST'}
+          {!first && 'Roll initiative to begin'}
+        </div>
+        {first && (
+          <div className="combat-init__rolls">
+            party d6 = <strong>{initiative.party}</strong> · enemies d6 = <strong>{initiative.enemies}</strong>
+          </div>
+        )}
+        <button type="button" className="iconbtn" onClick={rerollInitiative} title="Each side rolls d6, higher acts first">
+          ↻ roll initiative
+        </button>
+      </div>
 
-            <div className="combatant__row">
-              <span className="combatant__label">HP</span>
-              <button type="button" className="iconbtn" onClick={() => damageBy(c.id, -1)}>−</button>
-              <input
-                type="number"
-                value={c.hp}
-                onChange={(e) => setHp(c.id, e.target.value)}
-                className="combatant__hp-input"
-                aria-label="HP"
-              />
-              <span className="combatant__hpmax">/ {c.hpMax}</span>
-              <button type="button" className="iconbtn" onClick={() => damageBy(c.id, +1)}>+</button>
-              {c.kind === 'enemy' && c.morale != null && (
-                <button type="button" className="iconbtn" onClick={() => rollMorale(c)}>
-                  morale ({c.morale})
-                </button>
-              )}
-              <label className="combatant__dead">
-                <input type="checkbox" checked={!!c.dead} onChange={() => toggleDead(c.id)} />
-                dead
-              </label>
-            </div>
-
-            {moraleResult?.id === c.id && (
-              <p className="combatant__morale-result">{moraleResult.text}</p>
+      {sides.map((side) => (
+        <section
+          key={side.key}
+          className={`combat-side combat-side--${side.key} ${first === side.key ? 'combat-side--first' : ''}`}
+        >
+          <h4 className="combat-side__head">
+            <span>{side.glyph} {side.label}</span>
+            {first === side.key && <span className="combat-side__badge">acts first</span>}
+          </h4>
+          <ul className="combat-list">
+            {side.members.length === 0 ? (
+              <li className="combat-side__empty">— none —</li>
+            ) : (
+              side.members.map(renderCombatant)
             )}
-
-            <div className="combatant__conditions">
-              {c.conditions.map((cond) => (
-                <button
-                  key={cond}
-                  type="button"
-                  className="condition-chip"
-                  onClick={() => removeCondition(c.id, cond)}
-                  title="Click to remove"
-                >
-                  {cond} ✕
-                </button>
-              ))}
-              <select
-                className="condition-add"
-                value={conditionDraft[c.id] ?? ''}
-                onChange={(e) => {
-                  if (e.target.value === '__custom__') {
-                    const custom = window.prompt('Condition:');
-                    if (custom) addCondition(c.id, custom);
-                  } else if (e.target.value) {
-                    addCondition(c.id, e.target.value);
-                  }
-                  setConditionDraft((d) => ({ ...d, [c.id]: '' }));
-                }}
-              >
-                <option value="">+ condition</option>
-                {COMMON_CONDITIONS.map((k) => (
-                  <option key={k} value={k}>{k}</option>
-                ))}
-                <option value="__custom__">other…</option>
-              </select>
-            </div>
-          </li>
-        ))}
-      </ul>
+          </ul>
+        </section>
+      ))}
     </aside>
   );
-}
-
-// Helper: build a fresh combat state from a node's enemies + non-dead party members.
-export function buildCombatants({ enemies = [], partyMembers = [] }) {
-  const combatants = [];
-  partyMembers.forEach((m, idx) => {
-    if (m.dead) return;
-    combatants.push({
-      id: nextId(),
-      kind: 'pc',
-      partyIndex: idx,
-      memberId: m.id ?? null,
-      name: m.name || `PC ${idx + 1}`,
-      hp: m.hp ?? m.hpMax ?? 4,
-      hpMax: m.hpMax ?? m.hp ?? 4,
-      conditions: m.conditions ? m.conditions.split(',').map((s) => s.trim()).filter(Boolean) : [],
-      initiative: rollInitiative(),
-      dead: false,
-    });
-  });
-  enemies.forEach((e, idx) => {
-    combatants.push({
-      id: nextId(),
-      kind: 'enemy',
-      name: e.name || `Enemy ${idx + 1}`,
-      hp: typeof e.hp === 'number' ? e.hp : parseInt(String(e.hp), 10) || 1,
-      hpMax: typeof e.hp === 'number' ? e.hp : parseInt(String(e.hp), 10) || 1,
-      morale: e.morale ?? null,
-      conditions: [],
-      initiative: rollInitiative(),
-      dead: false,
-    });
-  });
-  return combatants;
 }

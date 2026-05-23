@@ -1,0 +1,89 @@
+{
+  "source": "Original — Mörk Borg Module Runner settlement generator. Flavored after canonical regions, powers and cults; wording original.",
+  "sizes": [
+    { "key": "village", "label": "village", "population": "a few dozen frightened souls", "spokes": [2, 3] },
+    { "key": "town", "label": "town", "population": "some hundreds, fewer each winter", "spokes": [3, 4] },
+    { "key": "city", "label": "city", "population": "thousands, and dropping", "spokes": [4, 6] }
+  ],
+  "regions": [
+    { "name": "Tveland", "flavor": "the untamed wilds that gnaw at the road", "goods": ["a Galgenbeck deathmask", "a vial of goblin ichor", "a two-headed silver ring", "a wickhead's pickled brain"] },
+    { "name": "the Western Kingdom", "flavor": "the dry, dead Wästland under a paranoid king", "goods": ["a pouch of valley vapours", "a jar of (genuine) troll piss", "a pilgrim's compass that points at your death", "a lucky fishing spear, luck expired"] },
+    { "name": "Kergüs", "flavor": "the frozen plains where the cold is patient", "goods": ["a vibrant red ribbon", "a vial of glowing blue blood", "a gleaming golden scalpel", "a one-eyed one-legged one-winged gull"] },
+    { "name": "Sarkash", "flavor": "the forest that spreads where no one is watching", "goods": ["a fistful of grave-soil that won't dry", "a lantern that draws the fog", "a dog-whistle only the dead obey"] },
+    { "name": "the Grift coast", "flavor": "the bridge-city's edge above the bottomless Múr", "goods": ["a key retrieved from the Múr", "a sorrowful music box", "a hangman's rope, lightly used", "a calendar of despair, one page left"] }
+  ],
+  "name_prefix": ["Gal", "Sark", "Bergen", "Graven", "Nech", "Klef", "Schles", "Alli", "Mür", "Wäst", "Tve", "Kerg", "Onda", "Tos", "Vall", "Dün"],
+  "name_suffix": ["beck", "dorf", "heim", "tosk", "wig", "gard", "mark", "fen", "crypt", "hollow", "mire", "vald", "stad"],
+  "powers": [
+    { "ruler": "a tax-farmer loyal to mad King Fathmu IX", "seat": "The Tithe-House", "boss": false },
+    { "ruler": "a Basilisk inquisitor who corrects heretics in public and at length", "seat": "The Inquisitor's Chancel", "boss": true },
+    { "ruler": "a 'kind' death-priest preparing everyone for the cliff", "seat": "The Calendar-House", "boss": false },
+    { "ruler": "a blood-noble who has not aged a day in thirty years", "seat": "The White Manor", "boss": true },
+    { "ruler": "a merchant guild that owns the only clean water", "seat": "The Counting-House", "boss": false },
+    { "ruler": "no one — a mob with a rope and a reason", "seat": "The Burnt Moot-Hall", "boss": false },
+    { "ruler": "a hidden thing in the cellar that the elders feed and obey", "seat": "The Chapel Cellar", "boss": true }
+  ],
+  "factions": [
+    "the Two-Headed Basilisks and their Inquisition",
+    "the Strange Serpent drug cult",
+    "the Death-Obsessed cultists",
+    "the Cult of the Dark Spider",
+    "a Nechrubel whisper-cult",
+    "the Berserker-Slayers",
+    "goblin smugglers from the under-tunnels",
+    "a guild of grave-robbers who call themselves undertakers"
+  ],
+  "location_types": [
+    { "title": "the tavern", "kind": "tavern", "atmosphere": "Smoke, sour ale, and the wet cough of the dying. Best informed room in town.", "npc": true, "sells": true },
+    { "title": "The Plague-Pit Market", "kind": "market", "atmosphere": "Stalls of dubious meat ring a pit that nobody admits to digging.", "npc": true, "sells": true },
+    { "title": "Shrine of the Two-Headed Basilisks", "kind": "shrine", "atmosphere": "Two stone heads, one always watching. Tallow, ash, and dried blood.", "npc": true, "secret": true },
+    { "title": "The Gallows Square", "kind": "gallows", "atmosphere": "Three ropes — two occupied, one swinging empty and patient.", "enemy": true },
+    { "title": "The Apothecary's Shoppe", "kind": "apothecary", "atmosphere": "Jars of cures that cure nothing, labelled in a hopeful hand.", "npc": true, "sells": true },
+    { "title": "The Weeping Well", "kind": "well", "atmosphere": "Brown water that tastes of someone else's grief.", "secret": true },
+    { "title": "The Bone-Orchard", "kind": "graveyard", "atmosphere": "Fresh mounds outnumber the old. The soil will not settle.", "enemy": true, "secret": true },
+    { "title": "The Rotting Docks", "kind": "docks", "atmosphere": "Black water, dead nets, a boat that keeps returning empty-crewed.", "enemy": true },
+    { "title": "The Midnight Market", "kind": "blackmarket", "atmosphere": "Lanterns shuttered. Everything is for sale here, including you.", "npc": true, "sells": true }
+  ],
+  "tavern_names": ["The Paunchy Swine", "The Hanged Pilgrim", "The Last Cup", "The Drowned Rat", "The Weeping Sow", "The Broken Wheel", "The Cold Hearth", "The Gallows Bird"],
+  "problems": [
+    "Conscripts and travellers vanish on the west road, and the count rises each new moon.",
+    "A plague with no name walks door to door, polite as a tax-man.",
+    "The well has named a child it wants, and the season turns soon.",
+    "A Basilisk's demand has come due and no one here can pay it.",
+    "The dead will not stay buried, and they remember their debts.",
+    "A heretic-hunt is on; anyone may be denounced for a coin.",
+    "The grain is gone, and what is being sold as meat is not.",
+    "A relic was stolen from the shrine and the saints have stopped pretending to listen."
+  ],
+  "rumors": [
+    "\"The priest's shadow falls the wrong way. Watch him at noon.\"",
+    "\"Whatever you do, don't drink from the well after dark.\"",
+    "\"The tax-man hasn't been seen in a week. Nor has his skin.\"",
+    "\"There's a door in the cellar that wasn't there last winter.\"",
+    "\"The new graves dig themselves open again by morning.\"",
+    "\"Pay the smiling ones no mind. They're counting us.\"",
+    "\"A stranger paid in old coin — the kind they bury you with.\"",
+    "\"The bell rings itself when someone in town is about to die.\""
+  ],
+  "wares": [
+    "a funeral coat, fine but gaudy",
+    "a deathmask of someone you almost recognise",
+    "salted meat (do not ask)",
+    "a clay kuksa carved with prayers nobody says anymore",
+    "a tooth-rattle to keep the dead asleep",
+    "a flask of something that burns going down and coming up"
+  ],
+  "dangers": [
+    "the cold, which is patient",
+    "the Inquisition, which is not",
+    "what lives in the water",
+    "the thing the town feeds so it will keep sleeping",
+    "each other"
+  ],
+  "atmospheres": [
+    "A grey settlement squats under a sky like wet ash.",
+    "Smoke, frost, and the smell of a place that has stopped hoping.",
+    "Mud, bells, and shuttered windows — eyes behind every one.",
+    "The road simply ends here, the way a sentence ends when the speaker dies."
+  ]
+}

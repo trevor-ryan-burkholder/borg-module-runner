@@ -1,0 +1,62 @@
+{
+  "source": "Original — Mörk Borg Module Runner scenario generator. Pairs with the canonical Adventure Seed tables in tables-gm.json.",
+  "site_types": [
+    "A desecrated wayside chapel",
+    "A flooded crypt beneath a dead chapel",
+    "A burned farmstead, still smoking",
+    "A fog-drowned crossroads",
+    "A collapsed silver mine",
+    "A heretic's hidden warren",
+    "A frozen shrine to a forgotten saint",
+    "A gallows-hill with too many crows",
+    "A plague-house nailed shut from the outside",
+    "A toppled watchtower full of nests"
+  ],
+  "site_atmospheres": [
+    "Everything here is wet, and none of it is water.",
+    "The silence has weight, like a held breath.",
+    "Something has been waiting here longer than the stones have stood.",
+    "Cold light, no source. The shadows lean the wrong way.",
+    "The air tastes of old iron and new rot.",
+    "Birds will not land here. They know something."
+  ],
+  "twists": [
+    "The one who hired you wanted you dead, not successful.",
+    "The relic you came for is the thing that is killing this place.",
+    "The dead here are not the enemy — they are a warning.",
+    "Your patron and the villain are the same person.",
+    "Completing the task is exactly what the apocalypse needs.",
+    "There is no treasure. There was never any treasure."
+  ],
+  "villain_titles": [
+    "the Hollow Priest",
+    "the Tax-Flayer",
+    "the Smiling Inquisitor",
+    "the Drowned Bride",
+    "the Bone-Tithe Collector",
+    "the Last Honest Man",
+    "the Saint of Open Doors",
+    "the Mother of Small Teeth"
+  ],
+  "objectives": [
+    "recover what was stolen",
+    "end the one responsible",
+    "find the missing before the third bell",
+    "carry the truth back out alive",
+    "close the door that was opened",
+    "stop the rite before it finishes"
+  ],
+  "climax_types": [
+    "the final chamber that remembers everyone who entered",
+    "an altar mid-rite",
+    "a throne of debt and bone",
+    "a flooded vault with one way out",
+    "a pit that has been waiting to be fed"
+  ],
+  "hook_framing": [
+    "finds you with no one else left to ask.",
+    "offers coin you both know is cursed.",
+    "does not ask so much as inform you.",
+    "is already dead when the message arrives, but the message remains."
+  ]
+}

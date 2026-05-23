@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { validateAdventure, slugify } from '../utils/validate.js';
 import { saveUserAdventure } from '../utils/library.js';
+import { generateScenario } from '../utils/generateScenario.js';
 
 const TEMPLATE = {
   meta: {
@@ -197,6 +198,14 @@ export default function AdventureBuilder({ initial, onSave, onClose }) {
     writeParsed(TEMPLATE);
   };
 
+  const handleGenerateRandom = () => {
+    if (!window.confirm('Replace the editor contents with a freshly generated random adventure?')) return;
+    const generated = generateScenario();
+    writeParsed(generated);
+    setView('structured');
+    setOpenNode(generated.nodes[0].id);
+  };
+
   return (
     <div className="picker-overlay" role="dialog" aria-modal="true" aria-label="Adventure Builder">
       <div className="builder" onClick={(e) => e.stopPropagation()}>
@@ -222,6 +231,14 @@ export default function AdventureBuilder({ initial, onSave, onClose }) {
               json
             </button>
           </div>
+          <button
+            type="button"
+            className="iconbtn iconbtn--rules builder__generate"
+            onClick={handleGenerateRandom}
+            title="Generate a complete random adventure into the editor"
+          >
+            🎲 generate random
+          </button>
           <button type="button" className="iconbtn" onClick={onClose}>
             ✕
           </button>
