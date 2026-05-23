@@ -638,6 +638,13 @@
   gap: 0.7rem;
 }
 
+.exit-button-wrap {
+  position: relative;
+  display: flex;
+}
+.exit-button-wrap .exit-button {
+  flex: 1;
+}
 .exit-button {
   text-align: left;
   background: var(--dark);
@@ -648,6 +655,23 @@
   flex-direction: column;
   gap: 0.3rem;
   min-height: 64px;
+}
+.exit-button__unlock {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+  background: var(--dark);
+  border: 1px solid var(--muted);
+  color: var(--bone);
+  font-size: 0.8rem;
+  line-height: 1;
+  padding: 0.15rem 0.35rem;
+  cursor: pointer;
+}
+.exit-button__unlock:hover {
+  background: var(--red);
+  border-color: var(--red);
+  color: var(--white);
 }
 .exit-button:hover:not([aria-disabled='true']) {
   background: var(--yellow);

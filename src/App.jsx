@@ -45,6 +45,7 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
     currentNode,
     goToNode,
     goBack,
+    unlockExit,
     updateParty,
     setScratchNotes,
     appendScratchNotes,
@@ -111,16 +112,17 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
         );
         return;
       }
-      if (exit.locked && exit.condition) {
+      const isLocked = exit.locked && !state.unlockedExits.includes(exit.id);
+      if (isLocked && exit.condition) {
         const proceed = window.confirm(
-          `This exit is conditional:\n\n  ${exit.condition}\n\nProceed anyway?`
+          `This exit is locked:\n\n  ${exit.condition}\n\nProceed anyway? (Use the 🔒 on the exit to unlock it permanently.)`
         );
         if (!proceed) return;
       }
       goToNode(exit.target);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     },
-    [goToNode]
+    [goToNode, state.unlockedExits]
   );
 
   // Keyboard shortcuts. Skip when focus is in a form element.
@@ -441,6 +443,7 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
         visited={visited}
         unlockedExits={state.unlockedExits}
         onExit={handleExit}
+        onUnlockExit={unlockExit}
         scratchNotes={currentNode ? state.gmNotesScratch?.[currentNode.id] ?? '' : ''}
         onScratchChange={
           currentNode ? (text) => setScratchNotes(currentNode.id, text) : undefined

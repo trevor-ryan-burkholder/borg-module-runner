@@ -25,6 +25,7 @@ export default function NodeView({
   visited,
   unlockedExits,
   onExit,
+  onUnlockExit,
   scratchNotes,
   onScratchChange,
   onStartCombat,
@@ -201,6 +202,7 @@ export default function NodeView({
                 exit={exit}
                 onClick={onExit}
                 unlocked={unlockedExits.includes(exit.id)}
+                onUnlock={onUnlockExit}
               />
             ))}
           </div>
