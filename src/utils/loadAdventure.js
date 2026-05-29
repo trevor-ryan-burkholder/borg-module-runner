@@ -10,6 +10,9 @@ import devilsTomb from '../data/devils-tomb.json';
 import bloat from '../data/bloat.json';
 import eatPreyKill from '../data/eat-prey-kill.json';
 import tenebrousReliquary from '../data/tenebrous-reliquary.json';
+import shadowKingsPalace from '../data/shadow-kings-palace.json';
+import theHollowCity from '../data/the-hollow-city.json';
+import theFrozenCourt from '../data/the-frozen-court.json';
 import roninBorgStarter from '../data/ronin-borg-starter.json';
 import rulesMorkborg from '../data/rules-reference.json';
 import rulesRoninBorg from '../data/rules-reference-ronin-borg.json';
@@ -25,6 +28,9 @@ const BUNDLED = {
   'bloat': bloat,
   'eat-prey-kill': eatPreyKill,
   'tenebrous-reliquary': tenebrousReliquary,
+  'shadow-kings-palace': shadowKingsPalace,
+  'the-hollow-city': theHollowCity,
+  'the-frozen-court': theFrozenCourt,
   'ronin-borg-starter': roninBorgStarter,
 };
 

@@ -1,0 +1,355 @@
+{
+  "meta": {
+    "id": "shadow-kings-palace",
+    "title": "The Palace of the Shadow King",
+    "author": "Trevor Burkholder (original expansion)",
+    "version": "1.0",
+    "system": "morkborg",
+    "description": "The manse that always loomed equidistant over Graven-Tosk has finally let you arrive. Cross the courtier-haunted ruin to the inner wing, learn what the throne really is, and choose which doom to carry.",
+    "startNode": "equidistant-gate",
+    "license": "Original expansion content, built on MÖRK BORG canon (Graven-Tosk, the Shadow King, King Lenard II). Lore anchors: MÖRK BORG core / Rotblack Sludge / Graves Left Wanting."
+  },
+  "nodes": [
+    {
+      "id": "equidistant-gate",
+      "title": "The Equidistant Gate",
+      "type": "location",
+      "atmosphere": "The palace that was always the same distance off, no matter how far you walked toward it, is suddenly under your hand. Behind you, the road you came by is gone.",
+      "read_aloud": "All your life the Shadow King's manse has loomed east over Graven-Tosk — never nearer, never farther. Tonight it let you arrive. The gate stands open. A thin man in a fine, rotted coat sits on a milestone shuffling a deck of bone cards. 'You're late,' he smiles. 'Or early. We don't keep the same time in here.'",
+      "contents": {
+        "description": "The threshold folds space — this is why the palace always seemed equidistant; it is not quite in the world. The thin man is one of the Shadow King's Princes wearing the shape of an ordinary man (canon: the Princes wander the ruins playing games and tricking travelers). He will not admit it. The road behind has closed. There is no leaving except through the King.",
+        "items": [],
+        "enemies": [],
+        "npcs": [
+          {
+            "name": "The Smiling Latecomer",
+            "description": "A thin man in a fine, rotted coat, dealing bone cards to no one.",
+            "attitude": "neutral",
+            "notes": "A hidden Prince of the Shadow King. Speaks in riddles about time and games; will not fight here — he wants to play. Insult him and he simply leaves, and a door the party will need locks itself somewhere ahead. He reappears at the Hall of Sons to offer the Bone Wager."
+          }
+        ],
+        "traps": [],
+        "secrets": []
+      },
+      "rules": [],
+      "gm_notes": "Set the tone: distance and time do not behave here, and the party cannot simply walk back out. The Latecomer's wager (princes-game) is the kind route to the throne. Don't force it — cruel parties can take the dangerous route instead.",
+      "exits": [
+        { "id": "gate-to-court", "label": "Through the gate, into the ruined outer wing", "target": "ruined-court", "condition": null, "locked": false }
+      ],
+      "visited": false,
+      "tags": ["start"]
+    },
+    {
+      "id": "ruined-court",
+      "title": "The Ruined Outer Wing",
+      "type": "location",
+      "atmosphere": "Grandeur pulled down into rubble — and still being pulled. Somewhere above, a stone gives way that no one pushed.",
+      "read_aloud": "",
+      "contents": {
+        "description": "The outer wing lies in canonical ruin, but the dust is fresh and the collapses are ongoing. Bodies lie where they 'found their way inside.' Two of them sit up.",
+        "items": [],
+        "enemies": [
+          {
+            "name": "Rotted Skeleton (×2)",
+            "hp": 5,
+            "morale": "7",
+            "speed": "normal",
+            "attack": "Knuckles and broken stone, +0, d4",
+            "special": "Struck in melee, it puffs marrow-dust: the attacker tests Toughness DR10 or is infected (−d6 HP per day until magically healed).",
+            "notes": "Courtiers once. Their finery is dust. Source: Graven-Tosk bestiary (Rotted Skeleton)."
+          }
+        ],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "The ruin is not old. Run a finger along a fresh fracture and it is still warm. The palace tears itself down around the inner wing — feeding the throne, the way Galgenbeck feeds its hollow. Whatever sits at the center is eating its own house."
+        ]
+      },
+      "rules": [],
+      "gm_notes": "Foreshadow the throne: the palace consumes itself inward. Falling masonry is a recurring hazard (Agility DR12 or d6) if the party lingers.",
+      "exits": [
+        { "id": "court-to-gallery", "label": "A colonnade hung with portraits", "target": "gallery-of-princes", "condition": null, "locked": false },
+        { "id": "court-to-sewer", "label": "Down a collapsed stair, toward running water", "target": "shadow-sewer", "condition": null, "locked": false }
+      ],
+      "visited": false,
+      "tags": []
+    },
+    {
+      "id": "gallery-of-princes",
+      "title": "The Hall of Sons",
+      "type": "location",
+      "atmosphere": "A portrait for every son the Shadow King ever had — and far more frames than any one man's lifetime allows.",
+      "read_aloud": "",
+      "contents": {
+        "description": "Canon: the title is hereditary; sons are always born to the Shadow King. Here is the proof — an endless gallery of identical thin men in fine coats, each labelled only THE PRINCE. The newest portrait is wet paint. The Smiling Latecomer waits at a card table, if you left him on good terms.",
+        "items": [],
+        "enemies": [],
+        "npcs": [
+          {
+            "name": "The Smiling Latecomer",
+            "description": "The same thin man — or another exactly like him — dealing bone cards.",
+            "attitude": "neutral",
+            "notes": "Offers the Bone Wager (princes-game). If the party was hostile at the gate, his chair is empty and a painted Prince's eyes follow them instead."
+          }
+        ],
+        "traps": [],
+        "secrets": [
+          "Count the frames and you cannot. The Shadow King has always had a son because the throne always makes one — the line is not bred, it is caught. Every Prince in every portrait was once a traveler who walked in through the equidistant gate."
+        ]
+      },
+      "rules": [],
+      "gm_notes": "The reveal lives here for observant parties: the Princes are former travelers; the line is a trap that refills itself.",
+      "exits": [
+        { "id": "gallery-to-game", "label": "Sit at the card table", "target": "princes-game", "condition": null, "locked": false },
+        { "id": "gallery-to-slaves", "label": "Past the portraits, into the inhabited wing", "target": "court-of-slaves", "condition": null, "locked": false },
+        { "id": "gallery-to-court", "label": "Back to the rubble", "target": "ruined-court", "condition": null, "locked": false }
+      ],
+      "visited": false,
+      "tags": []
+    },
+    {
+      "id": "princes-game",
+      "title": "The Bone Wager",
+      "type": "location",
+      "atmosphere": "He deals you in without asking. The cards are knuckles, filed flat and inked. The stakes, he explains, are 'a year you won't miss.'",
+      "read_aloud": "",
+      "contents": {
+        "description": "A game of nerve against a Prince of the Shadow King. Win and he pays his debt with the King's Coin — which opens the way past the Obscuring without breaking anything. Lose and each player ages a year and the Prince keeps a secret of theirs. He never cheats. He doesn't need to.",
+        "items": [
+          "The King's Coin — a single filed knuckle inked with a crown. Won, not bought. The locked inner doors open to whoever holds the King's own coin."
+        ],
+        "enemies": [],
+        "npcs": [],
+        "traps": [],
+        "secrets": []
+      },
+      "rules": [
+        {
+          "title": "The Bone Wager",
+          "text": "Best of three. Each round a chosen PC rolls d20 + Presence vs the Prince's d20 + 4; ties reroll. Win two rounds to claim the King's Coin. Lose two and each player loses a year (cosmetic) and one stated goal slips their mind (GM's choice). The Prince plays a party exactly once."
+        }
+      ],
+      "gm_notes": "This is the clean route to the throne. When the party holds the Coin, use the in-app 🔒 on the locked exit at The Obscuring to open the inner doors.",
+      "exits": [
+        { "id": "game-to-gallery", "label": "Rise from the table", "target": "gallery-of-princes", "condition": null, "locked": false }
+      ],
+      "visited": false,
+      "tags": []
+    },
+    {
+      "id": "shadow-sewer",
+      "title": "The Shadow King's Sewer",
+      "type": "location",
+      "atmosphere": "A pitch-black river froths through a vaulted dark, flowing northwest toward an ocean nobody here has named.",
+      "read_aloud": "",
+      "contents": {
+        "description": "Canon: the Shadow King's Sewer runs beneath Graven-Tosk as a frothing black river. These are its head-waters, inside the palace. The bodies that 'find their way inside' come up this river against its current. One is climbing out now.",
+        "items": [],
+        "enemies": [
+          {
+            "name": "Hungry Zombie (river-borne)",
+            "hp": 6,
+            "morale": "—",
+            "speed": "normal",
+            "attack": "Claw and bite, +0, d2",
+            "special": "A bitten target tests Toughness DR8 or turns into a zombie within 2 days.",
+            "notes": "Came up the black river the wrong way. Source: Graven-Tosk bestiary (Hungry Zombie)."
+          }
+        ],
+        "npcs": [],
+        "traps": [
+          {
+            "name": "The Wrong Current",
+            "trigger": "Entering or crossing the black water",
+            "effect": "The river wants company. Agility DR12 or be pulled under and swept to a random location in the palace (GM's pick); a swept PC drops one carried item into the dark.",
+            "dr": "12"
+          }
+        ],
+        "secrets": [
+          "Follow the river the wrong way — upstream, against the froth — and the water runs uphill into the inner wing. Everything in this palace flows toward the throne: the dead, the dust, even the water."
+        ]
+      },
+      "rules": [],
+      "gm_notes": "A shortcut and a hazard. A desperate party can ride the wrong current deeper, GM's discretion, but it costs them gear and orientation.",
+      "exits": [
+        { "id": "sewer-to-crypt", "label": "A side-vault of old kings", "target": "crypt-of-lenard", "condition": null, "locked": false },
+        { "id": "sewer-to-court", "label": "Back up the collapsed stair", "target": "ruined-court", "condition": null, "locked": false }
+      ],
+      "visited": false,
+      "tags": []
+    },
+    {
+      "id": "crypt-of-lenard",
+      "title": "The Crypt of Lenard II",
+      "type": "location",
+      "atmosphere": "One-eyed kings in stone, all the way down. The newest statue still has soft features, as though it set only last week.",
+      "read_aloud": "",
+      "contents": {
+        "description": "Canon anchor: King Lenard II, a prior Shadow King, one-eyed, locked in stone (his eye is a key in the Accursed Den — see Rotblack Sludge). This is the dynastic crypt: a statue for every King the throne has made. The grief of the line has gathered into a Widow-wraith.",
+        "items": [],
+        "enemies": [
+          {
+            "name": "The Widowed Queen (Widow-wraith)",
+            "hp": 15,
+            "morale": "—",
+            "speed": "normal",
+            "attack": "Icy touch, +0, d4",
+            "special": "Her touch drains Strength, Presence and Agility by 1 each for the fight. She ALWAYS loses initiative — her sobbing gives her away. She will not cross into the throne room; she fears him too.",
+            "notes": "Source: Graven-Tosk bestiary (Widow-wraith), reskinned as a dead queen of the line."
+          }
+        ],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "Read the plinths. Each King reigned exactly as long as it took the next traveler to wander in. 'Sons always born to the Shadow King' — because the instant a new fool sits the throne, the old King turns to one-eyed stone here, and a fresh Prince's portrait dries upstairs."
+        ]
+      },
+      "rules": [],
+      "gm_notes": "Central reveal, available early to clever parties: the Shadow King is not a person but a position the ritual fills with whoever sits. Sitting 'wins' the palace and damns the sitter.",
+      "exits": [
+        { "id": "crypt-to-slaves", "label": "Up worn steps into the living court", "target": "court-of-slaves", "condition": null, "locked": false },
+        { "id": "crypt-to-sewer", "label": "Back to the black river", "target": "shadow-sewer", "condition": null, "locked": false }
+      ],
+      "visited": false,
+      "tags": []
+    },
+    {
+      "id": "court-of-slaves",
+      "title": "The Court of Slaves",
+      "type": "location",
+      "atmosphere": "Servants serving servants serving servants, in a chain that never reaches a master you can see.",
+      "read_aloud": "",
+      "contents": {
+        "description": "Canon: 'the slaves of the servants of the courtiers of the King come forth and do his will.' A bound hierarchy, each rank terrified of the one above, none having ever seen the King. The First Courtier — high in the chain, still a slave — will bargain.",
+        "items": [],
+        "enemies": [],
+        "npcs": [
+          {
+            "name": "The First Courtier",
+            "description": "A tall figure in layered mourning-silks, its hands bound to its own throat by a thread of light.",
+            "attitude": "neutral",
+            "notes": "Bound to obey a King it has never seen. Will explain how the obscuring ritual works — and that breaking it lets the party SEE and therefore strike the King — IF they swear to end the binding. It cannot lie, but it can withhold. Unmaking the throne frees it."
+          }
+        ],
+        "traps": [
+          {
+            "name": "The Chain of Obedience",
+            "trigger": "Commanding, threatening, or striking a bound servant",
+            "effect": "The thread of light snaps taut to the next rank up — and to you. Presence DR12 or be 'enlisted': for d4 hours you must obey the next order any courtier gives. The court loves a new link.",
+            "dr": "12"
+          }
+        ],
+        "secrets": []
+      },
+      "rules": [],
+      "gm_notes": "The hub of the inhabited wing. The Courtier is the party's best source of the truth and the route plan. Honor the bargain or it will matter at the throne.",
+      "exits": [
+        { "id": "slaves-to-feast", "label": "Toward the sound of a feast", "target": "endless-feast", "condition": null, "locked": false },
+        { "id": "slaves-to-obscuring", "label": "Toward a chanting light", "target": "the-obscuring", "condition": null, "locked": false },
+        { "id": "slaves-to-gallery", "label": "Back to the Hall of Sons", "target": "gallery-of-princes", "condition": null, "locked": false }
+      ],
+      "visited": false,
+      "tags": ["hub"]
+    },
+    {
+      "id": "endless-feast",
+      "title": "The Endless Feast",
+      "type": "location",
+      "atmosphere": "A banquet frozen mid-revel, the food still steaming after no one knows how many years. The guests have eaten everything, including parts of themselves.",
+      "read_aloud": "",
+      "contents": {
+        "description": "The court's revel, looping forever. The guests are too polite to die and will insist the party join them. Refusing rudely is a grave discourtesy; accepting is worse. Among the dishes sits something worth taking — and a guest who whispers a true thing if you stay long enough to fray.",
+        "items": [
+          "A King's Favor — a black pear that never rots. Eat it to ask the throne one question it must answer truthfully. Being owed a favor by the Shadow King has its own cost: he will collect by drawing you closer at the climax (disadvantage on the first Presence save there)."
+        ],
+        "enemies": [
+          {
+            "name": "Too-Polite Guests (×d4)",
+            "hp": 4,
+            "morale": "9",
+            "speed": "normal",
+            "attack": "Silver knife and fork, +0, d4",
+            "special": "They attack only if hospitality is refused 'rudely.' Each round at the table, a seated PC tests Presence DR12 or eats another bite they should not (−1 to a random ability, cumulative).",
+            "notes": "[CANON CHECK] Original to this expansion, modeled on the court frozen mid-revel."
+          }
+        ],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "A guest leans close: 'He cannot see you while the chant holds. None of us has ever been seen. That is the whole of his power — and the whole of his prison.'"
+        ]
+      },
+      "rules": [],
+      "gm_notes": "Set-piece of polite horror. The black pear is a strong but double-edged reward — it forces the King to show himself at the throne, at a price.",
+      "exits": [
+        { "id": "feast-to-slaves", "label": "Excuse yourself from the table", "target": "court-of-slaves", "condition": null, "locked": false }
+      ],
+      "visited": false,
+      "tags": []
+    },
+    {
+      "id": "the-obscuring",
+      "title": "The Obscuring",
+      "type": "location",
+      "atmosphere": "A ring of chanting figures around a smear of dark the eye refuses to hold. Look at the center and your gaze slides off like rain on glass.",
+      "read_aloud": "",
+      "contents": {
+        "description": "The ritual that makes the Shadow King unseeable, performed without pause by figures who have forgotten they were ever anything else. While the chant holds, the King beyond cannot be perceived — and so cannot be touched, named, or fought. Two ways past the inner doors: hold the King's Coin (it opens for the King's own coin), or break the obscuring (you will SEE the King — and to see him is to be seen back).",
+        "items": [],
+        "enemies": [],
+        "npcs": [],
+        "traps": [
+          {
+            "name": "Breaking the Chant",
+            "trigger": "Silencing, scattering, or killing the chanters",
+            "effect": "The obscuring fails and the inner doors open — but every PC present tests Presence DR14. On a failure the King sees you first: take d6, and he acts first in the climax's opening round regardless of the initiative roll.",
+            "dr": "14"
+          }
+        ],
+        "secrets": [
+          "Under the hoods, the chanters' faces are the faces from the Hall of Sons. The Princes are not out tricking travelers for sport — they are out recruiting replacements, so they can stop chanting. So they can finally be seen."
+        ]
+      },
+      "rules": [],
+      "gm_notes": "Two routes to the throne: (1) the King's Coin unlocks the inner doors cleanly — open the locked exit with the in-app 🔒; (2) breaking the chant forces it open but hands the King the initiative. Let the players pick their poison.",
+      "exits": [
+        { "id": "obscuring-to-throne", "label": "Through the doors of the inner wing", "target": "the-throne", "condition": "Locked. Opens for the King's Coin (won at the Bone Wager), or once the obscuring chant is broken.", "locked": true },
+        { "id": "obscuring-to-slaves", "label": "Back to the Court of Slaves", "target": "court-of-slaves", "condition": null, "locked": false }
+      ],
+      "visited": false,
+      "tags": []
+    },
+    {
+      "id": "the-throne",
+      "title": "The Throne of the Shadow King",
+      "type": "location",
+      "atmosphere": "The inner wing — the one room the palace has not torn down, because everything it tears down it feeds to this.",
+      "read_aloud": "The doors close behind you of their own accord; they always do. On the throne sits the Shadow King: a shape your eyes keep declining to finish. He does not rise. He does not speak. He waits — the way the palace waited your whole life, the way the river waits — for you to come close enough to take his place.",
+      "contents": {
+        "description": "The truth, if unlearned until now: the throne is the curse. Whoever sits becomes the next Shadow King — obscured, hereditary, fed by a self-devouring palace, equidistant from a world they can never rejoin. The current King WANTS replacing; he will not fight to keep the seat, only to make you take it. Resolutions — SIT: you 'win' and are damned; the palace stops eating itself and a new portrait dries in the Hall. UNMAKE: destroy the throne / break the obscuring at its root; the King turns to one-eyed stone, the equidistant anomaly collapses, the palace falls, and every body trapped in Graven-Tosk's loop is freed to a real death. FLEE: there is none — the only door out is the throne.",
+        "items": [],
+        "enemies": [
+          {
+            "name": "The Shadow King",
+            "hp": 25,
+            "morale": "—",
+            "speed": "slow",
+            "attack": "The Reaching Dark, +2, d8 + see Special",
+            "special": "CANNOT BE PERCEIVED while the obscuring chant holds — immune to all harm until the chant is broken or a King's Favor (the black pear) is spent to make him show himself. Once seen: each round a PC who looks at him tests Presence DR14 or is 'offered the throne' (drawn one step closer); a PC who reaches the throne and fails a final Presence DR14 sits down, and the adventure ends for them.",
+            "notes": "[CANON CHECK] The Shadow King has no canonical stat block — he is only 'obscured by ritual' and never described. This is an original expansion of that idea: the danger is the seat, not the sword."
+          }
+        ],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "If unmade: as the throne breaks, the obscuring fails completely for one instant and you SEE him — just a traveler, like you, who came in through the gate too long ago to remember the road. He mouths 'thank you' as the stone takes him."
+        ]
+      },
+      "rules": [],
+      "gm_notes": "Climax. Play the King as patient, courteous, almost grateful; the horror is the offer, not the attack. If a PC sits — willingly or by failing the save — they become the new Shadow King: the rest may leave (the gate opens for them now) and that player rolls a new scvm, OR the party can unmake the throne with their friend on it, freeing them but ending the line. There is no clean win — only which doom you choose.",
+      "exits": [],
+      "visited": false,
+      "tags": ["climax", "end"]
+    }
+  ]
+}

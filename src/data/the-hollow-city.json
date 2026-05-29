@@ -1,0 +1,368 @@
+{
+  "meta": {
+    "id": "the-hollow-city",
+    "title": "The Hollow City",
+    "author": "Trevor Burkholder (original expansion)",
+    "version": "1.0",
+    "system": "morkborg",
+    "description": "Galgenbeck eats itself from below. Beneath the Cathedral of the Two-Headed Basilisks the catacombs dig ever deeper toward the bargain that keeps Josilfa Migol young. Descend, and decide whether to break the pact or let the city finish hollowing.",
+    "startNode": "cathedral-facade",
+    "license": "Original expansion on MÖRK BORG canon (Galgenbeck, the Cathedral of the Two-Headed Basilisks, Josilfa Migol, Anuk Schleger, Misery 1:1)."
+  },
+  "nodes": [
+    {
+      "id": "cathedral-facade",
+      "title": "The Cathedral Facade",
+      "type": "location",
+      "atmosphere": "The greatest church of the greatest city, and in its high windows: porcelain children, starving, posed as saints.",
+      "read_aloud": "Bells that no hand rings. The Cathedral of the Two-Headed Basilisks swallows the square. Inquisition guards stand like furniture. From a side-grate drifts a sound you feel in your teeth — far below, something is digging, and has been for a very long time. A grey scribe with ink to the elbow catches your sleeve. 'You hear it too? Good. Then you'll come down. Someone has to see.'",
+      "contents": {
+        "description": "Misery 1:1 — 'The City shall be made hollow. Of those who rest in hollowness, they shall not be seen.' It is being fulfilled, by the Cathedral's own direction. Brother Vask, a heretic scribe, hires the party to descend the catacombs and find why the city mines itself. He fears Josilfa Migol's pact with Nechrubel is the cause.",
+        "items": [],
+        "enemies": [],
+        "npcs": [
+          {
+            "name": "Brother Vask, heretic scribe",
+            "description": "Ink to the elbow, eyes that haven't slept since he read the wrong page.",
+            "attitude": "friendly",
+            "notes": "Copies the Calendar of Nechrubel by day, doubts it by night. Knows the catacombs uncovered Anuk Schleger's tomb. Believes breaking Josilfa's pact could stop the hollowing — and is too afraid to say so above a whisper. Will give the party Schleger's first true words (see schleger-tomb) if they reach the tomb and bring them back to him to read aloud."
+          }
+        ],
+        "traps": [],
+        "secrets": []
+      },
+      "rules": [],
+      "gm_notes": "Establish the stakes: the city is hollowing on purpose and the Cathedral knows. The Inquisition tolerates no questions; the party must descend quietly. Vask is the moral compass and the lore-feed.",
+      "exits": [
+        { "id": "facade-to-schleger", "label": "Down to the burial levels", "target": "schleger-tomb", "condition": null, "locked": false },
+        { "id": "facade-to-archive", "label": "Through the door marked with a flame", "target": "inquisition-archive", "condition": null, "locked": false }
+      ],
+      "visited": false,
+      "tags": ["start"]
+    },
+    {
+      "id": "schleger-tomb",
+      "title": "The Tomb of Anuk Schleger",
+      "type": "location",
+      "atmosphere": "A tomb the diggers uncovered, not built. The lid was prised from the inside.",
+      "read_aloud": "",
+      "contents": {
+        "description": "Anuk Schleger transcribed the Nameless Scriptures three hundred years ago; his tomb was unearthed when the catacombs went deeper than memory. Fragments of his ORIGINAL transcription remain — including a line the Calendar omits. His true words are a key: read where the pact is sealed, they unspeak it.",
+        "items": [
+          "Schleger's First True Words — a scrap of skin-vellum bearing a line the official Calendar leaves out. Read aloud in the Whisper-Chamber, it begins to unspeak the pact. (This is the 'key' to the locked descent — Brother Vask can also recite it if returned to him.)"
+        ],
+        "enemies": [
+          {
+            "name": "Rotted Skeleton (Schleger's wardens, ×2)",
+            "hp": 5,
+            "morale": "7",
+            "speed": "normal",
+            "attack": "Knuckles, +0, d4",
+            "special": "Marrow-dust on melee damage: attacker tests Toughness DR10 or infected (−d6 HP/day until healed magically).",
+            "notes": "Monks who chose to be buried guarding the words. Source: Graven-Tosk bestiary (Rotted Skeleton)."
+          }
+        ],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "The lid was forced from the inside. Schleger did not die and stay dead; he climbed out once, saw what his words had built, and lay back down. The diggers found him already gone."
+        ]
+      },
+      "rules": [],
+      "gm_notes": "This is the key item for the locked Whisper-Chamber descent. Either carry the vellum down, or bring it back up to Vask to recite. Telegraph that the words 'unspeak' rather than 'destroy' — the consequence is cosmic, not tidy.",
+      "exits": [
+        { "id": "schleger-to-sealing", "label": "Deeper, past doors marked with years", "target": "sealing-vault", "condition": null, "locked": false },
+        { "id": "schleger-to-facade", "label": "Back up toward the bells", "target": "cathedral-facade", "condition": null, "locked": false }
+      ],
+      "visited": false,
+      "tags": []
+    },
+    {
+      "id": "inquisition-archive",
+      "title": "The Inquisition Archive",
+      "type": "location",
+      "atmosphere": "Shelves of heresy, kept only so it can be burned correctly. The implements for correcting people in public and at length hang oiled and ready.",
+      "read_aloud": "",
+      "contents": {
+        "description": "Where the Inquisition stores what it intends to destroy. An Inquisitor works late, 'correcting' a clerk who read too closely. If the party is seen, the Inquisitor is certain they are heretics — and he is, for once, right.",
+        "items": [
+          "A condemned codex — names every citizen recorded 'hollow' this year. The list is alphabetical and not yet finished; your own names may not be far off."
+        ],
+        "enemies": [
+          {
+            "name": "Inquisitor of the Two-Headed Basilisks",
+            "hp": 8,
+            "morale": "9",
+            "speed": "normal",
+            "attack": "Iron flail, +1, d6",
+            "special": "Fanatic. The first time an ally of his falls, he tests Morale at +2 (he does not break easily). Believes pain is a sacrament and shares it generously.",
+            "notes": "[CANON CHECK] Generic Inquisition enforcer; statted to taste."
+          }
+        ],
+        "npcs": [
+          {
+            "name": "The Corrected Clerk",
+            "description": "A scribe missing the parts of himself that asked questions.",
+            "attitude": "neutral",
+            "notes": "Will whisper, if freed, that the deepest doors are marked with YEARS, not names — and that the Cathedral opens one each season. He has read which year is next. It is soon."
+          }
+        ],
+        "traps": [],
+        "secrets": []
+      },
+      "rules": [],
+      "gm_notes": "The combat-or-stealth gate. Reward sneaking. The codex and the clerk both foreshadow the sealing-vault and the climax's cost.",
+      "exits": [
+        { "id": "archive-to-library", "label": "Through to the scribes' hall", "target": "prophecy-library", "condition": null, "locked": false },
+        { "id": "archive-to-facade", "label": "Back up to the nave", "target": "cathedral-facade", "condition": null, "locked": false }
+      ],
+      "visited": false,
+      "tags": ["combat"]
+    },
+    {
+      "id": "prophecy-library",
+      "title": "The Library of the Calendar",
+      "type": "location",
+      "atmosphere": "A hundred scribes copy the Calendar of Nechrubel in trance, lips moving, eyes rolled white. Turn a page too loudly and they all turn to face you at once.",
+      "read_aloud": "",
+      "contents": {
+        "description": "Where the Calendar of Nechrubel is maintained. The High Scribe tends the master roll and will, if not provoked, read the party the next verse — which describes the city's hollowing as already complete. The scribes are not all alive; the dead ones copy fastest.",
+        "items": [],
+        "enemies": [],
+        "npcs": [
+          {
+            "name": "The High Scribe",
+            "description": "Blind from copying; fingers worn to the second knuckle; perfectly serene.",
+            "attitude": "neutral",
+            "notes": "Tends the master Calendar. Will recite the next verse and let slip that Josilfa pays for her years 'in the room below the lowest room, where the city's first stone was laid.' Provoke the scribes and the whole hall attacks as one (treat as a swarm; GM's call)."
+          }
+        ],
+        "traps": [],
+        "secrets": [
+          "The master roll is being written ahead of events — the ink for tomorrow's hollowing is already dry. Either the prophecy reports the future, or the Cathedral writes it and calls it prophecy. Both are true. That is the horror."
+        ]
+      },
+      "rules": [],
+      "gm_notes": "Lore node pointing the party at the Whisper-Chamber ('the room below the lowest room'). The High Scribe is a peaceful source unless the party is loud or violent.",
+      "exits": [
+        { "id": "library-to-undercroft", "label": "Down a servants' stair into wet dark", "target": "undercroft-sewers", "condition": null, "locked": false },
+        { "id": "library-to-archive", "label": "Back to the archive", "target": "inquisition-archive", "condition": null, "locked": false }
+      ],
+      "visited": false,
+      "tags": []
+    },
+    {
+      "id": "sealing-vault",
+      "title": "The Vault of Years",
+      "type": "location",
+      "atmosphere": "A corridor of sealed doors, each carved with a year. Most are old. One is carved with this year, and its seal is already cracking.",
+      "read_aloud": "",
+      "contents": {
+        "description": "Canon-flavored: the Cathedral opens one sealed door each season, and each opening fulfils a verse of the Calendar — a Misery made real. Behind this year's door, the hollowing accelerates. Opening doors here is power and catastrophe in equal measure.",
+        "items": [],
+        "enemies": [
+          {
+            "name": "Hollow One (entranced citizen, ×d4)",
+            "hp": 5,
+            "morale": "—",
+            "speed": "normal",
+            "attack": "Digging tools, +0, d4",
+            "special": "'Of those who rest in hollowness, they shall not be seen' — the eye slides off them; attacks against a Hollow One are DR14. They do not attack unless their digging is interrupted, then they defend the work to the last.",
+            "notes": "[CANON CHECK] Original to this expansion, built on Misery 1:1. These were citizens, days ago."
+          }
+        ],
+        "npcs": [],
+        "traps": [
+          {
+            "name": "This Year's Door",
+            "trigger": "Breaking the cracking seal carved with the current year",
+            "effect": "A verse of the Calendar comes true at once. Each PC present tests Presence DR12 or suffers a personal Misery (GM rolls or invents one). The hollowing below speeds up — every subsequent descent encounter has +d4 Hollow Ones.",
+            "dr": "12"
+          }
+        ],
+        "secrets": [
+          "The years on the doors run forward, not back. The Cathedral is not burying its past down here. It is storing its future, one apocalypse at a time, and opening them on schedule."
+        ]
+      },
+      "rules": [],
+      "gm_notes": "Tempt the party to meddle with the doors; make the cost real but not instantly fatal. The accelerating-Hollow-Ones clock rewards a quick, quiet descent.",
+      "exits": [
+        { "id": "sealing-to-tunnels", "label": "Follow the digging-sound down", "target": "hollowing-tunnels", "condition": null, "locked": false },
+        { "id": "sealing-to-schleger", "label": "Back to Schleger's tomb", "target": "schleger-tomb", "condition": null, "locked": false }
+      ],
+      "visited": false,
+      "tags": []
+    },
+    {
+      "id": "undercroft-sewers",
+      "title": "The Undercroft Sewers",
+      "type": "location",
+      "atmosphere": "The sewers run deeper than the streets remember. Something ropy-skinned is down here that did not come from Galgenbeck — or did, lately.",
+      "read_aloud": "",
+      "contents": {
+        "description": "The Cathedral's drains meet the old city's bones. Goblins (overflow from the Derelict Mill plague — see The Goblin Grinder) nest in the wet dark, and thieves use these channels to move beneath the Inquisition's notice. A way down toward the digging.",
+        "items": [],
+        "enemies": [
+          {
+            "name": "Goblin (×d4+1)",
+            "hp": 6,
+            "morale": "7",
+            "speed": "normal",
+            "attack": "Filed knife or short bow, +0, d4",
+            "special": "Ropy skin −d2 armor. Quick: their attacks AND the defence against them are DR14.",
+            "notes": "Curse-carriers, overflowing from the Goblin Grinder plague. Source: MÖRK BORG core / Goblin Grinder (Goblin)."
+          }
+        ],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "The goblins are not digging. They are fleeing — upward, away from the lowest dark — and even goblins know better than to go where the citizens are digging to."
+        ]
+      },
+      "rules": [],
+      "gm_notes": "Ties the module to Goblin Grinder. The goblins fleeing upward is a dread beat: whatever is below frightens monsters.",
+      "exits": [
+        { "id": "undercroft-to-tunnels", "label": "Toward the digging, against the goblins' flight", "target": "hollowing-tunnels", "condition": null, "locked": false },
+        { "id": "undercroft-to-library", "label": "Back up to the library", "target": "prophecy-library", "condition": null, "locked": false }
+      ],
+      "visited": false,
+      "tags": ["combat"]
+    },
+    {
+      "id": "hollowing-tunnels",
+      "title": "The Hollowing Tunnels",
+      "type": "location",
+      "atmosphere": "Fresh tunnels in every direction, dug by hundreds of hands. The city is mining itself into nothing, and the miners are its own people, smiling.",
+      "read_aloud": "",
+      "contents": {
+        "description": "The heart of the hollowing. Entranced citizens — Hollow Ones — carve the city out from beneath, removing stone to nowhere. Interrupt them and they defend the work. This is the chokepoint between the upper Cathedral and the lowest dark.",
+        "items": [],
+        "enemies": [
+          {
+            "name": "Hollow One (entranced citizen, ×d6)",
+            "hp": 5,
+            "morale": "—",
+            "speed": "normal",
+            "attack": "Pick and chisel, +0, d4",
+            "special": "Hard to see (attacks against them are DR14). They fight only to protect the digging. A Hollow One reduced to 0 HP simply stops, sits, and is never seen again.",
+            "notes": "[CANON CHECK] Original, built on Misery 1:1."
+          }
+        ],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "Listen to what they whisper as they dig: their own names, over and over, softer each time — practising being forgotten. When a name goes fully silent, that digger cannot be seen at all anymore."
+        ]
+      },
+      "rules": [],
+      "gm_notes": "The descent chokepoint. A loud, violent party brings the whole tunnel down on them; a careful party can slip past the unseeing diggers. From here the route splits to the Undying Choir and the Abyss-Mouth.",
+      "exits": [
+        { "id": "tunnels-to-choir", "label": "Toward distant singing", "target": "undying-choir", "condition": null, "locked": false },
+        { "id": "tunnels-to-undercroft", "label": "Back up the sewers", "target": "undercroft-sewers", "condition": null, "locked": false }
+      ],
+      "visited": false,
+      "tags": []
+    },
+    {
+      "id": "undying-choir",
+      "title": "The Undying Choir",
+      "type": "location",
+      "atmosphere": "A side-chapel full of porcelain children who never stopped singing, though their throats are clay and their hymn has no end.",
+      "read_aloud": "",
+      "contents": {
+        "description": "The Lady Porcelain dolls of the high windows, gone to undeath, chorusing forever in a chamber the hollowing exposed. Their song is beautiful and it eats time. The only way deeper, to the Abyss-Mouth, lies through their hall.",
+        "items": [
+          "A single silent doll — the one that stopped. Hold it and you are immune to the Choir's song for one scene. Its painted eyes track the lowest door."
+        ],
+        "enemies": [
+          {
+            "name": "Lady Porcelain (undead chorister, ×d6)",
+            "hp": 3,
+            "morale": "—",
+            "speed": "normal",
+            "attack": "Scratching and biting, +0, d4",
+            "special": "THE SONG: each round in the chamber, a PC tests Presence DR12 or stands still and sings with them for d4 rounds (helpless). Smashing a chorister is easy; staying yourself is not.",
+            "notes": "[CANON CHECK] Undead variant of Galgenbeck's canonical 'Lady Porcelain' starving window-dolls."
+          }
+        ],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "The hymn is the Calendar of Nechrubel, sung backward. Whatever the scribes write above, these children unwrite below, note for note. Neither will ever finish. That is what holds the city in its slow fall — and what Josilfa's pact will end."
+        ]
+      },
+      "rules": [],
+      "gm_notes": "Beautiful, dangerous set-piece. The silent doll is the soft counter to the song. The locked descent to the Whisper-Chamber is beyond the Abyss-Mouth — telegraph that the lowest door needs Schleger's words.",
+      "exits": [
+        { "id": "choir-to-abyss", "label": "Toward where the singing falls into silence", "target": "abyss-mouth", "condition": null, "locked": false },
+        { "id": "choir-to-tunnels", "label": "Back to the digging", "target": "hollowing-tunnels", "condition": null, "locked": false }
+      ],
+      "visited": false,
+      "tags": []
+    },
+    {
+      "id": "abyss-mouth",
+      "title": "The Abyss-Mouth",
+      "type": "location",
+      "atmosphere": "The lowest room opens onto a hole that is not a hole — a doorway of pure dark where the city's first stone was laid, and unlaid.",
+      "read_aloud": "",
+      "contents": {
+        "description": "The bottom of the hollowing. A sealed black doorway: the Whisper-Chamber beyond, where Josilfa Migol communes with Nechrubel and pays for her years. The door has no lock you can pick — it opens only to Schleger's true words read aloud, or to a heretic's counter-prayer. Without them, the dark simply will not let you in.",
+        "items": [],
+        "enemies": [],
+        "npcs": [],
+        "traps": [
+          {
+            "name": "The Threshold of Unbeing",
+            "trigger": "Forcing the black doorway without Schleger's words",
+            "effect": "The dark accepts you the way it accepts the diggers. Presence DR14 or begin to be unseen — −1 to all rolls others must make to perceive or aid you, cumulative each attempt, until you withdraw and rest.",
+            "dr": "14"
+          }
+        ],
+        "secrets": [
+          "Lean close to the dark and you hear two voices below: a woman's, and a thing that is not. The woman is asking for one more season. The thing is counting."
+        ]
+      },
+      "rules": [],
+      "gm_notes": "The locked-climax gate. When the party has Schleger's First True Words (or Vask is with them to recite), unlock the door with the in-app 🔒. Forcing it raw is possible but begins to erase the forcer.",
+      "exits": [
+        { "id": "abyss-to-whisper", "label": "Speak the words; enter the Whisper-Chamber", "target": "whisper-chamber", "condition": "Sealed. Opens only to Schleger's First True Words read aloud, or a heretic's counter-prayer (Brother Vask).", "locked": true },
+        { "id": "abyss-to-choir", "label": "Back toward the choir", "target": "undying-choir", "condition": null, "locked": false }
+      ],
+      "visited": false,
+      "tags": []
+    },
+    {
+      "id": "whisper-chamber",
+      "title": "The Whisper-Chamber",
+      "type": "location",
+      "atmosphere": "The room below the lowest room, where Galgenbeck's first stone was laid. A woman kneels at a crack in the world, young as melting ice, and the crack whispers back.",
+      "read_aloud": "Josilfa Migol does not turn. 'You came a long way down to watch me pray.' Her voice is a girl's. 'Every season I give the City a little of itself, and Nechrubel gives me a little more time. The City does not mind. The City will not be SEEN to mind.' The crack in the floor exhales cold. 'Stay. Kneel. There is room in the hollow for you too.'",
+      "contents": {
+        "description": "Josilfa Migol's bargain laid bare: each season she feeds Galgenbeck a piece of itself into the crack where Nechrubel listens, and in return she does not age. The hollowing IS the payment. Resolutions — UNSPEAK: read Schleger's First True Words to begin unspeaking the pact; the hollowing stops, the city is saved — but the verses she held back come due, and several Miseries strike Galgenbeck at once (GM rolls 1d4 Miseries). LET IT STAND: walk away; Josilfa keeps her youth and the city keeps hollowing until Misery 1:1 completes. END HER: kill the priestess; the pact has no keeper and the crack closes wrong — the hollowing reverses, and everything the city un-made starts climbing back up, hungry.",
+        "items": [],
+        "enemies": [
+          {
+            "name": "Josilfa Migol, Arch-Priestess",
+            "hp": 18,
+            "morale": "—",
+            "speed": "normal",
+            "attack": "A word that is not heard, +2, d6 (ignores armor)",
+            "special": "WILL NOT BE SEEN TO LOSE: while she kneels at the crack she cannot be permanently harmed (any 'killing' blow merely makes her younger and she rises next round at full HP) UNTIL the pact is unspoken with Schleger's words or the crack is closed. She is not interested in fighting — she is interested in your staying.",
+            "notes": "[CANON CHECK] Josilfa has no canonical stat block; she is the eternally-young arch-priestess of Galgenbeck, sustained by a Nechrubel pact. The point is the choice, not the kill."
+          }
+        ],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "She is not lying about the City not minding. Look back up the tunnels: the diggers have stopped to listen, smiling, ready to fill the hole with themselves the moment she asks. She has never had to ask."
+        ]
+      },
+      "rules": [],
+      "gm_notes": "Climax and dilemma. Make all three outcomes cost something. Unspeaking saves the city now but unleashes the Miseries she was holding back; killing her 'reverses' the hollow into a worse rising; doing nothing damns Galgenbeck slowly. Josilfa is gracious, ancient, and genuinely unbothered — play her as someone who has already won every argument.",
+      "exits": [],
+      "visited": false,
+      "tags": ["climax", "end"]
+    }
+  ]
+}

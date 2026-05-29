@@ -57,6 +57,30 @@
       "file": "bloat.json"
     },
     {
+      "id": "shadow-kings-palace",
+      "title": "The Palace of the Shadow King",
+      "system": "morkborg",
+      "author": "Trevor Burkholder (original expansion)",
+      "description": "The manse that always loomed equidistant over Graven-Tosk has finally let you arrive. Cross the courtier-haunted ruin to the inner wing, learn what the throne really is, and choose which doom to carry.",
+      "file": "shadow-kings-palace.json"
+    },
+    {
+      "id": "the-hollow-city",
+      "title": "The Hollow City",
+      "system": "morkborg",
+      "author": "Trevor Burkholder (original expansion)",
+      "description": "Galgenbeck eats itself from below. Descend the Cathedral catacombs to the bargain that keeps Josilfa Migol young, and decide whether to break the pact or let the city finish hollowing.",
+      "file": "the-hollow-city.json"
+    },
+    {
+      "id": "the-frozen-court",
+      "title": "The Frozen Court",
+      "system": "morkborg",
+      "author": "Trevor Burkholder (original expansion)",
+      "description": "In Alliáns, the Blood-Countess Anthelia has fallen ill — and her sickness drinks the last colour from the world. Cross her frozen court of vanished suitors to the throne and decide: her youth, or the world's colour.",
+      "file": "the-frozen-court.json"
+    },
+    {
       "id": "eat-prey-kill",
       "title": "Eat Prey Kill",
       "system": "morkborg",

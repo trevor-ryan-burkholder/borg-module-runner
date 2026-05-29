@@ -1,0 +1,353 @@
+{
+  "meta": {
+    "id": "the-frozen-court",
+    "title": "The Frozen Court",
+    "author": "Trevor Burkholder (original expansion)",
+    "version": "1.0",
+    "system": "morkborg",
+    "description": "In Alliáns, the spire-city of black glass, the Blood-Countess Anthelia has fallen ill — and her sickness drinks the last colour from the world faster than ever. Cross her frozen court of vanished suitors to the throne, and decide whether the world keeps its colour or she keeps her youth.",
+    "startNode": "spire-approach",
+    "license": "Original expansion on MÖRK BORG canon (Alliáns, Kergüs, the Blood-Countess Anthelia, Bergen Chrypt, Misery 6:3 and 2:3)."
+  },
+  "nodes": [
+    {
+      "id": "spire-approach",
+      "title": "The Spire-City Approach",
+      "type": "location",
+      "atmosphere": "Towers of black glass pierce a storming sky. The snow on the road is studded with the kneeling, frozen shapes of men who came courting and never reached the gate.",
+      "read_aloud": "Alliáns rises out of the Kergüs storm like a fistful of black needles. The wind carries gulls' voices, and the gulls are crying names — men's names, one after another, an endless roll of the lost. Closer, the snow is full of statues: suitors, frozen mid-stride toward a Countess who drinks them. The whole world here has gone the colour of old ice. Somewhere ahead, faintly, a bell tolls for a woman who is, impossibly, dying.",
+      "contents": {
+        "description": "Canon: Anthelia is eternally young, pale as her castle's walls; the gulls cry the names of knights who sought her hand, and suitors vanish in conjunction with the signs of her age. NEW: she has fallen severely ill (adventure seed 37–38) — and her sickness makes her drain colour and warmth from the world faster, pulling the last of both toward Alliáns (Misery 6:3: 'Anthelia shall have her will and drink all colour from the world'). The party may come to cure her, rob her, free a suitor, or end her.",
+        "items": [],
+        "enemies": [],
+        "npcs": [
+          {
+            "name": "The Last Suitor",
+            "description": "A knight frozen to the knees in the road, still breathing, still hoping, unable to step back.",
+            "attitude": "neutral",
+            "notes": "Can speak. Warns that to look on the Countess is to begin to fade. Begs the party either to free him or to leave him — he can no longer tell which he wants. If thawed (fire, the Warm Spring), he can name one safe path through the court."
+          }
+        ],
+        "traps": [],
+        "secrets": []
+      },
+      "rules": [],
+      "gm_notes": "Open on dread and beauty. The frozen suitors and name-crying gulls are the throughline. Establish that proximity to Anthelia drains the living of colour, warmth, and eventually self.",
+      "exits": [
+        { "id": "approach-to-gate", "label": "Up to the white-stone gate", "target": "castle-gate", "condition": null, "locked": false }
+      ],
+      "visited": false,
+      "tags": ["start"]
+    },
+    {
+      "id": "castle-gate",
+      "title": "The White-Stone Gate",
+      "type": "location",
+      "atmosphere": "A gate like a frozen waterfall of white stone, hung with the heraldry of a hundred houses that no longer exist.",
+      "read_aloud": "",
+      "contents": {
+        "description": "The threshold of Anthelia's castle. The guards do not breathe fog; they have nothing warm left to fog with. From here the court branches: a gallery of suitors' portraits, and a colourless garden. This is the hub of the frozen court.",
+        "items": [],
+        "enemies": [
+          {
+            "name": "Cursed Suitor (gate-warden)",
+            "hp": 10,
+            "morale": "—",
+            "speed": "normal",
+            "attack": "Frostbitten blade, +1, d6",
+            "special": "Cold radiance: a PC who ends a round adjacent tests Toughness DR12 or stiffens — −1 Agility for the scene. It will let pass anyone bearing a token of the Countess's favour, or anyone it mistakes for a new suitor.",
+            "notes": "[CANON CHECK] Original: a knight who reached the gate and was kept, neither thawed nor dead."
+          }
+        ],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "The heraldry over the gate updates itself: as you watch, one faded coat-of-arms brightens for an instant — a new house arriving — then greys forever. The court is still taking suitors, even now, even sick."
+        ]
+      },
+      "rules": [],
+      "gm_notes": "Hub. The warden can be fought, tricked, or bypassed with a favour-token. Let players choose a wing.",
+      "exits": [
+        { "id": "gate-to-gallery", "label": "The gallery of portraits", "target": "gallery-of-suitors", "condition": null, "locked": false },
+        { "id": "gate-to-garden", "label": "The grey garden", "target": "autumn-garden", "condition": null, "locked": false },
+        { "id": "gate-to-approach", "label": "Back out to the road", "target": "spire-approach", "condition": null, "locked": false }
+      ],
+      "visited": false,
+      "tags": ["hub"]
+    },
+    {
+      "id": "gallery-of-suitors",
+      "title": "The Gallery of Suitors",
+      "type": "location",
+      "atmosphere": "Portraits down a long cold hall, each frame colder than the last toward the far end — where the newest frame is empty, still wet, waiting.",
+      "read_aloud": "",
+      "contents": {
+        "description": "Every knight who sought Anthelia's hand hangs here. Touch a frame and it is ice; the colder ones hold the older losses. Canon: the gulls cry these names. NEW: the men are not painted — they are kept, their colour drawn into the canvas, their selves thinning toward the empty frame at the end that is always reserved for the next.",
+        "items": [],
+        "enemies": [],
+        "npcs": [
+          {
+            "name": "Sir Valdor, in oils",
+            "description": "A knight's face in a portrait, eyes that follow, lips that move without sound.",
+            "attitude": "neutral",
+            "notes": "A suitor kept in paint. If a PC presses a warm hand to the frame (taking d4 cold), he can speak: he knows the Countess's true name was struck from every record but ONE, kept in the Frozen Archives. Freeing him fully requires breaking the pact at the throne."
+          }
+        ],
+        "traps": [],
+        "secrets": [
+          "The portraits are arranged by the year each suitor came. Count back from the empty frame and the gallery is older than any human reign. Anthelia has been 'young' for a very, very long time."
+        ]
+      },
+      "rules": [],
+      "gm_notes": "Lore + a trapped-NPC rescue thread that points at the Frozen Archives (the true-name key).",
+      "exits": [
+        { "id": "gallery-to-vault", "label": "Through to the gift-vault", "target": "frost-vault", "condition": null, "locked": false },
+        { "id": "gallery-to-gate", "label": "Back to the gate", "target": "castle-gate", "condition": null, "locked": false }
+      ],
+      "visited": false,
+      "tags": []
+    },
+    {
+      "id": "autumn-garden",
+      "title": "The Grey Garden",
+      "type": "location",
+      "atmosphere": "A garden that still grows, leaf and bud and bloom — all of it the colour of ash. Gardeners in grey whisper to the plants, apologising.",
+      "read_aloud": "",
+      "contents": {
+        "description": "Once the most vibrant place in Kergüs; now every living thing here grows in perfect monochrome, colour drunk out of it the moment it blooms. A flail-horned muskox has wandered in from the storm and gone the same grey, maddened by a garden with no green.",
+        "items": [],
+        "enemies": [
+          {
+            "name": "Flail-horned Muskox",
+            "hp": 18,
+            "morale": "9",
+            "speed": "normal",
+            "attack": "Flail-horn flurry (see Special)",
+            "special": "Thick fur −d2 armor. Four attacks each round, ideally on different targets, at descending difficulty: DR16 → d4, DR14 → d6, DR12 → d8, DR10 → d10.",
+            "notes": "Kergüs megafauna, greyed by the garden's hunger. Source: Eat Prey Kill (Flail-horned Muskox)."
+          }
+        ],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "One bed at the garden's heart is fenced in iron and steams faintly. Whatever grows there has KEPT its colour — a single red flower. The gardeners will not go near it. They say the Countess cannot drink from it, and that it frightens her."
+        ]
+      },
+      "rules": [],
+      "gm_notes": "A real fight (the muskox is nasty) and a clue: the colour-keeping bed hints at the Warm Spring's defiance of Anthelia — foreshadowing the throne-room counter.",
+      "exits": [
+        { "id": "garden-to-alchemist", "label": "Up the alchemist's tower", "target": "alchemist-tower", "condition": null, "locked": false },
+        { "id": "garden-to-gate", "label": "Back to the gate", "target": "castle-gate", "condition": null, "locked": false }
+      ],
+      "visited": false,
+      "tags": ["combat"]
+    },
+    {
+      "id": "frost-vault",
+      "title": "The Frost-Vault",
+      "type": "location",
+      "atmosphere": "The gifts of a thousand suitors, iced into a glittering hoard. Every treasure here came with a man attached, and the man is gone.",
+      "read_aloud": "",
+      "contents": {
+        "description": "Where the Countess's courtship-gifts are kept, frozen over. Each is genuinely valuable and genuinely cursed — the curse tied to the disappearance of its giver. Greed has a price here.",
+        "items": [
+          "A suitor's gift of your choosing — gold, gems, a fine blade, a jewelled token of the Countess's favour (this token lets you pass the gate-warden and some courtiers unchallenged). Each gift is cursed: while you carry it, you feel the cold the way its giver did at the end."
+        ],
+        "enemies": [],
+        "npcs": [],
+        "traps": [
+          {
+            "name": "The Giver's Cold",
+            "trigger": "Taking a gift from the ice",
+            "effect": "The gift remembers being given. Toughness DR12 or take d6 cold and lose all colour from your skin and gear for the rest of the adventure (cosmetic, but courtiers now mistake you for one of the kept — friendly or hostile, GM's call).",
+            "dr": "12"
+          }
+        ],
+        "secrets": [
+          "The oldest gift in the vault is a child's: a vibrant red ribbon, untouched by the cold, exactly the red of the garden's hidden flower. Someone once gave the Countess the only colour she could not drink. She kept it closest of all."
+        ]
+      },
+      "rules": [],
+      "gm_notes": "Greed-and-consequence room. The favour-token is a useful key for social bypasses; the red ribbon ties to the Warm Spring / throne-room counter.",
+      "exits": [
+        { "id": "vault-to-gulls", "label": "Up a windy stair toward crying birds", "target": "gulls-nest", "condition": null, "locked": false },
+        { "id": "vault-to-gallery", "label": "Back to the gallery", "target": "gallery-of-suitors", "condition": null, "locked": false }
+      ],
+      "visited": false,
+      "tags": ["loot"]
+    },
+    {
+      "id": "alchemist-tower",
+      "title": "The Alchemist's Tower",
+      "type": "location",
+      "atmosphere": "Glass and frost and a hundred bottled colours, each one drained from somewhere that misses it. A figure works the apparatus that keeps a Countess young.",
+      "read_aloud": "",
+      "contents": {
+        "description": "Where Anthelia's eternal youth is maintained: an engine that decants the world's colour and warmth into the Countess. The alchemist who tends it is bound, weary, and — now that she is dying — afraid. NEW: her illness is the engine failing; it now over-draws, pulling colour faster and killing the world to keep her alive a little longer.",
+        "items": [
+          "A vial of stolen warmth — drink for a one-time immunity to the next cold/draining effect, or pour it out to thaw one frozen suitor."
+        ],
+        "enemies": [],
+        "npcs": [
+          {
+            "name": "Yssa, the Court Alchemist",
+            "description": "Hands stained every colour but her own; she has not seen her true reflection in decades.",
+            "attitude": "neutral",
+            "notes": "Maintains the youth-engine under compulsion. Will tell the party the truth if shown kindness: the Countess can be CURED (the world greys forever, slowly) or the engine can be BROKEN (Anthelia ages all at once into whatever she really is). She will also confirm the true name is in the Frozen Archives. She wants out. She will not act first — she is too afraid."
+          }
+        ],
+        "traps": [],
+        "secrets": [
+          "The apparatus is plumbed toward Bergen Chrypt. The colour and warmth it drinks does not stay in Anthelia — it leaks north, into the mountain, into SHE. Anthelia is not only a vampire of colour. She is a pump, and the mountain is what's thirsty."
+        ]
+      },
+      "rules": [],
+      "gm_notes": "The lore-and-conscience node. Yssa frames the central choice (cure vs. break) and connects Anthelia to the Bergen Chrypt frost (Misery 2:3). She's a potential ally if treated well.",
+      "exits": [
+        { "id": "alchemist-to-archives", "label": "Across a sky-bridge to the archives", "target": "frozen-archives", "condition": null, "locked": false },
+        { "id": "alchemist-to-garden", "label": "Back down to the garden", "target": "autumn-garden", "condition": null, "locked": false }
+      ],
+      "visited": false,
+      "tags": []
+    },
+    {
+      "id": "gulls-nest",
+      "title": "The Gulls' Nest",
+      "type": "location",
+      "atmosphere": "A tower open to the storm, white with droppings and feathers, loud with the names of the dead. The gulls here are too heavy to be birds.",
+      "read_aloud": "",
+      "contents": {
+        "description": "The gulls that cry the suitors' names roost here — cursed things, each carrying a lost man's name in its throat. The Gull-Master feeds them and knows every fate. The birds are dangerous when roused.",
+        "items": [],
+        "enemies": [
+          {
+            "name": "Blubber Gull (×d8)",
+            "hp": 4,
+            "morale": "8",
+            "speed": "fast",
+            "attack": "Screaming dive, +1, d4",
+            "special": "Explodes on a successful dive: d4 to everything within arm's reach (including other gulls). They attack en masse if the Gull-Master is threatened.",
+            "notes": "Kergüs coastal fauna, fattened on grief. Source: Eat Prey Kill (Blubber Gulls)."
+          }
+        ],
+        "npcs": [
+          {
+            "name": "The Gull-Master",
+            "description": "A wind-flayed old keeper who answers every gull by name, and weeps when a new one hatches.",
+            "attitude": "neutral",
+            "notes": "Knows the true fate of every suitor (kept in paint, frozen on the road, drunk to nothing). For a kindness he will tell the party which suitors can still be saved — and that the Countess fears only two things: the red the garden hides, and her own true name."
+          }
+        ],
+        "traps": [],
+        "secrets": [
+          "When a suitor finally fades completely, his gull falls dead from the nest. The Gull-Master buries each one. The freshest grave is small and new and the Master will not say whose name it carried — only that the Countess has begun, in her sickness, to drink her own court."
+        ]
+      },
+      "rules": [],
+      "gm_notes": "Atmospheric + a second route to the archives. The Gull-Master is a grieving, useful NPC; threatening him turns the whole nest into a bomb-storm.",
+      "exits": [
+        { "id": "gulls-to-archives", "label": "Down to the archives", "target": "frozen-archives", "condition": null, "locked": false },
+        { "id": "gulls-to-vault", "label": "Back to the frost-vault", "target": "frost-vault", "condition": null, "locked": false }
+      ],
+      "visited": false,
+      "tags": []
+    },
+    {
+      "id": "frozen-archives",
+      "title": "The Frozen Archives",
+      "type": "location",
+      "atmosphere": "Shelves of treaties, marriage-suits, and census rolls, all rimed in frost, all recording a reign far longer than a mortal woman's.",
+      "read_aloud": "",
+      "contents": {
+        "description": "The court's memory, kept cold. Here lies the one record from which Anthelia's true name was NOT struck — buried in a marriage-suit older than the kingdom. NEW: the true name is the key to her throne; spoken there, it strips the youth the engine grants and she becomes her true age before you.",
+        "items": [
+          "Anthelia's True Name — found in the oldest marriage-suit, written by a hand that loved her before she was cold. Spoken in the throne hall, it unmakes her borrowed youth. (This unlocks the sealed throne hall.)"
+        ],
+        "enemies": [
+          {
+            "name": "Cursed Suitor (archivist)",
+            "hp": 10,
+            "morale": "—",
+            "speed": "normal",
+            "attack": "Frost-stiff quill-dagger, +1, d6",
+            "special": "Cold radiance (DR12 Toughness adjacent or −1 Agility for the scene). Guards the true-name suit out of devotion; will stop if shown the giver of the red ribbon was loved in return.",
+            "notes": "[CANON CHECK] Original: the suitor who hid the one surviving record of her name, kept as her archivist."
+          }
+        ],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "The marriage-suit that holds her name is signed by a child — the giver of the red ribbon. Anthelia was loved once, plainly, before whatever she did to stop time. The name on the page is small and ordinary and human. That is why she buried it."
+        ]
+      },
+      "rules": [],
+      "gm_notes": "The true-name key node. With the name (or Warm-Spring water from the overlook), the throne hall opens. The red-ribbon / first-love thread can become a way to reach Anthelia without violence.",
+      "exits": [
+        { "id": "archives-to-overlook", "label": "Up to the high overlook", "target": "bergen-overlook", "condition": null, "locked": false },
+        { "id": "archives-to-alchemist", "label": "Back across the sky-bridge", "target": "alchemist-tower", "condition": null, "locked": false },
+        { "id": "archives-to-gulls", "label": "Back up to the nest", "target": "gulls-nest", "condition": null, "locked": false }
+      ],
+      "visited": false,
+      "tags": []
+    },
+    {
+      "id": "bergen-overlook",
+      "title": "The Bergen Chrypt Overlook",
+      "type": "location",
+      "atmosphere": "The castle's highest balcony. North, across the frozen waste, the Spears of Bergen Chrypt claw the sky — and the cold is coming from there, toward here, toward everywhere.",
+      "read_aloud": "",
+      "contents": {
+        "description": "Anthelia comes here to stare north at Bergen Chrypt and SHE (Misery 2:3: 'from the Spears, a frost, born from Bergen Chrypt and covering all'). A natural hot spring bubbles in a cracked basin here — the one warmth her court has never drunk, because it terrifies her. Its water is the other key to her throne: carry it, and her draining cannot touch you long enough to reach her.",
+        "items": [
+          "Warm-Spring Water — a flask of the one warmth Anthelia cannot drink. Carry it to ward off her draining in the throne hall (the alternative key to the sealed doors). Pour it on the garden's red flower or the red ribbon for... something. The court is afraid to find out."
+        ],
+        "enemies": [],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "Watch the frost crawl south from the Spears and you'll see it: Anthelia is not causing the world's death. She is racing it. She drinks the colour so the coming frost will have nothing left to kill — a mad mercy, or a thief beating the apocalypse to the till. She has never decided which, and neither will you."
+        ]
+      },
+      "rules": [],
+      "gm_notes": "The pre-climax node: the Warm Spring is the second key (alongside the true name), and the Misery 2:3 reveal complicates the morality of killing her. Unlock the throne-hall exit (in-app 🔒) once the party holds the True Name or the Warm-Spring Water.",
+      "exits": [
+        { "id": "overlook-to-throne", "label": "Descend to the throne hall", "target": "throne-hall", "condition": "Sealed by cold. Opens to one who carries Anthelia's True Name (Frozen Archives) or Warm-Spring Water (this balcony).", "locked": true },
+        { "id": "overlook-to-archives", "label": "Back to the archives", "target": "frozen-archives", "condition": null, "locked": false }
+      ],
+      "visited": false,
+      "tags": []
+    },
+    {
+      "id": "throne-hall",
+      "title": "The Throne Hall of Anthelia",
+      "type": "location",
+      "atmosphere": "A hall lit by no fire, yet bright as noon — because she is in it. Colour drains toward the throne like water toward a drain, and on the throne a girl made of melting ice is, at last, dying.",
+      "read_aloud": "Anthelia, Blood-Countess of Alliáns, does not rise. She is the palest thing in a pale room, and even so the colour is fleeing her now — her illness drinks her as she drinks the world. 'You reached me,' she says, and there is blood at the corner of her young mouth. 'Most don't. Have you come to cure me, or to kill me, or to take something pretty on your way past my corpse? Choose quickly. When I stop, the frost from the Spears comes the rest of the way, and there will be no colour left to mourn in.'",
+      "contents": {
+        "description": "The climax and the dilemma. Anthelia is dying; her engine over-draws to keep her alive, killing the world faster (Misery 6:3). She is also, perhaps, all that stands between the living and the Bergen Chrypt frost (Misery 2:3). Resolutions — CURE HER (repair the engine / feed her willingly): she lives, her youth holds, and the world greys slowly but the frost is held back another age. END HER (speak her True Name, or strike while warded by Warm-Spring Water): she ages into her true self and crumbles; the stolen colour bursts back into the world in one blinding moment — and the frost from Bergen Chrypt, no longer drunk away, begins its march south. FREE THE KEPT (pour Warm-Spring Water on the red ribbon / her first love's gift): she is undone gently, the suitors thaw and the portraits empty, and what happens to the frost, no one yet knows.",
+        "items": [],
+        "enemies": [
+          {
+            "name": "Anthelia, the Blood-Countess",
+            "hp": 20,
+            "morale": "—",
+            "speed": "normal",
+            "attack": "Drinking gaze, +2, d6 (ignores armor)",
+            "special": "DRAINS COLOUR AND WARMTH: each round, a PC who is not warded (Warm-Spring Water) tests Presence DR14 or loses −1 to all rolls (cumulative) as they grey out; a PC reduced to 0 by the gaze does not die but becomes a new frozen suitor. She CANNOT be permanently slain by force alone while the youth-engine runs — killing blows only make her younger — UNTIL her True Name is spoken or the engine in the Alchemist's Tower is broken. She does not want to fight. She wants you to choose for her, so it isn't her fault.",
+            "notes": "[CANON CHECK] Anthelia has no canonical stat block; she is the eternally-young, colour-drinking Blood-Countess of Alliáns (Misery 6:3). The encounter is a moral dilemma with teeth, not a slugfest."
+          }
+        ],
+        "npcs": [],
+        "traps": [],
+        "secrets": [
+          "If freed gently with the Warm-Spring Water and the red ribbon, her last word is the name on the marriage-suit — not hers. The child who loved her. She has been keeping the world cold for a warmth she lost before any of you were born, and she dies looking, finally, her real age: which is to say, ancient, and tired, and almost relieved."
+        ]
+      },
+      "rules": [],
+      "gm_notes": "Climax. Three real endings, each with a world-level cost: cure her (slow grey, frost held), end her (colour returns, frost marches — Misery 2:3 begins), free her gently (uncertain, bittersweet). Play Anthelia as exhausted, courteous, and desperate to make her ruin someone else's decision. Reward the party that learned WHY she drinks before they decide whether she should die for it.",
+      "exits": [],
+      "visited": false,
+      "tags": ["climax", "end"]
+    }
+  ]
+}
