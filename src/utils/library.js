@@ -16,11 +16,9 @@ function read() {
 }
 
 function write(store) {
-  try {
-    localStorage.setItem(LIBRARY_KEY, JSON.stringify(store));
-  } catch {
-    /* quota or privacy mode */
-  }
+  // Surface quota / privacy-mode errors to the caller so the UI can react
+  // (saveUserAdventure callers all have try/catch around them).
+  localStorage.setItem(LIBRARY_KEY, JSON.stringify(store));
 }
 
 export function listUserAdventures() {

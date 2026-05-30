@@ -43,7 +43,6 @@ export function makeNode(node) {
     rules: node.rules || [],
     gm_notes: node.gm_notes || '',
     exits: node.exits || [],
-    visited: false,
     tags: node.tags || [],
   };
 }

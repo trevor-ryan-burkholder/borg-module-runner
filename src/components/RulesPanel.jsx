@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function RulesPanel({ rules, open, onClose }) {
   const sections = rules?.rules_reference?.sections ?? [];
@@ -20,7 +20,18 @@ export default function RulesPanel({ rules, open, onClose }) {
     return () => window.removeEventListener('keydown', onKey);
   }, [open, onClose]);
 
+  // Only close when a click *starts* and *ends* on the overlay. Stops a text
+  // selection drag inside the panel that releases over the overlay from
+  // dismissing it. Hook must come before the early return.
+  const downOnOverlay = useRef(false);
   if (!open) return null;
+  const handleOverlayMouseDown = (e) => {
+    downOnOverlay.current = e.target === e.currentTarget;
+  };
+  const handleOverlayClick = (e) => {
+    if (e.target === e.currentTarget && downOnOverlay.current) onClose();
+    downOnOverlay.current = false;
+  };
 
   return (
     <div
@@ -28,7 +39,8 @@ export default function RulesPanel({ rules, open, onClose }) {
       role="dialog"
       aria-modal="true"
       aria-label="Rules reference"
-      onClick={onClose}
+      onMouseDown={handleOverlayMouseDown}
+      onClick={handleOverlayClick}
     >
       <aside className="rules-panel" onClick={(e) => e.stopPropagation()}>
         <header className="rules-panel__header">

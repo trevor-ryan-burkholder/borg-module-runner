@@ -33,7 +33,9 @@ function findBestiaryMatch(text) {
 export default function OverlandTravel({ open, onClose, travelLog, appendEntry, updateEntry, clearLog }) {
   const [expanded, setExpanded] = useState(null);
 
-  const dayNumber = travelLog.length + 1;
+  // Always advance from the highest known day so deletes/edits can't double up.
+  const dayNumber =
+    (travelLog.length ? Math.max(...travelLog.map((e) => e.day || 0)) : 0) + 1;
 
   const advanceWatch = () => {
     const w = rollValue(weather.entries);
@@ -87,7 +89,7 @@ export default function OverlandTravel({ open, onClose, travelLog, appendEntry, 
         {travelLog.map((e, i) => {
           const match = eventMatches[i];
           return (
-            <li key={i} className="watch">
+            <li key={e.at ?? i} className="watch">
               <header className="watch__head">
                 <span className="watch__day">Day {e.day}</span>
                 <span className="watch__weather">☁ {e.weather}</span>

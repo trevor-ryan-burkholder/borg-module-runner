@@ -8,7 +8,7 @@ const PAD = 32;
 
 function layoutNodes(adventure) {
   const nodes = adventure.nodes ?? [];
-  if (nodes.length === 0) return { positions: new Map(), width: 0, height: 0 };
+  if (nodes.length === 0) return { positions: new Map(), width: 280, height: 120, columns: [] };
 
   const byId = new Map(nodes.map((n) => [n.id, n]));
   const startId = adventure.meta?.startNode || nodes[0].id;
@@ -142,8 +142,10 @@ export default function MapView({ adventure, currentNode, visited, onJump, onClo
         <div className="map__scroll">
           <svg
             viewBox={`0 0 ${layout.width} ${layout.height}`}
-            width={layout.width}
-            height={layout.height}
+            // Let CSS size the rendered SVG so a 40-node adventure isn't a tiny
+            // scrollbox on mobile; the viewBox handles the aspect.
+            width="100%"
+            preserveAspectRatio="xMidYMid meet"
             xmlns="http://www.w3.org/2000/svg"
           >
             <defs>

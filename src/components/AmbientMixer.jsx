@@ -7,6 +7,14 @@ const STORAGE_KEY = 'mb-ambient-mix';
 // every render and thrash the apply-levels effect.
 const CHANNELS = listChannels();
 
+// Quick-mix presets for the table. Levels are 0..1.
+const PRESETS = [
+  { id: 'tomb',   label: 'Tomb',   mix: { drip: 0.5, wind: 0.2, screams: 0.15 } },
+  { id: 'storm',  label: 'Storm',  mix: { wind: 0.7, rain: 0.6 } },
+  { id: 'battle', label: 'Battle', mix: { screams: 0.45, fire: 0.3, wind: 0.2 } },
+  { id: 'tavern', label: 'Tavern', mix: { fire: 0.55 } },
+];
+
 function loadMix() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
@@ -67,6 +75,17 @@ export default function AmbientMixer({ open, onClose }) {
     setMasterOn(false);
   };
 
+  const applyPreset = (preset) => {
+    setLevels(() => {
+      const next = {};
+      for (const c of CHANNELS) next[c] = preset.mix[c] ?? 0;
+      return next;
+    });
+    // If the master isn't engaged we can't turn it on for them (browsers
+    // require a user gesture from the master button itself), but the levels
+    // are seeded and ready.
+  };
+
   // Render even when closed (display: none) so master/level state persists
   // and audio continues playing while the panel is dismissed.
   return (
@@ -76,6 +95,9 @@ export default function AmbientMixer({ open, onClose }) {
       aria-label="Ambient sound mixer"
       style={open ? undefined : { display: 'none' }}
       aria-hidden={!open}
+      // `inert` keeps closed-but-mounted sliders out of the tab order and
+      // hidden from assistive tech (audio still plays).
+      inert={!open ? '' : undefined}
     >
       <header className="ambient-mixer__header">
         <h3>AMBIENT{masterOn ? ' · ON' : ''}</h3>
@@ -97,6 +119,20 @@ export default function AmbientMixer({ open, onClose }) {
       <p className="ambient-mixer__hint">
         Web Audio synthesis — no files. Engage master first; the browser blocks audio until you do. Audio keeps playing when the panel is closed.
       </p>
+
+      <div className="ambient-mixer__presets">
+        {PRESETS.map((p) => (
+          <button
+            key={p.id}
+            type="button"
+            className="iconbtn"
+            onClick={() => applyPreset(p)}
+            title={`Set mix to ${p.label}`}
+          >
+            ♪ {p.label}
+          </button>
+        ))}
+      </div>
 
       <ul className="ambient-mixer__channels">
         {CHANNELS.map((c) => (

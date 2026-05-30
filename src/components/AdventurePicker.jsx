@@ -39,14 +39,19 @@ export default function AdventurePicker({ onPick, onOpenBuilder, onClose }) {
         setUploadError(result.errors.join(' · '));
         return;
       }
-      // Ensure meta.id is set.
-      if (!json.meta.id) {
-        json.meta.id = slugify(json.meta.title);
+      // Ensure meta.id is set without mutating the parsed file.
+      const toSave = {
+        ...json,
+        meta: { ...json.meta, id: json.meta.id || slugify(json.meta.title) },
+      };
+      try {
+        const id = saveUserAdventure(toSave);
+        setUploadWarnings(result.warnings);
+        refresh();
+        onPick({ source: 'user', id, adventure: toSave });
+      } catch (saveErr) {
+        setUploadError(`Could not save "${toSave.meta.title}" to your library: ${saveErr.message}`);
       }
-      const id = saveUserAdventure(json);
-      setUploadWarnings(result.warnings);
-      refresh();
-      onPick({ source: 'user', id, adventure: json });
     } catch (err) {
       setUploadError(`Could not load file: ${err.message}`);
     }

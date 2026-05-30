@@ -61,6 +61,27 @@ export default function Bestiary({ open, onClose, canAddToNotes, onAddToNotes })
     window.setTimeout(() => setJustAdded(null), 1600);
   };
 
+  // Build a JSON shape that drops straight into AdventureBuilder's enemies array.
+  const handleCopyJson = async (e) => {
+    const enemy = {
+      name: e.name,
+      hp: parseInt(String(e.hp), 10) || 0,
+      morale: e.morale || '—',
+      speed: 'normal',
+      attack: e.attack || '',
+      special: e.special || '',
+      notes: e.source ? `Source: ${e.source}` : (e.descriptor || ''),
+    };
+    const text = JSON.stringify(enemy, null, 2);
+    try {
+      await navigator.clipboard.writeText(text);
+      setJustAdded(`json-${e.id}`);
+      window.setTimeout(() => setJustAdded(null), 1600);
+    } catch {
+      window.prompt('Copy the JSON below:', text);
+    }
+  };
+
   return (
     <aside className="bestiary" role="dialog" aria-label="Bestiary">
       <header className="bestiary__header">
@@ -170,6 +191,14 @@ export default function Bestiary({ open, onClose, canAddToNotes, onAddToNotes })
                       }
                     >
                       {justAdded === e.id ? '✓ added' : '+ add to gm notes'}
+                    </button>
+                    <button
+                      type="button"
+                      className="iconbtn"
+                      onClick={() => handleCopyJson(e)}
+                      title="Copy this stat block as a JSON enemy object ready to paste into the Adventure Builder"
+                    >
+                      {justAdded === `json-${e.id}` ? '✓ copied' : '⧉ copy as enemy JSON'}
                     </button>
                   </footer>
                 </div>

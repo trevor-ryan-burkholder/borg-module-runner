@@ -48,7 +48,9 @@ export function validateAdventure(json) {
 
     for (const exit of node?.exits ?? []) {
       if (exit?.id) {
-        if (exitIds.has(exit.id)) warnings.push(`${node.id}: duplicate exit id "${exit.id}".`);
+        // Duplicate exit ids collapse React keys at render time, so this is an
+        // authoring error, not a warning.
+        if (exitIds.has(exit.id)) errors.push(`${node.id}: duplicate exit id "${exit.id}".`);
         exitIds.add(exit.id);
       }
     }

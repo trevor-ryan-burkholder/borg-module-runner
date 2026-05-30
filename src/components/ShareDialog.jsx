@@ -1,20 +1,24 @@
 import { useEffect, useState } from 'react';
-import { encodeAdventureToHash, buildShareUrl } from '../utils/share.js';
+import { encodeAdventureToHash, buildShareUrl, decodeAdventureFromHashPayload } from '../utils/share.js';
+import { validateAdventure } from '../utils/validate.js';
 
 export default function ShareDialog({ adventure, onClose }) {
   const [url, setUrl] = useState(null);
+  const [payload, setPayload] = useState(null);
   const [size, setSize] = useState(null);
   const [error, setError] = useState(null);
   const [copied, setCopied] = useState(false);
+  const [roundTrip, setRoundTrip] = useState(null);
 
   useEffect(() => {
     let cancelled = false;
     async function generate() {
       try {
-        const payload = await encodeAdventureToHash(adventure);
-        const link = buildShareUrl(payload);
+        const p = await encodeAdventureToHash(adventure);
+        const link = buildShareUrl(p);
         if (cancelled) return;
         setUrl(link);
+        setPayload(p);
         setSize(link.length);
       } catch (e) {
         if (cancelled) return;
@@ -48,9 +52,30 @@ export default function ShareDialog({ adventure, onClose }) {
     const href = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = href;
-    a.download = `${adventure.meta.id || 'adventure'}.json`;
+    a.download = `${adventure?.meta?.id || 'adventure'}.json`;
     a.click();
     URL.revokeObjectURL(href);
+  };
+
+  // Decode the share payload back into an adventure and run it through the
+  // same validator that loads consume — proves the link round-trips before
+  // anyone has to actually open it in another tab.
+  const testRoundTrip = async () => {
+    if (!payload) return;
+    try {
+      const decoded = await decodeAdventureFromHashPayload(payload);
+      const v = validateAdventure(decoded);
+      if (!v.ok) {
+        setRoundTrip({ ok: false, msg: `validation: ${v.errors.join(' · ')}` });
+        return;
+      }
+      setRoundTrip({
+        ok: true,
+        msg: `${decoded.nodes?.length ?? 0} nodes · ${(v.warnings || []).length} warning${(v.warnings || []).length === 1 ? '' : 's'}`,
+      });
+    } catch (e) {
+      setRoundTrip({ ok: false, msg: e.message });
+    }
   };
 
   const sizeWarning = size && size > 2000;
@@ -92,6 +117,9 @@ export default function ShareDialog({ adventure, onClose }) {
                 <button type="button" className="iconbtn iconbtn--rules" onClick={copy}>
                   {copied ? '✓ copied' : '⧉ copy link'}
                 </button>
+                <button type="button" className="iconbtn" onClick={testRoundTrip} title="Decode the link and validate it">
+                  ⇄ test round-trip
+                </button>
                 <span className="share-size">
                   {size.toLocaleString()} chars
                   {sizeWarning && (
@@ -99,6 +127,12 @@ export default function ShareDialog({ adventure, onClose }) {
                   )}
                 </span>
               </div>
+              {roundTrip && (
+                <p className={roundTrip.ok ? 'picker__upload-warnings' : 'picker__upload-error'}>
+                  {roundTrip.ok ? '✓ round-trips: ' : '⚠ round-trip failed: '}
+                  {roundTrip.msg}
+                </p>
+              )}
             </>
           )}
         </section>

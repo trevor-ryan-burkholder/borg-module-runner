@@ -148,6 +148,31 @@ export default function AdventureBuilder({ initial, onSave, onClose }) {
     writeParsed(next);
   };
 
+  const duplicateNode = (id) => {
+    if (!parsed) return;
+    const src = parsed.nodes.find((n) => n.id === id);
+    if (!src) return;
+    // Find a free id by appending -copy / -copy-2 / …
+    let base = `${src.id}-copy`;
+    let candidate = base;
+    let n = 2;
+    const existing = new Set(parsed.nodes.map((x) => x.id));
+    while (existing.has(candidate)) candidate = `${base}-${n++}`;
+    const copy = {
+      ...src,
+      id: candidate,
+      title: `${src.title} (copy)`,
+      // Regenerate exit ids to avoid duplicates while preserving targets.
+      exits: (src.exits || []).map((e) => ({
+        ...e,
+        id: `${candidate}-${e.id?.split('-').pop() ?? Math.random().toString(36).slice(2, 6)}`,
+      })),
+      tags: src.tags?.filter((t) => t !== 'start') ?? [], // never duplicate the start tag
+    };
+    writeParsed({ ...parsed, nodes: [...parsed.nodes, copy] });
+    setOpenNode(candidate);
+  };
+
   const renameNode = (oldId, newIdRaw) => {
     const newId = slugify(newIdRaw);
     if (!parsed || !newId || newId === oldId) return;
@@ -326,12 +351,14 @@ export default function AdventureBuilder({ initial, onSave, onClose }) {
                 <NodeForm
                   node={parsed.nodes.find((n) => n.id === openNode)}
                   isStart={parsed.meta?.startNode === openNode}
+                  allNodeIds={parsed.nodes.map((n) => ({ id: n.id, title: n.title }))}
                   onChange={(mutator) => updateNode(openNode, mutator)}
                   onRename={(newId) => renameNode(openNode, newId)}
                   onDelete={() => {
                     removeNode(openNode);
                     setOpenNode(parsed.nodes[0]?.id);
                   }}
+                  onDuplicate={() => duplicateNode(openNode)}
                   onSetStart={() => updateMeta('startNode', openNode)}
                 />
               ) : (
@@ -432,8 +459,15 @@ function MetaForm({ parsed, onChange }) {
         <input
           type="text"
           value={parsed.meta.startNode || ''}
+          list="meta-start-targets"
           onChange={(e) => onChange('startNode', e.target.value)}
+          placeholder="pick or type"
         />
+        <datalist id="meta-start-targets">
+          {(parsed.nodes || []).map((n) => (
+            <option key={n.id} value={n.id}>{n.title}</option>
+          ))}
+        </datalist>
       </label>
       <label className="builder__field-wide">
         <span>Description</span>
@@ -455,7 +489,7 @@ function MetaForm({ parsed, onChange }) {
   );
 }
 
-function NodeForm({ node, isStart, onChange, onRename, onDelete, onSetStart }) {
+function NodeForm({ node, isStart, allNodeIds, onChange, onRename, onDelete, onDuplicate, onSetStart }) {
   if (!node) return <p className="empty">Node not found.</p>;
 
   const upd = (field, val) => onChange((n) => ({ ...n, [field]: val }));
@@ -528,6 +562,11 @@ function NodeForm({ node, isStart, onChange, onRename, onDelete, onSetStart }) {
           ) : (
             <button type="button" className="iconbtn" onClick={onSetStart}>
               set as start
+            </button>
+          )}
+          {onDuplicate && (
+            <button type="button" className="iconbtn" onClick={onDuplicate} title="Duplicate this node as a template">
+              ⎘ duplicate
             </button>
           )}
           <button type="button" className="iconbtn iconbtn--danger" onClick={onDelete}>
@@ -704,13 +743,30 @@ function NodeForm({ node, isStart, onChange, onRename, onDelete, onSetStart }) {
         renderItem={(e, i) => (
           <div className="grid-2">
             <label><span>id</span><input value={e.id || ''} onChange={(ev) => updTopArray('exits', i, { id: ev.target.value })} /></label>
-            <label><span>target node id</span><input value={e.target || ''} onChange={(ev) => updTopArray('exits', i, { target: ev.target.value })} /></label>
+            <label>
+              <span>target node id</span>
+              <input
+                value={e.target || ''}
+                list={`exit-targets-${node.id}`}
+                onChange={(ev) => updTopArray('exits', i, { target: ev.target.value })}
+                placeholder="pick or type"
+              />
+            </label>
             <label className="grid-full"><span>label (shown to GM)</span><input value={e.label || ''} onChange={(ev) => updTopArray('exits', i, { label: ev.target.value })} /></label>
             <label className="grid-full"><span>condition (optional)</span><input value={e.condition || ''} onChange={(ev) => updTopArray('exits', i, { condition: ev.target.value || null })} /></label>
             <label className="checkbox"><input type="checkbox" checked={!!e.locked} onChange={(ev) => updTopArray('exits', i, { locked: ev.target.checked })} /> locked by default</label>
           </div>
         )}
       />
+
+      {/* Datalist of all node ids for the exit-target field autocomplete. */}
+      {allNodeIds && allNodeIds.length > 0 && (
+        <datalist id={`exit-targets-${node.id}`}>
+          {allNodeIds.map((n) => (
+            <option key={n.id} value={n.id}>{n.title}</option>
+          ))}
+        </datalist>
+      )}
     </div>
   );
 }

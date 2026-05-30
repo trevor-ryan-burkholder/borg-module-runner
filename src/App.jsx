@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useAdventure } from './hooks/useAdventure.js';
 import {
   getBundledAdventure,
@@ -125,7 +125,21 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
     [goToNode, state.unlockedExits]
   );
 
-  // Keyboard shortcuts. Skip when focus is in a form element.
+  // Keyboard shortcuts. The listener is attached once and reads current panel
+  // state through a ref so panel toggles don't churn the global keydown
+  // subscription.
+  const kbdRef = useRef(null);
+  kbdRef.current = {
+    historyLen: state.history.length,
+    goBack,
+    dungeonOpen, settlementOpen, builderOpen, pickerOpen, shareOpen, mapOpen,
+    rulesOpen, miseryOpen, diceOpen, npcOpen, combatOpen, travelOpen,
+    ambientOpen, bestiaryOpen, tablesOpen, partyOpen,
+    setDungeonOpen, setSettlementOpen, setBuilderOpen, setPickerOpen,
+    setShareOpen, setMapOpen, setRulesOpen, setMiseryOpen, setDiceOpen,
+    setNpcOpen, setCombatOpen, setTravelOpen, setAmbientOpen, setBestiaryOpen,
+    setTablesOpen, setPartyOpen,
+  };
   useEffect(() => {
     const onKey = (e) => {
       const target = e.target;
@@ -136,84 +150,54 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
         target?.isContentEditable;
       if (e.metaKey || e.ctrlKey || e.altKey || e.shiftKey) return;
 
+      const k = kbdRef.current;
+
       // Escape closes the topmost panel, and must work even when a form element
-      // (e.g. the bestiary search box) has focus — otherwise the user is trapped.
+      // has focus — otherwise the user is trapped.
       if (e.key === 'Escape') {
-        if (dungeonOpen) setDungeonOpen(false);
-        else if (settlementOpen) setSettlementOpen(false);
-        else if (builderOpen) setBuilderOpen(false);
-        else if (pickerOpen) setPickerOpen(false);
-        else if (shareOpen) setShareOpen(false);
-        else if (mapOpen) setMapOpen(false);
-        else if (rulesOpen) setRulesOpen(false);
-        else if (miseryOpen) setMiseryOpen(false);
-        else if (diceOpen) setDiceOpen(false);
-        else if (npcOpen) setNpcOpen(false);
-        else if (combatOpen) setCombatOpen(false);
-        else if (travelOpen) setTravelOpen(false);
-        else if (ambientOpen) setAmbientOpen(false);
-        else if (bestiaryOpen) setBestiaryOpen(false);
-        else if (tablesOpen) setTablesOpen(false);
-        else if (partyOpen) setPartyOpen(false);
+        if (k.dungeonOpen) k.setDungeonOpen(false);
+        else if (k.settlementOpen) k.setSettlementOpen(false);
+        else if (k.builderOpen) k.setBuilderOpen(false);
+        else if (k.pickerOpen) k.setPickerOpen(false);
+        else if (k.shareOpen) k.setShareOpen(false);
+        else if (k.mapOpen) k.setMapOpen(false);
+        else if (k.rulesOpen) k.setRulesOpen(false);
+        else if (k.miseryOpen) k.setMiseryOpen(false);
+        else if (k.diceOpen) k.setDiceOpen(false);
+        else if (k.npcOpen) k.setNpcOpen(false);
+        else if (k.combatOpen) k.setCombatOpen(false);
+        else if (k.travelOpen) k.setTravelOpen(false);
+        else if (k.ambientOpen) k.setAmbientOpen(false);
+        else if (k.bestiaryOpen) k.setBestiaryOpen(false);
+        else if (k.tablesOpen) k.setTablesOpen(false);
+        else if (k.partyOpen) k.setPartyOpen(false);
         return;
       }
 
-      // All other shortcuts are single-key and must not fire while typing.
       if (isFormElement) return;
 
       switch (e.key.toLowerCase()) {
-        case '?':
-          setRulesOpen((o) => !o);
-          break;
-        case 'b':
-          if (state.history.length > 1) goBack();
-          break;
-        case 'p':
-          setPartyOpen((o) => !o);
-          break;
-        case 'd':
-          setDiceOpen((o) => !o);
-          break;
-        case 'm':
-          setMapOpen((o) => !o);
-          break;
-        case 'k':
-          setMiseryOpen((o) => !o);
-          break;
-        case 'l':
-          setPickerOpen((o) => !o);
-          break;
-        case 's':
-          setShareOpen((o) => !o);
-          break;
-        case 'n':
-          setNpcOpen((o) => !o);
-          break;
-        case 'c':
-          setCombatOpen((o) => !o);
-          break;
-        case 't':
-          setTravelOpen((o) => !o);
-          break;
-        case 'a':
-          setAmbientOpen((o) => !o);
-          break;
-        case 'e':
-          setBestiaryOpen((o) => !o);
-          break;
-        case 'r':
-          setTablesOpen((o) => !o);
-          break;
-        case 'g':
-          setSettlementOpen((o) => !o);
-          break;
-        default:
-          break;
+        case '?': k.setRulesOpen((o) => !o); break;
+        case 'b': if (k.historyLen > 1) k.goBack(); break;
+        case 'p': k.setPartyOpen((o) => !o); break;
+        case 'd': k.setDiceOpen((o) => !o); break;
+        case 'm': k.setMapOpen((o) => !o); break;
+        case 'k': k.setMiseryOpen((o) => !o); break;
+        case 'l': k.setPickerOpen((o) => !o); break;
+        case 's': k.setShareOpen((o) => !o); break;
+        case 'n': k.setNpcOpen((o) => !o); break;
+        case 'c': k.setCombatOpen((o) => !o); break;
+        case 't': k.setTravelOpen((o) => !o); break;
+        case 'a': k.setAmbientOpen((o) => !o); break;
+        case 'e': k.setBestiaryOpen((o) => !o); break;
+        case 'r': k.setTablesOpen((o) => !o); break;
+        case 'g': k.setSettlementOpen((o) => !o); break;
+        default: break;
       }
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [state.history.length, goBack, builderOpen, pickerOpen, shareOpen, mapOpen, rulesOpen, miseryOpen, diceOpen, partyOpen, npcOpen, combatOpen, travelOpen, dungeonOpen, settlementOpen, ambientOpen, bestiaryOpen, tablesOpen]);
+  }, []);
 
   return (
     <>
@@ -435,6 +419,7 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
         currentNode={state.currentNode}
         nodeById={nodeById}
         onJump={goToNode}
+        onOpenMap={() => setMapOpen(true)}
       />
 
       <NodeView
@@ -459,7 +444,14 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
         />
       )}
 
-      <DiceTray open={diceOpen} onClose={() => setDiceOpen(false)} />
+      <DiceTray
+        open={diceOpen}
+        onClose={() => setDiceOpen(false)}
+        canAddToNotes={!!currentNode}
+        onAddToNotes={(text) => {
+          if (currentNode) appendScratchNotes(currentNode.id, text);
+        }}
+      />
       <MiseryTracker open={miseryOpen} onClose={() => setMiseryOpen(false)} />
       <NpcGenerator
         open={npcOpen}

@@ -1,6 +1,6 @@
 import { useHistory } from '../hooks/useHistory.js';
 
-export default function BreadcrumbTrail({ history, currentNode, nodeById, onJump }) {
+export default function BreadcrumbTrail({ history, currentNode, nodeById, onJump, onOpenMap }) {
   const trail = useHistory(history, nodeById);
   if (trail.length === 0) return null;
   // Collapse repeats so a back-and-forth doesn't bloat the trail.
@@ -27,6 +27,18 @@ export default function BreadcrumbTrail({ history, currentNode, nodeById, onJump
             </li>
           );
         })}
+        {onOpenMap && (
+          <li className="breadcrumbs__map">
+            <button
+              type="button"
+              className="breadcrumb breadcrumb--map"
+              onClick={onOpenMap}
+              title="Open the adventure map (M)"
+            >
+              ⌖ map
+            </button>
+          </li>
+        )}
       </ol>
     </nav>
   );

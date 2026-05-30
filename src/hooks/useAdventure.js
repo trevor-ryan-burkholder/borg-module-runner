@@ -122,8 +122,11 @@ export function useAdventure(adventure) {
     );
   }, [adventureId, nodeIndex, startNode]);
 
+  // Debounce localStorage writes so per-keystroke edits (GM scratch notes,
+  // party HP fiddling) don't rewrite the whole session JSON on every change.
   useEffect(() => {
-    saveSession(adventureId, state);
+    const t = setTimeout(() => saveSession(adventureId, state), 200);
+    return () => clearTimeout(t);
   }, [adventureId, state]);
 
   const currentNode = nodeIndex.get(state.currentNode) ?? null;
