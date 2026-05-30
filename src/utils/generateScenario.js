@@ -17,6 +17,7 @@ import {
   rollNpc,
   bestiaryEnemy,
   capitalize,
+  composeAtmosphere,
 } from './genAdventure.js';
 import gm from '../data/tables-gm.json';
 import sc from '../data/tables-scenario.json';
@@ -80,7 +81,7 @@ export function generateScenario() {
       makeNode({
         id,
         title: rollValue(sc.site_types),
-        atmosphere: rollValue(sc.site_atmospheres),
+        atmosphere: composeAtmosphere(rollValue(sc.site_atmospheres), 2),
         contents: {
           description: '',
           items: items_,
@@ -124,7 +125,7 @@ export function generateScenario() {
       node: makeNode({
         id: sideId,
         title: rollValue(sc.side_site_types),
-        atmosphere: rollValue(sc.site_atmospheres),
+        atmosphere: composeAtmosphere(rollValue(sc.site_atmospheres), 2),
         contents: {
           description: isKey
             ? `Holds the relic that opens the inner door of the climax: ${climaxKey}.`
@@ -170,7 +171,7 @@ export function generateScenario() {
   const twistNode = makeNode({
     id: TWIST,
     title: 'The Turn',
-    atmosphere: rollValue(sc.site_atmospheres),
+    atmosphere: composeAtmosphere(rollValue(sc.site_atmospheres), 2),
     read_aloud: 'It is here that the shape of things changes.',
     contents: {
       description: `The revelation: ${twist}`,
@@ -192,7 +193,7 @@ export function generateScenario() {
   const anteNode = makeNode({
     id: ANTE,
     title: rollValue(sc.antechamber_themes),
-    atmosphere: 'A waiting-room that has waited a long time for you.',
+    atmosphere: composeAtmosphere('A waiting-room that has waited a long time for you.', 2),
     read_aloud: `${capitalize(warden)} bars the inner door. Without ${climaxKey} the door will not open at all; with it, the way is simply open.`,
     contents: {
       description: `The last room before the climax. The warden defends the way. The inner door opens only to ${climaxKey} — held at a side location.`,
@@ -224,7 +225,7 @@ export function generateScenario() {
   const climaxNode = makeNode({
     id: CLIMAX,
     title: capitalize(rollValue(sc.climax_types)),
-    atmosphere: 'Whatever was coming has finished arriving.',
+    atmosphere: composeAtmosphere('Whatever was coming has finished arriving.', 2),
     read_aloud: `To ${objective}, you go through ${villain} first.`,
     contents: {
       description: `End it here, then ${objective} — if anything is left to.`,

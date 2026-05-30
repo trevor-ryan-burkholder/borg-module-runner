@@ -32,6 +32,7 @@ export default function NodeView({
   bookmarks,
   onToggleBookmark,
   onOpenHandout,
+  onRollFlavor,
   playerMode,
 }) {
   const [readAloudHidden, setReadAloudHidden] = useState(false);
@@ -74,6 +75,16 @@ export default function NodeView({
             aria-pressed={(bookmarks || []).includes(node.id)}
           >
             {(bookmarks || []).includes(node.id) ? '★' : '☆'}
+          </button>
+        )}
+        {!playerMode && onRollFlavor && (
+          <button
+            type="button"
+            className="top__flavor"
+            onClick={onRollFlavor}
+            title="Roll a fresh sensory beat into this node's GM notes"
+          >
+            ✦ flavor
           </button>
         )}
         {!playerMode && onOpenHandout && (

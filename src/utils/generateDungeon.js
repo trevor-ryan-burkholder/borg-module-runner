@@ -10,7 +10,7 @@
 // Each exit: { target, label, locked, condition }
 
 import { rollValue } from './tables.js';
-import { bestiaryEnemy, rollNpc } from './genAdventure.js';
+import { bestiaryEnemy, rollNpc, composeAtmosphere } from './genAdventure.js';
 import dungeons from '../data/tables-bedeviled-dungeons.json';
 import traps from '../data/tables-traps.json';
 import items from '../data/tables-items.json';
@@ -99,7 +99,7 @@ export function generateDungeon(opts = {}) {
 
   // Entrance.
   const entrance = blankRoom('entrance', 'entrance', 'The Threshold');
-  entrance.atmosphere = rollValue(dungeons.room_atmospheres);
+  entrance.atmosphere = composeAtmosphere(rollValue(dungeons.room_atmospheres), 2);
   entrance.enemies.push(bestiaryEnemy());
   entrance.npcs.push(rollNpc({ attitude: 'neutral' }));
   entrance.gm_notes = `Tone: ${feature}. Inhabitants: ${inhabitants}.`;
@@ -111,7 +111,7 @@ export function generateDungeon(opts = {}) {
   for (let i = 0; i < B; i++) {
     const isLast = i === B - 1;
     const r = blankRoom(`body-${i}`, 'body', isLast ? 'The Antechamber' : `Room ${i + 1}`);
-    r.atmosphere = rollValue(dungeons.room_atmospheres);
+    r.atmosphere = composeAtmosphere(rollValue(dungeons.room_atmospheres), 2);
 
     if (isLast) {
       const warden = bestiaryEnemy();
@@ -139,7 +139,7 @@ export function generateDungeon(opts = {}) {
   for (let s = 0; s < S; s++) {
     const parent = Math.floor(Math.random() * eligibleParents);
     const r = blankRoom(`side-${s}`, 'side', `Side: ${rollValue(dungeons.features)}`);
-    r.atmosphere = rollValue(dungeons.room_atmospheres);
+    r.atmosphere = composeAtmosphere(rollValue(dungeons.room_atmospheres), 2);
     r.items.push(rollValue(items.entries));
     if (chance(0.6)) r.items.push(rollValue(items.entries));
     if (chance(0.4)) r.enemies.push(bestiaryEnemy());
@@ -162,7 +162,7 @@ export function generateDungeon(opts = {}) {
 
   // Climax.
   const climax = blankRoom('climax', 'climax', 'The Black Heart');
-  climax.atmosphere = 'The room everything else fed.';
+  climax.atmosphere = composeAtmosphere('The room everything else fed.', 2);
   climax.enemies.push(bestiaryEnemy({ boss: true }));
   const treasureCount = 2 + (chance(0.5) ? 1 : 0);
   for (let t = 0; t < treasureCount; t++) climax.items.push(rollValue(items.entries));

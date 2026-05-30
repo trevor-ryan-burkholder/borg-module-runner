@@ -10,6 +10,11 @@ import npc from '../data/tables-npc.json';
 import traits from '../data/tables-traits.json';
 import bestiary from '../data/bestiary.json';
 
+// Re-export flavor helpers from the standalone module so existing importers of
+// composeAtmosphere from genAdventure.js keep working without dragging the
+// bestiary into eager bundles that only want flavor.
+export { rollFlavorBeat, composeAtmosphere } from './flavor.js';
+
 // ---------- schema builders ----------
 
 export function makeExit(fromId, target, label, opts = {}) {
@@ -73,6 +78,8 @@ export function capitalize(s) {
   const t = String(s ?? '').trim();
   return t ? t[0].toUpperCase() + t.slice(1) : t;
 }
+
+// (sensory flavor helpers live in ./flavor.js and are re-exported above)
 
 // ---------- content rollers ----------
 

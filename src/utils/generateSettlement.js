@@ -22,6 +22,7 @@ import {
   rollNpc,
   bestiaryEnemy,
   capitalize,
+  composeAtmosphere,
 } from './genAdventure.js';
 import S from '../data/tables-settlement.json';
 
@@ -138,7 +139,7 @@ export function generateSettlement(opts = {}) {
     const spoke = makeNode({
       id,
       title,
-      atmosphere: t.atmosphere,
+      atmosphere: composeAtmosphere(t.atmosphere, 2),
       contents,
       exits: [makeExit(id, HUB, `Back to the gate of ${name}`)],
       tags: [t.kind, ...(isTokenHolder ? ['key'] : [])],
@@ -151,7 +152,7 @@ export function generateSettlement(opts = {}) {
       const subNode = makeNode({
         id: subId,
         title: t.sub.title,
-        atmosphere: t.sub.atmosphere,
+        atmosphere: composeAtmosphere(t.sub.atmosphere, 2),
         contents: buildSubLocationContents(t.sub, region, problem),
         exits: [makeExit(subId, id, `Back up to ${title}`)],
         tags: ['sub', t.sub.kind],
@@ -211,7 +212,7 @@ export function generateSettlement(opts = {}) {
   const anteNode = makeNode({
     id: ANTE,
     title: power.seat,
-    atmosphere: 'The hall before the seat — and a warden who already knows your business.',
+    atmosphere: composeAtmosphere('The hall before the seat — and a warden who already knows your business.', 2),
     contents: {
       description: `The waiting hall of ${power.ruler}. The warden bars the inner door, which opens only to ${token}.`,
       items: [],
@@ -246,7 +247,7 @@ export function generateSettlement(opts = {}) {
   const seatNode = makeNode({
     id: SEAT,
     title: `${power.seat} — the inner sanctum`,
-    atmosphere: 'The warmest room in town, and you will wish it were not.',
+    atmosphere: composeAtmosphere('The warmest room in town, and you will wish it were not.', 2),
     read_aloud: `${capitalize(power.ruler)} receives you as though your arrival were both expected and already regretted.`,
     contents: seatContents,
     gm_notes: `This is where "${problem}" resolves. Reward the players who chased the rumors and held the token.`,
@@ -262,7 +263,7 @@ export function generateSettlement(opts = {}) {
   const hubNode = makeNode({
     id: HUB,
     title: `The Gate of ${name}`,
-    atmosphere: rollValue(S.atmospheres),
+    atmosphere: composeAtmosphere(rollValue(S.atmospheres), 2),
     read_aloud: `${name} — a ${size.label} of ${size.population}, in ${region.flavor}. Word is the place is troubled: ${lower(problem)}`,
     contents: {
       description: `${name} answers to ${power.ruler}. Openly, ${fOpen} hold sway; beneath that, ${fHidden} work in the dark. The affliction here: ${problem} What everyone fears most is ${danger}.`,
