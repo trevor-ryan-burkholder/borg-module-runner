@@ -24,6 +24,22 @@ const ROOM_SECRET_SEEDS = [
   'A trapdoor under the moss leads down, then nowhere.',
   'Carved in the wall: the name of the next person to die here.',
   'A drawing of the boss, signed by a child.',
+  'The wall here is hollow. Something taps from inside, at irregular intervals.',
+  'A circle of salt on the floor, broken on one side. Recently.',
+  "A child's handprint, in black, pressed too high to have been put there by a child.",
+  'A pile of stones counts to a number you would rather not say aloud.',
+  'A puddle in the corner that has not dried, despite the cold dry air.',
+  'A doorway in the floor whose handle is on the underside.',
+  'An echo answers a question you only thought.',
+  'A small hole at floor level, perfectly round, with something inside that blinks.',
+  'A square of brighter stone where a portrait once hung. The frame is somewhere else here.',
+  'A finger-bone, polished by frequent handling.',
+  'A loose tile reveals an older floor below, with a different layout entirely.',
+  'Knocking on the central pillar sounds like knocking from inside the central pillar.',
+  'Drag-marks in the dust, from this room toward the next, made by something the size of a body.',
+  'A single candle, still burning, in a room nobody else has reached this season.',
+  'A patch of moss that grows in the shape of a name.',
+  'A column inscribed with the date you will leave here, if you do.',
 ];
 
 const SHORTCUT_CONDITIONS = [
@@ -31,6 +47,14 @@ const SHORTCUT_CONDITIONS = [
   'Collapsed in — can be cleared by an NPC ally or two PCs at Strength DR12.',
   'Sealed by an old rune — broken only by a true name spoken aloud.',
   "Bricked over — the bricks are loose to anyone who knows the warden's sigil.",
+  'Locked from the far side; needs a verse spoken in the dead tongue.',
+  "A pressure plate keeps the way closed; weighing more than 200 lb on it will hold it open.",
+  "The door responds only to the warden's true name, said three times.",
+  "A turn-key embedded in the warden's chest; you'll know it when you see it.",
+  'Mortared shut with bone-meal; can be chipped open by a careful party over an hour.',
+  'A choir-lock — opens to two voices singing in unison, at the right pitch.',
+  'A pact-door; opens only to a willing offering of blood from one of you.',
+  'A reflection-lock — open the door from inside by holding a mirror to the latch from out here.',
 ];
 
 function chance(p) {
