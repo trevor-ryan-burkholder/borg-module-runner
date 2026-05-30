@@ -3611,6 +3611,39 @@ html[data-system='ronin-borg'] .gm-notes__body {
   background: transparent; border: 1px solid var(--yellow-dim); color: var(--yellow-dim);
   padding: 0.15rem 0.5rem; font-family: inherit; cursor: pointer; font-size: 0.85rem;
 }
+/* Inline stack of rolled sensory beats, shown right under the atmosphere. */
+.flavor-stack {
+  margin: 0.4rem 0 0.8rem;
+  padding: 0.5rem 0.8rem;
+  background: var(--dark);
+  border-left: 2px solid var(--yellow);
+  position: relative;
+}
+.flavor-stack__beat {
+  margin: 0.15rem 0;
+  font-style: italic;
+  color: var(--bone);
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+.flavor-stack__mark {
+  color: var(--yellow);
+  margin-right: 0.3rem;
+}
+.flavor-stack__clear {
+  background: transparent;
+  border: 1px dashed var(--muted);
+  color: var(--muted);
+  padding: 0.05rem 0.4rem;
+  font-family: inherit;
+  font-size: 0.7rem;
+  cursor: pointer;
+  margin-top: 0.3rem;
+}
+.flavor-stack__clear:hover {
+  color: var(--bone);
+  border-color: var(--bone);
+}
 .top__bookmark:hover, .top__handout:hover, .top__flavor:hover { color: var(--yellow); border-color: var(--yellow); }
 
 /* --- Combat tracker mid-combat add form --- */

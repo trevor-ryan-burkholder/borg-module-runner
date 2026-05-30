@@ -27,7 +27,6 @@ import DiceTray from './components/DiceTray.jsx';
 import MiseryTracker from './components/MiseryTracker.jsx';
 import CombatTracker, { buildCombatants, rollSideInitiative } from './components/CombatTracker.jsx';
 import AmbientMixer from './components/AmbientMixer.jsx';
-import { rollFlavorBeat } from './utils/flavor.js';
 
 // Lazily loaded — fetched the first time the user opens the panel:
 const AdventurePicker = lazy(() => import('./components/AdventurePicker.jsx'));
@@ -497,9 +496,9 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
         bookmarks={state.bookmarks ?? []}
         onToggleBookmark={toggleBookmark}
         onOpenHandout={() => setHandoutOpen(true)}
-        onRollFlavor={
+        onSaveFlavor={
           currentNode
-            ? () => appendScratchNotes(currentNode.id, `[flavor] ${rollFlavorBeat()}`)
+            ? (beat) => appendScratchNotes(currentNode.id, `[flavor] ${beat}`)
             : undefined
         }
         playerMode={!!playerMode}

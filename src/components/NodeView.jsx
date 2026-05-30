@@ -4,6 +4,7 @@ import ItemList from './ItemList.jsx';
 import SecretsReveal from './SecretsReveal.jsx';
 import GMNotes from './GMNotes.jsx';
 import ExitButton from './ExitButton.jsx';
+import { rollFlavorBeat } from '../utils/flavor.js';
 
 const TAB_ORDER = [
   { id: 'enemies', label: 'Enemies' },
@@ -32,18 +33,28 @@ export default function NodeView({
   bookmarks,
   onToggleBookmark,
   onOpenHandout,
-  onRollFlavor,
+  onSaveFlavor,
   playerMode,
 }) {
   const [readAloudHidden, setReadAloudHidden] = useState(false);
   const [activeTab, setActiveTab] = useState(null);
+  // Recently-rolled sensory beats shown inline under the atmosphere. Local to
+  // the node — they reset when the GM navigates somewhere else.
+  const [recentFlavors, setRecentFlavors] = useState([]);
 
   // Reset per-node toggles when node changes.
   useEffect(() => {
     setReadAloudHidden(false);
+    setRecentFlavors([]);
     const firstTab = TAB_ORDER.find((t) => tabHasContent(t.id, node?.contents));
     setActiveTab(firstTab?.id ?? null);
   }, [node?.id]);
+
+  const rollFlavor = () => {
+    const beat = rollFlavorBeat();
+    setRecentFlavors((prev) => [...prev, beat].slice(-5));
+    onSaveFlavor?.(beat);
+  };
 
   if (!node) {
     return (
@@ -77,12 +88,12 @@ export default function NodeView({
             {(bookmarks || []).includes(node.id) ? '★' : '☆'}
           </button>
         )}
-        {!playerMode && onRollFlavor && (
+        {!playerMode && (
           <button
             type="button"
             className="top__flavor"
-            onClick={onRollFlavor}
-            title="Roll a fresh sensory beat into this node's GM notes"
+            onClick={rollFlavor}
+            title="Roll a fresh sensory beat. Shown below, also saved to GM notes."
           >
             ✦ flavor
           </button>
@@ -109,6 +120,24 @@ export default function NodeView({
       {node.atmosphere && (
         <section className="atmosphere">
           <p>{node.atmosphere}</p>
+        </section>
+      )}
+
+      {!playerMode && recentFlavors.length > 0 && (
+        <section className="flavor-stack" aria-label="Rolled flavor beats">
+          {recentFlavors.map((beat, i) => (
+            <p key={`${i}-${beat}`} className="flavor-stack__beat">
+              <span className="flavor-stack__mark">✦</span> {beat}
+            </p>
+          ))}
+          <button
+            type="button"
+            className="flavor-stack__clear"
+            onClick={() => setRecentFlavors([])}
+            title="Clear rolled beats (the saved copies in GM notes are kept)"
+          >
+            ✕ clear
+          </button>
         </section>
       )}
 
