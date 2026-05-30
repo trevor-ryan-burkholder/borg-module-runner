@@ -29,6 +29,10 @@ export default function NodeView({
   scratchNotes,
   onScratchChange,
   onStartCombat,
+  bookmarks,
+  onToggleBookmark,
+  onOpenHandout,
+  playerMode,
 }) {
   const [readAloudHidden, setReadAloudHidden] = useState(false);
   const [activeTab, setActiveTab] = useState(null);
@@ -48,7 +52,12 @@ export default function NodeView({
     );
   }
 
-  const availableTabs = TAB_ORDER.filter((t) => tabHasContent(t.id, node.contents));
+  // In player mode hide tabs whose contents the players shouldn't see (enemies'
+  // stat blocks, traps, secrets, GM-only NPC notes). They still see items.
+  const PLAYER_TABS = new Set(['items', 'npcs']);
+  const availableTabs = TAB_ORDER.filter(
+    (t) => tabHasContent(t.id, node.contents) && (!playerMode || PLAYER_TABS.has(t.id))
+  );
 
   return (
     <main className="node-view">
@@ -56,6 +65,27 @@ export default function NodeView({
         <div className="top__adventure">{adventure.meta.title}</div>
         <h1 className="top__node">{node.title}</h1>
         {visited && <span className="top__visited" title="Visited">⌑ visited</span>}
+        {!playerMode && onToggleBookmark && (
+          <button
+            type="button"
+            className={`top__bookmark ${(bookmarks || []).includes(node.id) ? 'top__bookmark--on' : ''}`}
+            onClick={() => onToggleBookmark(node.id)}
+            title={(bookmarks || []).includes(node.id) ? 'Remove bookmark' : 'Bookmark this node'}
+            aria-pressed={(bookmarks || []).includes(node.id)}
+          >
+            {(bookmarks || []).includes(node.id) ? '★' : '☆'}
+          </button>
+        )}
+        {!playerMode && onOpenHandout && (
+          <button
+            type="button"
+            className="top__handout"
+            onClick={onOpenHandout}
+            title="Open a player-facing handout for this node"
+          >
+            🖨 handout
+          </button>
+        )}
         {node.tags && node.tags.length > 0 && (
           <div className="top__tags">
             {node.tags.map((t) => (
@@ -186,11 +216,13 @@ export default function NodeView({
         </details>
       )}
 
-      <GMNotes
-        notes={node.gm_notes}
-        scratchNotes={scratchNotes}
-        onScratchChange={onScratchChange}
-      />
+      {!playerMode && (
+        <GMNotes
+          notes={node.gm_notes}
+          scratchNotes={scratchNotes}
+          onScratchChange={onScratchChange}
+        />
+      )}
 
       {node.exits && node.exits.length > 0 && (
         <footer className="exits">

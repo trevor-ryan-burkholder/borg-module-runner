@@ -30,7 +30,7 @@ const BROKEN_TABLE = {
   4: 'DEAD.',
 };
 
-export default function PartyTracker({ party, onUpdate, onDismiss }) {
+export default function PartyTracker({ party, onUpdate, onDismiss, onBury }) {
   const [newName, setNewName] = useState('');
   const [brokenResult, setBrokenResult] = useState(null);
   const [genOpen, setGenOpen] = useState(false);
@@ -108,6 +108,23 @@ export default function PartyTracker({ party, onUpdate, onDismiss }) {
     <aside className="party-tracker">
       <header className="party-tracker__header">
         <h3>THE PARTY</h3>
+        <button
+          type="button"
+          className="iconbtn"
+          onClick={() => {
+            if (!window.confirm("Long rest: restore every PC's HP to max and reset omens to 3?")) return;
+            onUpdate((p) => ({
+              ...p,
+              omens: 3,
+              members: p.members.map((m) =>
+                m.dead ? m : { ...m, hp: m.hpMax ?? m.hp ?? 4 }
+              ),
+            }));
+          }}
+          title="Long rest — restore HP and omens"
+        >
+          ☾ rest
+        </button>
         <button
           type="button"
           className="party-tracker__dismiss"
@@ -234,6 +251,47 @@ export default function PartyTracker({ party, onUpdate, onDismiss }) {
                   />
                 </label>
 
+                <div className="pc-card__inventory">
+                  <div className="pc-card__inv-head">
+                    <span className="counter__label">Inventory</span>
+                    <span className="pc-card__inv-slots">
+                      {(m.inventory?.length ?? 0)} / {2 + Math.max(0, m.str ?? 0)} slots
+                    </span>
+                  </div>
+                  <ul className="pc-card__inv-list">
+                    {(m.inventory ?? []).map((item, j) => (
+                      <li key={j} className="pc-card__inv-row">
+                        <input
+                          type="text"
+                          value={item}
+                          onChange={(e) =>
+                            update(i, {
+                              inventory: (m.inventory ?? []).map((x, k) => (k === j ? e.target.value : x)),
+                            })
+                          }
+                        />
+                        <button
+                          type="button"
+                          className="iconbtn iconbtn--danger"
+                          onClick={() =>
+                            update(i, { inventory: (m.inventory ?? []).filter((_, k) => k !== j) })
+                          }
+                          aria-label="Drop item"
+                        >
+                          ✕
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                  <button
+                    type="button"
+                    className="iconbtn"
+                    onClick={() => update(i, { inventory: [...(m.inventory ?? []), ''] })}
+                  >
+                    + item
+                  </button>
+                </div>
+
                 <label className="pc-card__field">
                   Notes
                   <textarea
@@ -253,6 +311,23 @@ export default function PartyTracker({ party, onUpdate, onDismiss }) {
                   >
                     ☠ broken
                   </button>
+                  {m.dead && onBury && (
+                    <button
+                      type="button"
+                      className="iconbtn iconbtn--danger"
+                      onClick={() => {
+                        if (window.confirm(`Send ${m.name || 'this PC'} to the Graveyard? They leave the party list.`)) {
+                          onBury(m.id, brokenResult?.memberId === m.id ? {
+                            brokenDie: brokenResult.die,
+                            brokenOutcome: brokenResult.outcome,
+                          } : null);
+                        }
+                      }}
+                      title="Move to the Graveyard panel"
+                    >
+                      ⚰ bury
+                    </button>
+                  )}
                   <label className="pc-card__dead">
                     <input
                       type="checkbox"

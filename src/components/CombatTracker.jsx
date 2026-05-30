@@ -13,6 +13,11 @@ const COMMON_CONDITIONS = [
 export default function CombatTracker({ open, onClose, combatState, setCombat, endCombat }) {
   const [moraleResult, setMoraleResult] = useState(null);
   const [conditionDraft, setConditionDraft] = useState({});
+  const [addOpen, setAddOpen] = useState(false);
+  const [addName, setAddName] = useState('');
+  const [addHp, setAddHp] = useState(6);
+  const [addMorale, setAddMorale] = useState('7');
+  const [addSide, setAddSide] = useState('enemy');
 
   if (!open) return null;
   if (!combatState.active) {
@@ -108,6 +113,31 @@ export default function CombatTracker({ open, onClose, combatState, setCombat, e
   };
 
   const nextRound = () => setCombat((cs) => ({ ...cs, round: cs.round + 1 }));
+
+  const commitAdd = () => {
+    const name = addName.trim() || (addSide === 'pc' ? 'Unnamed PC' : 'Reinforcement');
+    setCombat((cs) => ({
+      ...cs,
+      combatants: [
+        ...cs.combatants,
+        {
+          id: `c-add-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+          kind: addSide,
+          name,
+          hp: addHp,
+          hpMax: addHp,
+          morale: addSide === 'enemy' ? addMorale : null,
+          conditions: [],
+          dead: false,
+        },
+      ],
+    }));
+    setAddName('');
+    setAddHp(6);
+    setAddMorale('7');
+    setAddOpen(false);
+  };
+
   const rerollInitiative = () =>
     setCombat((cs) => ({ ...cs, initiative: rollSideInitiative() }));
 
@@ -197,11 +227,53 @@ export default function CombatTracker({ open, onClose, combatState, setCombat, e
       <header className="combat-tracker__header">
         <h3>COMBAT · ROUND {combatState.round}</h3>
         <div className="combat-tracker__head-actions">
+          <button type="button" className="iconbtn" onClick={() => setAddOpen((o) => !o)}>+ add</button>
           <button type="button" className="iconbtn" onClick={nextRound}>▶ next round</button>
           <button type="button" className="iconbtn iconbtn--danger" onClick={endCombat}>end combat</button>
           <button type="button" className="iconbtn" onClick={onClose} aria-label="Close">✕</button>
         </div>
       </header>
+
+      {addOpen && (
+        <div className="combat-add">
+          <label>
+            side
+            <select value={addSide} onChange={(e) => setAddSide(e.target.value)}>
+              <option value="enemy">enemy</option>
+              <option value="pc">PC</option>
+            </select>
+          </label>
+          <label>
+            name
+            <input
+              type="text"
+              value={addName}
+              onChange={(e) => setAddName(e.target.value)}
+              placeholder={addSide === 'enemy' ? 'Reinforcement' : 'PC name'}
+              onKeyDown={(e) => e.key === 'Enter' && commitAdd()}
+              autoFocus
+            />
+          </label>
+          <label>
+            HP
+            <NumberField value={addHp} onChange={setAddHp} aria-label="HP" />
+          </label>
+          {addSide === 'enemy' && (
+            <label>
+              morale
+              <input
+                type="text"
+                value={addMorale}
+                onChange={(e) => setAddMorale(e.target.value)}
+                placeholder="7 or —"
+                style={{ width: '3rem' }}
+              />
+            </label>
+          )}
+          <button type="button" className="iconbtn iconbtn--rules" onClick={commitAdd}>add</button>
+          <button type="button" className="iconbtn" onClick={() => setAddOpen(false)}>cancel</button>
+        </div>
+      )}
 
       <div className="combat-init">
         <div className="combat-init__verdict">

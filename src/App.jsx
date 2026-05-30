@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react';
 import { useAdventure } from './hooks/useAdventure.js';
 import {
   getBundledAdventure,
@@ -18,28 +18,39 @@ import {
 } from './utils/share.js';
 import { validateAdventure, getAdventureId, getSystem } from './utils/validate.js';
 
+// Eagerly loaded — needed for the first paint or to keep state alive:
 import NodeView from './components/NodeView.jsx';
 import RulesPanel from './components/RulesPanel.jsx';
 import BreadcrumbTrail from './components/BreadcrumbTrail.jsx';
 import PartyTracker from './components/PartyTracker.jsx';
-import AdventurePicker from './components/AdventurePicker.jsx';
-import AdventureBuilder from './components/AdventureBuilder.jsx';
-import ShareDialog from './components/ShareDialog.jsx';
 import DiceTray from './components/DiceTray.jsx';
 import MiseryTracker from './components/MiseryTracker.jsx';
-import MapView from './components/MapView.jsx';
-import NpcGenerator from './components/NpcGenerator.jsx';
 import CombatTracker, { buildCombatants, rollSideInitiative } from './components/CombatTracker.jsx';
-import OverlandTravel from './components/OverlandTravel.jsx';
-import DungeonGenerator from './components/DungeonGenerator.jsx';
-import SettlementGenerator from './components/SettlementGenerator.jsx';
 import AmbientMixer from './components/AmbientMixer.jsx';
-import Bestiary from './components/Bestiary.jsx';
-import RandomTables from './components/RandomTables.jsx';
+
+// Lazily loaded — fetched the first time the user opens the panel:
+const AdventurePicker = lazy(() => import('./components/AdventurePicker.jsx'));
+const AdventureBuilder = lazy(() => import('./components/AdventureBuilder.jsx'));
+const ShareDialog = lazy(() => import('./components/ShareDialog.jsx'));
+const MapView = lazy(() => import('./components/MapView.jsx'));
+const NpcGenerator = lazy(() => import('./components/NpcGenerator.jsx'));
+const OverlandTravel = lazy(() => import('./components/OverlandTravel.jsx'));
+const DungeonGenerator = lazy(() => import('./components/DungeonGenerator.jsx'));
+const SettlementGenerator = lazy(() => import('./components/SettlementGenerator.jsx'));
+const Bestiary = lazy(() => import('./components/Bestiary.jsx'));
+const RandomTables = lazy(() => import('./components/RandomTables.jsx'));
+const LootLedger = lazy(() => import('./components/LootLedger.jsx'));
+const Graveyard = lazy(() => import('./components/Graveyard.jsx'));
+const PowersPanel = lazy(() => import('./components/PowersPanel.jsx'));
+const HelpCheatsheet = lazy(() => import('./components/HelpCheatsheet.jsx'));
+const NodeSearch = lazy(() => import('./components/NodeSearch.jsx'));
+const NodeHandout = lazy(() => import('./components/NodeHandout.jsx'));
+const CrossRefSearch = lazy(() => import('./components/CrossRefSearch.jsx'));
+const CampaignPanel = lazy(() => import('./components/CampaignPanel.jsx'));
 
 const DEFAULT_ADVENTURE_ID = 'graves-left-wanting';
 
-function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdventure, onLoadEphemeral }) {
+function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdventure, onLoadEphemeral, playerMode, theme, onSetTheme }) {
   const {
     state,
     currentNode,
@@ -54,6 +65,10 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
     appendTravelEntry,
     updateTravelEntry,
     clearTravelLog,
+    toggleBookmark,
+    updateLoot,
+    buryMember,
+    exhumeMember,
     reset,
     nodeById,
   } = useAdventure(adventure);
@@ -74,6 +89,15 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
   const [ambientOpen, setAmbientOpen] = useState(false);
   const [bestiaryOpen, setBestiaryOpen] = useState(false);
   const [tablesOpen, setTablesOpen] = useState(false);
+  const [lootOpen, setLootOpen] = useState(false);
+  const [graveyardOpen, setGraveyardOpen] = useState(false);
+  const [powersOpen, setPowersOpen] = useState(false);
+  const [helpOpen, setHelpOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [handoutOpen, setHandoutOpen] = useState(false);
+  const [crossRefOpen, setCrossRefOpen] = useState(false);
+  const [campaignsOpen, setCampaignsOpen] = useState(false);
+  const [resetDialogOpen, setResetDialogOpen] = useState(false);
 
   const system = getSystem(adventure);
   const rules = getRulesForSystem(system);
@@ -135,10 +159,14 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
     dungeonOpen, settlementOpen, builderOpen, pickerOpen, shareOpen, mapOpen,
     rulesOpen, miseryOpen, diceOpen, npcOpen, combatOpen, travelOpen,
     ambientOpen, bestiaryOpen, tablesOpen, partyOpen,
+    lootOpen, graveyardOpen, powersOpen, helpOpen, searchOpen, handoutOpen,
+    crossRefOpen, campaignsOpen, resetDialogOpen,
     setDungeonOpen, setSettlementOpen, setBuilderOpen, setPickerOpen,
     setShareOpen, setMapOpen, setRulesOpen, setMiseryOpen, setDiceOpen,
     setNpcOpen, setCombatOpen, setTravelOpen, setAmbientOpen, setBestiaryOpen,
     setTablesOpen, setPartyOpen,
+    setLootOpen, setGraveyardOpen, setPowersOpen, setHelpOpen, setSearchOpen,
+    setHandoutOpen, setCrossRefOpen, setCampaignsOpen, setResetDialogOpen,
   };
   useEffect(() => {
     const onKey = (e) => {
@@ -155,7 +183,16 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
       // Escape closes the topmost panel, and must work even when a form element
       // has focus — otherwise the user is trapped.
       if (e.key === 'Escape') {
-        if (k.dungeonOpen) k.setDungeonOpen(false);
+        if (k.resetDialogOpen) k.setResetDialogOpen(false);
+        else if (k.helpOpen) k.setHelpOpen(false);
+        else if (k.handoutOpen) k.setHandoutOpen(false);
+        else if (k.searchOpen) k.setSearchOpen(false);
+        else if (k.crossRefOpen) k.setCrossRefOpen(false);
+        else if (k.campaignsOpen) k.setCampaignsOpen(false);
+        else if (k.powersOpen) k.setPowersOpen(false);
+        else if (k.graveyardOpen) k.setGraveyardOpen(false);
+        else if (k.lootOpen) k.setLootOpen(false);
+        else if (k.dungeonOpen) k.setDungeonOpen(false);
         else if (k.settlementOpen) k.setSettlementOpen(false);
         else if (k.builderOpen) k.setBuilderOpen(false);
         else if (k.pickerOpen) k.setPickerOpen(false);
@@ -192,6 +229,11 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
         case 'e': k.setBestiaryOpen((o) => !o); break;
         case 'r': k.setTablesOpen((o) => !o); break;
         case 'g': k.setSettlementOpen((o) => !o); break;
+        case 'h': k.setHelpOpen((o) => !o); break;
+        case 'f': k.setSearchOpen((o) => !o); break;
+        case 'o': k.setLootOpen((o) => !o); break;
+        case 'v': k.setGraveyardOpen((o) => !o); break;
+        case 'i': k.setPowersOpen((o) => !o); break;
         default: break;
       }
     };
@@ -357,6 +399,27 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
           >
             ⌂ town
           </button>
+          <button type="button" className="iconbtn" onClick={() => setSearchOpen((o) => !o)} title="Find in adventure (F)" aria-pressed={searchOpen}>
+            ⌕ find
+          </button>
+          <button type="button" className="iconbtn" onClick={() => setCrossRefOpen((o) => !o)} title="Search every adventure" aria-pressed={crossRefOpen}>
+            ⌕⌖ across
+          </button>
+          <button type="button" className="iconbtn" onClick={() => setLootOpen((o) => !o)} title="Loot ledger (O)" aria-pressed={lootOpen}>
+            ◈ loot
+          </button>
+          <button type="button" className="iconbtn" onClick={() => setGraveyardOpen((o) => !o)} title="The Graveyard (V)" aria-pressed={graveyardOpen}>
+            ⚰ graveyard
+          </button>
+          <button type="button" className="iconbtn" onClick={() => setPowersOpen((o) => !o)} title="Powers & Catastrophes (I)" aria-pressed={powersOpen}>
+            ✦ powers
+          </button>
+          <button type="button" className="iconbtn" onClick={() => setCampaignsOpen((o) => !o)} title="Campaigns" aria-pressed={campaignsOpen}>
+            ☉ campaigns
+          </button>
+          <button type="button" className="iconbtn" onClick={() => setHelpOpen((o) => !o)} title="Help / cheatsheet (H)" aria-pressed={helpOpen}>
+            ? help
+          </button>
           <button
             type="button"
             className="iconbtn"
@@ -368,11 +431,7 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
           <button
             type="button"
             className="iconbtn iconbtn--danger"
-            onClick={() => {
-              if (window.confirm('Reset the adventure to the start node? Visited history and party will be cleared.')) {
-                reset();
-              }
-            }}
+            onClick={() => setResetDialogOpen(true)}
             title="Reset session"
           >
             ⟲ reset
@@ -434,6 +493,10 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
           currentNode ? (text) => setScratchNotes(currentNode.id, text) : undefined
         }
         onStartCombat={handleStartCombat}
+        bookmarks={state.bookmarks ?? []}
+        onToggleBookmark={toggleBookmark}
+        onOpenHandout={() => setHandoutOpen(true)}
+        playerMode={!!playerMode}
       />
 
       {partyOpen && (
@@ -441,7 +504,97 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
           party={state.partyState}
           onUpdate={updateParty}
           onDismiss={() => setPartyOpen(false)}
+          onBury={buryMember}
         />
+      )}
+
+      <Suspense fallback={null}>
+        {lootOpen && (
+          <LootLedger
+            open={lootOpen}
+            onClose={() => setLootOpen(false)}
+            loot={state.loot ?? { silver: 0, items: [] }}
+            onUpdate={updateLoot}
+            party={state.partyState}
+          />
+        )}
+        {graveyardOpen && (
+          <Graveyard
+            open={graveyardOpen}
+            onClose={() => setGraveyardOpen(false)}
+            graveyard={state.graveyard ?? []}
+            onExhume={exhumeMember}
+          />
+        )}
+        {powersOpen && (
+          <PowersPanel
+            open={powersOpen}
+            onClose={() => setPowersOpen(false)}
+            canAddToNotes={!!currentNode}
+            onAddToNotes={(text) => {
+              if (currentNode) appendScratchNotes(currentNode.id, text);
+            }}
+          />
+        )}
+        {helpOpen && (
+          <HelpCheatsheet open={helpOpen} onClose={() => setHelpOpen(false)} theme={theme} onSetTheme={onSetTheme} />
+        )}
+        {searchOpen && (
+          <NodeSearch
+            open={searchOpen}
+            onClose={() => setSearchOpen(false)}
+            adventure={adventure}
+            onJump={(id) => {
+              goToNode(id);
+              setSearchOpen(false);
+            }}
+          />
+        )}
+        {handoutOpen && (
+          <NodeHandout
+            open={handoutOpen}
+            onClose={() => setHandoutOpen(false)}
+            node={currentNode}
+            adventureTitle={adventure?.meta?.title || ''}
+          />
+        )}
+        {crossRefOpen && (
+          <CrossRefSearch
+            open={crossRefOpen}
+            onClose={() => setCrossRefOpen(false)}
+            onLoad={(advId, nodeId) => {
+              onChangeAdventure(advId);
+              if (nodeId) setTimeout(() => goToNode(nodeId), 50);
+            }}
+          />
+        )}
+        {campaignsOpen && (
+          <CampaignPanel
+            open={campaignsOpen}
+            onClose={() => setCampaignsOpen(false)}
+            party={state.partyState}
+            loot={state.loot}
+            graveyard={state.graveyard}
+          />
+        )}
+      </Suspense>
+
+      {resetDialogOpen && (
+        <div className="picker-overlay" role="dialog" aria-modal="true" onClick={() => setResetDialogOpen(false)}>
+          <div className="picker picker--narrow" onClick={(e) => e.stopPropagation()}>
+            <header className="picker__header">
+              <h2>RESET</h2>
+              <button type="button" className="iconbtn" onClick={() => setResetDialogOpen(false)}>✕</button>
+            </header>
+            <ResetForm
+              onClose={() => setResetDialogOpen(false)}
+              onReset={(opts) => {
+                reset(opts);
+                setResetDialogOpen(false);
+              }}
+            />
+          </div>
+        </div>
       )}
 
       <DiceTray
@@ -453,14 +606,48 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
         }}
       />
       <MiseryTracker open={miseryOpen} onClose={() => setMiseryOpen(false)} />
-      <NpcGenerator
-        open={npcOpen}
-        onClose={() => setNpcOpen(false)}
-        canAddToNotes={!!currentNode}
-        onAddToNotes={(text) => {
-          if (currentNode) appendScratchNotes(currentNode.id, text);
-        }}
-      />
+      <Suspense fallback={null}>
+        {npcOpen && (
+          <NpcGenerator
+            open={npcOpen}
+            onClose={() => setNpcOpen(false)}
+            canAddToNotes={!!currentNode}
+            onAddToNotes={(text) => {
+              if (currentNode) appendScratchNotes(currentNode.id, text);
+            }}
+          />
+        )}
+        {travelOpen && (
+          <OverlandTravel
+            open={travelOpen}
+            onClose={() => setTravelOpen(false)}
+            travelLog={state.travelLog ?? []}
+            appendEntry={appendTravelEntry}
+            updateEntry={updateTravelEntry}
+            clearLog={clearTravelLog}
+          />
+        )}
+        {bestiaryOpen && (
+          <Bestiary
+            open={bestiaryOpen}
+            onClose={() => setBestiaryOpen(false)}
+            canAddToNotes={!!currentNode}
+            onAddToNotes={(text) => {
+              if (currentNode) appendScratchNotes(currentNode.id, text);
+            }}
+          />
+        )}
+        {tablesOpen && (
+          <RandomTables
+            open={tablesOpen}
+            onClose={() => setTablesOpen(false)}
+            canAddToNotes={!!currentNode}
+            onAddToNotes={(text) => {
+              if (currentNode) appendScratchNotes(currentNode.id, text);
+            }}
+          />
+        )}
+      </Suspense>
       <CombatTracker
         open={combatOpen}
         onClose={() => setCombatOpen(false)}
@@ -468,122 +655,191 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
         setCombat={setCombat}
         endCombat={handleEndCombat}
       />
-      <OverlandTravel
-        open={travelOpen}
-        onClose={() => setTravelOpen(false)}
-        travelLog={state.travelLog ?? []}
-        appendEntry={appendTravelEntry}
-        updateEntry={updateTravelEntry}
-        clearLog={clearTravelLog}
-      />
       <AmbientMixer open={ambientOpen} onClose={() => setAmbientOpen(false)} />
-      <Bestiary
-        open={bestiaryOpen}
-        onClose={() => setBestiaryOpen(false)}
-        canAddToNotes={!!currentNode}
-        onAddToNotes={(text) => {
-          if (currentNode) appendScratchNotes(currentNode.id, text);
-        }}
-      />
-      <RandomTables
-        open={tablesOpen}
-        onClose={() => setTablesOpen(false)}
-        canAddToNotes={!!currentNode}
-        onAddToNotes={(text) => {
-          if (currentNode) appendScratchNotes(currentNode.id, text);
-        }}
-      />
 
-      {mapOpen && (
-        <MapView
-          adventure={adventure}
-          currentNode={state.currentNode}
-          visited={state.visitedNodes}
-          onJump={(id) => {
-            goToNode(id);
-            setMapOpen(false);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }}
-          onClose={() => setMapOpen(false)}
-        />
-      )}
+      <Suspense fallback={null}>
+        {mapOpen && (
+          <MapView
+            adventure={adventure}
+            currentNode={state.currentNode}
+            visited={state.visitedNodes}
+            onJump={(id) => {
+              goToNode(id);
+              setMapOpen(false);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onClose={() => setMapOpen(false)}
+          />
+        )}
+
+        {pickerOpen && (
+          <AdventurePicker
+            onPick={({ id, adventure: chosen }) => {
+              setPickerOpen(false);
+              onChangeAdventure(id, chosen);
+            }}
+            onOpenBuilder={() => {
+              setPickerOpen(false);
+              setBuilderOpen(true);
+            }}
+            onClose={() => setPickerOpen(false)}
+          />
+        )}
+
+        {builderOpen && (
+          <AdventureBuilder
+            initial={adventure}
+            onClose={() => setBuilderOpen(false)}
+            onSave={(saved, opts) => {
+              if (opts?.thenLoad) {
+                setBuilderOpen(false);
+                onChangeAdventure(getAdventureId(saved), saved);
+              }
+            }}
+          />
+        )}
+
+        {dungeonOpen && (
+          <DungeonGenerator
+            open={dungeonOpen}
+            onClose={() => setDungeonOpen(false)}
+            onRun={(generatedAdventure) => {
+              const v = validateAdventure(generatedAdventure);
+              if (!v.ok) {
+                window.alert(`Generated dungeon is malformed: ${v.errors.join(' · ')}`);
+                return;
+              }
+              setDungeonOpen(false);
+              onLoadEphemeral(generatedAdventure);
+            }}
+          />
+        )}
+
+        {settlementOpen && (
+          <SettlementGenerator
+            open={settlementOpen}
+            onClose={() => setSettlementOpen(false)}
+            onRun={(generatedAdventure) => {
+              const v = validateAdventure(generatedAdventure);
+              if (!v.ok) {
+                window.alert(`Generated settlement is malformed: ${v.errors.join(' · ')}`);
+                return;
+              }
+              setSettlementOpen(false);
+              onLoadEphemeral(generatedAdventure);
+            }}
+          />
+        )}
+
+        {shareOpen && (
+          <ShareDialog adventure={adventure} onClose={() => setShareOpen(false)} />
+        )}
+      </Suspense>
 
       <RulesPanel rules={rules} open={rulesOpen} onClose={() => setRulesOpen(false)} />
-
-      {pickerOpen && (
-        <AdventurePicker
-          onPick={({ id, adventure: chosen }) => {
-            setPickerOpen(false);
-            onChangeAdventure(id, chosen);
-          }}
-          onOpenBuilder={() => {
-            setPickerOpen(false);
-            setBuilderOpen(true);
-          }}
-          onClose={() => setPickerOpen(false)}
-        />
-      )}
-
-      {builderOpen && (
-        <AdventureBuilder
-          initial={adventure}
-          onClose={() => setBuilderOpen(false)}
-          onSave={(saved, opts) => {
-            if (opts?.thenLoad) {
-              setBuilderOpen(false);
-              onChangeAdventure(getAdventureId(saved), saved);
-            }
-          }}
-        />
-      )}
-
-      <DungeonGenerator
-        open={dungeonOpen}
-        onClose={() => setDungeonOpen(false)}
-        onRun={(generatedAdventure) => {
-          const v = validateAdventure(generatedAdventure);
-          if (!v.ok) {
-            window.alert(`Generated dungeon is malformed: ${v.errors.join(' · ')}`);
-            return;
-          }
-          setDungeonOpen(false);
-          // Load ephemerally — the GM can persist via the banner's "save to library".
-          onLoadEphemeral(generatedAdventure);
-        }}
-      />
-
-      <SettlementGenerator
-        open={settlementOpen}
-        onClose={() => setSettlementOpen(false)}
-        onRun={(generatedAdventure) => {
-          const v = validateAdventure(generatedAdventure);
-          if (!v.ok) {
-            window.alert(`Generated settlement is malformed: ${v.errors.join(' · ')}`);
-            return;
-          }
-          setSettlementOpen(false);
-          onLoadEphemeral(generatedAdventure);
-        }}
-      />
-
-      {shareOpen && (
-        <ShareDialog adventure={adventure} onClose={() => setShareOpen(false)} />
-      )}
 
       <footer className="app-foot">
         <small>{adventure.meta.license}</small>
         <small className="app-foot__keys">
-          shortcuts: ? rules · b back · l library · m map · d dice · k calendar · p party · n npc · c combat · t travel · a ambient · e bestiary · r tables · g town · s share · esc close
+          shortcuts: ? rules · b back · l library · m map · d dice · k calendar · p party · n npc · c combat · t travel · a ambient · e bestiary · r tables · g town · o loot · v graveyard · i powers · f find · h help · s share · esc close
         </small>
       </footer>
     </>
   );
 }
 
+// Granular reset dialog — replaces the old all-or-nothing confirm.
+function ResetForm({ onClose, onReset }) {
+  const [opts, setOpts] = useState({
+    history: true,
+    party: false,
+    combat: true,
+    travel: false,
+    scratchNotes: false,
+    bookmarks: false,
+    loot: false,
+    graveyard: false,
+  });
+  const toggle = (k) => setOpts((o) => ({ ...o, [k]: !o[k] }));
+  return (
+    <section className="picker__section reset-form">
+      <p>Pick what to wipe. Leave a slice unchecked to keep it.</p>
+      <ul className="reset-form__list">
+        {[
+          ['history', 'Navigation & visited nodes (reset to start)'],
+          ['party', 'Party tracker (PCs, omens, deaths counter)'],
+          ['combat', 'Combat tracker'],
+          ['travel', 'Overland travel log'],
+          ['scratchNotes', "GM notes scratchpad (per-node)"],
+          ['bookmarks', 'Node bookmarks'],
+          ['loot', 'Loot ledger'],
+          ['graveyard', 'The Graveyard (dead PCs)'],
+        ].map(([key, label]) => (
+          <li key={key}>
+            <label>
+              <input type="checkbox" checked={opts[key]} onChange={() => toggle(key)} />
+              {label}
+            </label>
+          </li>
+        ))}
+      </ul>
+      <footer className="reset-form__foot">
+        <button type="button" className="iconbtn" onClick={onClose}>cancel</button>
+        <button
+          type="button"
+          className="iconbtn iconbtn--danger"
+          onClick={() => onReset(opts)}
+          disabled={!Object.values(opts).some(Boolean)}
+        >
+          ⟲ wipe selected
+        </button>
+      </footer>
+    </section>
+  );
+}
+
+// `?player=1` puts the runner in player-handout mode: hide GM notes and
+// unrevealed secrets, strip the toolbar to back/map/party-HP.
+function isPlayerMode() {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('player') === '1';
+  } catch {
+    return false;
+  }
+}
+
+// Theme variants — persisted to localStorage and applied as classes on <body>.
+const THEME_KEY = 'mb-theme';
+function loadTheme() {
+  try {
+    const raw = localStorage.getItem(THEME_KEY);
+    if (!raw) return { highContrast: false, largeText: false };
+    const t = JSON.parse(raw);
+    return {
+      highContrast: !!t?.highContrast,
+      largeText: !!t?.largeText,
+    };
+  } catch {
+    return { highContrast: false, largeText: false };
+  }
+}
+function saveTheme(t) {
+  try { localStorage.setItem(THEME_KEY, JSON.stringify(t)); } catch { /* ignore */ }
+}
+
 export default function App() {
   const [adventure, setAdventure] = useState(null);
   const [ephemeral, setEphemeral] = useState(false);
   const [shareLoadError, setShareLoadError] = useState(null);
+  const [theme, setTheme] = useState(loadTheme);
+
+  // Apply + persist theme variant classes on body.
+  useEffect(() => {
+    document.body.classList.toggle('theme-high-contrast', theme.highContrast);
+    document.body.classList.toggle('theme-large-text', theme.largeText);
+    saveTheme(theme);
+  }, [theme]);
 
   // Initial load: share-link payload > last loaded > default.
   useEffect(() => {
@@ -682,6 +938,9 @@ export default function App() {
           onClearEphemeral={() => setEphemeral(false)}
           onChangeAdventure={handleChangeAdventure}
           onLoadEphemeral={handleLoadEphemeral}
+          playerMode={isPlayerMode()}
+          theme={theme}
+          onSetTheme={setTheme}
         />
       ) : (
         <div className="loading">

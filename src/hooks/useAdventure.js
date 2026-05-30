@@ -36,6 +36,8 @@ const initialCombatState = {
   initiative: { party: null, enemies: null },
 };
 
+const initialLoot = { silver: 0, items: [] };
+
 function freshState(startNode) {
   return {
     currentNode: startNode,
@@ -46,6 +48,9 @@ function freshState(startNode) {
     gmNotesScratch: {},
     combatState: initialCombatState,
     travelLog: [],
+    bookmarks: [],
+    loot: initialLoot,
+    graveyard: [],
   };
 }
 
@@ -62,6 +67,23 @@ function hydrate(restored) {
   }
   if (!Array.isArray(out.travelLog)) {
     out = { ...out, travelLog: [] };
+  }
+  if (!Array.isArray(out.bookmarks)) {
+    out = { ...out, bookmarks: [] };
+  }
+  if (!out.loot || typeof out.loot !== 'object') {
+    out = { ...out, loot: initialLoot };
+  } else if (!Array.isArray(out.loot.items) || !Number.isFinite(out.loot.silver)) {
+    out = {
+      ...out,
+      loot: {
+        silver: Number.isFinite(out.loot.silver) ? out.loot.silver : 0,
+        items: Array.isArray(out.loot.items) ? out.loot.items : [],
+      },
+    };
+  }
+  if (!Array.isArray(out.graveyard)) {
+    out = { ...out, graveyard: [] };
   }
   // Backfill partyState entirely if missing or shaped wrong — a corrupted save
   // or schema change in the past would otherwise crash on first render.
@@ -240,9 +262,98 @@ export function useAdventure(adventure) {
     setState((s) => ({ ...s, travelLog: [] }));
   }, []);
 
-  const reset = useCallback(() => {
-    setState(freshState(startNode));
-  }, [startNode]);
+  const toggleBookmark = useCallback((nodeId) => {
+    if (!nodeId) return;
+    setState((s) => {
+      const bookmarks = s.bookmarks ?? [];
+      return {
+        ...s,
+        bookmarks: bookmarks.includes(nodeId)
+          ? bookmarks.filter((id) => id !== nodeId)
+          : [...bookmarks, nodeId],
+      };
+    });
+  }, []);
+
+  const updateLoot = useCallback((updater) => {
+    setState((s) => ({
+      ...s,
+      loot: typeof updater === 'function' ? updater(s.loot ?? initialLoot) : updater,
+    }));
+  }, []);
+
+  // Move a PC into the graveyard (canonical Mörk Borg: dead means dead). Snapshot
+  // their stats + the room they died in so the GM can read it back later.
+  const buryMember = useCallback(
+    (memberId, deathInfo) => {
+      setState((s) => {
+        const member = s.partyState?.members?.find((m) => m.id === memberId);
+        if (!member) return s;
+        const node = nodeIndex.get(s.currentNode);
+        const tomb = {
+          id: `gv-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+          name: member.name || 'Unknown',
+          class: member.class || '',
+          hpMax: member.hpMax ?? null,
+          omens: member.omens ?? null,
+          diedAt: node?.title || s.currentNode || 'an unknown place',
+          diedAtNode: s.currentNode,
+          ...deathInfo,
+          at: Date.now(),
+        };
+        return {
+          ...s,
+          partyState: {
+            ...s.partyState,
+            members: s.partyState.members.filter((m) => m.id !== memberId),
+            deaths: (s.partyState.deaths ?? 0) + 1,
+          },
+          graveyard: [...(s.graveyard ?? []), tomb],
+        };
+      });
+    },
+    [nodeIndex]
+  );
+
+  const exhumeMember = useCallback((tombId) => {
+    setState((s) => ({
+      ...s,
+      graveyard: (s.graveyard ?? []).filter((g) => g.id !== tombId),
+    }));
+  }, []);
+
+  // Granular reset: pass an options bag of slices to wipe. With nothing passed,
+  // every slice is cleared (the old behaviour).
+  const reset = useCallback(
+    (opts) => {
+      const all = !opts || Object.keys(opts).length === 0;
+      const wipe = {
+        history: all || opts.history,
+        party: all || opts.party,
+        combat: all || opts.combat,
+        travel: all || opts.travel,
+        scratchNotes: all || opts.scratchNotes,
+        bookmarks: all || opts.bookmarks,
+        loot: all || opts.loot,
+        graveyard: all || opts.graveyard,
+      };
+      setState((s) => ({
+        ...s,
+        currentNode: wipe.history ? startNode : s.currentNode,
+        visitedNodes: wipe.history ? (startNode ? [startNode] : []) : s.visitedNodes,
+        history: wipe.history ? (startNode ? [startNode] : []) : s.history,
+        unlockedExits: wipe.history ? [] : s.unlockedExits,
+        partyState: wipe.party ? initialPartyState : s.partyState,
+        combatState: wipe.combat ? initialCombatState : s.combatState,
+        travelLog: wipe.travel ? [] : (s.travelLog ?? []),
+        gmNotesScratch: wipe.scratchNotes ? {} : (s.gmNotesScratch ?? {}),
+        bookmarks: wipe.bookmarks ? [] : (s.bookmarks ?? []),
+        loot: wipe.loot ? initialLoot : (s.loot ?? initialLoot),
+        graveyard: wipe.graveyard ? [] : (s.graveyard ?? []),
+      }));
+    },
+    [startNode]
+  );
 
   const nodeById = useCallback((id) => nodeIndex.get(id) ?? null, [nodeIndex]);
 
@@ -260,6 +371,10 @@ export function useAdventure(adventure) {
     appendTravelEntry,
     updateTravelEntry,
     clearTravelLog,
+    toggleBookmark,
+    updateLoot,
+    buryMember,
+    exhumeMember,
     reset,
     nodeById,
   };

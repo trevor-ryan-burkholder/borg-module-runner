@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import QRCode from 'qrcode';
 import { encodeAdventureToHash, buildShareUrl, decodeAdventureFromHashPayload } from '../utils/share.js';
 import { validateAdventure } from '../utils/validate.js';
 
@@ -9,6 +10,8 @@ export default function ShareDialog({ adventure, onClose }) {
   const [error, setError] = useState(null);
   const [copied, setCopied] = useState(false);
   const [roundTrip, setRoundTrip] = useState(null);
+  const [qrDataUrl, setQrDataUrl] = useState(null);
+  const [qrError, setQrError] = useState(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -30,6 +33,31 @@ export default function ShareDialog({ adventure, onClose }) {
       cancelled = true;
     };
   }, [adventure]);
+
+  // Regenerate QR code whenever the URL changes. QR has a hard char limit so
+  // we tolerate failure gracefully and surface the reason.
+  useEffect(() => {
+    if (!url) {
+      setQrDataUrl(null);
+      setQrError(null);
+      return;
+    }
+    let cancelled = false;
+    QRCode.toDataURL(url, { errorCorrectionLevel: 'L', margin: 1, width: 320 })
+      .then((dataUrl) => {
+        if (cancelled) return;
+        setQrDataUrl(dataUrl);
+        setQrError(null);
+      })
+      .catch((e) => {
+        if (cancelled) return;
+        setQrDataUrl(null);
+        setQrError(e.message);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [url]);
 
   const copy = async () => {
     if (!url) return;
@@ -131,6 +159,18 @@ export default function ShareDialog({ adventure, onClose }) {
                 <p className={roundTrip.ok ? 'picker__upload-warnings' : 'picker__upload-error'}>
                   {roundTrip.ok ? '✓ round-trips: ' : '⚠ round-trip failed: '}
                   {roundTrip.msg}
+                </p>
+              )}
+
+              {qrDataUrl && (
+                <figure className="share-qr">
+                  <img src={qrDataUrl} alt="QR code of the share link" />
+                  <figcaption>Scan to open this adventure on another device.</figcaption>
+                </figure>
+              )}
+              {qrError && (
+                <p className="picker__upload-error">
+                  QR unavailable for this link: {qrError}. Long share URLs exceed the QR capacity — use the link or the download.
                 </p>
               )}
             </>
