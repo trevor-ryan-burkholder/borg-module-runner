@@ -1,95 +1,54 @@
-// Convert a generated dungeon (rooms + meta) into an adventure JSON shape that
-// matches the runner's loader/validator.
+// Convert a generated dungeon (sectioned rooms) into an adventure JSON shape.
+// The new dungeon shape uses explicit room ids and plural content arrays.
+
+import { makeNode, makeExit, finalizeAdventure } from './genAdventure.js';
 
 export function dungeonToAdventure(dungeon) {
-  const nodes = dungeon.rooms.map((room, i) => {
-    const id = `room-${i + 1}`;
-    const exits = (room.exits ?? []).map((target, ei) => ({
-      id: `exit-${i + 1}-${ei}`,
-      label: `Go to ${nameOf(dungeon.rooms, target) ?? `room ${target + 1}`}`,
-      target: `room-${target + 1}`,
-      condition: null,
-      locked: false,
-    }));
+  const startId = dungeon.rooms[0]?.id ?? 'entrance';
 
-    const enemies = room.enemy
-      ? [
-          {
-            name: room.enemy.name || 'A creature',
-            hp: parseInt(String(room.enemy.hp || '6'), 10) || 6,
-            morale: room.enemy.morale || '7',
-            speed: 'normal',
-            attack: room.enemy.attack || 'd6',
-            special: room.enemy.special || '',
-            notes: room.enemy.descriptor || '',
-          },
-        ]
-      : [];
+  const nodes = dungeon.rooms.map((room) => {
+    const exits = (room.exits ?? []).map((e) =>
+      makeExit(room.id, e.target, e.label, { condition: e.condition ?? null, locked: !!e.locked })
+    );
 
-    const items = room.item ? [room.item] : [];
-    const traps = room.trap
-      ? [
-          {
-            name: room.trap.name,
-            trigger: room.trap.trigger || 'See description',
-            effect: room.trap.effect || 'GM judgement',
-            dr: room.trap.dr || '12',
-          },
-        ]
-      : [];
-    const secrets = room.secret ? [room.secret] : [];
+    // Default the climax / last room as a terminal so the validator stays clean
+    // even if no other tag was provided.
+    const tags = room.tags && room.tags.length
+      ? room.tags
+      : room.section === 'climax'
+        ? ['climax', 'end']
+        : room.section === 'entrance'
+          ? ['start']
+          : [];
 
-    return {
-      id,
+    return makeNode({
+      id: room.id,
       title: room.title,
       type: 'location',
       atmosphere: room.atmosphere || '',
-      read_aloud: '',
+      read_aloud: room.read_aloud || '',
       contents: {
         description: room.description || '',
-        items,
-        enemies,
-        npcs: [],
-        traps,
-        secrets,
+        items: room.items || [],
+        enemies: room.enemies || [],
+        npcs: room.npcs || [],
+        traps: room.traps || [],
+        secrets: room.secrets || [],
       },
-      rules: [],
+      rules: room.rules || [],
       gm_notes: room.gm_notes || '',
       exits,
-      visited: false,
-      tags: i === 0 ? ['start'] : i === dungeon.rooms.length - 1 ? ['end'] : [],
-    };
+      tags,
+    });
   });
 
-  return {
-    meta: {
-      // Unique id so two same-named dungeons don't collide in the library or in
-      // per-adventure session storage.
-      id: `${slugify(dungeon.name)}-${randomSuffix()}`,
-      title: dungeon.name,
-      author: 'Module Runner — Dungeon Generator',
-      version: '1.0',
-      description: dungeon.feature || 'A procedurally generated bedeviled dungeon.',
-      startNode: 'room-1',
-      license: 'Generated content. Roll if you doubt it.',
-      system: dungeon.system || 'morkborg',
-    },
+  return finalizeAdventure({
+    title: dungeon.name,
+    author: 'Module Runner — Dungeon Generator',
+    description: dungeon.feature || 'A procedurally generated bedeviled dungeon.',
+    system: dungeon.system || 'morkborg',
     nodes,
-  };
-}
-
-function slugify(s) {
-  return String(s)
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$/g, '')
-    .slice(0, 40) || 'dungeon';
-}
-
-function randomSuffix() {
-  return Math.random().toString(36).slice(2, 6);
-}
-
-function nameOf(rooms, idx) {
-  return rooms[idx]?.title;
+    startNodeId: startId,
+    license: 'Generated content. Roll if you doubt it.',
+  });
 }

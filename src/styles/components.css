@@ -2909,6 +2909,15 @@ html[data-system='ronin-borg'] .gm-notes__body {
   margin-bottom: 0.7rem;
   background: var(--dark);
 }
+/* Section-coloured border so the layout reads at a glance. */
+.dungeon-room--entrance { border-left-color: var(--yellow); }
+.dungeon-room--body     { border-left-color: var(--yellow-dim); }
+.dungeon-room--side     { border-left-color: var(--bone); border-left-style: dashed; }
+.dungeon-room--climax   { border-left-color: var(--red); }
+.dungeon-room__exit--locked {
+  color: var(--bone);
+  font-style: italic;
+}
 .dungeon-room__title-row {
   display: flex;
   align-items: baseline;

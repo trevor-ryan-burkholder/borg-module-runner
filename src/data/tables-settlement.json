@@ -34,15 +34,24 @@
     "a guild of grave-robbers who call themselves undertakers"
   ],
   "location_types": [
-    { "title": "the tavern", "kind": "tavern", "atmosphere": "Smoke, sour ale, and the wet cough of the dying. Best informed room in town.", "npc": true, "sells": true },
-    { "title": "The Plague-Pit Market", "kind": "market", "atmosphere": "Stalls of dubious meat ring a pit that nobody admits to digging.", "npc": true, "sells": true },
-    { "title": "Shrine of the Two-Headed Basilisks", "kind": "shrine", "atmosphere": "Two stone heads, one always watching. Tallow, ash, and dried blood.", "npc": true, "secret": true },
-    { "title": "The Gallows Square", "kind": "gallows", "atmosphere": "Three ropes — two occupied, one swinging empty and patient.", "enemy": true },
-    { "title": "The Apothecary's Shoppe", "kind": "apothecary", "atmosphere": "Jars of cures that cure nothing, labelled in a hopeful hand.", "npc": true, "sells": true },
-    { "title": "The Weeping Well", "kind": "well", "atmosphere": "Brown water that tastes of someone else's grief.", "secret": true },
-    { "title": "The Bone-Orchard", "kind": "graveyard", "atmosphere": "Fresh mounds outnumber the old. The soil will not settle.", "enemy": true, "secret": true },
-    { "title": "The Rotting Docks", "kind": "docks", "atmosphere": "Black water, dead nets, a boat that keeps returning empty-crewed.", "enemy": true },
-    { "title": "The Midnight Market", "kind": "blackmarket", "atmosphere": "Lanterns shuttered. Everything is for sale here, including you.", "npc": true, "sells": true }
+    { "title": "the tavern", "kind": "tavern", "atmosphere": "Smoke, sour ale, and the wet cough of the dying. Best informed room in town.", "npc": true, "sells": true,
+      "sub": { "title": "The Smoke-Black Backroom", "atmosphere": "Where the deals nobody mentions are made, behind a door that locks both ways.", "kind": "backroom" } },
+    { "title": "The Plague-Pit Market", "kind": "market", "atmosphere": "Stalls of dubious meat ring a pit that nobody admits to digging.", "npc": true, "sells": true,
+      "sub": { "title": "Beneath the Stalls", "atmosphere": "A trapdoor leads to a cold pit of unsold things and unsold people.", "kind": "undercroft" } },
+    { "title": "Shrine of the Two-Headed Basilisks", "kind": "shrine", "atmosphere": "Two stone heads, one always watching. Tallow, ash, and dried blood.", "npc": true, "secret": true,
+      "sub": { "title": "The Reliquary Crypt", "atmosphere": "Bone-saints stacked like cordwood. The youngest is still moist.", "kind": "crypt" } },
+    { "title": "The Gallows Square", "kind": "gallows", "atmosphere": "Three ropes — two occupied, one swinging empty and patient.", "enemy": true,
+      "sub": { "title": "Under the Drop", "atmosphere": "Where the cut-down dead are bagged for the pit. Some bags are warm.", "kind": "crypt" } },
+    { "title": "The Apothecary's Shoppe", "kind": "apothecary", "atmosphere": "Jars of cures that cure nothing, labelled in a hopeful hand.", "npc": true, "sells": true,
+      "sub": { "title": "The Apothecary's Cellar", "atmosphere": "Jars of things that should not have been jarred. The labels are in a hand that is not the apothecary's.", "kind": "basement" } },
+    { "title": "The Weeping Well", "kind": "well", "atmosphere": "Brown water that tastes of someone else's grief.", "secret": true,
+      "sub": { "title": "The Diver's Ledge", "atmosphere": "A narrow ledge inside the well-shaft. Someone goes down on a rope; someone else hopes they come back.", "kind": "basement" } },
+    { "title": "The Bone-Orchard", "kind": "graveyard", "atmosphere": "Fresh mounds outnumber the old. The soil will not settle.", "enemy": true, "secret": true,
+      "sub": { "title": "The Caretaker's Hut", "atmosphere": "Tools, ledgers of the dead, and one fresh bed nobody has slept in.", "kind": "backroom" } },
+    { "title": "The Rotting Docks", "kind": "docks", "atmosphere": "Black water, dead nets, a boat that keeps returning empty-crewed.", "enemy": true,
+      "sub": { "title": "Under the Pilings", "atmosphere": "Brackish dark where things wash up the wrong way and stay.", "kind": "basement" } },
+    { "title": "The Midnight Market", "kind": "blackmarket", "atmosphere": "Lanterns shuttered. Everything is for sale here, including you.", "npc": true, "sells": true,
+      "sub": { "title": "The Cellar Behind the Cellar", "atmosphere": "Past two false walls. The price for being here is being seen.", "kind": "basement" } }
   ],
   "tavern_names": ["The Paunchy Swine", "The Hanged Pilgrim", "The Last Cup", "The Drowned Rat", "The Weeping Sow", "The Broken Wheel", "The Cold Hearth", "The Gallows Bird"],
   "problems": [
@@ -85,5 +94,14 @@
     "Smoke, frost, and the smell of a place that has stopped hoping.",
     "Mud, bells, and shuttered windows — eyes behind every one.",
     "The road simply ends here, the way a sentence ends when the speaker dies."
+  ],
+  "tokens": [
+    "the gate-watch's iron seal",
+    "the priest's blessing-stone",
+    "the tax-farmer's writ of passage",
+    "a bone-key from the bone-orchard",
+    "the gallows-master's leather cord",
+    "the apothecary's wax-marked ledger",
+    "a single warm coin minted last winter"
   ]
 }

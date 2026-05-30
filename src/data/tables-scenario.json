@@ -58,5 +58,46 @@
     "offers coin you both know is cursed.",
     "does not ask so much as inform you.",
     "is already dead when the message arrives, but the message remains."
+  ],
+  "side_site_types": [
+    "A locked chapel-vault on a side road",
+    "A surveyor's abandoned tent, charts still pinned",
+    "A hermit's stilt-house over black water",
+    "A rust-eaten reliquary in the brush",
+    "A bone-pit somebody filled in too quickly",
+    "A cracked obelisk nobody can read",
+    "A burnt shepherd's hut with a fresh footprint",
+    "A toll-booth without a road"
+  ],
+  "side_secrets": [
+    "A scroll bears a list of names — one of yours is on it.",
+    "A bone-key carved with the same mark as a door you have not yet seen.",
+    "A coin minted by a kingdom that no longer exists; warm to the touch.",
+    "A child's drawing of the villain, drawn from life, recent.",
+    "A ledger of debts owed to the climax-warden, marked PAID IN MEAT.",
+    "A jar of teeth labelled in someone's careful hand: 'mine.'"
+  ],
+  "climax_keys": [
+    "the bone-and-iron warden's key",
+    "the saint's finger-bone, scrimshawed with a sigil",
+    "the heretic's mask of stitched skin",
+    "the broken seal of the dead chapel",
+    "an unsigned writ of passage in old ink",
+    "the bone whistle that no living throat can sound"
+  ],
+  "antechamber_themes": [
+    "A warden's lobby of polished black stone",
+    "A sallyport stinking of rust and prayer",
+    "A cold vestibule lined with bound chronicles",
+    "A bell-room where the rope ends in a hand",
+    "An iron foreroom, walls scored by claws from inside"
+  ],
+  "warden_titles": [
+    "the Door-Mouth",
+    "the Iron Verger",
+    "the Last Footman",
+    "the Tally-Keeper",
+    "the Whip-Hand",
+    "the Veiled Steward"
   ]
 }
