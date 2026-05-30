@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { dungeonToAdventure } from '../utils/dungeonToAdventure.js';
 import { generateDungeon } from '../utils/generateDungeon.js';
+import NumberField from './NumberField.jsx';
 
 export default function DungeonGenerator({ open, onClose, onRun }) {
   const [roomCount, setRoomCount] = useState(9);
@@ -34,12 +35,11 @@ export default function DungeonGenerator({ open, onClose, onRun }) {
       <div className="dungeon-gen__controls">
         <label>
           Rooms
-          <input
-            type="number"
+          <NumberField
             min="6"
             max="14"
             value={roomCount}
-            onChange={(e) => setRoomCount(parseInt(e.target.value, 10) || 9)}
+            onChange={(n) => setRoomCount(n)}
           />
         </label>
         <button type="button" className="iconbtn iconbtn--rules" onClick={roll}>

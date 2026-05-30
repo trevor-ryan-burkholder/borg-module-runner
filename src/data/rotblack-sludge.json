@@ -78,7 +78,11 @@
         }
       ],
       "visited": false,
-      "tags": ["start", "scene", "npc"]
+      "tags": [
+        "start",
+        "scene",
+        "npc"
+      ]
     },
     {
       "id": "den-entrance",
@@ -119,7 +123,9 @@
         }
       ],
       "visited": false,
-      "tags": ["start", "entrance"]
+      "tags": [
+        "entrance"
+      ]
     },
     {
       "id": "guard-room",
@@ -196,7 +202,10 @@
         }
       ],
       "visited": false,
-      "tags": ["combat", "loot"]
+      "tags": [
+        "combat",
+        "loot"
+      ]
     },
     {
       "id": "library-bedroom",
@@ -206,11 +215,11 @@
       "read_aloud": "Stone shelves crammed with rotting books. Three iron-frame cots, each holding a skeleton laid out with their hands folded across their chests — neat, ceremonial. A reading-stand at the center holds a single open volume, its pages thick and dark. The air here is dry where the rest of the Den is damp. The skeletons do not look like they died here. They look like they were brought here and tucked in.",
       "contents": {
         "description": "A library-bedroom hybrid. Three skeletons rest on cots. The shelves contain obscure necromantic and theological texts — most are too rotten to use. The open volume on the stand is a primer of necromantic Powers, mostly faded. Reading it aloud is largely meaningless except for the trap-phrase below: shouting 'You dead, arise!' summons the Tired Crystal Demon.",
-          "items": [
-            "Rotting books — 1d6 are intact enough to grant a single GM-chosen Power (one-shot scroll) to a literate PC who spends d6 hours studying. Each Power roll is misinterpreted on 1–3 instead of 1.",
-            "On the open stand: a primer with the phrase 'You dead, arise!' clearly marked. Reading it silently does nothing. Speaking it triggers the Crystal Demon.",
-            "The three skeletons wear identical wool nightshirts of high quality. Each pocket contains a single dried fig and a wooden token marked with the same rune."
-          ],
+        "items": [
+          "Rotting books — 1d6 are intact enough to grant a single GM-chosen Power (one-shot scroll) to a literate PC who spends d6 hours studying. Each Power roll is misinterpreted on 1–3 instead of 1.",
+          "On the open stand: a primer with the phrase 'You dead, arise!' clearly marked. Reading it silently does nothing. Speaking it triggers the Crystal Demon.",
+          "The three skeletons wear identical wool nightshirts of high quality. Each pocket contains a single dried fig and a wooden token marked with the same rune."
+        ],
         "enemies": [],
         "npcs": [
           {
@@ -255,7 +264,11 @@
         }
       ],
       "visited": false,
-      "tags": ["puzzle", "treasure", "trap"]
+      "tags": [
+        "puzzle",
+        "treasure",
+        "trap"
+      ]
     },
     {
       "id": "upper-corridor",
@@ -325,7 +338,9 @@
         }
       ],
       "visited": false,
-      "tags": ["hub"]
+      "tags": [
+        "hub"
+      ]
     },
     {
       "id": "prisoners-cells",
@@ -383,7 +398,10 @@
         }
       ],
       "visited": false,
-      "tags": ["roleplay", "npc"]
+      "tags": [
+        "roleplay",
+        "npc"
+      ]
     },
     {
       "id": "dining-hall",
@@ -432,7 +450,10 @@
         }
       ],
       "visited": false,
-      "tags": ["roleplay", "npc"]
+      "tags": [
+        "roleplay",
+        "npc"
+      ]
     },
     {
       "id": "kitchen",
@@ -497,7 +518,10 @@
         }
       ],
       "visited": false,
-      "tags": ["combat", "loot"]
+      "tags": [
+        "combat",
+        "loot"
+      ]
     },
     {
       "id": "forge-slaughterhouse",
@@ -564,7 +588,10 @@
         }
       ],
       "visited": false,
-      "tags": ["combat", "boss"]
+      "tags": [
+        "combat",
+        "boss"
+      ]
     },
     {
       "id": "pump-room",
@@ -650,7 +677,11 @@
         }
       ],
       "visited": false,
-      "tags": ["hub", "trap", "random-encounter"]
+      "tags": [
+        "hub",
+        "trap",
+        "random-encounter"
+      ]
     },
     {
       "id": "sludge-chamber",
@@ -700,7 +731,10 @@
         }
       ],
       "visited": false,
-      "tags": ["trap", "gutworm-reachable"]
+      "tags": [
+        "trap",
+        "gutworm-reachable"
+      ]
     },
     {
       "id": "greenhouse-tunnel",
@@ -746,7 +780,10 @@
         }
       ],
       "visited": false,
-      "tags": ["transition", "puzzle"]
+      "tags": [
+        "transition",
+        "puzzle"
+      ]
     },
     {
       "id": "greenhouse",
@@ -816,7 +853,11 @@
         }
       ],
       "visited": false,
-      "tags": ["roleplay", "boss", "treasure"]
+      "tags": [
+        "roleplay",
+        "boss",
+        "treasure"
+      ]
     },
     {
       "id": "statue-room",
@@ -881,7 +922,10 @@
         }
       ],
       "visited": false,
-      "tags": ["puzzle", "gutworm-reachable"]
+      "tags": [
+        "puzzle",
+        "gutworm-reachable"
+      ]
     },
     {
       "id": "sons-room",
@@ -943,7 +987,11 @@
         }
       ],
       "visited": false,
-      "tags": ["roleplay", "boss", "objective"]
+      "tags": [
+        "roleplay",
+        "boss",
+        "objective"
+      ]
     },
     {
       "id": "chain-room",
@@ -1007,7 +1055,10 @@
         }
       ],
       "visited": false,
-      "tags": ["trap", "random-encounter"]
+      "tags": [
+        "trap",
+        "random-encounter"
+      ]
     },
     {
       "id": "debris-room",
@@ -1083,7 +1134,12 @@
         }
       ],
       "visited": false,
-      "tags": ["trap", "gutworm-reachable", "random-encounter", "secret-exit"]
+      "tags": [
+        "trap",
+        "gutworm-reachable",
+        "random-encounter",
+        "secret-exit"
+      ]
     },
     {
       "id": "escape",
@@ -1130,7 +1186,10 @@
         }
       ],
       "visited": false,
-      "tags": ["end", "scene"]
+      "tags": [
+        "end",
+        "scene"
+      ]
     }
   ],
   "bestiary": [

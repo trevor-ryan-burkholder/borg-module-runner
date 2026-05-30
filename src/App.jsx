@@ -134,7 +134,7 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
         target?.tagName === 'TEXTAREA' ||
         target?.tagName === 'SELECT' ||
         target?.isContentEditable;
-      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      if (e.metaKey || e.ctrlKey || e.altKey || e.shiftKey) return;
 
       // Escape closes the topmost panel, and must work even when a form element
       // (e.g. the bestiary search box) has focus — otherwise the user is trapped.
@@ -604,6 +604,8 @@ export default function App() {
           const v = validateAdventure(decoded);
           if (!v.ok) {
             setShareLoadError(`Share link is malformed: ${v.errors.join(' · ')}`);
+            // Clear the broken hash so a reload doesn't re-trigger the failure.
+            clearShareFromLocation();
           } else {
             if (cancelled) return;
             setAdventure(decoded);
@@ -613,6 +615,7 @@ export default function App() {
           }
         } catch (e) {
           setShareLoadError(`Could not load share link: ${e.message}`);
+          clearShareFromLocation();
         }
       }
 
@@ -627,6 +630,9 @@ export default function App() {
           if (!cancelled) setAdventure(getBundledAdventure(lastId));
           return;
         }
+        // Stale pointer to a deleted user adventure / unknown id — clear it so
+        // we don't keep falling through to the default forever.
+        setLastLoaded(DEFAULT_ADVENTURE_ID);
       }
 
       if (!cancelled) setAdventure(getBundledAdventure(DEFAULT_ADVENTURE_ID));

@@ -206,6 +206,12 @@ export default function MapView({ adventure, currentNode, visited, onJump, onClo
                     transform={`translate(${pos.x}, ${pos.y})`}
                     className={cls}
                     onClick={() => onJump(n.id)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        onJump(n.id);
+                      }
+                    }}
                     role="button"
                     tabIndex={0}
                   >

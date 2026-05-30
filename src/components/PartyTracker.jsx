@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { rollDie } from '../utils/dice.js';
 import { uid } from '../utils/id.js';
 import CharacterGenerator from './CharacterGenerator.jsx';
+import NumberField from './NumberField.jsx';
 
 const BLANK_PC = () => ({
   id: uid('pc'),
@@ -75,7 +76,9 @@ export default function PartyTracker({ party, onUpdate, onDismiss }) {
   const rollBrokenFor = (idx) => {
     const die = rollDie(4);
     const outcome = BROKEN_TABLE[die];
-    setBrokenResult({ idx, die, outcome });
+    // Key the result by stable member id so it follows the PC across remove/reorder
+    // instead of attaching to whoever is now at that index.
+    setBrokenResult({ memberId: party.members[idx]?.id, die, outcome });
     if (die === 4) {
       onUpdate((p) => ({
         ...p,
@@ -132,7 +135,7 @@ export default function PartyTracker({ party, onUpdate, onDismiss }) {
 
       <ul className="party-list">
         {party.members.map((m, i) => (
-          <li key={i} className={`pc-card ${m.dead ? 'pc-card--dead' : ''} ${m.expanded ? 'pc-card--open' : ''}`}>
+          <li key={m.id || i} className={`pc-card ${m.dead ? 'pc-card--dead' : ''} ${m.expanded ? 'pc-card--open' : ''}`}>
             <header className="pc-card__head">
               <button
                 type="button"
@@ -152,17 +155,15 @@ export default function PartyTracker({ party, onUpdate, onDismiss }) {
               />
               <div className="pc-card__hp">
                 <button type="button" onClick={() => damagePC(i, 1)} title="-1 HP">−</button>
-                <input
-                  type="number"
+                <NumberField
                   value={m.hp ?? 0}
-                  onChange={(e) => update(i, { hp: parseInt(e.target.value, 10) || 0 })}
+                  onChange={(n) => update(i, { hp: n })}
                   aria-label="Current HP"
                 />
                 <span>/</span>
-                <input
-                  type="number"
+                <NumberField
                   value={m.hpMax ?? m.hp ?? 0}
-                  onChange={(e) => update(i, { hpMax: parseInt(e.target.value, 10) || 0 })}
+                  onChange={(n) => update(i, { hpMax: n })}
                   aria-label="Max HP"
                 />
                 <button type="button" onClick={() => damagePC(i, -1)} title="+1 HP">+</button>
@@ -192,12 +193,9 @@ export default function PartyTracker({ party, onUpdate, onDismiss }) {
                   </label>
                   <label>
                     Silver
-                    <input
-                      type="number"
+                    <NumberField
                       value={m.silver ?? 0}
-                      onChange={(e) =>
-                        update(i, { silver: parseInt(e.target.value, 10) || 0 })
-                      }
+                      onChange={(n) => update(i, { silver: n })}
                     />
                   </label>
                 </div>
@@ -211,23 +209,17 @@ export default function PartyTracker({ party, onUpdate, onDismiss }) {
                   ].map(([label, key]) => (
                     <label key={key} className="ability">
                       <span>{label}</span>
-                      <input
-                        type="number"
+                      <NumberField
                         value={m[key] ?? 0}
-                        onChange={(e) =>
-                          update(i, { [key]: parseInt(e.target.value, 10) || 0 })
-                        }
+                        onChange={(n) => update(i, { [key]: n })}
                       />
                     </label>
                   ))}
                   <label className="ability">
                     <span>Omens</span>
-                    <input
-                      type="number"
+                    <NumberField
                       value={m.omens ?? 0}
-                      onChange={(e) =>
-                        update(i, { omens: parseInt(e.target.value, 10) || 0 })
-                      }
+                      onChange={(n) => update(i, { omens: n })}
                     />
                   </label>
                 </div>
@@ -271,7 +263,7 @@ export default function PartyTracker({ party, onUpdate, onDismiss }) {
                   </label>
                 </div>
 
-                {brokenResult?.idx === i && (
+                {brokenResult?.memberId === m.id && (
                   <div className={`pc-card__broken ${brokenResult.die === 4 ? 'pc-card__broken--dead' : ''}`}>
                     <strong>d4 = {brokenResult.die}.</strong> {brokenResult.outcome}
                   </div>

@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { validateAdventure, slugify } from '../utils/validate.js';
 import { saveUserAdventure } from '../utils/library.js';
 import { generateScenario } from '../utils/generateScenario.js';
+import NumberField from './NumberField.jsx';
 
 const TEMPLATE = {
   meta: {
@@ -99,10 +100,17 @@ export default function AdventureBuilder({ initial, onSave, onClose }) {
     return validateAdventure(parsed);
   }, [parsed]);
 
-  // Open the first node by default once parsed.
+  // Open the first node by default once parsed; re-seed if the currently-open
+  // node was deleted or no longer exists in the parsed adventure (e.g. after a
+  // delete, rename, or random-generate).
   useEffect(() => {
-    if (!openNode && parsed?.nodes?.[0]?.id) {
-      setOpenNode(parsed.nodes[0].id);
+    const ids = parsed?.nodes?.map((n) => n.id) ?? [];
+    if (ids.length === 0) {
+      if (openNode !== null) setOpenNode(null);
+      return;
+    }
+    if (!openNode || !ids.includes(openNode)) {
+      setOpenNode(ids[0]);
     }
   }, [openNode, parsed]);
 
@@ -170,11 +178,25 @@ export default function AdventureBuilder({ initial, onSave, onClose }) {
 
   const handleSaveToLibrary = (thenLoad) => {
     if (!parsed || !validation?.ok) return;
-    if (!parsed.meta.id) parsed.meta.id = slugify(parsed.meta.title);
-    saveUserAdventure(parsed);
-    setSavedMessage(`Saved "${parsed.meta.title}" to your library.`);
-    setTimeout(() => setSavedMessage(null), 3000);
-    onSave?.(parsed, { thenLoad });
+    // Build a non-mutating copy with a derived id if needed, then write it back
+    // to the editor so the textarea reflects what was actually persisted.
+    const toSave = {
+      ...parsed,
+      meta: {
+        ...parsed.meta,
+        id: parsed.meta.id || slugify(parsed.meta.title),
+      },
+    };
+    try {
+      saveUserAdventure(toSave);
+      if (toSave.meta.id !== parsed.meta.id) writeParsed(toSave);
+      setSavedMessage(`Saved "${toSave.meta.title}" to your library.`);
+      setTimeout(() => setSavedMessage(null), 3000);
+      onSave?.(toSave, { thenLoad });
+    } catch (err) {
+      setSavedMessage(`⚠ Save failed: ${err.message}`);
+      setTimeout(() => setSavedMessage(null), 5000);
+    }
   };
 
   const handleDownload = () => {
@@ -587,7 +609,7 @@ function NodeForm({ node, isStart, onChange, onRename, onDelete, onSetStart }) {
         renderItem={(e, i) => (
           <div className="grid-2">
             <label><span>name</span><input value={e.name || ''} onChange={(ev) => updArray('enemies', i, { name: ev.target.value })} /></label>
-            <label><span>HP</span><input type="number" value={e.hp ?? 0} onChange={(ev) => updArray('enemies', i, { hp: parseInt(ev.target.value, 10) || 0 })} /></label>
+            <label><span>HP</span><NumberField value={e.hp ?? 0} onChange={(n) => updArray('enemies', i, { hp: n })} /></label>
             <label><span>Morale</span><input value={e.morale || ''} onChange={(ev) => updArray('enemies', i, { morale: ev.target.value })} /></label>
             <label><span>Speed</span><input value={e.speed || ''} onChange={(ev) => updArray('enemies', i, { speed: ev.target.value })} /></label>
             <label className="grid-full"><span>Attack</span><input value={e.attack || ''} onChange={(ev) => updArray('enemies', i, { attack: ev.target.value })} /></label>

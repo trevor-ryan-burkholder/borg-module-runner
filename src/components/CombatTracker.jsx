@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { rollDice } from '../utils/dice.js';
 import { rollSideInitiative, parseMorale, buildCombatants } from '../utils/combat.js';
+import NumberField from './NumberField.jsx';
 
 // Re-export so existing importers (App.jsx) keep a stable surface.
 export { rollSideInitiative, buildCombatants };
@@ -51,12 +52,11 @@ export default function CombatTracker({ open, onClose, combatState, setCombat, e
     }));
   };
 
-  const setHp = (id, value) => {
-    const n = parseInt(value, 10);
+  const setHp = (id, n) => {
     setCombat((cs) => ({
       ...cs,
       combatants: cs.combatants.map((c) =>
-        c.id === id ? { ...c, hp: Number.isNaN(n) ? c.hp : n, dead: (Number.isNaN(n) ? c.hp : n) <= 0 ? true : c.dead } : c
+        c.id === id ? { ...c, hp: n, dead: n <= 0 ? true : c.dead } : c
       ),
     }));
   };
@@ -126,10 +126,9 @@ export default function CombatTracker({ open, onClose, combatState, setCombat, e
         <div className="combatant__row">
           <span className="combatant__label">HP</span>
           <button type="button" className="iconbtn" onClick={() => damageBy(c.id, -1)}>−</button>
-          <input
-            type="number"
+          <NumberField
             value={c.hp}
-            onChange={(e) => setHp(c.id, e.target.value)}
+            onChange={(n) => setHp(c.id, n)}
             className="combatant__hp-input"
             aria-label="HP"
           />

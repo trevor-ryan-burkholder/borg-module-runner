@@ -9,9 +9,9 @@
       "source": "The Death Ziggurat",
       "hp": "20",
       "morale": "11",
-      "attack": "Akünh has a full canonical stat block in The Death Ziggurat (HP 20",
-      "special": "",
-      "lore": "Death scream, Claws and devouring, Dark rays, Separated heart, Teleport) and appears in source primarily as a creature the PCs fight. The audit (audits/audit_npcs.md) flagged a missing NPC entry, but creating one would duplicate the stat block and the entity-as-actor content already present here. Decision: keep the single canonical entry under wiki/creatures/. The wiki/npcs/README.md entry redirects here rather than creating a stub NPC page. This mirrors how Sarku (her former advisor, no stat block as a creature) is filed under npcs/, while Akünh — definitively statted — stays in creatures/. --- # Dread Akünh, Demon Spawn the five-eyed daughter of SHE and the Death Realm"
+      "attack": "Claws and devouring, +2, d10 (twice per round). Two hits in one round = devoured (Strength DR14 to escape or die).",
+      "special": "Death scream (Presence DR12 or drawn to arm's length). Dark rays from her eyes, d4 to d6 enemies. Teleports freely within her depression. Her heart is hidden elsewhere — she cannot truly die until it is destroyed.",
+      "lore": "Five-eyed daughter of SHE and the Death Realm. Imprisoned by the Creton Order in a ziggurat of bone; the rot-priests dig her out one chant at a time. When she rises fully, the realm of the dead rises with her."
     },
     {
       "id": "alchemical-ooze",

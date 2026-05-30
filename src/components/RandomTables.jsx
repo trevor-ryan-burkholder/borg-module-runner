@@ -48,7 +48,7 @@ const TABLES = [
   { id: 'dungwho', cat: 'Dungeon', name: 'Who Lives There', die: 'd12', data: dungeons.inhabitants },
   { id: 'dungfeat', cat: 'Dungeon', name: 'Distinctive Feature', die: 'd12', data: dungeons.features },
   { id: 'dungdanger', cat: 'Dungeon', name: 'Imminent Danger', die: 'd10', data: dungeons.imminent_danger },
-  { id: 'dungroom', cat: 'Dungeon', name: 'Room Detail', die: 'd4×d6', data: dungeons.room_atmospheres },
+  { id: 'dungroom', cat: 'Dungeon', name: 'Room Detail', die: '1-in-31', data: dungeons.room_atmospheres },
   { id: 'traps', cat: 'Dungeon', name: 'Traps', die: 'd12', data: traps.entries, format: formatTrap },
 
   // Powers

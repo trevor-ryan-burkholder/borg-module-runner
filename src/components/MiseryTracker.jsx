@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { rollDie } from '../utils/dice.js';
+import NumberField from './NumberField.jsx';
 
 const STORAGE_KEY = 'mb-misery-state';
 
@@ -151,11 +152,10 @@ export default function MiseryTracker({ open, onClose }) {
       <section className="misery-tracker__state">
         <div className="misery-stat">
           <span className="misery-stat__label">Day</span>
-          <input
-            type="number"
+          <NumberField
             min={1}
             value={state.day}
-            onChange={(e) => setDay(e.target.value)}
+            onChange={(n) => setDay(Math.max(1, n))}
           />
           <button type="button" className="iconbtn" onClick={advanceDay}>+1 day</button>
         </div>

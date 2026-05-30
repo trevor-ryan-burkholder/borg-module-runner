@@ -63,6 +63,19 @@ function hydrate(restored) {
   if (!Array.isArray(out.travelLog)) {
     out = { ...out, travelLog: [] };
   }
+  // Backfill partyState entirely if missing or shaped wrong — a corrupted save
+  // or schema change in the past would otherwise crash on first render.
+  if (!out.partyState || typeof out.partyState !== 'object') {
+    out = { ...out, partyState: initialPartyState };
+  } else {
+    const p = out.partyState;
+    const fixed = {
+      members: Array.isArray(p.members) ? p.members : [],
+      omens: Number.isFinite(p.omens) ? p.omens : initialPartyState.omens,
+      deaths: Number.isFinite(p.deaths) ? p.deaths : initialPartyState.deaths,
+    };
+    out = { ...out, partyState: fixed };
+  }
   // Backfill stable ids on party members saved before ids existed, so combat
   // sync can match them reliably.
   const members = out.partyState?.members;

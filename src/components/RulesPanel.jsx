@@ -4,6 +4,13 @@ export default function RulesPanel({ rules, open, onClose }) {
   const sections = rules?.rules_reference?.sections ?? [];
   const [openSection, setOpenSection] = useState(sections[0]?.id ?? null);
 
+  // When the rules set itself changes (e.g. system switch morkborg ↔ ronin-borg),
+  // the previously opened section id no longer exists. Reset to the first one.
+  useEffect(() => {
+    setOpenSection(sections[0]?.id ?? null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [rules]);
+
   useEffect(() => {
     if (!open) return;
     const onKey = (e) => {
