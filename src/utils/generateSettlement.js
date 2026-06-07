@@ -71,14 +71,14 @@ function buildSubLocationContents(sub, region, problem) {
       if (chance(0.5)) c.secrets.push(spokeSecret(problem));
       break;
     case 'crypt':
-      c.enemies.push(bestiaryEnemy());
+      c.enemies.push(bestiaryEnemy({ context: 'dungeon' }));
       c.items.push(rollValue(region.goods));
       c.secrets.push(spokeSecret(problem));
       break;
     case 'undercroft':
       c.items.push(rollValue(S.wares));
       c.items.push(rollValue(region.goods));
-      if (chance(0.5)) c.enemies.push(bestiaryEnemy());
+      if (chance(0.5)) c.enemies.push(bestiaryEnemy({ context: 'dungeon' }));
       c.secrets.push(`Smuggler's note: ${rollValue(S.rumors)}`);
       break;
     case 'basement':
@@ -124,7 +124,7 @@ export function generateSettlement(opts = {}) {
     const contents = { description: '', items: [], enemies: [], npcs: [], traps: [], secrets: [] };
     if (t.npc) contents.npcs.push(rollNpc());
     if (chance(0.4)) contents.npcs.push(rollNpc()); // second NPC sometimes
-    if (t.enemy) contents.enemies.push(bestiaryEnemy());
+    if (t.enemy) contents.enemies.push(bestiaryEnemy({ context: 'dungeon' }));
     if (t.sells) {
       contents.items.push(rollValue(S.wares));
       contents.items.push(rollValue(region.goods));
@@ -207,7 +207,7 @@ export function generateSettlement(opts = {}) {
   }
 
   // Court antechamber (between gate and inner seat).
-  const wardenEnemy = bestiaryEnemy();
+  const wardenEnemy = bestiaryEnemy({ context: 'dungeon' });
   wardenEnemy.notes = `Court warden — bars the inner door without ${token}.`;
   const anteNode = makeNode({
     id: ANTE,
@@ -241,7 +241,7 @@ export function generateSettlement(opts = {}) {
     traps: [],
     secrets: [`The truth: ${problem} The cause is in this room, and it already knows your name.`],
   };
-  if (power.boss) seatContents.enemies.push(bestiaryEnemy({ boss: true }));
+  if (power.boss) seatContents.enemies.push(bestiaryEnemy({ boss: true, context: 'dungeon' }));
   else seatContents.npcs.push(rollNpc({ attitude: 'hostile' }));
 
   const seatNode = makeNode({

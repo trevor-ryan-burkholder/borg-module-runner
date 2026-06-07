@@ -151,6 +151,62 @@ export function useAdventure(adventure) {
     return () => clearTimeout(t);
   }, [adventureId, state]);
 
+  // Whenever the party changes during an active fight, sync the combat tracker:
+  // add new (or formerly-missing) PCs, drop removed PCs. Existing combatants
+  // matched by memberId keep their combat HP and conditions — we never reset
+  // those mid-fight.
+  useEffect(() => {
+    setState((s) => {
+      if (!s.combatState?.active) return s;
+      const pcCombatants = s.combatState.combatants.filter((c) => c.kind === 'pc');
+      const otherCombatants = s.combatState.combatants.filter((c) => c.kind !== 'pc');
+      const livingMembers = (s.partyState.members || []).filter((m) => !m.dead);
+
+      const partyBackedPcs = livingMembers.map((m, idx) => {
+        const existing = pcCombatants.find((c) =>
+          m.id && c.memberId === m.id
+            ? true
+            : !m.id && c.memberId == null && c.partyIndex === idx
+        );
+        if (existing) return existing;
+        return {
+          id: `c-pc-${m.id || 'idx' + idx}-${Date.now()}-${Math.random().toString(36).slice(2, 5)}`,
+          kind: 'pc',
+          partyIndex: idx,
+          memberId: m.id ?? null,
+          name: m.name || `PC ${idx + 1}`,
+          hp: m.hp ?? m.hpMax ?? 4,
+          hpMax: m.hpMax ?? m.hp ?? 4,
+          conditions: m.conditions
+            ? m.conditions.split(',').map((x) => x.trim()).filter(Boolean)
+            : [],
+          dead: false,
+        };
+      });
+
+      // Preserve free-floating PC combatants — ones the GM added via "+add" for
+      // a guest who isn't in the party tracker. Anything in pcCombatants that
+      // wasn't reused above is free-floating.
+      const usedIds = new Set(
+        partyBackedPcs.filter((c) => pcCombatants.includes(c)).map((c) => c.id)
+      );
+      const freeFloatingPcs = pcCombatants.filter((c) => !usedIds.has(c.id));
+      const newPcs = [...partyBackedPcs, ...freeFloatingPcs];
+
+      // No change → return same state ref (no re-render, no loop).
+      if (
+        newPcs.length === pcCombatants.length &&
+        newPcs.every((p, i) => p === pcCombatants[i])
+      ) {
+        return s;
+      }
+      return {
+        ...s,
+        combatState: { ...s.combatState, combatants: [...newPcs, ...otherCombatants] },
+      };
+    });
+  }, [state.partyState.members, state.combatState?.active]);
+
   const currentNode = nodeIndex.get(state.currentNode) ?? null;
 
   const goToNode = useCallback(

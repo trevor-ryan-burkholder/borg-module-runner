@@ -100,7 +100,7 @@ export function generateDungeon(opts = {}) {
   // Entrance.
   const entrance = blankRoom('entrance', 'entrance', 'The Threshold');
   entrance.atmosphere = composeAtmosphere(rollValue(dungeons.room_atmospheres), 2);
-  entrance.enemies.push(bestiaryEnemy());
+  entrance.enemies.push(bestiaryEnemy({ context: 'dungeon' }));
   entrance.npcs.push(rollNpc({ attitude: 'neutral' }));
   entrance.gm_notes = `Tone: ${feature}. Inhabitants: ${inhabitants}.`;
   entrance.tags = ['start'];
@@ -114,15 +114,15 @@ export function generateDungeon(opts = {}) {
     r.atmosphere = composeAtmosphere(rollValue(dungeons.room_atmospheres), 2);
 
     if (isLast) {
-      const warden = bestiaryEnemy();
+      const warden = bestiaryEnemy({ context: 'dungeon' });
       warden.name = `${warden.name} (Warden)`;
       r.enemies.push(warden);
-      if (chance(0.5)) r.enemies.push(bestiaryEnemy());
+      if (chance(0.5)) r.enemies.push(bestiaryEnemy({ context: 'dungeon' }));
       r.gm_notes = 'Antechamber. The inner door is locked — the relic-key from a side passage opens it.';
       r.tags = ['antechamber'];
     } else {
       const eCount = (chance(0.7) ? 1 : 0) + (chance(0.4) ? 1 : 0);
-      for (let e = 0; e < eCount; e++) r.enemies.push(bestiaryEnemy());
+      for (let e = 0; e < eCount; e++) r.enemies.push(bestiaryEnemy({ context: 'dungeon' }));
       if (chance(0.35)) r.traps.push(rollValue(traps.entries));
       if (chance(0.55)) r.items.push(rollValue(items.entries));
       if (chance(0.3)) r.npcs.push(rollNpc());
@@ -142,7 +142,7 @@ export function generateDungeon(opts = {}) {
     r.atmosphere = composeAtmosphere(rollValue(dungeons.room_atmospheres), 2);
     r.items.push(rollValue(items.entries));
     if (chance(0.6)) r.items.push(rollValue(items.entries));
-    if (chance(0.4)) r.enemies.push(bestiaryEnemy());
+    if (chance(0.4)) r.enemies.push(bestiaryEnemy({ context: 'dungeon' }));
     if (chance(0.3)) r.traps.push(rollValue(traps.entries));
     if (chance(0.5)) r.secrets.push(pickFrom(ROOM_SECRET_SEEDS));
     sides.push(r);
@@ -163,7 +163,7 @@ export function generateDungeon(opts = {}) {
   // Climax.
   const climax = blankRoom('climax', 'climax', 'The Black Heart');
   climax.atmosphere = composeAtmosphere('The room everything else fed.', 2);
-  climax.enemies.push(bestiaryEnemy({ boss: true }));
+  climax.enemies.push(bestiaryEnemy({ boss: true, context: 'dungeon' }));
   const treasureCount = 2 + (chance(0.5) ? 1 : 0);
   for (let t = 0; t < treasureCount; t++) climax.items.push(rollValue(items.entries));
   climax.secrets.push(pickFrom(ROOM_SECRET_SEEDS));

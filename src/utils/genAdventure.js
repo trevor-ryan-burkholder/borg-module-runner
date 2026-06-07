@@ -99,15 +99,37 @@ export function rollNpc({ attitude } = {}) {
   };
 }
 
+// 48 of 97 bestiary entries are wilderness fauna from the Eat-Prey-Kill regional
+// supplement. Picking uniformly fills generated dungeons with carrion owls; this
+// helper carves the pool by context so dungeons and settlements get undead /
+// cultists / constructs / demons, and wilderness travel gets the fauna.
+function isWildernessFauna(entry) {
+  return /Eat[-_]?Prey[-_]?Kill/i.test(entry?.source || '');
+}
+function bestiaryPool(context) {
+  if (context === 'dungeon' || context === 'urban') {
+    const filtered = bestiary.entries.filter((e) => !isWildernessFauna(e));
+    return filtered.length > 0 ? filtered : bestiary.entries;
+  }
+  if (context === 'wilderness') {
+    const filtered = bestiary.entries.filter(isWildernessFauna);
+    return filtered.length > 0 ? filtered : bestiary.entries;
+  }
+  return bestiary.entries;
+}
+
 // Pull a sanitized enemy stat block out of the bestiary. The source data is
 // uneven (string HP, occasional prose in the attack field), so clamp it into the
 // shape the EnemyCard / CombatTracker expect. `boss` biases toward a beefier
-// entry and hardens it for a climax.
-export function bestiaryEnemy({ boss = false } = {}) {
-  let e = rollValue(bestiary.entries);
+// entry and hardens it for a climax. `context` ('dungeon' | 'urban' |
+// 'wilderness' | undefined) filters the pool so the right kind of monster
+// shows up for the right kind of location.
+export function bestiaryEnemy({ boss = false, context } = {}) {
+  const pool = bestiaryPool(context);
+  let e = rollValue(pool);
   if (boss) {
     for (let i = 0; i < 6; i++) {
-      const cand = rollValue(bestiary.entries);
+      const cand = rollValue(pool);
       if ((parseInt(cand.hp, 10) || 0) > (parseInt(e.hp, 10) || 0)) e = cand;
     }
   }
