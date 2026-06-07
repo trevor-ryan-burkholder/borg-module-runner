@@ -62,6 +62,13 @@ export default function MiseryTracker({ open, onClose }) {
     if (die === 1) {
       // A Misery triggers.
       setState((s) => {
+        // Defensive: if the world has already ended, refuse to advance — the
+        // disabled button blocks the UI path, but a stale closure or
+        // programmatic call could otherwise silently loop the final psalm.
+        const lastSlots = PSALMS[PSALMS.length - 1]?.slots ?? 7;
+        if (s.psalm === PSALMS.length - 1 && s.verse >= lastSlots) {
+          return { ...s, lastRoll: { die, triggered: false, day: s.day } };
+        }
         let psalm = s.psalm;
         let verse = s.verse + 1;
         const slots = PSALMS[psalm]?.slots ?? 7;
@@ -89,6 +96,8 @@ export default function MiseryTracker({ open, onClose }) {
 
   const forceMisery = () => {
     setState((s) => {
+      const lastSlots = PSALMS[PSALMS.length - 1]?.slots ?? 7;
+      if (s.psalm === PSALMS.length - 1 && s.verse >= lastSlots) return s;
       let psalm = s.psalm;
       let verse = s.verse + 1;
       const slots = PSALMS[psalm]?.slots ?? 7;

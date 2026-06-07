@@ -161,6 +161,7 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
     kbdRef.current = {
       historyLen: state.history.length,
       goBack,
+      playerMode,
       dungeonOpen, settlementOpen, builderOpen, pickerOpen, shareOpen, mapOpen,
       rulesOpen, miseryOpen, diceOpen, npcOpen, combatOpen, travelOpen,
       ambientOpen, bestiaryOpen, tablesOpen, partyOpen,
@@ -223,6 +224,21 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
       }
 
       if (isFormElement) return;
+
+      // In player mode, only the small set of shortcuts that match the visible
+      // toolbar work; the rest stay locked so a curious player can't summon
+      // bestiary / combat / loot / etc. by accident.
+      if (k.playerMode) {
+        switch (e.key.toLowerCase()) {
+          case '?': k.setRulesOpen((o) => !o); break;
+          case 'b': if (k.historyLen > 1) k.goBack(); break;
+          case 'p': k.setPartyOpen((o) => !o); break;
+          case 'm': k.setMapOpen((o) => !o); break;
+          case 'h': k.setHelpOpen((o) => !o); break;
+          default: break;
+        }
+        return;
+      }
 
       switch (e.key.toLowerCase()) {
         case '?': k.setRulesOpen((o) => !o); break;
@@ -725,7 +741,7 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
             onSave={(saved, opts) => {
               if (opts?.thenLoad) {
                 setBuilderOpen(false);
-                onChangeAdventure(getAdventureId(saved), saved);
+                onChangeAdventure(getAdventureId(saved), saved, opts.jumpToNode);
               }
             }}
           />

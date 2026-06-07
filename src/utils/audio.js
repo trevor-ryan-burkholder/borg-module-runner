@@ -215,8 +215,11 @@ export function setChannelLevel(id, level) {
     const v = voices.get(id);
     if (v) {
       v.setLevel(0);
-      // Give the fade time to land before tearing down.
-      setTimeout(() => {
+      // Give the fade time to land before tearing down. Store the timer on the
+      // voice so a follow-up setChannelLevel(id, >0) within 250 ms can cancel
+      // it — otherwise the just-raised voice gets destroyed mid-play.
+      if (v._destroyTimer) clearTimeout(v._destroyTimer);
+      v._destroyTimer = setTimeout(() => {
         v.destroy();
         voices.delete(id);
       }, 250);
@@ -224,6 +227,10 @@ export function setChannelLevel(id, level) {
     return;
   }
   let v = voices.get(id);
+  if (v && v._destroyTimer) {
+    clearTimeout(v._destroyTimer);
+    v._destroyTimer = null;
+  }
   if (!v) {
     const factory = CHANNEL_FACTORIES[id];
     if (!factory) return;

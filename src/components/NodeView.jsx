@@ -277,7 +277,7 @@ export default function NodeView({
                 exit={exit}
                 onClick={onExit}
                 unlocked={unlockedExits.includes(exit.id)}
-                onUnlock={onUnlockExit}
+                onUnlock={playerMode ? undefined : onUnlockExit}
               />
             ))}
           </div>

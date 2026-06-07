@@ -32,7 +32,10 @@ const BROKEN_TABLE = {
 
 export default function PartyTracker({ party, onUpdate, onDismiss, onBury }) {
   const [newName, setNewName] = useState('');
-  const [brokenResult, setBrokenResult] = useState(null);
+  // Map of memberId → { die, outcome } so two PCs being broken in sequence
+  // both retain their roll context for the bury / display path. A single-slot
+  // store let the second roll silently erase the first.
+  const [brokenResultsById, setBrokenResultsById] = useState({});
   const [genOpen, setGenOpen] = useState(false);
 
   const pushMember = (member) => {
@@ -87,12 +90,35 @@ export default function PartyTracker({ party, onUpdate, onDismiss, onBury }) {
     });
   };
 
+  // Direct HP edit (typed into the NumberField) — go through the same
+  // crossing-aware path so manual-dead PCs at HP 5 typed to HP 4 don't get
+  // silently revived, and a typed 0 still bumps deaths via the transition.
+  const setHp = (idx, n) => {
+    onUpdate((p) => {
+      const m = p.members[idx];
+      if (!m) return p;
+      const nextHp = Math.max(0, n);
+      let dead = m.dead;
+      if (m.hp > 0 && nextHp <= 0) dead = true;
+      if (m.hp <= 0 && nextHp > 0) dead = false;
+      const newlyDead = !m.dead && dead;
+      return {
+        ...p,
+        deaths: (p.deaths ?? 0) + (newlyDead ? 1 : 0),
+        members: p.members.map((mm, i) =>
+          i === idx ? { ...mm, hp: nextHp, dead } : mm
+        ),
+      };
+    });
+  };
+
   const rollBrokenFor = (idx) => {
     const die = rollDie(4);
     const outcome = BROKEN_TABLE[die];
-    // Key the result by stable member id so it follows the PC across remove/reorder
-    // instead of attaching to whoever is now at that index.
-    setBrokenResult({ memberId: party.members[idx]?.id, die, outcome });
+    const memberId = party.members[idx]?.id;
+    if (memberId) {
+      setBrokenResultsById((m) => ({ ...m, [memberId]: { die, outcome } }));
+    }
     if (die === 4) {
       onUpdate((p) => ({
         ...p,
@@ -188,7 +214,7 @@ export default function PartyTracker({ party, onUpdate, onDismiss, onBury }) {
                 <button type="button" onClick={() => damagePC(i, 1)} title="-1 HP">−</button>
                 <NumberField
                   value={m.hp ?? 0}
-                  onChange={(n) => update(i, { hp: n })}
+                  onChange={(n) => setHp(i, n)}
                   aria-label="Current HP"
                 />
                 <span>/</span>
@@ -331,9 +357,10 @@ export default function PartyTracker({ party, onUpdate, onDismiss, onBury }) {
                       className="iconbtn iconbtn--danger"
                       onClick={() => {
                         if (window.confirm(`Send ${m.name || 'this PC'} to the Graveyard? They leave the party list.`)) {
-                          onBury(m.id, brokenResult?.memberId === m.id ? {
-                            brokenDie: brokenResult.die,
-                            brokenOutcome: brokenResult.outcome,
+                          const br = brokenResultsById[m.id];
+                          onBury(m.id, br ? {
+                            brokenDie: br.die,
+                            brokenOutcome: br.outcome,
                           } : {});
                         }
                       }}
@@ -352,9 +379,9 @@ export default function PartyTracker({ party, onUpdate, onDismiss, onBury }) {
                   </label>
                 </div>
 
-                {brokenResult?.memberId === m.id && (
-                  <div className={`pc-card__broken ${brokenResult.die === 4 ? 'pc-card__broken--dead' : ''}`}>
-                    <strong>d4 = {brokenResult.die}.</strong> {brokenResult.outcome}
+                {brokenResultsById[m.id] && (
+                  <div className={`pc-card__broken ${brokenResultsById[m.id].die === 4 ? 'pc-card__broken--dead' : ''}`}>
+                    <strong>d4 = {brokenResultsById[m.id].die}.</strong> {brokenResultsById[m.id].outcome}
                   </div>
                 )}
               </div>

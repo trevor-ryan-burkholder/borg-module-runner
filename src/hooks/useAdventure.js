@@ -352,7 +352,12 @@ export function useAdventure(adventure, opts = {}) {
     });
   }, [state.partyState.members, state.combatState?.active]);
 
-  const currentNode = nodeIndex.get(state.currentNode) ?? null;
+  // During an adventure switch there's one render where `state.currentNode`
+  // still references the OLD adventure's node (the switch effect runs next).
+  // Falling back to startNode here avoids the brief "the adventure has lost
+  // its place" flash before that effect commits its setState.
+  const currentNode =
+    nodeIndex.get(state.currentNode) ?? nodeIndex.get(startNode) ?? null;
 
   const goToNode = useCallback(
     (nodeId) => {

@@ -238,7 +238,9 @@ export default function AdventureBuilder({ initial, onSave, onClose }) {
       if (toSave.meta.id !== parsed.meta.id) writeParsed(toSave);
       setSavedMessage(`Saved "${toSave.meta.title}" to your library.`);
       setTimeout(() => setSavedMessage(null), 3000);
-      onSave?.(toSave, { thenLoad });
+      // Pass back the node the GM was editing so "save & run" lands there
+      // (otherwise they bounce back to startNode and have to re-navigate).
+      onSave?.(toSave, { thenLoad, jumpToNode: openNode });
     } catch (err) {
       setSavedMessage(`⚠ Save failed: ${err.message}`);
       setTimeout(() => setSavedMessage(null), 5000);
@@ -381,8 +383,12 @@ export default function AdventureBuilder({ initial, onSave, onClose }) {
                   onChange={(mutator) => updateNode(openNode, mutator)}
                   onRename={(newId) => renameNode(openNode, newId)}
                   onDelete={() => {
+                    // Pick a survivor BEFORE removing — `parsed.nodes[0]` may
+                    // be the node being deleted, which would leave openNode
+                    // pointing at a missing id for one render.
+                    const survivor = parsed.nodes.find((n) => n.id !== openNode)?.id ?? null;
                     removeNode(openNode);
-                    setOpenNode(parsed.nodes[0]?.id);
+                    setOpenNode(survivor);
                   }}
                   onDuplicate={() => duplicateNode(openNode)}
                   onSetStart={() => updateMeta('startNode', openNode)}
@@ -764,7 +770,20 @@ function NodeForm({ node, isStart, allNodeIds, onChange, onRename, onDelete, onD
       <ArrayEditor
         title="EXITS"
         items={node.exits || []}
-        onAdd={() => pushTopArray('exits', { ...BLANK_EXIT(), id: `${node.id}-exit-${(node.exits?.length || 0) + 1}` })}
+        onAdd={() => {
+          // Don't index by length — add/remove/add reuses ids and trips the
+          // duplicate-id validator. Suffix is max-existing-numeric + 1, with a
+          // random fallback for non-numeric custom ids.
+          const used = (node.exits || []).map((e) => e.id || '');
+          const taken = new Set(used);
+          let n = used.reduce((acc, id) => {
+            const m = /-exit-(\d+)$/.exec(id);
+            return m ? Math.max(acc, parseInt(m[1], 10)) : acc;
+          }, 0);
+          let next = `${node.id}-exit-${n + 1}`;
+          while (taken.has(next)) { n += 1; next = `${node.id}-exit-${n + 1}`; }
+          pushTopArray('exits', { ...BLANK_EXIT(), id: next });
+        }}
         onRemove={(i) => removeTopArray('exits', i)}
         renderItem={(e, i) => (
           <div className="grid-2">
