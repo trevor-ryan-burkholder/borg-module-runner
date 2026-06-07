@@ -4,6 +4,9 @@ import { uid } from '../utils/id.js';
 import { getActiveCampaignId, getCampaign, updateCampaign } from '../utils/campaigns.js';
 
 const STORAGE_KEY = 'mb-module-runner-state';
+// Scratch notes get their own key so keystroke-frequency edits don't rewrite
+// the entire session blob each tick.
+const SCRATCH_KEY = 'mb-module-runner-scratch';
 
 const initialPartyState = {
   members: [],
@@ -16,18 +19,39 @@ function loadSession(adventureId) {
     const raw = localStorage.getItem(`${STORAGE_KEY}:${adventureId}`);
     if (!raw) return null;
     const parsed = JSON.parse(raw);
-    return parsed && typeof parsed === 'object' ? parsed : null;
+    if (!parsed || typeof parsed !== 'object') return null;
+    // Prefer the split scratch key when present; fall back to whatever's in the
+    // legacy main blob for migration.
+    try {
+      const scratchRaw = localStorage.getItem(`${SCRATCH_KEY}:${adventureId}`);
+      if (scratchRaw) {
+        const scratch = JSON.parse(scratchRaw);
+        if (scratch && typeof scratch === 'object') parsed.gmNotesScratch = scratch;
+      }
+    } catch { /* ignore */ }
+    return parsed;
   } catch {
     return null;
   }
 }
 
-function saveSession(adventureId, state) {
+function saveSessionMain(adventureId, state) {
   try {
-    localStorage.setItem(`${STORAGE_KEY}:${adventureId}`, JSON.stringify(state));
-  } catch {
-    /* quota or privacy mode — silent */
-  }
+    // Strip scratch — it gets saved separately on its own debounce so heavy
+    // note-typing doesn't bloat or churn the main blob.
+    const { gmNotesScratch: _ignored, ...rest } = state;
+    localStorage.setItem(`${STORAGE_KEY}:${adventureId}`, JSON.stringify(rest));
+  } catch { /* quota / privacy — silent */ }
+}
+
+function saveScratch(adventureId, scratch) {
+  try {
+    if (scratch && Object.keys(scratch).length > 0) {
+      localStorage.setItem(`${SCRATCH_KEY}:${adventureId}`, JSON.stringify(scratch));
+    } else {
+      localStorage.removeItem(`${SCRATCH_KEY}:${adventureId}`);
+    }
+  } catch { /* quota / privacy — silent */ }
 }
 
 const initialCombatState = {
@@ -126,7 +150,8 @@ function hydrate(restored) {
   return out;
 }
 
-export function useAdventure(adventure) {
+export function useAdventure(adventure, opts = {}) {
+  const pendingJumpRef = opts.pendingJumpRef;
   const adventureId = getAdventureId(adventure);
   const startNode = adventure?.meta?.startNode;
 
@@ -153,12 +178,32 @@ export function useAdventure(adventure) {
     };
   };
 
-  const [state, setState] = useState(() => {
+  // If the parent staged a pending node id (from a CrossRefSearch click), use
+  // it as the starting node for the new adventure session so the runner lands
+  // exactly where the user clicked instead of bouncing through startNode first.
+  const consumePendingJump = () => {
+    const id = pendingJumpRef?.current;
+    if (id && nodeIndex.has(id)) {
+      pendingJumpRef.current = null;
+      return id;
+    }
+    return null;
+  };
+
+  const seedSession = () => {
     const restored = hydrate(loadSession(adventureId));
     const base =
       restored && nodeIndex.has(restored.currentNode) ? restored : freshState(startNode);
+    const jump = consumePendingJump();
+    if (jump) {
+      base.currentNode = jump;
+      base.visitedNodes = Array.from(new Set([...(base.visitedNodes || []), jump]));
+      base.history = [...(base.history || []), jump];
+    }
     return overlayWithCampaign(base);
-  });
+  };
+
+  const [state, setState] = useState(() => seedSession());
 
   // Re-initialize state when switching to a different adventure. The useState
   // initializer only runs once, so without this the previous adventure's
@@ -167,19 +212,33 @@ export function useAdventure(adventure) {
   useEffect(() => {
     if (loadedIdRef.current === adventureId) return;
     loadedIdRef.current = adventureId;
-    const restored = hydrate(loadSession(adventureId));
-    const base =
-      restored && nodeIndex.has(restored.currentNode) ? restored : freshState(startNode);
-    setState(overlayWithCampaign(base));
+    setState(seedSession());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [adventureId, nodeIndex, startNode]);
 
-  // Debounce localStorage writes so per-keystroke edits (GM scratch notes,
-  // party HP fiddling) don't rewrite the whole session JSON on every change.
+  // Split-key debounced saves: the main session blob writes when any non-
+  // scratch slice changes (200 ms); scratch notes write on their own slower
+  // debounce (500 ms) so keystroke-heavy editing doesn't churn the main blob.
   useEffect(() => {
-    const t = setTimeout(() => saveSession(adventureId, state), 200);
+    const t = setTimeout(() => saveSessionMain(adventureId, state), 200);
     return () => clearTimeout(t);
-  }, [adventureId, state]);
+  }, [
+    adventureId,
+    state.currentNode,
+    state.visitedNodes,
+    state.history,
+    state.unlockedExits,
+    state.partyState,
+    state.combatState,
+    state.travelLog,
+    state.bookmarks,
+    state.loot,
+    state.graveyard,
+  ]);
+  useEffect(() => {
+    const t = setTimeout(() => saveScratch(adventureId, state.gmNotesScratch), 500);
+    return () => clearTimeout(t);
+  }, [adventureId, state.gmNotesScratch]);
 
   // Mirror party/loot/graveyard back to the active campaign so changes in this
   // session carry to the next adventure in the campaign. Also debounced.

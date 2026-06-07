@@ -50,7 +50,7 @@ const CampaignPanel = lazy(() => import('./components/CampaignPanel.jsx'));
 
 const DEFAULT_ADVENTURE_ID = 'graves-left-wanting';
 
-function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdventure, onLoadEphemeral, playerMode, theme, onSetTheme }) {
+function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdventure, onLoadEphemeral, playerMode, theme, onSetTheme, pendingJumpRef }) {
   const {
     state,
     currentNode,
@@ -71,7 +71,7 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
     exhumeMember,
     reset,
     nodeById,
-  } = useAdventure(adventure);
+  } = useAdventure(adventure, { pendingJumpRef });
 
   const [rulesOpen, setRulesOpen] = useState(false);
   const [partyOpen, setPartyOpen] = useState(false);
@@ -153,21 +153,27 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
   // state through a ref so panel toggles don't churn the global keydown
   // subscription.
   const kbdRef = useRef(null);
-  kbdRef.current = {
-    historyLen: state.history.length,
-    goBack,
-    dungeonOpen, settlementOpen, builderOpen, pickerOpen, shareOpen, mapOpen,
-    rulesOpen, miseryOpen, diceOpen, npcOpen, combatOpen, travelOpen,
-    ambientOpen, bestiaryOpen, tablesOpen, partyOpen,
-    lootOpen, graveyardOpen, powersOpen, helpOpen, searchOpen, handoutOpen,
-    crossRefOpen, campaignsOpen, resetDialogOpen,
-    setDungeonOpen, setSettlementOpen, setBuilderOpen, setPickerOpen,
-    setShareOpen, setMapOpen, setRulesOpen, setMiseryOpen, setDiceOpen,
-    setNpcOpen, setCombatOpen, setTravelOpen, setAmbientOpen, setBestiaryOpen,
-    setTablesOpen, setPartyOpen,
-    setLootOpen, setGraveyardOpen, setPowersOpen, setHelpOpen, setSearchOpen,
-    setHandoutOpen, setCrossRefOpen, setCampaignsOpen, setResetDialogOpen,
-  };
+  // Write the ref AFTER commit so we don't mutate during render — concurrent
+  // / discarded renders would otherwise leave the ref pointing at stale state.
+  // No deps array → runs after every commit, so the keydown listener always
+  // reads the latest committed setters and panel state.
+  useEffect(() => {
+    kbdRef.current = {
+      historyLen: state.history.length,
+      goBack,
+      dungeonOpen, settlementOpen, builderOpen, pickerOpen, shareOpen, mapOpen,
+      rulesOpen, miseryOpen, diceOpen, npcOpen, combatOpen, travelOpen,
+      ambientOpen, bestiaryOpen, tablesOpen, partyOpen,
+      lootOpen, graveyardOpen, powersOpen, helpOpen, searchOpen, handoutOpen,
+      crossRefOpen, campaignsOpen, resetDialogOpen,
+      setDungeonOpen, setSettlementOpen, setBuilderOpen, setPickerOpen,
+      setShareOpen, setMapOpen, setRulesOpen, setMiseryOpen, setDiceOpen,
+      setNpcOpen, setCombatOpen, setTravelOpen, setAmbientOpen, setBestiaryOpen,
+      setTablesOpen, setPartyOpen,
+      setLootOpen, setGraveyardOpen, setPowersOpen, setHelpOpen, setSearchOpen,
+      setHandoutOpen, setCrossRefOpen, setCampaignsOpen, setResetDialogOpen,
+    };
+  });
   useEffect(() => {
     const onKey = (e) => {
       const target = e.target;
@@ -183,6 +189,7 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
       if (e.metaKey || e.ctrlKey || e.altKey || (e.shiftKey && !isQuestion)) return;
 
       const k = kbdRef.current;
+      if (!k) return; // ref-assign effect hasn't run yet (first paint)
 
       // Escape closes the topmost panel, and must work even when a form element
       // has focus — otherwise the user is trapped.
@@ -573,8 +580,14 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
             open={crossRefOpen}
             onClose={() => setCrossRefOpen(false)}
             onLoad={(advId, nodeId) => {
-              onChangeAdventure(advId);
-              if (nodeId) setTimeout(() => goToNode(nodeId), 50);
+              // Same adventure as currently loaded → direct jump, no swap.
+              if (advId === getAdventureId(adventure)) {
+                if (nodeId) goToNode(nodeId);
+              } else {
+                // Different adventure → stage the jump via pendingJumpRef so the
+                // new useAdventure session starts on that node, not startNode.
+                onChangeAdventure(advId, undefined, nodeId);
+              }
             }}
           />
         )}
@@ -901,7 +914,12 @@ export default function App() {
     };
   }, []);
 
-  const handleChangeAdventure = useCallback((id, advObject) => {
+  // Staged jump for cross-reference searches. When set, useAdventure consumes
+  // it on next adventure switch so the runner lands on that node instead of
+  // bouncing through startNode first.
+  const pendingJumpRef = useRef(null);
+
+  const handleChangeAdventure = useCallback((id, advObject, jumpToNodeId) => {
     let next = advObject;
     if (!next) {
       next = isBundled(id) ? getBundledAdventure(id) : getUserAdventure(id);
@@ -910,6 +928,7 @@ export default function App() {
       window.alert(`Adventure "${id}" not found.`);
       return;
     }
+    pendingJumpRef.current = jumpToNodeId || null;
     setAdventure(next);
     setEphemeral(false);
     setLastLoaded(id);
@@ -951,6 +970,7 @@ export default function App() {
           playerMode={isPlayerMode()}
           theme={theme}
           onSetTheme={setTheme}
+          pendingJumpRef={pendingJumpRef}
         />
       ) : (
         <div className="loading">

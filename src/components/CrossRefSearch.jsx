@@ -30,8 +30,29 @@ function indexAdventure(adv) {
   });
 }
 
+// Module-scope cache so the index only rebuilds when the library actually
+// changes (bundled count + user adventures count, plus the active user titles
+// in case a rename happened). For 13 bundled + a handful of user adventures
+// it's milliseconds, but it adds up if the GM opens the panel often.
+let _cache = null;
+function getIndex() {
+  const bundled = listBundledAdventures();
+  const users = listUserAdventures();
+  const key = `${bundled.length}:${users.length}:${users.map((u) => u.meta?.id || '').join(',')}`;
+  if (_cache && _cache.key === key) return _cache.rows;
+  const rows = [];
+  for (const entry of bundled) {
+    const adv = getBundledAdventure(entry.id);
+    if (adv) rows.push(...indexAdventure(adv));
+  }
+  for (const adv of users) rows.push(...indexAdventure(adv));
+  _cache = { key, rows };
+  return rows;
+}
+
 export default function CrossRefSearch({ open, onClose, onLoad }) {
   const [query, setQuery] = useState('');
+  const [activeIdx, setActiveIdx] = useState(0);
   const inputRef = useRef(null);
 
   useEffect(() => {
@@ -41,17 +62,9 @@ export default function CrossRefSearch({ open, onClose, onLoad }) {
     }
   }, [open]);
 
-  // Pull every adventure once when the panel opens.
-  const index = useMemo(() => {
-    if (!open) return [];
-    const all = [];
-    for (const entry of listBundledAdventures()) {
-      const adv = getBundledAdventure(entry.id);
-      if (adv) all.push(...indexAdventure(adv));
-    }
-    for (const adv of listUserAdventures()) all.push(...indexAdventure(adv));
-    return all;
-  }, [open]);
+  useEffect(() => { setActiveIdx(0); }, [query]);
+
+  const index = useMemo(() => (open ? getIndex() : []), [open]);
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -60,6 +73,13 @@ export default function CrossRefSearch({ open, onClose, onLoad }) {
   }, [index, query]);
 
   if (!open) return null;
+
+  const submit = () => {
+    if (results.length === 0) return;
+    const row = results[Math.min(activeIdx, results.length - 1)];
+    onLoad(row.advId, row.nodeId);
+    onClose();
+  };
 
   return (
     <aside className="cross-search" role="dialog" aria-label="Search every adventure">
@@ -75,6 +95,18 @@ export default function CrossRefSearch({ open, onClose, onLoad }) {
           placeholder="NPC name, location, faction, item…"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'ArrowDown') {
+              e.preventDefault();
+              setActiveIdx((i) => Math.min(results.length - 1, i + 1));
+            } else if (e.key === 'ArrowUp') {
+              e.preventDefault();
+              setActiveIdx((i) => Math.max(0, i - 1));
+            } else if (e.key === 'Enter') {
+              e.preventDefault();
+              submit();
+            }
+          }}
         />
         <span className="cross-search__count">{results.length} hit{results.length === 1 ? '' : 's'}</span>
       </div>
@@ -87,11 +119,12 @@ export default function CrossRefSearch({ open, onClose, onLoad }) {
           <li key={`${row.advId}-${row.nodeId}-${i}`}>
             <button
               type="button"
-              className="cross-search__hit"
+              className={`cross-search__hit ${i === activeIdx ? 'cross-search__hit--active' : ''}`}
               onClick={() => {
                 onLoad(row.advId, row.nodeId);
                 onClose();
               }}
+              onMouseEnter={() => setActiveIdx(i)}
             >
               <span className="cross-search__hit-node">{row.nodeTitle}</span>
               <span className="cross-search__hit-adv">{row.advTitle}</span>

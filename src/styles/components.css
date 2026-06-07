@@ -3539,6 +3539,11 @@ html[data-system='ronin-borg'] .gm-notes__body {
   color: var(--bone); text-align: left; cursor: pointer;
 }
 .node-search__hit:hover, .cross-search__hit:hover { background: var(--dark); }
+.node-search__hit--active, .cross-search__hit--active {
+  background: var(--dark);
+  outline: 1px solid var(--yellow);
+  outline-offset: -1px;
+}
 .node-search__hit-title, .cross-search__hit-node { color: var(--yellow); font-family: var(--font-display, inherit); font-size: 1rem; }
 .node-search__hit-snippet { font-size: 0.78rem; color: var(--muted); }
 .cross-search__hit-adv { font-size: 0.75rem; color: var(--muted); font-style: italic; }
@@ -3556,7 +3561,21 @@ html[data-system='ronin-borg'] .gm-notes__body {
 }
 .campaign--active { border-left-color: var(--yellow); background: var(--dark); }
 .campaign__meta { flex: 1; display: flex; flex-direction: column; gap: 0.1rem; }
-.campaign__name { font-family: var(--font-display, inherit); font-size: 1rem; color: var(--white); }
+.campaign__name {
+  font-family: var(--font-display, inherit);
+  font-size: 1rem;
+  color: var(--white);
+  background: transparent;
+  border: none;
+  padding: 0;
+  text-align: left;
+  cursor: text;
+}
+.campaign__name:hover { color: var(--yellow); }
+.campaign__name--edit {
+  border-bottom: 1px dashed var(--yellow-dim);
+  cursor: text;
+}
 .campaign__stats { font-size: 0.72rem; color: var(--muted); }
 .campaign__actions { display: flex; gap: 0.3rem; flex-wrap: wrap; }
 

@@ -93,6 +93,21 @@ export default function AdventureBuilder({ initial, onSave, onClose }) {
   const confirmDiscard = (action) =>
     !isDirty || window.confirm(`You have unsaved edits in the builder. ${action} anyway?`);
 
+  // Intercept Esc at the document level so the global App handler can't close
+  // the builder out from under unsaved edits. If not dirty, we don't intervene
+  // and the global handler closes normally.
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key !== 'Escape' || !isDirty) return;
+      e.stopPropagation();
+      if (window.confirm('Close the builder? Your unsaved edits will be lost.')) {
+        onClose?.();
+      }
+    };
+    document.addEventListener('keydown', onKey, true);
+    return () => document.removeEventListener('keydown', onKey, true);
+  }, [isDirty, onClose]);
+
   const { parsed, parseError } = useMemo(() => {
     try {
       return { parsed: JSON.parse(text), parseError: null };

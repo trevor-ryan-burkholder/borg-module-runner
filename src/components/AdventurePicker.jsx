@@ -28,7 +28,12 @@ export default function AdventurePicker({ onPick, onOpenBuilder, onClose }) {
   const importFromUrl = async () => {
     setUploadError(null);
     setUploadWarnings([]);
-    const raw = urlInput.trim();
+    // Defensive paste cleanup: trim, strip surrounding brackets/quotes some
+    // chat clients wrap links with, and remove zero-width / BOM characters.
+    const raw = urlInput
+      .trim()
+      .replace(/^[<«"'\s]+|[>»"'\s]+$/g, '')
+      .replace(/[​-‍﻿]/g, '');
     if (!raw) return;
     try {
       // Extract the share payload from either a full URL or just the hash part.

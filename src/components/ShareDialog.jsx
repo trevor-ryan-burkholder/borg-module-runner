@@ -106,7 +106,10 @@ export default function ShareDialog({ adventure, onClose }) {
     }
   };
 
-  const sizeWarning = size && size > 2000;
+  // The arbitrary-byte share URL exceeds QR alphanumeric mode's capacity well
+  // before the URL-truncation risk kicks in; warn proactively around the
+  // smaller threshold so the warning actually correlates with the QR failing.
+  const sizeWarning = size && size > 1500;
 
   return (
     <div className="picker-overlay" role="dialog" aria-modal="true" onClick={onClose}>

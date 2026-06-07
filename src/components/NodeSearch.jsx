@@ -30,7 +30,9 @@ function snippet(haystack, q, span = 110) {
 
 export default function NodeSearch({ open, onClose, adventure, onJump }) {
   const [query, setQuery] = useState('');
+  const [activeIdx, setActiveIdx] = useState(0);
   const inputRef = useRef(null);
+  const listRef = useRef(null);
 
   useEffect(() => {
     if (open) {
@@ -38,6 +40,9 @@ export default function NodeSearch({ open, onClose, adventure, onJump }) {
       return () => clearTimeout(t);
     }
   }, [open]);
+
+  // Reset selection when the query (and therefore the results list) changes.
+  useEffect(() => { setActiveIdx(0); }, [query]);
 
   const index = useMemo(() => {
     return (adventure?.nodes ?? []).map((n) => ({ node: n, blob: indexNode(n) }));
@@ -67,23 +72,37 @@ export default function NodeSearch({ open, onClose, adventure, onJump }) {
           placeholder="title, NPC, enemy, secret, atmosphere…"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'ArrowDown') {
+              e.preventDefault();
+              setActiveIdx((i) => Math.min(results.length - 1, i + 1));
+            } else if (e.key === 'ArrowUp') {
+              e.preventDefault();
+              setActiveIdx((i) => Math.max(0, i - 1));
+            } else if (e.key === 'Enter' && results.length > 0) {
+              e.preventDefault();
+              const hit = results[Math.min(activeIdx, results.length - 1)];
+              if (hit) { onJump(hit.node.id); onClose(); }
+            }
+          }}
         />
         <span className="node-search__count">{results.length} hit{results.length === 1 ? '' : 's'}</span>
       </div>
 
-      <ol className="node-search__hits">
+      <ol className="node-search__hits" ref={listRef}>
         {query && results.length === 0 && (
           <li className="empty">Nothing matches. The text is silent on the subject.</li>
         )}
-        {results.map(({ node, snippet: s }) => (
+        {results.map(({ node, snippet: s }, i) => (
           <li key={node.id}>
             <button
               type="button"
-              className="node-search__hit"
+              className={`node-search__hit ${i === activeIdx ? 'node-search__hit--active' : ''}`}
               onClick={() => {
                 onJump(node.id);
                 onClose();
               }}
+              onMouseEnter={() => setActiveIdx(i)}
             >
               <span className="node-search__hit-title">{node.title || node.id}</span>
               <span className="node-search__hit-snippet">{s}</span>
