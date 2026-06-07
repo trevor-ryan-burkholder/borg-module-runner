@@ -45,7 +45,7 @@ const FEATURES = [
   { name: 'Library', notes: 'Bundled adventures + drag/drop or paste-URL imports. localStorage-only, no backend.' },
   { name: 'Share', notes: 'Gzipped adventure JSON in the URL hash. "⇄ test round-trip" verifies the link locally.' },
   { name: 'Map', notes: 'BFS-laid SVG node graph. Click or Enter/Space to jump. Responsive on mobile.' },
-  { name: 'Bookmarks', notes: 'Star any node from the node header. Bookmarked nodes show in the map and breadcrumb area.' },
+  { name: 'Bookmarks', notes: 'Star any node from the node header — bookmarked nodes show in the breadcrumb bar as quick-jumps.' },
   { name: 'Find / Search', notes: 'Search across the loaded adventure (titles, atmospheres, NPC/enemy names, GM notes) and jump.' },
 ];
 

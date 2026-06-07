@@ -41,7 +41,11 @@ export default function Graveyard({ open, onClose, graveyard, onExhume }) {
                   <button
                     type="button"
                     className="iconbtn iconbtn--danger"
-                    onClick={() => onExhume(g.id)}
+                    onClick={() => {
+                      if (window.confirm(`Forget ${g.name || 'this PC'} ever died? The gravestone is deleted; it can't be brought back.`)) {
+                        onExhume(g.id);
+                      }
+                    }}
                     title="Forget this death (the grave digs itself open)"
                   >
                     exhume

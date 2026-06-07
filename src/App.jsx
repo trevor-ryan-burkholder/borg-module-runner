@@ -176,7 +176,11 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
         target?.tagName === 'TEXTAREA' ||
         target?.tagName === 'SELECT' ||
         target?.isContentEditable;
-      if (e.metaKey || e.ctrlKey || e.altKey || e.shiftKey) return;
+      // ? always requires Shift on US layouts; let it through. Everything else
+      // bails on any modifier so capitalised typing outside form fields doesn't
+      // toggle panels.
+      const isQuestion = e.key === '?';
+      if (e.metaKey || e.ctrlKey || e.altKey || (e.shiftKey && !isQuestion)) return;
 
       const k = kbdRef.current;
 
@@ -479,6 +483,7 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
         nodeById={nodeById}
         onJump={goToNode}
         onOpenMap={() => setMapOpen(true)}
+        bookmarks={state.bookmarks ?? []}
       />
 
       <NodeView

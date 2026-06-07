@@ -80,12 +80,18 @@ const BLANK_NODE = (i) => ({
 });
 
 export default function AdventureBuilder({ initial, onSave, onClose }) {
-  const [text, setText] = useState(() =>
-    JSON.stringify(initial || TEMPLATE, null, 2)
+  const initialText = useMemo(
+    () => JSON.stringify(initial || TEMPLATE, null, 2),
+    [initial]
   );
+  const [text, setText] = useState(() => initialText);
   const [view, setView] = useState('structured'); // 'structured' | 'json'
   const [savedMessage, setSavedMessage] = useState(null);
   const [openNode, setOpenNode] = useState(null);
+
+  const isDirty = text !== initialText;
+  const confirmDiscard = (action) =>
+    !isDirty || window.confirm(`You have unsaved edits in the builder. ${action} anyway?`);
 
   const { parsed, parseError } = useMemo(() => {
     try {
@@ -241,16 +247,21 @@ export default function AdventureBuilder({ initial, onSave, onClose }) {
   };
 
   const handleReset = () => {
-    if (!window.confirm('Reset the editor to the starter template? Unsaved changes will be lost.')) return;
+    if (!confirmDiscard('Reset to the starter template')) return;
     writeParsed(TEMPLATE);
   };
 
   const handleGenerateRandom = () => {
-    if (!window.confirm('Replace the editor contents with a freshly generated random adventure?')) return;
+    if (!confirmDiscard('Replace with a generated adventure')) return;
     const generated = generateScenario();
     writeParsed(generated);
     setView('structured');
     setOpenNode(generated.nodes[0].id);
+  };
+
+  const handleClose = () => {
+    if (!confirmDiscard('Close the builder')) return;
+    onClose?.();
   };
 
   return (
@@ -286,7 +297,7 @@ export default function AdventureBuilder({ initial, onSave, onClose }) {
           >
             🎲 generate random
           </button>
-          <button type="button" className="iconbtn" onClick={onClose}>
+          <button type="button" className="iconbtn" onClick={handleClose}>
             ✕
           </button>
         </header>

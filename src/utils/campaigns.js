@@ -18,6 +18,8 @@ function read() {
 }
 
 function write(store) {
+  // Surface quota errors to the caller; CampaignPanel + useAdventure both wrap
+  // their updateCampaign() calls in try/catch.
   localStorage.setItem(CAMPAIGNS_KEY, JSON.stringify(store));
 }
 

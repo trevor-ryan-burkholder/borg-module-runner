@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { getAdventureId } from '../utils/validate.js';
 import { uid } from '../utils/id.js';
+import { getActiveCampaignId, getCampaign, updateCampaign } from '../utils/campaigns.js';
 
 const STORAGE_KEY = 'mb-module-runner-state';
 
@@ -68,6 +69,18 @@ function hydrate(restored) {
   if (!Array.isArray(out.travelLog)) {
     out = { ...out, travelLog: [] };
   }
+  if (!Array.isArray(out.unlockedExits)) {
+    out = { ...out, unlockedExits: [] };
+  }
+  if (!Array.isArray(out.visitedNodes)) {
+    out = { ...out, visitedNodes: [] };
+  }
+  if (!Array.isArray(out.history)) {
+    out = { ...out, history: [] };
+  }
+  if (typeof out.currentNode !== 'string' && out.currentNode != null) {
+    out = { ...out, currentNode: null };
+  }
   if (!Array.isArray(out.bookmarks)) {
     out = { ...out, bookmarks: [] };
   }
@@ -123,10 +136,28 @@ export function useAdventure(adventure) {
     return idx;
   }, [adventure]);
 
+  // When a campaign is active, its party/loot/graveyard shadow the per-adventure
+  // session for those three slices. The session keeps its own progress
+  // (currentNode/visited/history/scratch/combat/travel) but party-shaped state
+  // travels with the GM between adventures.
+  const overlayWithCampaign = (base) => {
+    const id = getActiveCampaignId();
+    if (!id) return base;
+    const camp = getCampaign(id);
+    if (!camp) return base;
+    return {
+      ...base,
+      partyState: camp.partyState || base.partyState,
+      loot: camp.loot || base.loot,
+      graveyard: camp.graveyard || base.graveyard,
+    };
+  };
+
   const [state, setState] = useState(() => {
     const restored = hydrate(loadSession(adventureId));
-    if (restored && nodeIndex.has(restored.currentNode)) return restored;
-    return freshState(startNode);
+    const base =
+      restored && nodeIndex.has(restored.currentNode) ? restored : freshState(startNode);
+    return overlayWithCampaign(base);
   });
 
   // Re-initialize state when switching to a different adventure. The useState
@@ -137,11 +168,10 @@ export function useAdventure(adventure) {
     if (loadedIdRef.current === adventureId) return;
     loadedIdRef.current = adventureId;
     const restored = hydrate(loadSession(adventureId));
-    setState(
-      restored && nodeIndex.has(restored.currentNode)
-        ? restored
-        : freshState(startNode)
-    );
+    const base =
+      restored && nodeIndex.has(restored.currentNode) ? restored : freshState(startNode);
+    setState(overlayWithCampaign(base));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [adventureId, nodeIndex, startNode]);
 
   // Debounce localStorage writes so per-keystroke edits (GM scratch notes,
@@ -150,6 +180,25 @@ export function useAdventure(adventure) {
     const t = setTimeout(() => saveSession(adventureId, state), 200);
     return () => clearTimeout(t);
   }, [adventureId, state]);
+
+  // Mirror party/loot/graveyard back to the active campaign so changes in this
+  // session carry to the next adventure in the campaign. Also debounced.
+  useEffect(() => {
+    const id = getActiveCampaignId();
+    if (!id) return;
+    const t = setTimeout(() => {
+      try {
+        updateCampaign(id, {
+          partyState: state.partyState,
+          loot: state.loot,
+          graveyard: state.graveyard,
+        });
+      } catch {
+        /* quota / privacy — silent */
+      }
+    }, 250);
+    return () => clearTimeout(t);
+  }, [state.partyState, state.loot, state.graveyard]);
 
   // Whenever the party changes during an active fight, sync the combat tracker:
   // add new (or formerly-missing) PCs, drop removed PCs. Existing combatants
@@ -184,14 +233,22 @@ export function useAdventure(adventure) {
         };
       });
 
-      // Preserve free-floating PC combatants — ones the GM added via "+add" for
-      // a guest who isn't in the party tracker. Anything in pcCombatants that
-      // wasn't reused above is free-floating.
+      // Preserve only TRUE guest combatants — ones the GM added via "+add"
+      // with no memberId AND no partyIndex tying them to any party slot.
+      // A combatant whose memberId no longer matches any living member means
+      // the GM deleted that PC from the party tracker; it should drop out of
+      // combat too, not survive as a phantom guest.
+      const livingIds = new Set(livingMembers.map((m) => m.id).filter(Boolean));
       const usedIds = new Set(
         partyBackedPcs.filter((c) => pcCombatants.includes(c)).map((c) => c.id)
       );
-      const freeFloatingPcs = pcCombatants.filter((c) => !usedIds.has(c.id));
-      const newPcs = [...partyBackedPcs, ...freeFloatingPcs];
+      const guestPcs = pcCombatants.filter(
+        (c) =>
+          !usedIds.has(c.id) &&
+          c.memberId == null &&
+          (c.partyIndex == null || c.partyIndex >= livingMembers.length)
+      );
+      const newPcs = [...partyBackedPcs, ...guestPcs];
 
       // No change → return same state ref (no re-render, no loop).
       if (
@@ -287,8 +344,11 @@ export function useAdventure(adventure) {
         return {
           ...m,
           hp: c.hp,
-          dead: c.dead || m.dead,
-          conditions: c.conditions.length ? c.conditions.join(', ') : m.conditions,
+          // Combat is the live source of truth at fight's end. A PC un-flagged
+          // dead in CombatTracker should come back alive; conditions cleared in
+          // combat should clear in the roster too.
+          dead: !!c.dead,
+          conditions: c.conditions.join(', '),
         };
       });
       return {

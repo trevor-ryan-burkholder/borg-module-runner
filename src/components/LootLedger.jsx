@@ -24,6 +24,9 @@ export default function LootLedger({ open, onClose, loot, onUpdate, party }) {
       ],
     }));
     setNewItem('');
+    // Don't persist the last carrier across rapid adds — common case is the
+    // GM dropping a pile of mixed-owner finds at once.
+    setNewCarrier('');
   };
 
   const removeItem = (id) =>

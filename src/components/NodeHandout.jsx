@@ -52,6 +52,20 @@ export default function NodeHandout({ open, onClose, node, adventureTitle }) {
           </section>
         )}
 
+        {(node.contents?.npcs?.length ?? 0) > 0 && (
+          <section className="handout__npcs">
+            <h3>Who is here</h3>
+            <ul>
+              {node.contents.npcs.map((n, i) => (
+                <li key={i}>
+                  <strong>{n.name}</strong>
+                  {n.description && <> — {n.description}</>}
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
         <footer className="handout__foot">
           <small>For the table. The GM's secrets stay with the GM.</small>
         </footer>

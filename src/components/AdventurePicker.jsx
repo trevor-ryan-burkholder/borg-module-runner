@@ -200,7 +200,12 @@ export default function AdventurePicker({ onPick, onOpenBuilder, onClose }) {
             type="file"
             accept="application/json,.json"
             style={{ display: 'none' }}
-            onChange={(e) => handleFiles(e.target.files)}
+            onChange={(e) => {
+              const files = e.target.files;
+              // Reset so re-uploading the same filename fires onChange again.
+              e.target.value = '';
+              handleFiles(files);
+            }}
           />
           <button
             type="button"

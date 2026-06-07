@@ -50,7 +50,7 @@ export default function CombatTracker({ open, onClose, combatState, setCombat, e
           ? {
               ...c,
               hp: c.hp + delta,
-              dead: c.hp + delta <= 0 ? true : c.dead,
+              dead: c.hp + delta <= 0,
             }
           : c
       ),
@@ -61,7 +61,9 @@ export default function CombatTracker({ open, onClose, combatState, setCombat, e
     setCombat((cs) => ({
       ...cs,
       combatants: cs.combatants.map((c) =>
-        c.id === id ? { ...c, hp: n, dead: n <= 0 ? true : c.dead } : c
+        // Healing above 0 lifts the dead flag too — otherwise a misclick to 0
+        // and back leaves the combatant permanently "dead."
+        c.id === id ? { ...c, hp: n, dead: n <= 0 } : c
       ),
     }));
   };
@@ -135,6 +137,15 @@ export default function CombatTracker({ open, onClose, combatState, setCombat, e
     setAddName('');
     setAddHp(6);
     setAddMorale('7');
+    setAddSide('enemy');
+    setAddOpen(false);
+  };
+
+  const cancelAdd = () => {
+    setAddName('');
+    setAddHp(6);
+    setAddMorale('7');
+    setAddSide('enemy');
     setAddOpen(false);
   };
 
@@ -235,7 +246,17 @@ export default function CombatTracker({ open, onClose, combatState, setCombat, e
       </header>
 
       {addOpen && (
-        <div className="combat-add">
+        <div
+          className="combat-add"
+          onKeyDown={(e) => {
+            // Local Escape cancels the form rather than letting the global
+            // handler close the entire combat tracker.
+            if (e.key === 'Escape') {
+              e.stopPropagation();
+              cancelAdd();
+            }
+          }}
+        >
           <label>
             side
             <select value={addSide} onChange={(e) => setAddSide(e.target.value)}>
@@ -271,7 +292,7 @@ export default function CombatTracker({ open, onClose, combatState, setCombat, e
             </label>
           )}
           <button type="button" className="iconbtn iconbtn--rules" onClick={commitAdd}>add</button>
-          <button type="button" className="iconbtn" onClick={() => setAddOpen(false)}>cancel</button>
+          <button type="button" className="iconbtn" onClick={cancelAdd}>cancel</button>
         </div>
       )}
 

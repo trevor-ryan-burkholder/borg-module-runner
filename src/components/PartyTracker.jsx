@@ -67,9 +67,13 @@ export default function PartyTracker({ party, onUpdate, onDismiss, onBury }) {
   const damagePC = (idx, amount) => {
     onUpdate((p) => ({
       ...p,
-      members: p.members.map((m, i) =>
-        i === idx ? { ...m, hp: m.hp - amount } : m
-      ),
+      members: p.members.map((m, i) => {
+        if (i !== idx) return m;
+        const nextHp = m.hp - amount;
+        // Floor HP at 0; flag the PC dead automatically so the bury / broken
+        // flows surface. Healing above 0 lifts the flag.
+        return { ...m, hp: Math.max(0, nextHp), dead: nextHp <= 0 };
+      }),
     }));
   };
 
@@ -117,7 +121,7 @@ export default function PartyTracker({ party, onUpdate, onDismiss, onBury }) {
               ...p,
               omens: 3,
               members: p.members.map((m) =>
-                m.dead ? m : { ...m, hp: m.hpMax ?? m.hp ?? 4 }
+                m.dead ? m : { ...m, hp: m.hpMax ?? m.hp ?? 4, omens: 1 }
               ),
             }));
           }}
@@ -320,7 +324,7 @@ export default function PartyTracker({ party, onUpdate, onDismiss, onBury }) {
                           onBury(m.id, brokenResult?.memberId === m.id ? {
                             brokenDie: brokenResult.die,
                             brokenOutcome: brokenResult.outcome,
-                          } : null);
+                          } : {});
                         }
                       }}
                       title="Move to the Graveyard panel"

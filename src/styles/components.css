@@ -3671,6 +3671,9 @@ html[data-system='ronin-borg'] .gm-notes__body {
 /* --- Breadcrumb map button --- */
 .breadcrumbs__map { margin-left: auto; }
 .breadcrumb--map { font-family: inherit; }
+.breadcrumbs__star-sep { color: var(--muted); margin: 0 0.2rem; }
+.breadcrumb--star { color: var(--yellow); border: 1px dashed var(--yellow-dim); }
+.breadcrumb--star:hover:not(:disabled) { background: var(--yellow); color: var(--black); }
 
 /* --- Secrets collapse button --- */
 .secrets-list__collapse { margin-top: 0.5rem; }

@@ -52,7 +52,10 @@ export default function NodeView({
 
   const rollFlavor = () => {
     const beat = rollFlavorBeat();
-    setRecentFlavors((prev) => [...prev, beat].slice(-5));
+    // Stable id-keyed objects so React keys don't shift when the sliding
+    // window of 5 drops an entry; duplicates render without remount thrash.
+    const id = `f-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`;
+    setRecentFlavors((prev) => [...prev, { id, text: beat }].slice(-5));
     onSaveFlavor?.(beat);
   };
 
@@ -125,9 +128,9 @@ export default function NodeView({
 
       {!playerMode && recentFlavors.length > 0 && (
         <section className="flavor-stack" aria-label="Rolled flavor beats">
-          {recentFlavors.map((beat, i) => (
-            <p key={`${i}-${beat}`} className="flavor-stack__beat">
-              <span className="flavor-stack__mark">✦</span> {beat}
+          {recentFlavors.map((b) => (
+            <p key={b.id} className="flavor-stack__beat">
+              <span className="flavor-stack__mark">✦</span> {b.text}
             </p>
           ))}
           <button
