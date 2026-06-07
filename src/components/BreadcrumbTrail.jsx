@@ -17,7 +17,9 @@ export default function BreadcrumbTrail({
 
   const stars = (bookmarks ?? [])
     .map((id) => ({ id, node: nodeById(id) }))
-    .filter((b) => !!b.node);
+    // Skip the current node — it already shows as the rightmost crumb in the
+    // path trail; rendering it again as a star chip is duplicate UI.
+    .filter((b) => !!b.node && b.id !== currentNode);
 
   return (
     <nav className="breadcrumbs" aria-label="path through adventure">

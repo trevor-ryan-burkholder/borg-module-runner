@@ -66,6 +66,10 @@ export function setActiveCampaignId(id) {
   try {
     if (id) localStorage.setItem(ACTIVE_KEY, id);
     else localStorage.removeItem(ACTIVE_KEY);
+    // Custom event for same-tab subscribers (the browser's `storage` event only
+    // fires for OTHER tabs, not the one that wrote). useAdventure listens and
+    // re-overlays party/loot/graveyard from the new active campaign.
+    window.dispatchEvent(new CustomEvent('mb-active-campaign-changed', { detail: { id } }));
   } catch {
     /* ignore */
   }

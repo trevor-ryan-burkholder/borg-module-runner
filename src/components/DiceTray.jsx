@@ -58,7 +58,7 @@ export default function DiceTray({ open, onClose, canAddToNotes, onAddToNotes })
       rolls,
       total: rolls[0],
       text: `d${sides} → ${rolls[0]}`,
-      id: Date.now(),
+      id: `${Date.now()}-${Math.random().toString(36).slice(2, 5)}`,
       at: Date.now(),
     });
   };

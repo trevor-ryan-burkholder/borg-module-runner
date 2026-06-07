@@ -183,11 +183,10 @@ export function useAdventure(adventure, opts = {}) {
   // exactly where the user clicked instead of bouncing through startNode first.
   const consumePendingJump = () => {
     const id = pendingJumpRef?.current;
-    if (id && nodeIndex.has(id)) {
-      pendingJumpRef.current = null;
-      return id;
-    }
-    return null;
+    // Clear unconditionally — a stale id that doesn't match the current
+    // adventure shouldn't be carried into the next switch and surprise-jump.
+    if (pendingJumpRef) pendingJumpRef.current = null;
+    return id && nodeIndex.has(id) ? id : null;
   };
 
   const seedSession = () => {
@@ -219,11 +218,19 @@ export function useAdventure(adventure, opts = {}) {
   // Split-key debounced saves: the main session blob writes when any non-
   // scratch slice changes (200 ms); scratch notes write on their own slower
   // debounce (500 ms) so keystroke-heavy editing doesn't churn the main blob.
+  // Both bail when the in-memory state hasn't caught up with an adventure
+  // switch yet — otherwise the OLD adventure's state would persist under the
+  // NEW adventure's storage key during the race between switch effect and
+  // save effect on the same render.
+  const stateMatchesAdventure =
+    state.currentNode == null || nodeIndex.has(state.currentNode);
   useEffect(() => {
+    if (!stateMatchesAdventure) return;
     const t = setTimeout(() => saveSessionMain(adventureId, state), 200);
     return () => clearTimeout(t);
   }, [
     adventureId,
+    stateMatchesAdventure,
     state.currentNode,
     state.visitedNodes,
     state.history,
@@ -236,9 +243,31 @@ export function useAdventure(adventure, opts = {}) {
     state.graveyard,
   ]);
   useEffect(() => {
+    if (!stateMatchesAdventure) return;
     const t = setTimeout(() => saveScratch(adventureId, state.gmNotesScratch), 500);
     return () => clearTimeout(t);
-  }, [adventureId, state.gmNotesScratch]);
+  }, [adventureId, stateMatchesAdventure, state.gmNotesScratch]);
+
+  // React to mid-session campaign activation: if the user activates a
+  // campaign from CampaignPanel, immediately overlay the current state with
+  // that campaign's party/loot/graveyard. Deactivating leaves current state
+  // intact (no auto-clear); next adventure load starts fresh from session.
+  useEffect(() => {
+    const onChange = () => {
+      const id = getActiveCampaignId();
+      if (!id) return;
+      const camp = getCampaign(id);
+      if (!camp) return;
+      setState((s) => ({
+        ...s,
+        partyState: camp.partyState || s.partyState,
+        loot: camp.loot || s.loot,
+        graveyard: camp.graveyard || s.graveyard,
+      }));
+    };
+    window.addEventListener('mb-active-campaign-changed', onChange);
+    return () => window.removeEventListener('mb-active-campaign-changed', onChange);
+  }, []);
 
   // Mirror party/loot/graveyard back to the active campaign so changes in this
   // session carry to the next adventure in the campaign. Also debounced.
@@ -407,7 +436,7 @@ export function useAdventure(adventure, opts = {}) {
           // dead in CombatTracker should come back alive; conditions cleared in
           // combat should clear in the roster too.
           dead: !!c.dead,
-          conditions: c.conditions.join(', '),
+          conditions: c.conditions.filter(Boolean).join(', '),
         };
       });
       return {
@@ -481,7 +510,9 @@ export function useAdventure(adventure, opts = {}) {
           partyState: {
             ...s.partyState,
             members: s.partyState.members.filter((m) => m.id !== memberId),
-            deaths: (s.partyState.deaths ?? 0) + 1,
+            // No deaths bump here — the PC was already counted when their
+            // dead flag was first set (markDead / rollBroken / damagePC /
+            // endCombat). Counting again on bury double-counts.
           },
           graveyard: [...(s.graveyard ?? []), tomb],
         };

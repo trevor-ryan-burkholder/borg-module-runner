@@ -126,8 +126,14 @@ export default function CampaignPanel({ open, onClose, party, loot, graveyard })
                   onChange={(e) => setRenameDraft(e.target.value)}
                   onBlur={commitRename}
                   onKeyDown={(e) => {
-                    if (e.key === 'Enter') commitRename();
-                    if (e.key === 'Escape') { setRenamingId(null); setRenameDraft(''); }
+                    // Stop the global App handler from also closing the
+                    // panel on Esc, or routing Enter elsewhere.
+                    if (e.key === 'Enter') { e.stopPropagation(); commitRename(); }
+                    if (e.key === 'Escape') {
+                      e.stopPropagation();
+                      setRenamingId(null);
+                      setRenameDraft('');
+                    }
                   }}
                 />
               ) : (

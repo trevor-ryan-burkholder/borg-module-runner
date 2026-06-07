@@ -46,6 +46,14 @@ export function deleteUserAdventure(id) {
   const store = read();
   delete store[id];
   write(store);
+  // Also clear the per-adventure session blobs so deleting a library entry
+  // doesn't leave orphan state behind, slowly bloating localStorage.
+  try {
+    localStorage.removeItem(`mb-module-runner-state:${id}`);
+    localStorage.removeItem(`mb-module-runner-scratch:${id}`);
+  } catch {
+    /* ignore */
+  }
 }
 
 export function setLastLoaded(id) {

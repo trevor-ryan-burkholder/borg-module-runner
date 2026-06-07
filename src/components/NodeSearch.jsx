@@ -46,7 +46,11 @@ export default function NodeSearch({ open, onClose, adventure, onJump }) {
 
   const index = useMemo(() => {
     return (adventure?.nodes ?? []).map((n) => ({ node: n, blob: indexNode(n) }));
-  }, [adventure]);
+    // Depend on the meta id and node count, not the whole adventure ref —
+    // parent re-renders that recreate the adventure object wouldn't otherwise
+    // trigger an index rebuild only when the content actually changed.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [adventure?.meta?.id, adventure?.nodes?.length]);
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();

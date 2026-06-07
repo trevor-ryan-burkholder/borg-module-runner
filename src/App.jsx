@@ -1,4 +1,4 @@
-import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react';
+import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useAdventure } from './hooks/useAdventure.js';
 import {
   getBundledAdventure,
@@ -271,6 +271,9 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
         </div>
 
         <div className="app-bar__actions">
+          {/* In player mode, strip the toolbar to the few buttons the players
+              should be touching: back, map, party (HP). The GM keeps the full
+              bar in the GM window. */}
           <button
             type="button"
             className="iconbtn"
@@ -288,24 +291,28 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
           >
             ⌖ map
           </button>
-          <button
-            type="button"
-            className="iconbtn"
-            onClick={() => setDiceOpen((o) => !o)}
-            title="Dice tray (D)"
-            aria-pressed={diceOpen}
-          >
-            ⚂ dice
-          </button>
-          <button
-            type="button"
-            className="iconbtn"
-            onClick={() => setMiseryOpen((o) => !o)}
-            title="Calendar of Nechrubel (K)"
-            aria-pressed={miseryOpen}
-          >
-            ☉ misery
-          </button>
+          {!playerMode && (
+            <>
+              <button
+                type="button"
+                className="iconbtn"
+                onClick={() => setDiceOpen((o) => !o)}
+                title="Dice tray (D)"
+                aria-pressed={diceOpen}
+              >
+                ⚂ dice
+              </button>
+              <button
+                type="button"
+                className="iconbtn"
+                onClick={() => setMiseryOpen((o) => !o)}
+                title="Calendar of Nechrubel (K)"
+                aria-pressed={miseryOpen}
+              >
+                ☉ misery
+              </button>
+            </>
+          )}
           <button
             type="button"
             className="iconbtn"
@@ -315,6 +322,7 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
           >
             ⚐ party
           </button>
+          {!playerMode && (<>
           <button
             type="button"
             className="iconbtn"
@@ -447,6 +455,7 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
           >
             ⟲ reset
           </button>
+          </>)}
         </div>
       </header>
 
@@ -856,6 +865,7 @@ export default function App() {
   const [ephemeral, setEphemeral] = useState(false);
   const [shareLoadError, setShareLoadError] = useState(null);
   const [theme, setTheme] = useState(loadTheme);
+  const playerMode = useMemo(() => isPlayerMode(), []);
 
   // Apply + persist theme variant classes on body.
   useEffect(() => {
@@ -967,7 +977,7 @@ export default function App() {
           onClearEphemeral={() => setEphemeral(false)}
           onChangeAdventure={handleChangeAdventure}
           onLoadEphemeral={handleLoadEphemeral}
-          playerMode={isPlayerMode()}
+          playerMode={playerMode}
           theme={theme}
           onSetTheme={setTheme}
           pendingJumpRef={pendingJumpRef}

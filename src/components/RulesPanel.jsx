@@ -11,14 +11,9 @@ export default function RulesPanel({ rules, open, onClose }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rules]);
 
-  useEffect(() => {
-    if (!open) return;
-    const onKey = (e) => {
-      if (e.key === 'Escape') onClose();
-    };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [open, onClose]);
+  // No local Escape listener: App's global keydown handler already routes
+  // Escape to the topmost open panel. Having a second one here caused two
+  // panels to close per keypress when rules + another panel were both open.
 
   // Only close when a click *starts* and *ends* on the overlay. Stops a text
   // selection drag inside the panel that releases over the overlay from

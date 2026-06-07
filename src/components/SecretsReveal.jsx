@@ -1,7 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function SecretsReveal({ secrets }) {
   const [revealed, setRevealed] = useState(() => new Set());
+
+  // Reset the revealed set when the node's secrets list itself changes —
+  // otherwise indices "revealed" at one node bleed into the next.
+  useEffect(() => { setRevealed(new Set()); }, [secrets]);
 
   if (!secrets || secrets.length === 0) {
     return <p className="empty">No secrets here. Or none worth knowing.</p>;

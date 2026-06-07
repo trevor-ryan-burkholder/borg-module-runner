@@ -38,7 +38,9 @@ let _cache = null;
 function getIndex() {
   const bundled = listBundledAdventures();
   const users = listUserAdventures();
-  const key = `${bundled.length}:${users.length}:${users.map((u) => u.meta?.id || '').join(',')}`;
+  // Fingerprint includes user titles so renaming an adventure invalidates the
+  // cache (otherwise the stale title would persist in hit results).
+  const key = `${bundled.length}:${users.length}:${users.map((u) => `${u.meta?.id || ''}|${u.meta?.title || ''}`).join(',')}`;
   if (_cache && _cache.key === key) return _cache.rows;
   const rows = [];
   for (const entry of bundled) {

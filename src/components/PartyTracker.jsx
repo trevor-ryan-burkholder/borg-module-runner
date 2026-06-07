@@ -65,16 +65,26 @@ export default function PartyTracker({ party, onUpdate, onDismiss, onBury }) {
   };
 
   const damagePC = (idx, amount) => {
-    onUpdate((p) => ({
-      ...p,
-      members: p.members.map((m, i) => {
-        if (i !== idx) return m;
-        const nextHp = m.hp - amount;
-        // Floor HP at 0; flag the PC dead automatically so the bury / broken
-        // flows surface. Healing above 0 lifts the flag.
-        return { ...m, hp: Math.max(0, nextHp), dead: nextHp <= 0 };
-      }),
-    }));
+    onUpdate((p) => {
+      const m = p.members[idx];
+      if (!m) return p;
+      const nextHpRaw = m.hp - amount;
+      const nextHp = Math.max(0, nextHpRaw);
+      // Crossing semantics: flip dead only when HP actually crosses zero in
+      // either direction. A narratively-dead PC at HP 5 staying dead through
+      // a 1-damage hit is the expected behaviour.
+      let dead = m.dead;
+      if (m.hp > 0 && nextHp <= 0) dead = true;
+      if (m.hp <= 0 && nextHp > 0) dead = false;
+      const newlyDead = !m.dead && dead;
+      return {
+        ...p,
+        deaths: (p.deaths ?? 0) + (newlyDead ? 1 : 0),
+        members: p.members.map((mm, i) =>
+          i === idx ? { ...mm, hp: nextHp, dead } : mm
+        ),
+      };
+    });
   };
 
   const rollBrokenFor = (idx) => {

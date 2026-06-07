@@ -59,13 +59,23 @@ export default function LootLedger({ open, onClose, loot, onUpdate, party }) {
 
       <ul className="loot-ledger__items">
         {items.length === 0 && <li className="empty">No treasure yet. The world owes you, briefly.</li>}
-        {items.map((it) => (
+        {items.map((it) => {
+          // If the recorded carrier is no longer in the party (PC deleted /
+          // buried), show "(removed)" and offer to drop them to the group pool.
+          const carrierExists = !it.carrier || members.some((m) => m.id === it.carrier);
+          return (
           <li key={it.id} className="loot-row">
             <span className="loot-row__name">{it.name}</span>
             <label className="loot-row__carrier">
               carried by
-              <select value={it.carrier} onChange={(e) => setCarrier(it.id, e.target.value)}>
+              <select
+                value={carrierExists ? it.carrier : ''}
+                onChange={(e) => setCarrier(it.id, e.target.value)}
+              >
                 <option value="">— group —</option>
+                {!carrierExists && it.carrier && (
+                  <option value={it.carrier} disabled>(removed — {it.carrier.slice(-6)})</option>
+                )}
                 {members.map((m) => (
                   <option key={m.id} value={m.id}>{m.name || '(unnamed)'}</option>
                 ))}
@@ -79,7 +89,8 @@ export default function LootLedger({ open, onClose, loot, onUpdate, party }) {
               title="Drop / spend"
             >✕</button>
           </li>
-        ))}
+          );
+        })}
       </ul>
 
       <div className="loot-add">

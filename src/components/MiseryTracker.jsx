@@ -77,7 +77,7 @@ export default function MiseryTracker({ open, onClose }) {
             verse,
             note: '',
             at: Date.now(),
-            id: Date.now(),
+            id: `${Date.now()}-${Math.random().toString(36).slice(2, 5)}`,
           },
         ];
         return { ...s, psalm, verse, triggered, lastRoll: { die, triggered: true, day: s.day } };
@@ -102,7 +102,7 @@ export default function MiseryTracker({ open, onClose }) {
         verse,
         triggered: [
           ...s.triggered,
-          { day: s.day, psalm, verse, note: '', at: Date.now(), id: Date.now() },
+          { day: s.day, psalm, verse, note: '', at: Date.now(), id: `${Date.now()}-${Math.random().toString(36).slice(2, 5)}` },
         ],
         lastRoll: { die: 0, triggered: true, day: s.day, forced: true },
       };
@@ -120,12 +120,12 @@ export default function MiseryTracker({ open, onClose }) {
     setState((s) => {
       if (s.triggered.length === 0) return s;
       const triggered = s.triggered.slice(0, -1);
-      let psalm = s.psalm;
-      let verse = s.verse - 1;
-      if (verse < 0) {
-        psalm = Math.max(0, psalm - 1);
-        verse = PSALMS[psalm]?.slots ?? 7;
-      }
+      // Restore directly from the entry being undone — undoing across a
+      // psalm-rollover (verse 7 → next psalm verse 1) was previously stuck
+      // at verse 0 because the guard was `verse < 0` after the decrement.
+      const restoreTo = triggered[triggered.length - 1];
+      const psalm = restoreTo ? restoreTo.psalm : 0;
+      const verse = restoreTo ? restoreTo.verse : 0;
       return { ...s, psalm, verse, triggered };
     });
   };

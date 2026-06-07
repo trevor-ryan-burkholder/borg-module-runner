@@ -45,26 +45,30 @@ export default function CombatTracker({ open, onClose, combatState, setCombat, e
   const damageBy = (id, delta) => {
     setCombat((cs) => ({
       ...cs,
-      combatants: cs.combatants.map((c) =>
-        c.id === id
-          ? {
-              ...c,
-              hp: c.hp + delta,
-              dead: c.hp + delta <= 0,
-            }
-          : c
-      ),
+      combatants: cs.combatants.map((c) => {
+        if (c.id !== id) return c;
+        const nextHp = c.hp + delta;
+        // Cross-detection: only flip `dead` when HP crosses 0 in either
+        // direction. A manually-flagged dead PC at HP 5 who then takes 1
+        // damage shouldn't be quietly un-deaded.
+        let dead = c.dead;
+        if (c.hp > 0 && nextHp <= 0) dead = true;
+        if (c.hp <= 0 && nextHp > 0) dead = false;
+        return { ...c, hp: nextHp, dead };
+      }),
     }));
   };
 
   const setHp = (id, n) => {
     setCombat((cs) => ({
       ...cs,
-      combatants: cs.combatants.map((c) =>
-        // Healing above 0 lifts the dead flag too — otherwise a misclick to 0
-        // and back leaves the combatant permanently "dead."
-        c.id === id ? { ...c, hp: n, dead: n <= 0 } : c
-      ),
+      combatants: cs.combatants.map((c) => {
+        if (c.id !== id) return c;
+        let dead = c.dead;
+        if (c.hp > 0 && n <= 0) dead = true;
+        if (c.hp <= 0 && n > 0) dead = false;
+        return { ...c, hp: n, dead };
+      }),
     }));
   };
 
