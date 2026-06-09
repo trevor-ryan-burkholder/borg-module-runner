@@ -186,9 +186,10 @@ export function generateScenario() {
     tags: ['twist'],
   });
 
-  // Antechamber: warden enemy + locked inner door.
-  const wardenEnemy = bestiaryEnemy();
-  wardenEnemy.name = `${wardenEnemy.name}, ${warden}`;
+  // Antechamber: warden enemy + locked inner door. Spread rather than mutate
+  // so the helper's return contract stays read-only at the call site.
+  const wardenBase = bestiaryEnemy();
+  const wardenEnemy = { ...wardenBase, name: `${wardenBase.name}, ${warden}` };
   const anteTraps = chance(0.5) ? [rollValue(traps.entries)] : [];
   const anteNode = makeNode({
     id: ANTE,

@@ -126,10 +126,21 @@ function bestiaryPool(context) {
 // shows up for the right kind of location.
 export function bestiaryEnemy({ boss = false, context } = {}) {
   const pool = bestiaryPool(context);
-  let e = rollValue(pool);
+  // For bosses, exclude entries whose HP is non-numeric (em-dash entries are
+  // canonically unkillable / non-combat — Sagsobuth, Membrane of Sarkantha,
+  // Angelic Choir et al.). Synthesizing a fake numeric HP for them turns the
+  // climax into a beatdown of a creature that explicitly cannot be fought.
+  const bossPool = boss
+    ? pool.filter((entry) => {
+        const hp = parseInt(entry?.hp, 10);
+        return Number.isFinite(hp) && hp > 0;
+      })
+    : pool;
+  const drawPool = boss && bossPool.length > 0 ? bossPool : pool;
+  let e = rollValue(drawPool);
   if (boss) {
     for (let i = 0; i < 6; i++) {
-      const cand = rollValue(pool);
+      const cand = rollValue(drawPool);
       if ((parseInt(cand.hp, 10) || 0) > (parseInt(e.hp, 10) || 0)) e = cand;
     }
   }
@@ -144,7 +155,11 @@ export function bestiaryEnemy({ boss = false, context } = {}) {
     hp,
     morale: boss ? '—' : moraleDigits ? moraleDigits[0] : String(3 + rollDie(6)),
     speed: 'normal',
-    attack: attackRaw && attackRaw.length <= 70 ? attackRaw : 'Strikes, d6',
+    // The canonical attack lines for some entries (Dread Akünh, the Plant of
+    // Life, Sarcopha-Ghost) are 90–140 chars of important rules text — dropping
+    // them at 70 chars threw away the actual fight. Only fall back to the
+    // generic "Strikes, d6" when the field is empty.
+    attack: attackRaw || 'Strikes, d6',
     special: e.special && String(e.special).length <= 200 ? String(e.special) : '',
     notes: e.descriptor
       ? `${e.descriptor}${e.source ? ` (${e.source})` : ''}`

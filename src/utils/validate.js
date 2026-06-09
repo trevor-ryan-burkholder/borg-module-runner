@@ -52,6 +52,14 @@ export function validateAdventure(json) {
         // authoring error, not a warning.
         if (exitIds.has(exit.id)) errors.push(`${node.id}: duplicate exit id "${exit.id}".`);
         exitIds.add(exit.id);
+      } else {
+        // Missing exit id falls back to array-index keys in React. That works
+        // as long as the order is stable but breaks unlock tracking — the
+        // runner keys unlocked exits by id, so a no-id exit can never be
+        // unlocked from the UI.
+        warnings.push(
+          `${node?.id || 'node'}: exit "${exit?.label || exit?.target || '?'}" is missing an id (unlock/persistence cannot key this exit).`
+        );
       }
     }
   }
@@ -82,11 +90,25 @@ export function validateAdventure(json) {
 
   // Reachability from startNode.
   if (meta?.startNode && ids.has(meta.startNode)) {
-    const reachable = reachableFrom(nodes, meta.startNode);
+    const reachable = reachableFrom(nodes, meta.startNode, { allowLocked: true });
     const unreachable = [...ids].filter((id) => !reachable.has(id));
     if (unreachable.length > 0) {
       warnings.push(
         `${unreachable.length} unreachable node${unreachable.length > 1 ? 's' : ''} from startNode: ${unreachable.slice(0, 5).join(', ')}${unreachable.length > 5 ? ` (+${unreachable.length - 5} more)` : ''}.`
+      );
+    }
+
+    // Locked-only reachability: any node only reachable through a locked exit
+    // means a party that never finds the unlock spends the whole adventure
+    // stuck on one side of it. Flag those so the author can verify a key
+    // exists somewhere reachable without the lock.
+    const reachableUnlocked = reachableFrom(nodes, meta.startNode, { allowLocked: false });
+    const lockedOnly = [...reachable].filter(
+      (id) => id !== meta.startNode && !reachableUnlocked.has(id)
+    );
+    if (lockedOnly.length > 0) {
+      warnings.push(
+        `${lockedOnly.length} node${lockedOnly.length > 1 ? 's' : ''} reachable only through locked exits: ${lockedOnly.slice(0, 5).join(', ')}${lockedOnly.length > 5 ? ` (+${lockedOnly.length - 5} more)` : ''}. Verify the unlock condition is discoverable.`
       );
     }
   }
@@ -105,7 +127,8 @@ export function validateAdventure(json) {
   return { ok: errors.length === 0, errors, warnings };
 }
 
-function reachableFrom(nodes, startId) {
+function reachableFrom(nodes, startId, opts = {}) {
+  const allowLocked = opts.allowLocked !== false;
   const byId = new Map(nodes.map((n) => [n.id, n]));
   const reached = new Set();
   const queue = [startId];
@@ -116,6 +139,12 @@ function reachableFrom(nodes, startId) {
     const node = byId.get(id);
     if (!node) continue;
     for (const exit of node.exits ?? []) {
+      // A locked exit with a `condition` string is documented — the author
+      // told the GM how to unlock it. Treat it as passable for the
+      // locked-only-reachability check (the gate is a puzzle, not a forgotten
+      // dead-end). Locked exits with NO condition are the dangerous case: a
+      // party that doesn't stumble on the key has no recourse.
+      if (!allowLocked && exit?.locked && !exit?.condition) continue;
       if (exit?.target && byId.has(exit.target) && !reached.has(exit.target)) {
         queue.push(exit.target);
       }

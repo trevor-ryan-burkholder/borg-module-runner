@@ -140,7 +140,7 @@
     "the surviving merchants of an extinct guild, still trading in its name"
   ],
   "location_types": [
-    { "title": "the tavern", "kind": "tavern", "atmosphere": "Smoke, sour ale, and the wet cough of the dying. Best informed room in town.", "npc": true, "sells": true,
+    { "title": "The Tavern", "kind": "tavern", "atmosphere": "Smoke, sour ale, and the wet cough of the dying. Best informed room in town.", "npc": true, "sells": true,
       "sub": { "title": "The Smoke-Black Backroom", "atmosphere": "Where the deals nobody mentions are made, behind a door that locks both ways.", "kind": "backroom" } },
     { "title": "The Plague-Pit Market", "kind": "market", "atmosphere": "Stalls of dubious meat ring a pit that nobody admits to digging.", "npc": true, "sells": true,
       "sub": { "title": "Beneath the Stalls", "atmosphere": "A trapdoor leads to a cold pit of unsold things and unsold people.", "kind": "undercroft" } },

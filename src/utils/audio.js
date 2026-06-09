@@ -217,11 +217,14 @@ export function setChannelLevel(id, level) {
       v.setLevel(0);
       // Give the fade time to land before tearing down. Store the timer on the
       // voice so a follow-up setChannelLevel(id, >0) within 250 ms can cancel
-      // it — otherwise the just-raised voice gets destroyed mid-play.
+      // it — otherwise the just-raised voice gets destroyed mid-play. Identity-
+      // check before deleting from the map so a pending timer from a destroyed
+      // voice can't evict a NEW voice that was created at the same id after
+      // stopAll.
       if (v._destroyTimer) clearTimeout(v._destroyTimer);
       v._destroyTimer = setTimeout(() => {
         v.destroy();
-        voices.delete(id);
+        if (voices.get(id) === v) voices.delete(id);
       }, 250);
     }
     return;
@@ -241,7 +244,15 @@ export function setChannelLevel(id, level) {
 }
 
 export function stopAll() {
-  for (const [, v] of voices) v.destroy();
+  // Cancel any pending destroy timers first so they can't fire later and
+  // delete a fresh voice that was created at the same channel id post-stopAll.
+  for (const [, v] of voices) {
+    if (v._destroyTimer) {
+      clearTimeout(v._destroyTimer);
+      v._destroyTimer = null;
+    }
+    v.destroy();
+  }
   voices.clear();
 }
 

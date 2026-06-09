@@ -65,9 +65,11 @@ export default function MiseryTracker({ open, onClose }) {
         // Defensive: if the world has already ended, refuse to advance — the
         // disabled button blocks the UI path, but a stale closure or
         // programmatic call could otherwise silently loop the final psalm.
+        // Flag the result so the last-roll display tells the truth (the die
+        // DID say 1; we refused to trigger) instead of pretending it was a miss.
         const lastSlots = PSALMS[PSALMS.length - 1]?.slots ?? 7;
         if (s.psalm === PSALMS.length - 1 && s.verse >= lastSlots) {
-          return { ...s, lastRoll: { die, triggered: false, day: s.day } };
+          return { ...s, lastRoll: { die, triggered: false, day: s.day, worldEnded: true } };
         }
         let psalm = s.psalm;
         let verse = s.verse + 1;
@@ -171,7 +173,9 @@ export default function MiseryTracker({ open, onClose }) {
         <div className="misery-stat">
           <span className="misery-stat__label">Position</span>
           <span className="misery-stat__value">
-            Psalm {psalm.roman}, Verse {state.verse}/{psalm.slots}
+            {state.verse === 0
+              ? 'No verses triggered yet — the world is whole'
+              : `Psalm ${psalm.roman}, Verse ${state.verse}/${psalm.slots}`}
           </span>
         </div>
         <div className="misery-stat">
@@ -211,7 +215,11 @@ export default function MiseryTracker({ open, onClose }) {
             className={`misery-tracker__last ${state.lastRoll.triggered ? 'misery-tracker__last--hit' : 'misery-tracker__last--miss'}`}
           >
             Day {state.lastRoll.day}: {state.lastRoll.forced ? 'forced' : `rolled d6=${state.lastRoll.die}`} —{' '}
-            {state.lastRoll.triggered ? 'Misery triggers. Read the next verse aloud.' : 'no Misery this day.'}
+            {state.lastRoll.triggered
+              ? 'Misery triggers. Read the next verse aloud.'
+              : state.lastRoll.worldEnded
+                ? 'the world has already ended; no further verses.'
+                : 'no Misery this day.'}
           </div>
         )}
         {isWorldEnding && (

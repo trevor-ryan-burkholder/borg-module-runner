@@ -163,10 +163,13 @@ export default function AdventureBuilder({ initial, onSave, onClose }) {
   };
 
   const removeNode = (id) => {
-    if (!parsed) return;
-    if (!window.confirm(`Delete node "${id}"? This cannot be undone in the editor.`)) return;
+    if (!parsed) return false;
+    // Returns false if the user cancelled, so the caller can skip its
+    // post-delete bookkeeping (e.g., re-routing openNode to a survivor).
+    if (!window.confirm(`Delete node "${id}"? This cannot be undone in the editor.`)) return false;
     const next = { ...parsed, nodes: parsed.nodes.filter((n) => n.id !== id) };
     writeParsed(next);
+    return true;
   };
 
   const duplicateNode = (id) => {
@@ -385,10 +388,11 @@ export default function AdventureBuilder({ initial, onSave, onClose }) {
                   onDelete={() => {
                     // Pick a survivor BEFORE removing — `parsed.nodes[0]` may
                     // be the node being deleted, which would leave openNode
-                    // pointing at a missing id for one render.
+                    // pointing at a missing id for one render. Only re-route
+                    // when the delete was confirmed; cancelling shouldn't
+                    // bounce the editor to a different node.
                     const survivor = parsed.nodes.find((n) => n.id !== openNode)?.id ?? null;
-                    removeNode(openNode);
-                    setOpenNode(survivor);
+                    if (removeNode(openNode)) setOpenNode(survivor);
                   }}
                   onDuplicate={() => duplicateNode(openNode)}
                   onSetStart={() => updateMeta('startNode', openNode)}

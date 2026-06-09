@@ -138,15 +138,19 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
       }
       const isLocked = exit.locked && !state.unlockedExits.includes(exit.id);
       if (isLocked && exit.condition) {
+        // The 🔒-unlock affordance is hidden in player mode; don't mention it.
+        const tail = playerMode
+          ? ''
+          : '\n\n(Use the 🔒 on the exit to unlock it permanently.)';
         const proceed = window.confirm(
-          `This exit is locked:\n\n  ${exit.condition}\n\nProceed anyway? (Use the 🔒 on the exit to unlock it permanently.)`
+          `This exit is locked:\n\n  ${exit.condition}\n\nProceed anyway?${tail}`
         );
         if (!proceed) return;
       }
       goToNode(exit.target);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     },
-    [goToNode, state.unlockedExits]
+    [goToNode, state.unlockedExits, playerMode]
   );
 
   // Keyboard shortcuts. The listener is attached once and reads current panel
@@ -227,14 +231,15 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
 
       // In player mode, only the small set of shortcuts that match the visible
       // toolbar work; the rest stay locked so a curious player can't summon
-      // bestiary / combat / loot / etc. by accident.
+      // bestiary / combat / loot / etc. by accident. The help cheatsheet (`h`)
+      // is gated too because it lists every GM panel by name — an info leak
+      // that would tell the player what the GM is using behind the screen.
       if (k.playerMode) {
         switch (e.key.toLowerCase()) {
           case '?': k.setRulesOpen((o) => !o); break;
           case 'b': if (k.historyLen > 1) k.goBack(); break;
           case 'p': k.setPartyOpen((o) => !o); break;
           case 'm': k.setMapOpen((o) => !o); break;
-          case 'h': k.setHelpOpen((o) => !o); break;
           default: break;
         }
         return;
@@ -511,7 +516,7 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
 
       <BreadcrumbTrail
         history={state.history}
-        currentNode={state.currentNode}
+        currentNode={currentNode?.id ?? state.currentNode}
         nodeById={nodeById}
         onJump={goToNode}
         onOpenMap={() => setMapOpen(true)}
@@ -709,7 +714,7 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
         {mapOpen && (
           <MapView
             adventure={adventure}
-            currentNode={state.currentNode}
+            currentNode={currentNode?.id ?? state.currentNode}
             visited={state.visitedNodes}
             onJump={(id) => {
               goToNode(id);
@@ -741,7 +746,15 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
             onSave={(saved, opts) => {
               if (opts?.thenLoad) {
                 setBuilderOpen(false);
-                onChangeAdventure(getAdventureId(saved), saved, opts.jumpToNode);
+                const sameAdv = getAdventureId(saved) === getAdventureId(adventure);
+                if (sameAdv && opts.jumpToNode) {
+                  // Same id → useAdventure's switch effect won't fire and the
+                  // pendingJumpRef is never consumed. Jump directly so the GM
+                  // lands on the node they were editing.
+                  goToNode(opts.jumpToNode);
+                } else {
+                  onChangeAdventure(getAdventureId(saved), saved, opts.jumpToNode);
+                }
               }
             }}
           />

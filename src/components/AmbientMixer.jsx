@@ -96,8 +96,10 @@ export default function AmbientMixer({ open, onClose }) {
       style={open ? undefined : { display: 'none' }}
       aria-hidden={!open}
       // `inert` keeps closed-but-mounted sliders out of the tab order and
-      // hidden from assistive tech (audio still plays).
-      inert={!open ? '' : undefined}
+      // hidden from assistive tech (audio still plays). Pass `true` or omit
+      // entirely — feeding React 18 a string here triggers the
+      // "received non-boolean attribute" warning.
+      {...(!open ? { inert: true } : {})}
     >
       <header className="ambient-mixer__header">
         <h3>AMBIENT{masterOn ? ' · ON' : ''}</h3>

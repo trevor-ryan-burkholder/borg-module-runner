@@ -114,8 +114,11 @@ export function generateDungeon(opts = {}) {
     r.atmosphere = composeAtmosphere(rollValue(dungeons.room_atmospheres), 2);
 
     if (isLast) {
-      const warden = bestiaryEnemy({ context: 'dungeon' });
-      warden.name = `${warden.name} (Warden)`;
+      // Spread the helper's return so the caller's mutation contract stays
+      // read-only — the helper builds a fresh object today, but a future
+      // memoization or pool would leak this rename into other rooms.
+      const wardenBase = bestiaryEnemy({ context: 'dungeon' });
+      const warden = { ...wardenBase, name: `${wardenBase.name} (Warden)` };
       r.enemies.push(warden);
       if (chance(0.5)) r.enemies.push(bestiaryEnemy({ context: 'dungeon' }));
       r.gm_notes = 'Antechamber. The inner door is locked — the relic-key from a side passage opens it.';
