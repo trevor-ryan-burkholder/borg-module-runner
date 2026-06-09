@@ -374,6 +374,29 @@ export function useAdventure(adventure, opts = {}) {
     [nodeIndex]
   );
 
+  // Consume pendingJumpRef on ANY adventure-object change, not just on
+  // adventureId change. The Save & Run path in the builder produces a NEW
+  // adventure object with the SAME id; the switch effect (which seeds session
+  // from scratch) correctly bails because the id is unchanged, but we still
+  // need to navigate to the just-edited node. Runs after the new nodeIndex
+  // has been derived so the target is reachable.
+  useEffect(() => {
+    const id = pendingJumpRef?.current;
+    if (!id) return;
+    if (!nodeIndex.has(id)) return;
+    // Switch-effect path already handles fresh-session jumps (it consumes the
+    // ref inside seedSession). Only act when we're staying on the same id.
+    if (loadedIdRef.current !== adventureId) return;
+    pendingJumpRef.current = null;
+    setState((s) => ({
+      ...s,
+      currentNode: id,
+      visitedNodes: s.visitedNodes.includes(id) ? s.visitedNodes : [...s.visitedNodes, id],
+      history: s.history[s.history.length - 1] === id ? s.history : [...s.history, id],
+    }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [adventure]);
+
   const goBack = useCallback(() => {
     setState((s) => {
       if (s.history.length <= 1) return s;

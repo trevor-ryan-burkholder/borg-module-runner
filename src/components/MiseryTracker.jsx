@@ -99,7 +99,11 @@ export default function MiseryTracker({ open, onClose }) {
   const forceMisery = () => {
     setState((s) => {
       const lastSlots = PSALMS[PSALMS.length - 1]?.slots ?? 7;
-      if (s.psalm === PSALMS.length - 1 && s.verse >= lastSlots) return s;
+      if (s.psalm === PSALMS.length - 1 && s.verse >= lastSlots) {
+        // Parity with rollMisery: keep the user informed via the last-roll
+        // strip when a force was attempted at end-of-world.
+        return { ...s, lastRoll: { die: 0, triggered: false, day: s.day, forced: true, worldEnded: true } };
+      }
       let psalm = s.psalm;
       let verse = s.verse + 1;
       const slots = PSALMS[psalm]?.slots ?? 7;

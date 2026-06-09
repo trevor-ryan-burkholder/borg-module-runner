@@ -746,15 +746,12 @@ function AdventureRuntime({ adventure, ephemeral, onClearEphemeral, onChangeAdve
             onSave={(saved, opts) => {
               if (opts?.thenLoad) {
                 setBuilderOpen(false);
-                const sameAdv = getAdventureId(saved) === getAdventureId(adventure);
-                if (sameAdv && opts.jumpToNode) {
-                  // Same id → useAdventure's switch effect won't fire and the
-                  // pendingJumpRef is never consumed. Jump directly so the GM
-                  // lands on the node they were editing.
-                  goToNode(opts.jumpToNode);
-                } else {
-                  onChangeAdventure(getAdventureId(saved), saved, opts.jumpToNode);
-                }
+                // Always go through onChangeAdventure so the runtime sees the
+                // edited content (new node refs, edited fields). useAdventure's
+                // pendingJumpRef consumer handles both the cross-adventure
+                // switch path AND the same-id "save & run" path, so a single
+                // call works for both.
+                onChangeAdventure(getAdventureId(saved), saved, opts.jumpToNode);
               }
             }}
           />

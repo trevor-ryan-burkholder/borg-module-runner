@@ -11,7 +11,21 @@ const CACHE = `${CACHE_PREFIX}${BUILD_VERSION}`;
 const FONT_HOSTS = ['fonts.googleapis.com', 'fonts.gstatic.com'];
 
 self.addEventListener('install', (event) => {
-  event.waitUntil(self.skipWaiting());
+  event.waitUntil(
+    (async () => {
+      // Pre-cache the index document into the NEW cache before activate prunes
+      // the OLD cache. If the user goes offline between the new SW installing
+      // and their next navigation, the activate handler would otherwise leave
+      // the cache empty and the navigation would 503. Best-effort: if the
+      // fetch fails (already offline), we fall through and the activate prune
+      // still runs — at worst no worse than before.
+      try {
+        const cache = await caches.open(CACHE);
+        await cache.add(new Request(self.registration.scope, { cache: 'reload' }));
+      } catch { /* offline at install; activate will prune anyway */ }
+      await self.skipWaiting();
+    })()
+  );
 });
 
 self.addEventListener('activate', (event) => {

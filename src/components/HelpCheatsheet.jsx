@@ -56,7 +56,7 @@ export default function HelpCheatsheet({ open, onClose, theme, onSetTheme }) {
       <div className="picker picker--narrow help-sheet" onClick={(e) => e.stopPropagation()}>
         <header className="picker__header">
           <h2>HELP</h2>
-          <button type="button" className="iconbtn" onClick={onClose}>✕</button>
+          <button type="button" className="iconbtn" onClick={onClose} aria-label="Close help">✕</button>
         </header>
 
         <section className="picker__section">

@@ -170,15 +170,25 @@ export default function CombatTracker({ open, onClose, combatState, setCombat, e
 
         <div className="combatant__row">
           <span className="combatant__label">HP</span>
-          <button type="button" className="iconbtn" onClick={() => damageBy(c.id, -1)}>−</button>
+          <button
+            type="button"
+            className="iconbtn"
+            onClick={() => damageBy(c.id, -1)}
+            aria-label={`Damage ${c.name} by 1`}
+          >−</button>
           <NumberField
             value={c.hp}
             onChange={(n) => setHp(c.id, n)}
             className="combatant__hp-input"
-            aria-label="HP"
+            aria-label={`${c.name} HP`}
           />
           <span className="combatant__hpmax">/ {c.hpMax}</span>
-          <button type="button" className="iconbtn" onClick={() => damageBy(c.id, +1)}>+</button>
+          <button
+            type="button"
+            className="iconbtn"
+            onClick={() => damageBy(c.id, +1)}
+            aria-label={`Heal ${c.name} by 1`}
+          >+</button>
           {c.kind === 'enemy' && moraleScore != null && (
             <button type="button" className="iconbtn" onClick={() => rollMorale(c)}>
               morale ({c.morale})
