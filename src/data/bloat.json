@@ -189,7 +189,7 @@
             "morale": "—",
             "speed": "slow",
             "attack": "Fecal acid burn, d4",
-            "special": "Cannot be killed by any weapon. Only enough clean water will temporarily dissipate it (a bucket from the Chapel's sweet-water fountain disperses it for d6 rounds; a sustained dousing — e.g. diverting the fountain — drives it underground until refilled). When dispersed it leaves a horrendous stench that clings to clothing and skin (+DR2 on all social tests until the wearer is properly washed). All tests inside the chamber are at +DR2 from the stench alone.",
+            "special": "No armour. Cannot be killed by any weapon. Only enough clean water will temporarily dissipate it (a bucket from the Chapel's sweet-water fountain disperses it for d6 rounds; a sustained dousing — e.g. diverting the fountain — drives it underground until refilled). When dispersed it leaves a horrendous stench that clings to clothing and skin (+DR2 on all social tests until the wearer is properly washed). All tests inside the chamber are at +DR2 from the stench alone.",
             "notes": "Treat as a hazard, not an opponent. PCs who try to fight it normally are wasting rounds and HP. Reward the player who runs back for water from the Chapel fountain (room 4)."
           }
         ],
@@ -497,7 +497,7 @@
       "morale": "—",
       "speed": "slow",
       "attack": "Fecal acid burn, d4",
-      "special": "Cannot be killed by any weapon. Only enough clean water dissipates it temporarily. All tests in the chamber are at +DR2 from the stench. Dispersal leaves a horrendous stench (+DR2 on social tests until properly washed).",
+      "special": "No armour. Cannot be killed by any weapon. Only enough clean water dissipates it temporarily. All tests in the chamber are at +DR2 from the stench. Dispersal leaves a horrendous stench (+DR2 on social tests until properly washed).",
       "notes": "Sewage Pit (room 3). Source: MBC Bloat."
     },
     {

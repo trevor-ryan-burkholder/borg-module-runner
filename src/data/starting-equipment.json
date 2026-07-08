@@ -13,10 +13,10 @@
     { "name": "Zweihänder", "damage": "d10", "note": "two-handed; no Powers/scrolls" }
   ],
   "armor": [
-    { "name": "No armor", "absorb": "no protection", "tier": 0 },
+    { "name": "No armor", "absorb": "—", "tier": 0 },
     { "name": "Light", "absorb": "-d2 damage", "tier": 1 },
-    { "name": "Medium", "absorb": "-d4 damage, +2 DR Agility tests", "tier": 2 },
-    { "name": "Heavy", "absorb": "-d6 damage, +4 DR Agility tests (Defence +2 DR)", "tier": 3 }
+    { "name": "Medium", "absorb": "-d4 damage, +2 DR Agility tests including defence", "tier": 2 },
+    { "name": "Heavy", "absorb": "-d6 damage, +4 DR Agility tests, defence is DR+2", "tier": 3 }
   ],
   "rations": [
     "Dried mystery meat (4 days)",
