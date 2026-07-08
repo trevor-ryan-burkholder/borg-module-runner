@@ -8,6 +8,14 @@
     "Pit", "Church", "Temple", "Tunnels", "Crypt", "Grave",
     "Fort", "Ziggurat", "Den", "Maze", "House", "Waste"
   ],
+  "status": [
+    "Still active",
+    "Still active",
+    "Inactive — the place was invaded",
+    "Inactive — everything ended in disaster",
+    "Inactive — it was no longer needed",
+    "Inactive — a Misery was fulfilled"
+  ],
   "imminent_danger": [
     "Is slowly flooding with (d4): 1–2 oil, 3–4 water.",
     "Berserkers are appearing.",

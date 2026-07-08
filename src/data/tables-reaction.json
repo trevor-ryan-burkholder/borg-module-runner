@@ -1,11 +1,11 @@
 {
   "source": "MÖRK BORG Bare Bones Edition, p.32 (2d6)",
-  "note": "Source uses 2d6 with a triangular distribution. We approximate via weighted single-pick — extremes are rarer, indifferent is most common.",
+  "note": "Source uses 2d6 with a triangular distribution. Weights approximate actual 2d6 band probabilities: Kill(2-3)=3/36, Angered(4-6)=12/36, Indifferent(7-8)=11/36, Almost friendly(9-10)=7/36, Helpful(11-12)=3/36.",
   "reaction": [
-    { "weight": 1, "value": "Kill!" },
-    { "weight": 3, "value": "Angered" },
-    { "weight": 7, "value": "Indifferent" },
-    { "weight": 3, "value": "Almost friendly" },
-    { "weight": 1, "value": "Helpful" }
+    { "weight": 3, "value": "Kill!" },
+    { "weight": 12, "value": "Angered" },
+    { "weight": 11, "value": "Indifferent" },
+    { "weight": 7, "value": "Almost friendly" },
+    { "weight": 3, "value": "Helpful" }
   ]
 }

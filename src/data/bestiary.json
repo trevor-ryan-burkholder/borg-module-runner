@@ -1,6 +1,6 @@
 {
   "source": "Extracted from wiki/creatures/*.md (Mörk Borg core + supplements).",
-  "count": 97,
+  "count": 98,
   "entries": [
     {
       "id": "dread-ak-nh-demon-spawn",
@@ -21,8 +21,8 @@
       "hp": "10",
       "morale": "—",
       "attack": "Gooey −d2, Acidic splash d8",
-      "special": "",
-      "lore": "Whenever a PC damages the ooze they must test Strength DR8 or their weapon becomes stuck to it. If not removed the next round (Strength DR10) the weapon is destroyed."
+      "special": "Slow: defense is DR10. Whenever a PC damages the ooze they must test Strength DR8 or their weapon becomes stuck to it. If not removed the next round (Strength DR10) the weapon is destroyed.",
+      "lore": "Mindless and hungry, born from the alchemical chaos of Nagel Krat's laboratory. The amber goo pools beneath tables and seeps through floors, drawn to warmth and movement. What it touches, it keeps."
     },
     {
       "id": "angelic-choir",
@@ -117,12 +117,12 @@
       "name": "Carcasswan",
       "descriptor": "mates for life — and eats the lost half",
       "source": "MBC_Eat-Prey-Kill.pdf, p.10 (Lake Onda)",
-      "hp": "15",
+      "hp": "15 (lone) / 5 (pair)",
       "morale": "—",
-      "attack": "Bite/Claws d8",
-      "special": "Mates for life. When one of the pair dies, the survivor eats its dead lover and gains a taste for flesh. The lone Carcasswan is the more dangerous form.",
+      "attack": "Bite/Claws d8 (lone) / Bite d6 (pair)",
+      "special": "Mates for life. The pair form is gentler. When one of the pair dies, the survivor eats its dead lover and gains a taste for flesh — becoming the lone form. When you see a lone Carcasswan, you run. Before it sees you.",
       "lore": "A decade-long story eventually ending in the surviving half eating its dead lover. Long story short, when you see a lone Carcasswan, you run. Before it sees you. The pair-stat is the gentler bird; the lone-stat is the bereaved.",
-      "variant": "Lone"
+      "variant": "Two stat blocks: Pair (HP 5, Morale —, Bite d6) and Lone (HP 15, Morale —, Bite/Claws d8)"
     },
     {
       "id": "carrion-owls",
@@ -806,8 +806,8 @@
       "name": "Steppe Wolfe",
       "descriptor": "the lanky one, long-legged, short of patience",
       "source": "MBC_Eat-Prey-Kill.pdf, p.4 (Tveland)",
-      "hp": "16",
-      "morale": "—",
+      "hp": "8",
+      "morale": "10",
       "attack": "Tough skin −d2, Bite d6",
       "special": "Outlast it for d4 rounds and the pack might leave you alone. The lanky Steppe Wolfe has long legs but a short patience.",
       "lore": "Longer in the leg than any wolf has right to be. The Steppe Wolfe leads. The pack follows. They will chase you across the open ground for as long as their leader has the will. Sometimes that is not long. More often it is long enough."
@@ -928,7 +928,7 @@
       "descriptor": "among the kindest creatures out there — as long as you stay well away",
       "source": "MBC_Eat-Prey-Kill.pdf, p.4 (Tveland)",
       "hp": "16",
-      "morale": "10",
+      "morale": "—",
       "attack": "Tough skin −d4, Tusks d8",
       "special": "Fighting one means fighting d4 more. The herd does not abandon its own.",
       "lore": "They are patient. They are gentle. They are an entire wall of dark wool and yellow tusks the moment one of them screams. The steppe-hunters of Tveland keep their distance and call them kind, because the dead cannot disagree."

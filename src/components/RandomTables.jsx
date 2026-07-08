@@ -45,6 +45,7 @@ const TABLES = [
   // Dungeon
   { id: 'dungadj', cat: 'Dungeon', name: 'Dungeon — Adjective', die: 'd12', data: dungeons.name_adjectives },
   { id: 'dungnoun', cat: 'Dungeon', name: 'Dungeon — Noun', die: 'd12', data: dungeons.name_nouns },
+  { id: 'dungstatus', cat: 'Dungeon', name: 'Dungeon Status', die: 'd6', data: dungeons.status },
   { id: 'dungwho', cat: 'Dungeon', name: 'Who Lives There', die: 'd12', data: dungeons.inhabitants },
   { id: 'dungfeat', cat: 'Dungeon', name: 'Distinctive Feature', die: 'd12', data: dungeons.features },
   { id: 'dungdanger', cat: 'Dungeon', name: 'Imminent Danger', die: 'd10', data: dungeons.imminent_danger },

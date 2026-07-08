@@ -21,16 +21,23 @@ function modOf(score) {
   return 3;
 }
 
-function pickWeapon(weaponDie) {
-  // Roll within the first N entries of the weapons table.
-  const max = Math.min(weaponDie, equipment.weapons.length);
+function pickWeapon(cls) {
+  // Some classes (e.g. Fanged Deserter) have a fixed starting weapon instead of a table roll.
+  if (cls.weapon_fixed) return cls.weapon_fixed;
+  const max = Math.min(cls.weapon_die, equipment.weapons.length);
   const idx = rollDie(max) - 1;
   return equipment.weapons[idx];
 }
 
-function pickArmor(armorDie) {
-  const max = Math.min(armorDie, equipment.armor.length);
-  const idx = rollDie(max) - 1;
+function pickArmor(cls) {
+  // Some classes (e.g. Heretical Priest) have a fixed starting armor instead of a table roll.
+  if (cls.armor_fixed && cls.armor_die == null) return cls.armor_fixed;
+  const max = Math.min(cls.armor_die, equipment.armor.length);
+  let idx = rollDie(max) - 1;
+  // Some classes (e.g. Wretched Royalty) reroll if heavy armor (tier 3, index 3) is received.
+  if (cls.armor_reroll_heavy && equipment.armor[idx]?.tier === 3) {
+    idx = rollDie(max - 1) - 1; // reroll excluding last entry
+  }
   return equipment.armor[idx];
 }
 
@@ -46,8 +53,8 @@ function rollCharacter(cls) {
   const omens = rollDie(cls.omens_die);
   const name = rollValue(names.entries);
   const trait = rollValue(traits.traits);
-  const weapon = pickWeapon(cls.weapon_die);
-  const armor = pickArmor(cls.armor_die);
+  const weapon = pickWeapon(cls);
+  const armor = pickArmor(cls);
   const specialty = rollValue(cls.specialties);
   return {
     classId: cls.id,
@@ -127,10 +134,10 @@ export default function CharacterGenerator({ open, onClose, onAddToParty }) {
           next.omens = rollDie(cls.omens_die);
           break;
         case 'weapon':
-          next.weapon = pickWeapon(cls.weapon_die);
+          next.weapon = pickWeapon(cls);
           break;
         case 'armor':
-          next.armor = pickArmor(cls.armor_die);
+          next.armor = pickArmor(cls);
           break;
         case 'specialty':
           next.specialty = rollValue(cls.specialties);
