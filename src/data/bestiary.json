@@ -9,8 +9,8 @@
       "source": "The Death Ziggurat",
       "hp": "20",
       "morale": "11",
-      "attack": "Claws and devouring, +2, d10 (twice per round). Two hits in one round = devoured (Strength DR14 to escape or die).",
-      "special": "Death scream (Presence DR12 or drawn to arm's length). Dark rays from her eyes, d4 to d6 enemies. Teleports freely within her depression. Her heart is hidden elsewhere — she cannot truly die until it is destroyed.",
+      "attack": "No armor. Claws and devouring d6 (attacks twice per round). Two hits in one round = devoured (Strength DR14 to escape or die).",
+      "special": "Death scream: Test Presence DR12 or be drawn to arm's length distance of Akünh. Dark rays d4 shoot out from the eyes, affects up to d6 nearby enemies. Teleports freely within the depression. Separated heart: at 0 HP will resurrect at her heart beneath the ziggurat — she cannot truly die until it is destroyed.",
       "lore": "Five-eyed daughter of SHE and the Death Realm. Imprisoned by the Creton Order in a ziggurat of bone; the rot-priests dig her out one chant at a time. When she rises fully, the realm of the dead rises with her."
     },
     {
@@ -210,8 +210,8 @@
       "source": "Sepulchre of the Swamp Witch",
       "hp": "8",
       "morale": "—",
-      "attack": "No armor, Bite d2 + Emerald Venom",
-      "special": "",
+      "attack": "No armor, Bite d2 + Emerald Venom.",
+      "special": "Lightning reflexes: attacks thrice each round, and melee attacks against her use Agility DR16 instead of Strength. Emerald Venom: Test Toughness DR12 or be afflicted (no test if willingly bitten). Everything turns chromatic. −1 on initiative and fumble on 1–3 for the duration of a 7-day-long high. Victim also perceives paths and hidden portals in the Sepulchre differently.",
       "lore": "The Swamp Witch's death causes all Emerald Serpents (and the Emerald Venom effects, and the barrier blocking the Downward Spiral) to disappear forever."
     },
     {
@@ -287,8 +287,8 @@
       "source": "Sepulchre of the Swamp Witch",
       "hp": "9",
       "morale": "9",
-      "attack": "Gatorskin hood and vestment −d4",
-      "special": "",
+      "attack": "Gatorskin hood and vestment −d4, Forked dagger d4 + poison, or Viper spit (Agility DR12 or blinded d3 rounds).",
+      "special": "Poison: Test Toughness DR10 or become infected and drowsy, raising the difficulty of all attack and defence tests by +2 for d4 hours. Viper spit: Test Agility DR12 to avoid being blinded d3 rounds.",
       "lore": "These are the most fanatic of Ueth's followers and will die for him if asked. They will not allow any suspicious behaviour in the Worship Hall. They speak with a burning passion and wicked lisp."
     },
     {
@@ -375,9 +375,9 @@
       "source": "Rotblack Sludge",
       "hp": "50",
       "morale": "—",
-      "attack": "Thick hide −d6",
-      "special": "",
-      "lore": "Every swim through the sludge has a 1–2 on a d6 chance the Gutworm bites (d10 damage); test Agility dr6 when bitten to avoid being devoured and dying."
+      "attack": "Thick hide −d6, Razor sharp teeth d10.",
+      "special": "Test Agility DR6 or be devoured, dying instantly. Every swim through the Rotblack Sludge has a 1–2 on a d6 chance the Gutworm bites. Controlled by Fletcher — if he dies the Gutworm sinks to the bottom, dead but dreaming.",
+      "lore": "Hides in the Rotblack Sludge. Can easily reach rooms 9, 12 and 15 of the Accursed Den. Unfathomably long, thick as an oak, drawn to disturbance in the sludge."
     },
     {
       "id": "half-billed-raven",
@@ -619,8 +619,8 @@
       "source": "Rotblack Sludge (random encounter table a)",
       "hp": "12",
       "morale": "—",
-      "attack": "test Toughness DR12 to avoid freezing (tests are DR+2 for one hour).",
-      "special": "",
+      "attack": "Thick carapace −d2, Bite d4.",
+      "special": "Test Toughness DR12 to avoid freezing (tests are DR+2 for one hour).",
       "lore": ""
     },
     {
@@ -631,8 +631,8 @@
       "hp": "8",
       "morale": "7",
       "attack": "Leather −d2, Staff/Femur d4.",
-      "special": "",
-      "lore": ""
+      "special": "Four distinct follower types (each has their own stat block, traits, speciality, and values — GM rolls morale from time to time, adding the group's highest Presence to the roll): 1. Earthbound (p.64) — HP 8, Morale 7, Leather −D2, Staff/Femur D4. Roughly three parts human, one part dog. 2. Wild Wickhead (p.65) — HP 10, Morale 7, No armor, Knife D4. Solitary by nature; fickle and bad. 3. Pale one (p.66) — HP 5, Morale 8, No armor, Unarmed D2. Fallen from the stars; destructive and detached. 4. Prowler (p.67) — HP 8, Morale 8, Leather −D2, Knife/Femur D4 (also: Filthy shortsword D4+1). Lawless crook seeking retribution and coin.",
+      "lore": "Money might cross hands but these weirdos don't cost silver to hire. Vagrants and refugees driven by loneliness, they just want somewhere to belong. Which is exactly why they often break into a run and disappear, usually at the most critical moments."
     },
     {
       "id": "phantom-rats",
@@ -685,7 +685,7 @@
       "source": "MBC Graves Left Wanting, p.13",
       "hp": "4",
       "morale": "5",
-      "attack": "",
+      "attack": "Bite d4 + special, or Barbed Roach Whip d6.",
       "special": "Test Toughness DR12 or become infected.",
       "lore": "A graverobber made hermit, statted as a creature because he will fight if cornered, and statted lightly because he would rather not. He sits on his throne of trash and would-be valuables, roach whip in grubby hand. \"After being unable to escape the cursed graveyard, his party members eventually died, leaving him terribly alone. Now he breeds cockroaches, hoping to hatch one big enough to fly him back to the city he once rejected.\" An insecure liar and untrustworthy narcissist who values his own skin above all else."
     },
@@ -696,9 +696,9 @@
       "source": "The Death Ziggurat",
       "hp": "10",
       "morale": "8",
-      "attack": "No armor",
-      "special": "",
-      "lore": ""
+      "attack": "No armor. Devour — Test Strength DR12 or be grappled; next turn devoured (d8 damage per round). Claws d6.",
+      "special": "Rotting touch: Those damaged by a rot priest will not heal when resting until healed magically, or resting one night at least a day's travel from the ziggurat. Wear medallions that allow travel to the ziggurat in the death realm.",
+      "lore": "Wear black robes and wide-brimmed cylindrical hats with black veils covering the face. Rotting mouth similar to Akünh's on front of upper body; must eat human flesh regularly. Curious about existential and metaphysical issues. Their touch causes death and ruin."
     },
     {
       "id": "rotted-skeleton",
@@ -798,7 +798,7 @@
       "morale": "—",
       "attack": "—",
       "special": "",
-      "lore": "The Spider-Owl is the third ingredient of Spider-Owl soup — a decoction brewed by the Occult Herbmaster that grants night-vision and wall-climbing for thirty minutes.",
+      "lore": "The Spider-Owl is the fifth decoction of the Occult Herbmaster — brewed as Spider-Owl soup, it lets the drinker see in darkness and climb on walls for 30 minutes.",
       "stub": "Ingredient creature for Spider-Owl soup; no canonical combat stats."
     },
     {
@@ -809,7 +809,7 @@
       "hp": "8",
       "morale": "10",
       "attack": "Tough skin −d2, Bite d6",
-      "special": "Outlast it for d4 rounds and the pack might leave you alone. The lanky Steppe Wolfe has long legs but a short patience.",
+      "special": "Outlast it for d4 rounds and the pack (d8) might leave you alone. The lanky Steppe Wolfe has long legs but a short patience.",
       "lore": "Longer in the leg than any wolf has right to be. The Steppe Wolfe leads. The pack follows. They will chase you across the open ground for as long as their leader has the will. Sometimes that is not long. More often it is long enough."
     },
     {
@@ -897,7 +897,7 @@
       "hp": "14",
       "morale": "11",
       "attack": "Scales −d2, Bite/Claws d6",
-      "special": "Never goes far from its nest — likely an old tomb — where it keeps d66 silver coins. The ape longs for silver and will bargain or fight to keep its hoard.",
+      "special": "Never goes far from its nest — likely an old tomb — where it keeps d66 coins. The ape longs for silver and will bargain or fight to keep its hoard.",
       "lore": "The suckling soil of the valley cannot hold the Tomb Ape, for it has webbed feet like that of a frog, and the scales of a slippery snake. Long tangled hair covers its face, the place where it keeps a mouthful of sharp teeth. It longs for silver, and it has the time to wait for the next thief."
     },
     {
@@ -1062,7 +1062,7 @@
       "hp": "27",
       "morale": "—",
       "attack": "Barrier (palefire) −d4",
-      "special": "When targeted by healing powers, the Übertaker loses rather than recovers HP. Upon destruction, the torn rune-covered robes can be rolled up and used as an Unclean Scroll (BEHOLD THE POWER — d4 creatures' next attacks deal maximum damage).",
+      "special": "Performs a random action each round (d4): 1. SCOURGE TAKE YOU — Creatures in melee range take d4 damage. 2. BEHOLD THE POWER — Its next attack deals maximum damage. 3. NO REPROACH — Appears next to random creature and swings the shovel (Defence DR14, d6 damage). 4. REST IS NOW — Skeletal hands pull a creature into the ground (prone + test Strength DR14 or d8 damage). When targeted by healing powers, the Übertaker loses rather than recovers HP. Upon destruction, the torn rune-covered robes can be rolled up and used as an Unclean Scroll (BEHOLD THE POWER — d4 creatures' next attacks deal maximum damage).",
       "lore": "\"Rising, floating a few feet above the ground, is the Undertaker's body. The face is gaunt, eyes sunken and filled with mad purple fire. Rune-covered robes swirl around grim feet, the shovel a fiery polearm of doom.\" Upon festering, the Undertaker's body and vengeful mind hosted a being both lesser and greater than human — a servant of a faraway underworld. This creature is concerned with one thing: to bring people back below dirt. The fog of Graven-Tosk swirls around the uncovered grave when it rises; the flies fall away into impossible silence."
     },
     {
@@ -1084,7 +1084,7 @@
       "hp": "18",
       "morale": "—",
       "attack": "Thick fur −d2, Bite/Claws d8",
-      "special": "Pack-leader. Always travels with d6+ regular wolves in close support.",
+      "special": "Pack-leader. Always travels with d6+ regular wolves in close support. Regular wolf: HP 6, Morale 8, Bite d6.",
       "lore": "Born during a full blood moon, the Überwolf is three times the size of a normal wolf. And there are usually d6 or more of those following close behind. It runs the high passes of Bergen Chrypt and the lesser wolves know not to run ahead."
     }
   ]
