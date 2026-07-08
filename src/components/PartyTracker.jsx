@@ -24,10 +24,10 @@ const BLANK_PC = () => ({
 
 // Canonical Broken (0 HP) table — MÖRK BORG Bare Bones Edition / Rules Reference.
 const BROKEN_TABLE = {
-  1: 'Fall unconscious for d4 rounds, then awaken with d4 HP.',
-  2: 'd6: 1–5 broken or severed limb, 6 lost eye. Cannot act for d4 rounds, then active with d4 HP.',
-  3: 'Haemorrhage: death in d2 hours unless treated. All tests DR16 the first hour, DR18 the last.',
-  4: 'DEAD.',
+  1: 'Fall unconscious for d4 rounds, awaken with d4 HP.',
+  2: 'Roll a d6: 1–5 = Broken or severed limb. 6 = Lost eye. Can\'t act for d4 rounds then become active with d4 HP.',
+  3: 'Haemorrhage: death in d2 hours unless treated. All tests are DR16 the first hour. DR18 the last hour.',
+  4: 'Dead.',
 };
 
 export default function PartyTracker({ party, onUpdate, onDismiss, onBury }) {

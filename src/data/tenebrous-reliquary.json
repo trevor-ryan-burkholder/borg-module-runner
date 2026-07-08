@@ -64,10 +64,10 @@
         "items": [
           "11 — Mercy's Bane: spiked flail d8, +d6 damage to surrendering enemies. The flail knows the difference between a raised blade and an open palm.",
           "12 — Opium Hook: hook in artery d4 dmg, 2× temp HP for 2 hours; addiction risk Toughness DR10, rising each failure. The hole never closes.",
-          "13 — Plasmatic Idol: spill blood, roll d6 — odd, poisoned (DR12 Toughness or −10 HP); even, +2 DR to Agility/Strength until next rest.",
+          "13 — Plasmatic Idol: spill blood, roll a die — odd, poisoned (DR12 Toughness or −10 HP); even, +2 DR to Agility/Strength until next rest.",
           "14 — Ripper's Blade: no damage. Removes d4−1 Armor per hit. Wants the shell, not the flesh.",
           "15 — Roses of Winter: eat a petal — numb to all pain, cannot be killed or broken for a few minutes. Damage still accrues.",
-          "16 — Spine of God: bearer attracts the poor with unknown intent. If broken: clouds part, sun shines for the first time in a century.",
+          "16 — Spine of God: bearer attracts the poor with unknown intent. If broken: clouds part, ending any weather effects, sun shines for the first time in a century.",
           "21 — Snort Dagger: dripping reeking blade. Killing a goblin breaks it forever but frees the cursed creature within.",
           "22 — Stone Magnet: paired stones, round glows orange near danger. The stones can lie.",
           "23 — Tentacles of Zen: rust lamp, shadow tendrils. Presence DR14 — pass: −1 Presence; fail: +1 Presence. The lamp does not care.",
@@ -111,7 +111,7 @@
       "rules": [
         {
           "title": "Row 11–16 (roll d6 for the ones digit after a 1)",
-          "text": "11 MERCY'S BANE — Spiked Flail (d8). Additional d6 damage to surrendering enemies. The flail knows the difference between a raised blade and an open palm; it prefers the palm. 12 OPIUM HOOK — Metal hook driven into an artery (d4 dmg). Grants 2× the user's HP as temp HP for 2 hours, opiate-like. Toughness DR10 to resist dependency; every sober day deals infection damage and DR rises with each failed attempt. Eventually addicted; temp-HP benefit lost. The hole never closes. 13 PLASMATIC IDOL — Spill blood on it while resting and roll d6: odd, the blood becomes red poison (Toughness DR12 or −10 HP); even, until next rest Agility and Strength tests are +2 DR. 14 RIPPER'S BLADE — Deals no damage but removes d4−1 Armor per hit. It does not wound flesh. It only wants the shell. 15 ROSES OF WINTER — A near-extinct blood-red thorny flower (not a true rose). A single eaten petal numbs the consumer to all pain for a few minutes; damage is received normally but the eater cannot be killed or broken during the effect. 16 SPINE OF GOD — A shriveled length of vertebrae, warm to the touch. The bearer attracts the poor, intentions unknown even to themselves. If broken: the clouds part — warm sunbeams pierce the heavens for the first time in a century."
+          "text": "11 MERCY'S BANE — Spiked Flail (d8). Additional d6 damage to surrendering enemies. The flail knows the difference between a raised blade and an open palm; it prefers the palm. 12 OPIUM HOOK — Metal hook driven into an artery (d4 dmg). Grants 2× the user's HP as temp HP for 2 hours, opiate-like. Toughness DR10 to resist dependency; every sober day deals infection damage and DR rises with each failed attempt. Eventually addicted; temp-HP benefit lost. The hole never closes. 13 PLASMATIC IDOL — Spill blood on it while resting and roll a die: odd, the blood becomes red poison (Toughness DR12 or −10 HP); even, until next rest Agility and Strength tests are +2 DR. 14 RIPPER'S BLADE — Deals no damage but removes d4−1 Armor per hit. It does not wound flesh. It only wants the shell. 15 ROSES OF WINTER — A near-extinct blood-red thorny flower (not a true rose). A single eaten petal numbs the consumer to all pain for a few minutes; damage is received normally but the eater cannot be killed or broken during the effect. 16 SPINE OF GOD — A shriveled length of vertebrae, warm to the touch. The bearer attracts the poor, intentions unknown even to themselves. If broken: the clouds part, ending any weather effects, as warm sunbeams pierce the heavens for the first time in a century."
         },
         {
           "title": "Row 21–26",

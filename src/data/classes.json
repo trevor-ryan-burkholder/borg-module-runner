@@ -41,11 +41,11 @@
       "specialty_label": "Trophy",
       "specialties": [
         "Crumpled monster mask — goblins/gnoums/children must check Morale each round while you wear it.",
-        "Brown Scimitar of Galgenbeck — stinking d6 sword. 1/6 chance wound becomes fatal sepsis in 10 min.",
+        "Brown Scimitar of Galgenbeck — stinking d6 sword. DR10 attack and defence while you wield it. 1/6 chance a wounded enemy dies of sepsis in 10 min.",
         "Wizard Teeth — four teeth in a pouch. Pre-battle roll each as d6; every 6 = one max-damage attack.",
         "Old Sigûrd's Sling — woven from grey hair. 2d4, rocks for ammo.",
         "Ancient gore-hound — wheezing dog with a superb nose. Bite d6, 10hp, frenzies near goblins/berserkers.",
-        "Shoe of Death's Horse — d4 thrown, returns. 1/6 instantly kills small-medium creatures."
+        "Shoe of Death's Horse — hits DR10, d4 damage, returns like a boomerang. 1/6 instantly kills small-to-medium creatures."
       ]
     },
     {
@@ -109,7 +109,7 @@
       "armor_die": 4,
       "specialty_label": "Heresy",
       "specialties": [
-        "Sacred shepherd's crook — bone-hook staff, 2d4 vs faithful, ignored by the faithless.",
+        "Sacred shepherd's crook — bone-hook inscribed with anti-prayers. Staff does 2d4 damage except to faithless humans.",
         "Stolen mitre — Defence dr10 while worn. Stealth dr8 outside combat with ears down.",
         "List of sins — Pre dr10 to mark the evil with strange light; +2 defence against them.",
         "Blasphemous Nechrubel Bible — once/day, even: +d4 hp/rest; odd: GM invents d3 hallucinations.",

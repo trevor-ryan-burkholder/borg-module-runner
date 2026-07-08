@@ -137,8 +137,8 @@
           },
           {
             "name": "Steppe Wolfe",
-            "hp": 16,
-            "morale": "—",
+            "hp": 8,
+            "morale": "10",
             "speed": "fast",
             "attack": "Bite, d6",
             "special": "Tough skin −d2. Hunts with a pack of d8 lesser wolves. Outlast it for d4 rounds and the pack might leave you alone — the lanky Steppe Wolfe has long legs but a short patience.",
@@ -147,7 +147,7 @@
           {
             "name": "Tusked Bison",
             "hp": 16,
-            "morale": "10",
+            "morale": "—",
             "speed": "normal",
             "attack": "Tusks, d8",
             "special": "Tough skin −d4. Fighting one means fighting d4 more — the herd does not abandon its own.",
@@ -589,8 +589,8 @@
     },
     {
       "name": "Steppe Wolfe",
-      "hp": 16,
-      "morale": "—",
+      "hp": 8,
+      "morale": "10",
       "speed": "fast",
       "attack": "Bite, d6",
       "special": "Tough skin −d2. Pack of d8 lesser wolves. Outlast d4 rounds and the pack might leave.",
@@ -599,7 +599,7 @@
     {
       "name": "Tusked Bison",
       "hp": 16,
-      "morale": "10",
+      "morale": "—",
       "speed": "normal",
       "attack": "Tusks, d8",
       "special": "Tough skin −d4. Fighting one means fighting d4 more.",

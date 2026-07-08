@@ -204,9 +204,9 @@
         ],
         "enemies": [
           {
-            "name": "Cannon Goblin (×2)",
+            "name": "Cannon Goblin (×3)",
             "hp": 6,
-            "morale": "7",
+            "morale": "8",
             "speed": "normal",
             "attack": "Cannon (see trap), or knife d4 in melee",
             "special": "Quick — attacks and defence DR14. Ropy skin −d2. Goblin Curse on every attack, hit or miss.",
@@ -519,7 +519,7 @@
           {
             "name": "The Bastard",
             "hp": 10,
-            "morale": "—",
+            "morale": "6",
             "speed": "normal",
             "attack": "Knife, d4",
             "special": "Mutant hide −d4. GOBLIN OVERLORD: allied goblins fighting alongside The Bastard are DR16 defence (including himself) and CANNOT be shaken (Morale −) UNLESS he is killed. Relishes chaos and cruelty.",
@@ -536,7 +536,7 @@
           },
           {
             "name": "Goblin Reinforcement (×d4, +1 per scene of PC hesitation earlier)",
-            "hp": 6,
+            "hp": 5,
             "morale": "7",
             "speed": "normal",
             "attack": "Knife or shortbow, d4",
@@ -668,7 +668,7 @@
     {
       "name": "The Bastard",
       "hp": 10,
-      "morale": "—",
+      "morale": "6",
       "speed": "normal",
       "attack": "Knife, d4",
       "special": "Mutant hide −d4. Goblin Overlord: allied goblins (and himself) defence DR16, Morale −, until he dies. Relishes chaos and cruelty. Speaks. Insults.",
@@ -722,11 +722,11 @@
     {
       "name": "Cannon Goblin (Barricade)",
       "hp": 6,
-      "morale": "7",
+      "morale": "8",
       "speed": "normal",
       "attack": "Cannon (d10 to triggering PC, d6 splash within 5ft) or knife d4 melee",
       "special": "Quick — attacks and defence DR14. Ropy skin −d2. Curse on attack. Cannon: ONE shot, full minute to reload (will not get it).",
-      "notes": "Two of them, manning the cannon at the barricade. If the cannon misses, they fistfight each other — PCs get a round of free attacks."
+      "notes": "Three of them, manning the cannon at the barricade. If the cannon misses, they fistfight each other — PCs get a round of free attacks."
     }
   ]
 }

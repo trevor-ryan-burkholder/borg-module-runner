@@ -272,12 +272,12 @@
         "enemies": [
           {
             "name": "Fogbound Skeleton",
-            "hp": 5,
-            "morale": "—",
+            "hp": 7,
+            "morale": "8",
             "speed": "normal",
-            "attack": "Rusty blade or bone fist, +0, d4",
-            "special": "Wrapped in coils of fog — first attack against each Fogbound Skeleton per round must beat DR12 Agility or pass harmlessly through the mist. They speak only by clattering teeth; immune to charm, fear, and language.",
-            "notes": "[CANON CHECK — Fogbound Skeleton has no standalone stat block in the wiki; stats here are reasonable interpolation from Rotted Skeleton (HP 5) and the description in MBC_Graves_left_wanting.pdf, p.9. There are three of them. They become hostile if anyone grabs the Unkey, the strongbox, or attacks first."
+            "attack": "Weapon of condensed fog, d4",
+            "special": "No armor. Shatters if an attack deals 5+ damage, but otherwise damage is reduced to 1. They speak only by clattering teeth; immune to charm, fear, and language.",
+            "notes": "Three of them at the table, arguing soundlessly. They become hostile if anyone grabs the Unkey, the strongbox, or attacks first. Source: MBC Graves Left Wanting p.9."
           }
         ],
         "npcs": [],
@@ -923,12 +923,12 @@
     },
     {
       "name": "Fogbound Skeleton",
-      "hp": 5,
-      "morale": "—",
+      "hp": 7,
+      "morale": "8",
       "speed": "normal",
-      "attack": "Rusty blade or bone fist, d4",
-      "special": "[CANON CHECK] First attack per round against each Fogbound Skeleton must beat DR12 Agility or pass harmlessly through the fog wrapping. Soundless except for tooth-chatter.",
-      "notes": "Three of them at the Colander Room table. Source: Graves Left Wanting p.9 (stat block interpolated)."
+      "attack": "Weapon of condensed fog, d4",
+      "special": "No armor. Shatters if an attack deals 5+ damage, but otherwise damage is reduced to 1. Soundless except for tooth-chatter.",
+      "notes": "Three of them at the Colander Room table. Source: Graves Left Wanting p.9."
     },
     {
       "name": "The Roach Herder",

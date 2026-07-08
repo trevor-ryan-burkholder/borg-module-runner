@@ -5,7 +5,7 @@
     "author": "MBC: The Death Ziggurat",
     "version": "1.0",
     "system": "morkborg",
-    "description": "Find the ziggurat and stop the demon spawn Akünh from breaking free of her Death Realm prison. The Creton Order hires the PCs. The fog whirls down into the sinkhole. Time is shorter than the Calendar of Nechrubel says.",
+    "description": "Find the ziggurat and stop the demon spawn Akünh from breaking free of her Death Realm prison. The Cretun Order hires the PCs. The fog whirls down into the sinkhole. Time is shorter than the Calendar of Nechrubel says.",
     "startNode": "the-depression",
     "license": "Based on official Mörk Borg content. Independent production by Trevor Burkholder, published under the MÖRK BORG Third Party License. MÖRK BORG is © Ockult Örtmästare Games and Stockholm Kartell."
   },
@@ -45,7 +45,7 @@
           "text": "Cliffs 150–300 ft. Climbing without gear: Agility DR12. Falling: d6 per 10 ft. The cold is constant — long exposure (more than an hour without shelter or fire) costs 1 HP/hour, ignored by fur cloaks."
         }
       ],
-      "gm_notes": "This is the campaign hub. Let the players orient themselves. The Creton Order's instruction — 'find the ziggurat, stop the demon, the priests carry keys' — is all the briefing they get. Do not tell them the ziggurat is in another realm. Let them search. The medallion clue should come from a rot-priest body or from Sarku. Sarku is the secret ally — he can appear anywhere in the depression and will not directly attack the party unless attacked. He drops hints in fragments. The cliffs hem the players in: leaving the depression means abandoning the contract. Lots of ruins to explore — use the Walking the Ruins procedural layer. Time pressure is implied but not mechanical — Akünh's army is growing while the party dithers.",
+      "gm_notes": "This is the campaign hub. Let the players orient themselves. The Cretun Order's instruction — 'find the ziggurat, stop the demon, the priests carry keys' — is all the briefing they get. Do not tell them the ziggurat is in another realm. Let them search. The medallion clue should come from a rot-priest body or from Sarku. Sarku is the secret ally — he can appear anywhere in the depression and will not directly attack the party unless attacked. He drops hints in fragments. The cliffs hem the players in: leaving the depression means abandoning the contract. Lots of ruins to explore — use the Walking the Ruins procedural layer. Time pressure is implied but not mechanical — Akünh's army is growing while the party dithers.",
       "exits": [
         {
           "id": "depression-to-cultist-camp",
@@ -480,10 +480,10 @@
       "atmosphere": "Ivy-veiled stone. Inside: silence so total it pushes against the ears. The ceiling is the night sky, painted, and the night sky is moving slowly even though nothing is. The galaxy at the center stares back.",
       "read_aloud": "The chapel is small and squat under its mantle of ivy. The door hangs open. Inside, the air does not move. The ceiling, edge to edge, is painted: a deep black sky, stars in slow spiraling arms, and at the very center a great galaxy with a darker-than-dark hole at its heart. The galaxy seems to turn while you stare. Directly below it, in the stone floor, is a circular depression no wider than your palm. On the side wall, a mural — a robed priest at the door of a temple, gazing out at the same cosmos overhead.",
       "contents": {
-        "description": "Old chapel dedicated to Heedless Creation, the spiraling cosmic force. Ceiling painted with a spiral galaxy that is the same image as the fog-tornado outside. Floor below the painted galaxy holds a circular depression — beneath it, a hidden compartment containing the Spiral Crown (golden, ruby-adorned). A wall mural depicts a priest gazing at the cosmos. Pressing the painted priest's head opens a small compartment behind the mural containing the SPIRAL-PATTERNED METAL DISC. The disc fits the floor depression. Pressing the disc into the depression opens the hidden compartment with the crown. Pressing the depression WITHOUT the disc triggers a lightning bolt from the painted galaxy: 2d4 damage to whoever pressed it.",
+        "description": "Old chapel dedicated to Heedless Creation, the spiraling cosmic force. Ceiling painted with a spiral galaxy that is the same image as the fog-tornado outside. Floor below the painted galaxy holds a circular depression — beneath it, a hidden compartment containing the Spiral Crown (silver, spiked halo, gemstones of all colors in a swirling pattern). A wall mural depicts a priest gazing at the cosmos. Pressing the painted priest's head opens a small compartment behind the mural containing the SPIRAL-PATTERNED METAL DISC. The disc fits the floor depression. Pressing the disc into the depression opens the hidden compartment with the crown. Pressing the depression WITHOUT the disc triggers a lightning bolt from the painted galaxy: 2d4 damage to whoever pressed it.",
         "items": [
           "Spiral-patterned metal disc (in compartment behind mural — press the painted priest's head). Fits the floor depression exactly. The puzzle key.",
-          "The Spiral Crown (golden, ruby-adorned). In the hidden floor compartment, accessible only by pressing the disc into the depression. See Rules for wearing it. This is the ONLY thing that can reverse Akünh's channeling.",
+          "The Spiral Crown (silver, spiked halo, gemstones of all colors in a swirling pattern). In the hidden floor compartment, accessible only by pressing the disc into the depression. See Rules for wearing it. This is the ONLY thing that can reverse Akünh's channeling.",
           "Mural and ceiling — together they constitute a teaching: the cosmos and the channeling are the same shape. A perceptive PC may realize the Spiral Crown is the answer before they wear it."
         ],
         "enemies": [],
@@ -848,7 +848,7 @@
         ],
         "secrets": [
           "Destroying the heart triggers ONE MISERY instantly. Roll on the Calendar of Nechrubel. Tell the players AFTER the strike lands. There is no way to know which Misery — it is random and final.",
-          "The heart can take massive damage. Treat as HP 30 with no armor. The party should be able to finish it in a few rounds of focused attacks IF they aren't all dead from Akünh.",
+          "The heart can take massive damage. [CANON CHECK — source gives no HP value; HP 30 is GM-suggested.] Treat as HP 30 with no armor. The party should be able to finish it in a few rounds of focused attacks IF they aren't all dead from Akünh.",
           "The SPIRAL CROWN, if worn down here, drains Akünh d4 HP per round AND reverses the channeling. Combined with attacking the heart, this is the cleanest win — but the wearer is making the three DR12 Presence tests in the heart-chamber, with Akünh teleporting in to stop them.",
           "Sarku KNEW this was the answer. If the players spoke to him kindly at any point in the depression, he may appear at the threshold of the maw above and shout the truth down: STAB THE HEART. (He cannot enter the Death Realm but his voice carries through the open tunnel.)"
         ]
@@ -856,11 +856,11 @@
       "rules": [
         {
           "title": "Destroying the Heart",
-          "text": "HP 30. No armor (slick footing −d2 to attackers' Agility-based attacks). Cannot dodge. Cannot defend. Once the heart takes ANY damage, Akünh teleports to the chamber and engages on her next turn. When the heart reaches 0 HP, it bursts in a spray of black blood. AKÜNH IS BANISHED INTO THE VOID UNTIL THE END OF DAYS. ALSO: ONE MISERY TAKES PLACE INSTANTLY. Roll on the Calendar of Nechrubel."
+          "text": "[CANON CHECK — the source gives no HP for the heart; HP 30 is GM-suggested.] No armor. Cannot dodge. Cannot defend. Once the heart takes ANY damage, Akünh teleports to the chamber and engages on her next turn. When the heart reaches 0 HP, it bursts in a spray of black blood. AKÜNH IS BANISHED INTO THE VOID UNTIL THE END OF DAYS. ALSO: ONE MISERY TAKES PLACE INSTANTLY. Roll on the Calendar of Nechrubel."
         },
         {
           "title": "Akünh's Action Loop (roll d4 on her turn)",
-          "text": "1 — DEATH SCREAM. All in chamber: Presence DR12 or drawn to arm's-length distance of Akünh (next attack roll automatic for her claws). 2 — CLAWS AND DEVOURING. Two d6 claw attacks; if BOTH hit one target, that target is devoured into the chest-mouth (Strength DR14 or DIE; on success, escape with d8 acid damage). 3 — DARK RAYS d4. Beams from the five eyes; affects up to d6 enemies in range. 4 — TELEPORT. Disappears, reappears anywhere in the chamber, or briefly leaves to the depression and returns next round (GM choice — use to break a kill-zone)."
+          "text": "1 — DEATH SCREAM. All in chamber: Presence DR12 or drawn to arm's-length distance of Akünh (next attack roll automatic for her claws). 2 — CLAWS AND DEVOURING. Two d6 claw attacks; if BOTH hit one target, that target is devoured into the chest-mouth (Strength DR14 to escape or die). 3 — DARK RAYS d4. Beams from the five eyes; affects up to d6 enemies in range. 4 — TELEPORT. Disappears, reappears anywhere in the chamber, or briefly leaves to the depression and returns next round (GM choice — use to break a kill-zone)."
         },
         {
           "title": "Separated Heart",

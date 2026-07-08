@@ -97,8 +97,8 @@
       "source": "MBC Bone Bowyer",
       "hp": "25",
       "morale": "—",
-      "attack": "Tanned flesh −d4",
-      "special": "Delights in hiding and picking off its prey. Roll DR12 to detect the Bowyer to prevent it from getting two free shots.",
+      "attack": "Tanned flesh −d4, Arrow d6 (may attack twice per round). Defence is DR14.",
+      "special": "Delights in hiding and picking off its prey. Roll DR12 to detect the Bowyer to prevent it from getting two free shots (undetected = two free attacks). THE BOWYER'S BOW: Pallid bow of child-bones and dark magic. Will always hit, but not necessarily the intended target — on a miss, the arrow strikes a random creature nearby, repeating until something is hit. Cannot target the Bowyer itself.",
       "lore": "Children oft go missing. Parents would tear the scalps from their skulls if they knew that their child was stolen and harvested by The Bone Bowyer — a horrid, stealthy fey lurking in Sarkash's tangled depths. This tall, etiolated demon fashions bows from the bones of the children that it hunts; it stitches together supple flesh and fashions blood-dyed cloaks; it slays the elderly, the infirm and the innocent. It is altogether alien and indifferent to suffering."
     },
     {
@@ -354,8 +354,8 @@
       "hp": "18",
       "morale": "—",
       "attack": "Clay/stone −d6, Claws d6 or Eye-beam d8",
-      "special": "",
-      "lore": "Lurking around churches, stalking graveyards, creeping closer when you look away. Disturbingly still, difficult to discern against gray stone and hard to recognize even when seen. They move slowly and are easy to hit (dr10)."
+      "special": "Easy to hit (DR10). Terrifying gaze: used on 1–2 on a d6 each round; always hits.",
+      "lore": "Lurking around churches, stalking graveyards, creeping closer when you look away. Disturbingly still, difficult to discern against gray stone and hard to recognize even when seen."
     },
     {
       "id": "grubstoppers",
@@ -431,8 +431,8 @@
       "hp": "11",
       "morale": "—",
       "attack": "Porcelain −d2, Claws/piercing bite d4",
-      "special": "",
-      "lore": "In Tveland, relic thieves, defamers, and corrupt clerks suffer a punishment of exquisite and deeply impractical cruelty. Their children or grandchildren are enclosed in porcelain dolls then placed in cathedral windows, to die slowly of starvation and heat. Despite warding rituals, many return as vengeful undead, often gathering in large throngs to hunt their tormentors. Their mad gaze demands a Presence dr12 test at the start of combat to avoid being frozen with fear for d4 rounds."
+      "special": "Mad gaze: Presence DR12 test at the start of combat or frozen with fear for d4 rounds.",
+      "lore": "In Tveland, relic thieves, defamers, and corrupt clerks suffer a punishment of exquisite and deeply impractical cruelty. Their children or grandchildren are enclosed in porcelain dolls then placed in cathedral windows, to die slowly of starvation and heat. Despite warding rituals, many return as vengeful undead, often gathering in large throngs to hunt their tormentors."
     },
     {
       "id": "lentil-lice",
@@ -741,8 +741,8 @@
       "hp": "8",
       "morale": "—",
       "attack": "Mostly air −d4, Claws d4 or Soul-shattering shriek d6 (every other round) — *ignores armor*.",
-      "special": "",
-      "lore": ""
+      "special": "On encounter, a random PC must pass a Presence DR16 test or the ghost completely disregards their answers and attacks with a shriek. Pass the test and the ghost begins to cry and share the account of its tragic life, horrible death, and the accursed vandals who destroyed its afterlife.",
+      "lore": "Anguished, aggressive apparitions mourning their defaced crypts. They will remain in their tombs demanding that intruders explain themselves. Those who earn their grief earn a story. Those who do not earn a shriek."
     },
     {
       "id": "schleswig-bog-feeder",
@@ -906,7 +906,7 @@
       "descriptor": "cowards who never forget",
       "source": "MÖRK BORG Bare Bones Edition, p.60",
       "hp": "32",
-      "morale": "",
+      "morale": "special",
       "attack": "Thick hide −d2, Fist 2d6",
       "special": "Easy to hit; attacks are dr10.",
       "lore": "Cowards despite their size. Usually retreat if badly wounded. Never forget who hurt them. They grow larger during the healing process and will definitely come back, stronger than before. Any hp healed is added to their maximum hp. Every time they return, add another d6 to their damage."
@@ -1029,8 +1029,8 @@
       "hp": "15",
       "morale": "—",
       "attack": "No armor, Touch d4 + special",
-      "special": "Swift, elusive and difficult to hit (dr14).",
-      "lore": "These soundless phantoms always win initiative. Their touch drains Strength, Presence and Agility by 1 for the duration of the fight."
+      "special": "Swift, elusive and difficult to hit (dr14). Always wins initiative. Touch drains Strength, Presence and Agility by 1 for the duration of the fight.",
+      "lore": "Soundless phantoms that move like silence given weight, felt only when the cold reaches your bones."
     },
     {
       "id": "wyvern",
@@ -1064,6 +1064,17 @@
       "attack": "Barrier (palefire) −d4",
       "special": "When targeted by healing powers, the Übertaker loses rather than recovers HP. Upon destruction, the torn rune-covered robes can be rolled up and used as an Unclean Scroll (BEHOLD THE POWER — d4 creatures' next attacks deal maximum damage).",
       "lore": "\"Rising, floating a few feet above the ground, is the Undertaker's body. The face is gaunt, eyes sunken and filled with mad purple fire. Rune-covered robes swirl around grim feet, the shovel a fiery polearm of doom.\" Upon festering, the Undertaker's body and vengeful mind hosted a being both lesser and greater than human — a servant of a faraway underworld. This creature is concerned with one thing: to bring people back below dirt. The fog of Graven-Tosk swirls around the uncovered grave when it rises; the flies fall away into impossible silence."
+    },
+    {
+      "id": "mikhael-the-merchant",
+      "name": "Mikhael the Merchant",
+      "descriptor": "wretched old undying monger, traded his place among the dead for a grudge that will never die",
+      "source": "MBC — The Merchant",
+      "hp": "6",
+      "morale": "9",
+      "attack": "No armor, Staff d4",
+      "special": "ETERNAL UNLIFE: Should Mikhael die, all his unsold possessions burst into black flames. The earth spits him out in d4 days. Willing to forgive PCs the first time. SOUL PRICING: The cost of every item is a portion of your soul — roll d6: 1. −1 Strength · 2. −1 Presence · 3. −1 Agility · 4. −1 Toughness · 5. −1 Maximum HP · 6. Roll twice. Mikhael will also buy rare, magical, or extremely heretical items for a soul — roll on same table but ADD the result. Roll d6 to see what region's wares he carries today; if with his wagon he also carries basic equipment. Tveland wares (d6): 1. Stone Dagger — d4 dmg, DR12 Str to plunge into living creature; creature turns to stone until dagger is removed. 2. Tongue of a False Prophet — consuming allows Powers at DR6 for one day, but any failure causes arcane catastrophe. 3. Two-headed Silver Ring — twin basilisk-head ring, increases crit and fumble range by 1; may wear multiple. 4. Vial of Goblin Ichor — grows hot near goblins; drop of cursed blood makes it point toward the goblin that cursed you. 5. Wickhead Brain — rubbed emits torchlight; extremely fragile, if broken all nearby test Toughness DR12 or be blinded one round. 6. Galgenbeck Deathmask — stolen from priest's sarcophagus, placed on corpse lets you see how it died; heretical theft if caught. Wästland wares (d6): 1. Pouch of Valley Vapors — replenishes all HP and cures infection, leaves you catatonic d4 hours. 2. Jar of Troll Piss — spilled on ground, no beast will approach; might attract territorial troll. 3. Fine but Gaudy Clothing — pass as nobility or official (Pre DR10); mocked by common folk, bandits always attack. 4. Pilgrim's Compass — needle always points to the most dangerous thing in immediate vicinity. 5. Peasant's Kuksa — wooden cup; any liquid scooped turns to drinking water. 6. Lucky Fishing Spear — thrown into water, guaranteed to strike a living creature; instant kill fish, d6 dmg. Kergüs wares (d6): 1. Vibrant Red Ribbon — wearing drains colour from vision; see heartbeats of living as red pulses, see in total darkness. 2. Vial of Glowing Blue Blood — poison from deep Kergüs; freezes veins solid, target dies in d4 rounds, DR16 Toughness to resist. 3. Gleaming Golden Scalpel — DR8 attack, d4 dmg; may surgically open a vein (impose DR+ penalty to attack; if success add that number to damage). 4. Pleasing Green Cloak — never too cold or hot while worn; very itchy. 5. One-eyed, One-legged, One-winged Gull — needs a ration daily; utterly useless, never leaves; allows reroll of Omens gained when resting. 6. Bright Yellow Flower — give as token of affection; recipient becomes extremely agreeable to next thing you say. Grift wares (d6): 1. Little Poppet — hay-filled doll; unique Power: peer into the mind of one person whose eyes you can see; know their thoughts and next action. 2. Key Retrieved from the Múr — any door opened leads to a 15×15ft stone room, openable only from outside; living creatures die after 24 hours. 3. Chip the Rat — HP 4, Morale — (loves you too much to leave), Bite d2 + infection, DR16 to hit; understands commands, dances for amusement, roll additional d4 HP when resting. 4. Sorrowful Music Box — listeners cannot lie without DR12 Presence test; affected sob uncontrollably. 5. Hangman's Rope — 30ft, fuses permanently to whatever tied to; immune to all force, knots cannot be undone, cannot be severed. 6. Giant's Chisel — d4 dmg; instead of attacking, DR14 Str test to dislodge enemy armor, lowering it one tier.",
+      "lore": "Said to come from a wealthy mercantile bloodline. His family were crucified before his eyes for a heretical crime long forgotten. A foul priestess offered mercy in the name of the Dark Spider, Harbinger of the End. Mikhael was forgiven. And cursed with damned eternal life. The mournful dead spit him out from blackened earth if ever he dies, for he has no place among them. Time spent in the dead earth taught him that souls are just as valuable as silver. He only trades with heretics and outcasts."
     },
     {
       "id": "berwolf",

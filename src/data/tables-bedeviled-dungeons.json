@@ -9,15 +9,15 @@
     "Fort", "Ziggurat", "Den", "Maze", "House", "Waste"
   ],
   "imminent_danger": [
-    "Slowly flooding with oil.",
+    "Is slowly flooding with (d4): 1–2 oil, 3–4 water.",
     "Berserkers are appearing.",
-    "About to collapse.",
+    "Is about to collapse.",
     "Senses are being distorted.",
     "Underworld emissions of poisonous spores.",
     "A hunted cult intends it to be their new hideout.",
     "A terrible, dormant curse about to be unleashed.",
     "Fire is spreading from the deepest chamber.",
-    "The gate will shut and seal for seven days.",
+    "The gate will shut and seal, and not open again until seven days have passed.",
     "A lethal mechanism is about to activate."
   ],
   "inhabitants": [

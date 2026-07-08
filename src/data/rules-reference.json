@@ -7,43 +7,31 @@
         "entries": [
           {
             "term": "Tests",
-            "text": "Roll d20 + ability modifier. Meet or beat the DR. Default DR is 12. Modifiers: Strength, Agility, Presence, Toughness."
+            "text": "Roll d20 ± ability modifier (abilities range from −3 to +3). Result equal to or greater than the DR: success. Creatures don't add any ability — they roll an unmodified d20 against the DR."
           },
           {
             "term": "Difficulty Rating (DR)",
-            "text": "DR6 trivial · DR8 easy · DR10 ordinary · DR12 standard · DR14 demanding · DR16 hard · DR18 punishing · DR20 nightmarish. Adjust by ±2 for situation."
-          },
-          {
-            "term": "Tier of Use",
-            "text": "GM may impose a tier penalty (+DR) when conditions are bad: poor light, injured, in armor doing acrobatics, etc. Stack as needed."
+            "text": "DR6 incredibly simple · DR8 routine · DR10 pretty simple · DR12 normal · DR14 difficult · DR16 really hard · DR18 should not be possible."
           },
           {
             "term": "Omens",
-            "text": "Each PC starts the day with d2 Omens (Scvm classes may differ). Spend 1 Omen to: reroll any roll (yours or another's), reduce incoming damage by d6, or turn a fumble into a regular miss."
-          },
-          {
-            "term": "Pushing Rolls / Powers",
-            "text": "Mörk Borg does not formally 'push' tests — failures stand. For Powers, a failed casting drains additional Power and may trigger misery effects. Use Omens to reroll instead."
-          },
-          {
-            "term": "Critical Success (Test)",
-            "text": "Natural 20 on a test: maximum positive effect, GM's discretion."
-          },
-          {
-            "term": "Fumble (Test)",
-            "text": "Natural 1 on a test: maximum negative effect. The world is hostile. Make it hurt."
-          },
-          {
-            "term": "Saving Throws",
-            "text": "Same as tests. Roll d20 + relevant ability vs DR set by the threat. Toughness vs poison/disease, Agility vs dodging, Presence vs fear/charm, Strength vs grapples/restraint."
-          },
-          {
-            "term": "Resting",
-            "text": "A full meal + uninterrupted sleep restores all HP. No meal: roll Toughness DR12 or gain d4 HP only. Healing Powers and Powders work without rest."
+            "text": "Each PC starts with Omens (amount varies by class; d2 without a class). Spend 1 Omen for one of: deal maximum damage with an attack · reroll a dice roll (yours or someone else's) · lower damage dealt to you by d6 · neutralize a Crit or Fumble · lower one test's DR by −4."
           },
           {
             "term": "Omens at Rest",
-            "text": "Refresh Omens to starting value after a proper rest. Without food, no refresh."
+            "text": "When Omens are depleted, roll the class' designated die (d2 if playing without classes) and regain that many Omens after resting at least six hours."
+          },
+          {
+            "term": "Resting",
+            "text": "Catch your breath: restore d4 HP. A full night's sleep: restore d6 HP. Without food or drink, no HP is restored when resting; after two days a starving PC loses d4 HP per day. An infected character does not benefit from resting — instead, d6 HP is lost daily."
+          },
+          {
+            "term": "Infection",
+            "text": "An infected character does not benefit from resting. Instead, d6 HP is lost daily until the infection is cured."
+          },
+          {
+            "term": "Saving Throws",
+            "text": "Same as tests. Roll d20 ± relevant ability vs DR set by the threat. Toughness vs poison/cold/heat/falling; Agility vs dodging; Presence vs Powers or charm; Strength vs grapples."
           }
         ]
       },
@@ -53,93 +41,43 @@
         "entries": [
           {
             "term": "Initiative",
-            "text": "Each side rolls d6. Higher acts first that round. Roll once per fight, not per round, unless GM decides otherwise."
+            "text": "Roll d6: 1–3 enemies begin, 4–6 player characters begin. Individual initiative within the group: Agility + d6."
           },
           {
             "term": "Attack",
-            "text": "Roll d20 + Strength (melee) or +Presence (ranged). Meet or beat DR12 (or DR set by armor/situation). Hit deals weapon die. Crits double damage and ignore armor."
+            "text": "Melee: roll d20 + Strength vs DR12. Ranged: roll d20 + Presence vs DR12. A hit deals weapon damage. Enemies attack once per round unless noted otherwise. Players roll for both their attacks and defences — creatures and enemies don't roll dice in combat."
           },
           {
-            "term": "Defense",
-            "text": "When attacked, roll d20 + Agility vs DR12. Heavy armor adds DR. Fail: take damage (weapon die − armor die). Defender, not attacker, rolls to avoid."
+            "term": "Defence",
+            "text": "When attacked, roll d20 + Agility vs DR12. Success: avoid the hit. Fail: the enemy hits you and deals weapon damage (minus any armor)."
           },
           {
-            "term": "Critical Hit (Attack)",
-            "text": "Natural 20 on attack: double damage AND ignore armor."
+            "term": "Critical Hit (Natural 20)",
+            "text": "Attack: ×2 damage, armor/protection is also reduced one tier. Defence: PC gains a free attack."
           },
           {
-            "term": "Critical Defense",
-            "text": "Natural 20 on defense: counterattack for weapon damage automatically, no roll required."
-          },
-          {
-            "term": "Fumble (Attack)",
-            "text": "Natural 1 on attack: weapon damaged or broken; roll a Tier check or improvised mishap."
-          },
-          {
-            "term": "Fumble (Defense)",
-            "text": "Natural 1 on defense: attacker deals double damage AND damages your armor by one tier."
+            "term": "Fumble (Natural 1)",
+            "text": "Attack: the weapon breaks or is lost. Defence: PC takes double damage and armor is reduced one tier. When armor is damaged, penalties to Strength and Agility tests are not modified. Armor reduced below 1st tier is ruined and cannot be repaired."
           },
           {
             "term": "Broken",
-            "text": "At 0 HP, a character is Broken. Roll d4 on the Broken table: temporary unconsciousness, mortal wound, severed limb, or instant death. See Death rules."
+            "text": "At 0 HP, a character is Broken. Roll d4 on the Broken table. Negative HP: dead."
           },
           {
             "term": "Broken Table (d4)",
-            "text": "1 — Unconscious d4 rounds; wake at 1 HP. 2 — Bleeding out: dead in 1 hour without help. 3 — Lose a limb / sense (GM choice). Bleeding out, dead in d2 rounds without aid. 4 — Dead. Immediately. No save."
+            "text": "1 — Fall unconscious for d4 rounds, awaken with d4 HP. 2 — Roll a d6: 1–5 = Broken or severed limb, 6 = Lost eye. Can't act for d4 rounds then become active with d4 HP. 3 — Haemorrhage: death in d2 hours unless treated. All tests are DR16 the first hour, DR18 the last hour. 4 — Dead."
           },
           {
             "term": "Death",
-            "text": "Dead means dead. No resurrection without specific Powers or Scrolls. Roll up a new scvm and walk into the next room."
+            "text": "Dead means dead. Negative HP: dead. Roll up a new scvm and walk into the next room."
           },
           {
             "term": "Morale",
-            "text": "When a non-PC takes the first significant loss (half HP, leader killed), roll 2d6. Equal or under Morale: hold. Over: flee, surrender, or break. '−' Morale: never breaks."
+            "text": "Roll Morale (2d6) if: the leader is killed, half the group is eliminated, or a lone enemy has 1/3 HP left. If you roll greater than the creature's Morale value, it is demoralized — roll d6: 1–3 Flees, 4–6 Surrenders. '−' Morale means the creature never checks."
           },
           {
             "term": "Reactions",
-            "text": "First time meeting an NPC, roll 2d6: 2 hostile, 3–5 unfriendly, 6–8 neutral, 9–11 amicable, 12 helpful. Modify by Presence."
-          }
-        ]
-      },
-      {
-        "id": "conditions",
-        "title": "Conditions & Afflictions",
-        "entries": [
-          {
-            "term": "Bleeding",
-            "text": "Lose 1 HP per round until bandaged (DR8 Presence to bandage, no test in safe conditions). Stacks if multiply wounded."
-          },
-          {
-            "term": "Infected",
-            "text": "Wound or bite that fails Toughness test. Lose d6 HP per day; no natural healing until cured (rest at a clean place, Powders, healing Powers, or potion)."
-          },
-          {
-            "term": "Diseased",
-            "text": "Longer-term version of Infected. Test Toughness DR12 daily. Fail: lose d4 HP and a temporary −1 to an ability. Success twice in a row: cured."
-          },
-          {
-            "term": "Frightened",
-            "text": "Disadvantage (effective +DR2) on all actions until end of encounter or until cause is removed. Test Presence vs source to shake it."
-          },
-          {
-            "term": "Cursed",
-            "text": "Permanent penalty assigned by source. Removed only by the curse's specific reversal — usually a quest, a Power, a sacred scroll, or the death of the curser."
-          },
-          {
-            "term": "Drunk / Intoxicated",
-            "text": "+DR2 to Agility and Presence tests; advantage on fear saves. Wears off after a rest. Stronger substances at GM discretion."
-          },
-          {
-            "term": "Blinded",
-            "text": "All attacks at +DR4. Cannot read scrolls or target ranged. Lasts until cured or duration ends."
-          },
-          {
-            "term": "Prone",
-            "text": "Attackers gain advantage in melee, disadvantage at range. Costs an action to stand."
-          },
-          {
-            "term": "Possessed",
-            "text": "Specific to certain entities. Player loses control; GM plays the character until exorcised, killed, or the entity departs. [CANON CHECK — generic condition not strictly RAW; case-by-case in modules.]"
+            "text": "When meeting creatures whose reaction is uncertain, roll 2d6: 2–3 Kill!, 4–6 Angered, 7–8 Indifferent, 9–10 Almost friendly, 11–12 Helpful."
           }
         ]
       },
@@ -149,65 +87,49 @@
         "entries": [
           {
             "term": "Powers (overview)",
-            "text": "Anyone can attempt to cast a Power they have learned. Roll d20 + Presence vs the Power's DR (default DR12). Success: effect. Failure: lose 1 Power for the day AND roll Misuse."
+            "text": "A few so-called Powers are known and they are usually found written in scrolls. When reading a scroll, test Presence DR12. If you succeed, the Power is activated and you subtract one use from your daily total. If you fail, the Power doesn't work, you lose d2 HP and you become dizzy for the next hour. During this time, Powers will always fail in the worst possible way."
           },
           {
             "term": "Power Limit",
-            "text": "Maximum Powers per day equal Presence + 1 (minimum 1, or 0 if Presence is negative — in which case casting is impossible without a scroll)."
+            "text": "A PC can use their Powers a total of Presence + d4 times per day. Roll the total amount every morning and choose from your available scrolls."
           },
           {
             "term": "Armor and Casting",
-            "text": "Cannot cast Powers while wearing any armor heavier than light. Trying anyway auto-fails and may misfire."
+            "text": "Scrolls will never work when wielding Zweihänder (two-handed) weapons or medium/heavy armor."
           },
           {
-            "term": "Unclean Scrolls",
-            "text": "Profane magic. Casting requires no test — the scroll consumes itself and triggers its effect. Misuse on a 1 (d6 after casting): something terrible. Roll on the Calendar / GM table."
+            "term": "Scrolls",
+            "text": "Powers are found written in scrolls. There are Unclean Scrolls (d10 table) and Sacred Scrolls (d10 table). To use a scroll, test Presence DR12. Success: Power activates, subtract one use from daily total. Failure: Power doesn't work, lose d2 HP, dizzy for an hour."
           },
           {
-            "term": "Sacred Scrolls",
-            "text": "Holy magic. Cast same as unclean — consumed in use, no roll. Misuse on 1 in d4: the divine notices you. Unwanted attention."
+            "term": "Power Failure",
+            "text": "A failed Power use: the Power doesn't work, you lose d2 HP, and you become dizzy for the next hour. During this time, Powers will always fail in the worst possible way. A failed casting does not subtract from your daily total (only a successful use does)."
           },
           {
-            "term": "Reading Scrolls",
-            "text": "Reading a scroll aloud is the casting. Cannot be done in armor heavier than light. Cannot be silent. Will be heard."
-          },
-          {
-            "term": "Recovering Powers",
-            "text": "Rest restores Power slots. A failed casting still costs the slot; the magic leaks even without effect."
-          },
-          {
-            "term": "Misuse (Powers)",
-            "text": "On a failed Power test, roll d20 + Presence again. On a fumble or below 6: misfire — GM rolls on the Calendar of Nechrubel or invents a personal disaster. The dying world notices spellcasters."
+            "term": "Critical / Fumble on Powers",
+            "text": "The GM decides the effect on a Crit or Fumble. An optional table of arcane catastrophes (d20) is available for fumbles."
           }
         ]
       },
       {
         "id": "apocalypse",
-        "title": "The Apocalypse",
+        "title": "The Calendar of Nechrubel",
         "entries": [
           {
             "term": "Calendar of Nechrubel",
-            "text": "The world is ending on a schedule. Each in-game day, roll d6: on a 1, a new Misery occurs. Read the next Psalm aloud. Effects accumulate."
+            "text": "The GM rolls a die each dawn. A result of 1 activates one Misery. The die used is determined by the GM and the group — from d2 (end is nigh!) to d100 (years of pain). The GM then rolls d66 to determine which Misery occurs. The same Misery will not befall the world twice."
           },
           {
-            "term": "The Seven Psalms",
-            "text": "Each Psalm contains seven verses. Seventy-two Miseries total. When the final verse is read, the world ends. Run for the door."
+            "term": "When Will It End? (die options)",
+            "text": "Years of pain: d100 · A bleak half-year: d20 · A fall in anguish: d10 · A cruel month: d6 · The end is nigh!: d2."
           },
           {
-            "term": "Current Miseries",
-            "text": "Active Miseries are world-altering. Examples: 'Soil grows warm' (Hungry Zombies rise where the dead rest), 'Two suns burn the sky' (heat, drought), 'Stars fall' (random destruction)."
+            "term": "The Miseries",
+            "text": "There are six Psalms (d66 table) of six verses each, plus the final 7:7. When Miseries accumulate, roll d66 to determine which strikes. The seventh Misery is always 7:7 — the world finally dies, the game ends."
           },
           {
-            "term": "Triggering a Misery",
-            "text": "GM rolls at dawn (or at any narratively appropriate moment). Some modules pin specific verses to story beats — honor those first."
-          },
-          {
-            "term": "Death of the World",
-            "text": "When the final Misery hits, the campaign ends — players who survive earn the right to die last. Roll new scvm if you want more."
-          },
-          {
-            "term": "Omens of the End",
-            "text": "Players may notice Miseries before they trigger. Strange weather, dying livestock, bleeding statues, prophecies in fish guts. The GM should foreshadow."
+            "term": "7:7 — End of the World",
+            "text": "The seventh Misery will always be 7:7. The seventh seal is broken for the seventh and final time. The game and your lives end here. Burn the book."
           }
         ]
       },
@@ -217,35 +139,19 @@
         "entries": [
           {
             "term": "Reading a Stat Block",
-            "text": "HP: hit points. Morale: 2d6 break number ('−' means never breaks). Speed: movement quality, not yards. Armor (−dX): damage die subtracted from incoming. Attack: weapon name, modifier, damage die, special."
+            "text": "HP: hit points. Morale: 2d6 break number ('−' means never breaks). Armor (−dX): damage die subtracted from incoming hits. Attack: weapon name and damage die. Special: one or two abilities that feel genuinely horrible."
           },
           {
             "term": "Morale (Creatures)",
-            "text": "When wounded badly or leader falls, roll 2d6 ≤ Morale to hold. '−' creatures never check Morale — undead, mindless, divine, doomed."
-          },
-          {
-            "term": "Fear Quality",
-            "text": "Some creatures impose a Presence test on first encounter. Fail: Frightened for the fight. Critical fail: flee 1d4 rounds."
-          },
-          {
-            "term": "Speed",
-            "text": "slow / normal / fast. Determines pursuit, fleeing, initiative ties. Not exact yardage — the GM adjudicates."
-          },
-          {
-            "term": "Special Abilities",
-            "text": "One or two bullets per creature. Always resolves before normal damage unless stated. Always horrible."
+            "text": "Roll 2d6: if greater than the creature's Morale score, it is demoralized — roll d6: 1–3 Flees, 4–6 Surrenders. '−' creatures never check Morale."
           },
           {
             "term": "Undead",
-            "text": "No Morale check, no fear, no pain. Slow. Patient. Many carry infection (Toughness vs DRX or sicken). Sunlight does nothing — the sun is dying."
+            "text": "No Morale check ('−'). Many carry infection (Toughness test vs specific DR or sicken)."
           },
           {
-            "term": "Demons / Unclean",
-            "text": "Often require specific reagents (sacred scrolls, blessed weapons, salt) to be permanently destroyed. Banished forms return at the next Misery."
-          },
-          {
-            "term": "Negative Modifiers",
-            "text": "When a creature's ability is negative, the modifier applies to its rolls. Many minor monsters have all-zero abilities — the threat is their attack die, not their finesse."
+            "term": "Special Abilities",
+            "text": "Described per creature. Always resolves as written. Always horrible."
           }
         ]
       },
@@ -255,43 +161,35 @@
         "entries": [
           {
             "term": "Armor Tiers",
-            "text": "Light (-d2): leather, padded. Medium (-d4): chain, scale, brigandine. Heavy (-d6): plate, banded. Subtract die from incoming damage."
-          },
-          {
-            "term": "Armor Penalty",
-            "text": "Medium armor: +DR2 to Agility tests. Heavy armor: +DR4 to Agility tests AND prevents Power casting. Stacks with Tier of Use penalties."
+            "text": "1. Light (fur, padded cloth, leather etc) −d2 damage, 20s. 2. Medium (scale, mail etc) −d4 damage, 100s — DR +2 on Agility tests including defence. 3. Heavy (splint, plate etc) −d6 damage, 200s — DR +4 on Agility tests, defence is DR+2. Shield: −1 HP damage or have the shield break to ignore all damage from one attack. 20s."
           },
           {
             "term": "Armor Damage",
-            "text": "On critical hit against you OR fumbled defense: armor degrades one tier (heavy → medium → light → none). Repair: 30sp + a smith + a day per tier."
+            "text": "On a critical hit (attacker natural 20) or fumbled defence (PC natural 1): armor/protection reduced one tier. Armor reduced below 1st tier is ruined and cannot be repaired."
           },
           {
-            "term": "Weapon Dice",
-            "text": "d2: improvised, fist, dagger. d4: shortsword, club, scimitar, shovel. d6: longsword, mace, crossbow, spear. d8: zweihänder, halberd, longbow. d10: warhammer two-handed. Heavier = slower, two-handed."
+            "term": "Weapons (from character creation d10 table)",
+            "text": "Unarmed: d2 · Femur: d4 · Staff: d4 · Shortsword: d4 · Knife: d4 · Warhammer: d6 · Sword: d6 · Bow: d6 (Presence +10 arrows) · Flail: d8 · Crossbow: d8 (Presence +10 bolts) · Zweihänder: d10."
           },
           {
-            "term": "Two-Handed Weapons",
-            "text": "Require both hands, no shield. d8+ weapons are usually two-handed. Crossbows require a round to reload (or use as club d4)."
+            "term": "Weapons (from shop table)",
+            "text": "Battle axe: d8 · Bow: d6 · Club: d6 · Crossbow: d8 · Flail: d8 · Femur: d4 · Handaxe: d6 · Knife: d4 · Mace: d6 · Shortbow: d4 · Shortsword: d4 · Sling: d4 · Staff: d4 · Sword: d6 · Warhammer: d6 · Whip: d2 · Zweihänder: d10."
           },
           {
             "term": "Shields",
-            "text": "Once per fight, sacrifice the shield to negate any single source of damage entirely. The shield is broken afterward."
+            "text": "Shield reduces incoming damage by 1. Alternatively, you can choose to ignore all damage from one attack but the shield breaks."
           },
           {
             "term": "Encumbrance",
-            "text": "Items in slots = Strength + Toughness + 8. Carrying over the limit: +DR2 to all physical tests. Coins do not count; bulky goods take multiple slots."
+            "text": "You can carry Strength + 8 normal-sized items without a problem. After that, when testing Strength and Agility DR increases by 2 (from 12 to 14 etc.). It is impossible to carry more than twice Strength + 8."
           },
           {
-            "term": "Silver",
-            "text": "Currency. A meal is ~2sp, a night in an inn ~5sp, a horse ~50sp, a sword ~30sp, plate armor ~200sp. There is nowhere left to spend it that matters."
+            "term": "Silver (sample prices)",
+            "text": "Dried food 1s · Torch 2s · Night in hospice 3s · Steady meal 2s · Drink 1s · Shortsword 20s · Sword 30s · Horse 80s · Medium armor 100s · Heavy armor 200s."
           },
           {
-            "term": "Ammunition",
-            "text": "Track arrows/bolts loosely. After a fight, roll d6: on 1, you are out. Or count exactly if your table prefers cruelty over flow."
-          },
-          {
-            "term": "Light Sources",
-            "text": "Torch: 1 hour, lit area equals fighting room. Lamp oil: 4 hours per flask. Without light underground, all rolls +DR2 minimum. Many things in the dark are waiting for you to drop the torch."
+            "term": "Blackpowder Weapons (MBC supplement)",
+            "text": "Expensive, exotic, and very loud. All blackpowder weapons: Presence DR14 to hit · Ignore armor · LOUD (lesser creatures may roll Morale; others will investigate) · Most fire once then need d6+2 rounds to reload (cannot reload with enemy in melee range). Weapons — Pistolet: d6, one-handed, 80s · Culverin: d8, 120s · Arquebus: d10, 180s · Dragon: 2d4, two shots/load, full dmg in melee or 1 die to each of two adjacent targets at range, one-handed, 200s · Basilisk Gun: 2d10, requires two people, 300s · Blunderbuss: 2d6, two shots/load, full dmg in melee or 1 die to each of two adjacent targets at range, 250s · Heavy Arquebus: d12, two inventory slots, 240s · Pepperbox Pistolet: d4, fires 6 times before reload (each chamber reloads separately), one-handed, 160s · Ribauldequin: 6d6, 9 shots/load, attack every target in front then divide damage by total targets or 3 (whichever's higher, round up), d4+3 min to reload, 2 inventory slots, 600s · Cannon: 4d10, requires pack animal or very strong person to move, action to aim + action to fire (two characters may split), deals d8 to anyone directly behind it when fired, d4+1 min to reload, 1000s · Blackpowder Bomb: 3d4, roll another damage die on each result of 1 (repeat), 50s. Ammunition — 10 powdershots 50s · 10 basilisk shots 100s · 4 cannon shots 250s."
           }
         ]
       }

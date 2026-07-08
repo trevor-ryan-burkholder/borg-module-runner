@@ -4,8 +4,8 @@
     "Almost-forgotten dirt track.",
     "Narrow wagon track used by farmers.",
     "Tracks drawn up by wild beasts or savage monsters.",
-    "Once well-maintained trade road, now fallen into disrepair.",
-    "Once well-maintained trade road, now fallen into disrepair.",
+    "Once well maintained trade road, now fallen into disrepair.",
+    "Once well maintained trade road, now fallen into disrepair.",
     "Well-used road.",
     "Well-used road.",
     "Paved road, sporadically patrolled by the King's soldiers."
@@ -23,12 +23,12 @@
     "A monastery stands by the road. Chanting inside — Nechrubel cultists.",
     "Ruins of a castle. Infested with savage crows; a blind alchemist lives in the lone tower.",
     "A religious procession of flagellants and hermits, lost on the way to seeing HIM.",
-    "A funerary procession with a very large coffin. The giant inside is dead but dreaming.",
+    "A funerary procession of toothless villagers, carrying a very large coffin. The giant inside is dead but dreaming.",
     "Filthy farmers on their way to the market.",
-    "1d6+1 slavers, leading 2d6 slaves; half beaten to death.",
+    "1d6+1 slavers, leading 2d6 slaves; half beaten to death, half of them freshly caught.",
     "A few mercenaries and their 1d8 guards — all infected with a brain parasite.",
-    "Battle across the road between flayed cultists and a tribe of Earthbound (Outcasts).",
-    "The troll Adnah (or Arbint) ambushes you.",
+    "Battle across the road between flayed cultists and a tribe of Earthbound.",
+    "The troll Adnah ambushes you.",
     "Abandoned graveyard. Inverted gold cross (50s) in a chapel; d8 zombies in the crypt.",
     "Two dead bodies by the side of the road."
   ],
@@ -44,9 +44,9 @@
     "Deserted; d6 rations can be scavenged from the ruins.",
     "Stricken by plague; any ration is 2-in-6 tainted.",
     "Well-off trading post. Food and water plentiful and cheap.",
-    "Ruled by bandits. Don't show off your wealth.",
+    "Ruled by bandits. Don't show off too much wealth while buying.",
     "Dominated by spider cultists. No trading with outsiders.",
-    "Inhabited by cannibals. No water for sale but plenty of food."
+    "Inhabited by cannibals. No water for sale but a bunch of food."
   ],
   "off_road": [
     "A petrified forest.",
@@ -59,7 +59,7 @@
     "A ruined abbey. Guarded by a Grotesque; an occult artifact hidden in the crypt.",
     "A black mire, sucking and silent.",
     "The silhouette of a Wyvern against the purple evening sky.",
-    "A clock tower, chiming. Heretic witches make unliving troll hybrids in its shadow.",
-    "A vast bog. Ruled by a huge, bloated, tentacular thing that claims to have been royalty."
+    "A clock tower, chiming. Heretic witches create unliving troll hybrids in its shadow.",
+    "A vast bog. Ruled by a huge, bloated, tentacular thing that claims to once have been royalty."
   ]
 }

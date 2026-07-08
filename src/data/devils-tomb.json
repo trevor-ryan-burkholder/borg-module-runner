@@ -26,7 +26,7 @@
         "npcs": [
           {
             "name": "The Madman",
-            "description": "A naked, grey-green graverobber, spore-mad and cringing. Cannot remember his name. Tries to flee any room being entered; bites only when first bitten or cornered. HP 2, Morale —, no armor, bite d2.",
+            "description": "A naked, grey-green graverobber, spore-mad and cringing. Cannot remember his name. Tries to stop anyone from entering the tomb — will first beg, then bite. HP 2, Morale —, no armor, bite d2.",
             "attitude": "neutral",
             "notes": "Terrified of the Angelic Choir — will scream and curl if the corridor is mentioned. Has seen the singing flowers and has no language left for it. He has stopped looking for the way out. A merciful party with magickal healing might restore him — what he was looking for in the tomb is unwritten. [CANON CHECK: name and original purpose left blank in source.]"
           }
@@ -39,8 +39,8 @@
       },
       "rules": [
         {
-          "title": "The Spore-Filled Air (d4, per node entered, GM call on triggers)",
-          "text": "Devil's Tomb is full of the Plant of Life's spores. When a PC enters a new spore-affected room, or when the GM wants to twist the screw, roll d4: 1 — Visions of death (the PC sees themselves dying, vivid and immediate; lose next action). 2 — Vertigo (DR12 Agility or fall prone, drop a held item). 3 — Monochromatic outlining (the world goes black-and-white-with-edges for d6 rounds; no mechanical penalty but unsettling). 4 — Invisibility-of-the-living (all warm-blooded creatures briefly vanish from the PC's sight for d4 rounds — they see only stone, water, and the dead). The Drowned are immune. The Madman is past help."
+          "title": "The Spore-Filled Air (DR12 Toughness, then d4)",
+          "text": "Anyone breathing the spores must pass a DR12 Toughness test or roll d4: 1 — You see visions of death. Whenever a creature near you risks dying, you will see it happen before your eyes, then snap back to reality again. 2 — The world spins. You must use one hand to support yourself against a wall or fall. 3 — Every creature, object and surface is pitch black and outlined with a bright red. 4 — Living creatures are invisible to you. You hear strange voices. Effects last 1 hour. The Drowned are immune. The Madman is past help."
         },
         {
           "title": "The Madman in Combat",
@@ -175,7 +175,7 @@
         "description": "The Drowned's hoard — a mud-covered jumble of coins, cutlery, chains, nails, horseshoes, and miscellaneous bright debris. Buried in it: the stolen Eyes of the Icon of St Largoth, two milky-white stones the size of plums. Finding them in the hoard takes time (see Rules). Looking through them reveals all invisible and hidden things — including the otherwise-hidden passage to the Plant of Life from the Angelic Choir corridor.",
         "items": [
           "The Eyes of the Icon of St Largoth — two milky-white stones, plum-sized. Held up to a PC's own eyes, they reveal all invisible and hidden things in line of sight, including the hidden passage from the Angelic Choir corridor to the Plant of Life chamber. Recovering them is the adventure objective.",
-          "Mud-buried loot — roll d6 per minute of digging (see Rules)."
+          "Mud-buried loot — search yields d4: 1. 20+2d10 silver. 2. Two shortswords. 3. A silver effigy of a three-headed basilisk. 4. A ten-foot copper rod."
         ],
         "enemies": [],
         "npcs": [],
@@ -188,8 +188,8 @@
       },
       "rules": [
         {
-          "title": "Digging the Hoard (per minute, d6)",
-          "text": "Each minute of digging produces: 1 — 3d10 silver coins. 2 — Random tool or utensil (d4 dagger, spoon, ladle, hammer). 3 — Tangle of chain (d3 weight; rope-equivalent). 4 — A single odd item (GM call — child's tooth on wire, wedding ring, glass vial, etc.). 5 — Handful of nails (improvised weapons, caltrops). 6 — A horseshoe — and beneath it, on a roll: the Eyes (if not yet found)."
+          "title": "Searching the Hoard (d4)",
+          "text": "A search of the mud-covered jumble yields d4: 1 — 20+2d10 silver. 2 — Two shortswords. 3 — A silver effigy of a three-headed basilisk. 4 — A ten-foot copper rod. The Eyes of the Icon of St Largoth are also here — looking through them reveals all invisible and hidden things."
         },
         {
           "title": "Finding the Eyes",
@@ -273,18 +273,19 @@
       "contents": {
         "description": "A dry side chamber where three goblins squabble over a magnificent two-handed sword (d10+1). The sword is the only thing in the room worth taking — and the only thing keeping the goblins from immediately attacking the party (they would have to stop fighting each other to do it). A clever party can let them keep killing each other and take the sword from the survivor.",
         "items": [
-          "Two-handed sword, d10+1 — bright, sharp, far too well-made for goblin hands. The goblins killed someone for it; they don't remember who. [CANON CHECK: provenance unwritten. Possibly looted from the cult that originally made the hellhole.]",
-          "Three goblin knives (d4) and one short bow with d6 chipped arrows — on the goblins' bodies after."
+          "Two-handed sword, d10+1 — incredibly sharp. The goblins are violently arguing over it.",
+          "Vines and angel-faced flowers everywhere. Spores fill the air.",
+          "A rickety wooden door leads to a chamber where the goblins shit (no contents of value)."
         ],
         "enemies": [
           {
-            "name": "Goblin (Seth)",
+            "name": "Goblin",
             "hp": 6,
             "morale": "7",
             "speed": "normal",
-            "attack": "Knife or shortbow, d4",
-            "special": "Ropy skin −d2. Quick: attacks and defense at DR14. CURSE: any PC hit OR attacked by a goblin (hit or miss) is cursed — see Goblin Curse rule. Three of them in this chamber.",
-            "notes": "Three present, currently fighting each other over the sword. Will turn on the PCs if attacked or if any PC reaches for the sword. If left alone, they kill each other in d4 rounds and the survivor (whichever has HP left) keeps the sword until the PCs intervene. Source: MÖRK BORG Bare Bones, p.58; Devil's Tomb."
+            "attack": "Knife, d4",
+            "special": "Ropy skin −d2. DR14 to hit and defend against. Three of them in this chamber, violently arguing over the two-handed sword.",
+            "notes": "Three present, currently fighting each other over the sword. Will turn on the PCs if attacked or if any PC reaches for the sword. Source: Devil's Tomb."
           }
         ],
         "npcs": [],
@@ -292,24 +293,20 @@
         "secrets": [
           "If the party simply watches, the goblins kill each other. d4 rounds. The survivor will be wounded (1-3 HP remaining) and exhausted, and will accept the sword if offered, or fight if attacked.",
           "The sword's provenance is unwritten. It is sharp, balanced, and the goblins have already drawn blood on it. There may be a name etched on the cross-guard. [CANON CHECK — GM call on a name.]",
-          "The Goblin Curse: any PC hit OR attacked by a goblin (hit or miss) is cursed. The curse warps the victim into a goblin in d6 days if the goblin who attacked them still lives. Kill the goblin before that, or watch your friend grow ropy."
+          "If the party simply watches, the goblins kill each other in d4 rounds. The survivor (if any) will be wounded and exhausted."
         ]
       },
       "rules": [
         {
-          "title": "The Goblin Curse",
-          "text": "Even being SHOT AT by a goblin sends the curse, carried on their hate — hit or miss, it doesn't matter. The cursed PC's mind is paralyzed: they must succeed at Presence DR12 each morning to act normally that day (failure: confused, halved actions, GM call). If the goblin who attacked them is still alive d6 days after the attack, the PC warps irrevocably into a goblin themselves. Kill the goblin to break the curse."
-        },
-        {
           "title": "Letting Them Squabble",
-          "text": "If the PCs hold position and watch, the goblins kill each other in d4 rounds. Roll: 1 — All three die simultaneously; sword on the floor, free. 2-3 — One survivor at 1d3 HP, holding the sword, immediately attacks anyone who moves. 4 — Two survive, both wounded; they cease fighting each other and turn on the party together."
+          "text": "If the PCs hold position and watch, the goblins kill each other in d4 rounds. The survivor (if any) will be wounded and may turn on the party."
         },
         {
-          "title": "Taking the Sword",
-          "text": "d10+1 damage. Two-handed. Heavy. Whoever wields it gains nothing magickal — only a very good sword. Any PC who killed a goblin to get it has rolled into the Goblin Curse."
+          "title": "The Two-Handed Sword",
+          "text": "d10+1 damage. Incredibly sharp. The goblins are violently arguing over it."
         }
       ],
-      "gm_notes": "This is the only 'side chamber treasure' room in the dungeon, and it's a deliciously bad bargain — a d10+1 sword in exchange for the Goblin Curse. The clever solution (watch them kill each other, then loot the bodies, never attack a goblin yourself) should be rewarded. Note the curse triggers on goblins ATTACKING the PC, not the other way around — a goblin that throws a knife wide still curses you. The goblins have nothing else interesting on them. The passage is a dead-end aside from the way back to the Hall — Devil's Tomb is small, every chamber matters.",
+      "gm_notes": "Three goblins violently arguing over a two-handed sword (d10+1). Vines and angel-faced flowers everywhere. Spores fill the air. A rickety wooden door leads to a chamber where the goblins shit.",
       "exits": [
         {
           "id": "goblins-to-hall",
@@ -320,16 +317,16 @@
         }
       ],
       "visited": false,
-      "tags": ["combat", "treasure", "curse"]
+      "tags": ["combat", "treasure", "spores"]
     },
     {
       "id": "angelic-choir",
       "title": "The Angelic Choir Corridor",
       "type": "location",
-      "atmosphere": "A long stone corridor whose walls are no longer stone. They have grown bulbous flowers with angel faces — too many planes, too many eyes — and the flowers are singing a song that is not music.",
-      "read_aloud": "The corridor's walls are blooming. Bulbous flowers the size of children's heads grow from the stone in clusters and clumps. Each flower has a face — angelic in the wrong way: too many planes, too many eyes, mouths that open in three directions. They are singing. There are no words. The song goes through your chest like cold water. At the far end of the corridor, the passage continues toward the sound of falling water. To one side: blank wall.",
+      "atmosphere": "Stairs covered in vines. The walls have grown bulbous flowers with angel faces and the flowers are singing a haunting, wordless song.",
+      "read_aloud": "Vines cover these stairs. On the walls grow bulbous flowers with angel faces. They sing haunting, wordless songs. Spores float in the air.",
       "contents": {
-        "description": "The corridor leading from the Drowned Hall to the Pit to Hell. Its walls bloom with angel-faced flowers — the angelic children of the Plant of Life — singing a wordless song. The corridor's hidden passage to the Plant of Life chamber opens off this corridor and is INVISIBLE without the Eyes of St Largoth (or Belpheduk's guidance). Anyone walking the corridor must save against the song. Anyone passing through with the Eyes held to their face sees the hidden passage as plainly as a door.",
+        "description": "Stairs covered in vines leading from the Drowned Hall toward the Pit to Hell. The walls bloom with angel-faced flowers — the angelic children of the Plant of Life — singing wordless songs (test Presence DR10 or loudly sing along for a minute). Spores float in the air. The hidden passage to the Plant of Life chamber opens off this area and is INVISIBLE without the Eyes of St Largoth (or Belpheduk's guidance).",
         "items": [
           "Angel-faced flowers along the walls — can be plucked. A plucked flower continues to sing softly for d6 hours, then withers. [CANON CHECK: whether a flower carried out of the tomb keeps singing is the obvious table-question — GM call, probably yes, probably terribly.]"
         ],
@@ -466,7 +463,7 @@
       "atmosphere": "A round chamber so thick with spores that the air itself is colored. At its center: a giant pulsing cactus in every color, taller than a man. Tendrils grow from its top and sway in the spore-thick air. Vines along the floor. The whole room breathes.",
       "read_aloud": "The hidden passage opens onto a round chamber and the air is thick enough to chew. Spores hang in every color — yellow, violet, green, a red that is almost black. At the center, taller than any of you, stands a pulsing cactus in every color of the body's interior, ridged and breathing. Tendrils grow from its crown and sway in the air like blind fingers feeling for warmth. Bulbous angel-faced flowers grow in clusters from its trunk, their mouths open, silent now. The room itself seems to inhale. One of the tendrils turns toward the warm thing nearest the entrance.",
       "contents": {
-        "description": "The hidden chamber holding the Plant of Life — a giant, pulsing, multicolored cactus, the Drowned's god. Tendrils from its crown grab anyone nearby. The Drowned worship it; the angel-faced flowers of the Choir corridor are its 'angelic children.' Spores fill this chamber at the worst concentration in the tomb. Killing it: HP 30, and on death all vines turn to black metal, all angel-faces turn to skulls. The room behind the Plant has collapsed into the Pit to Hell — at the back of the chamber, the floor falls away into the same red-orange glow.",
+        "description": "The hidden chamber holding the Plant of Life — a giant, pulsing, multicolored cactus. Spores and vines fill this room. Tendrils from its crown grab anyone nearby. The back room has collapsed into the pit to Hell. The Icon's Eyes will see an opening leading further in on the other side. Killing it: HP 30, and on death all vines turn to black metal, all angelic faces turn to skulls. Big: impossible to miss.",
         "items": [
           "Tendril sap (collected from a chopped tendril) — sweet, faintly luminous, [CANON CHECK: GM call on effects — perhaps a single-dose vision, or a HP heal, or a slow poison].",
           "After death: a tangle of black metal vines and a halo of small bone skulls where the angel-flowers were. These are objects of dread but no mechanical value. Drowned in the tomb feel the death instantly."
@@ -483,16 +480,9 @@
           }
         ],
         "npcs": [],
-        "traps": [
-          {
-            "name": "Collapsed Floor at the Back",
-            "trigger": "Movement past the Plant to the back of the chamber.",
-            "effect": "The back third of the chamber has collapsed into the Pit to Hell. Movement into that zone: Agility DR14 or fall. Falling: death (same as the Pit).",
-            "dr": "Agility DR14 to navigate the rubble; visible to anyone with a light, but easy to miss in the spore-fog."
-          }
-        ],
+        "traps": [],
         "secrets": [
-          "The Plant's chamber has collapsed at the back into the Pit to Hell — that is why the Drowned can hear the Plant breathing from the Pit chamber, and why the angelic flowers also bloom along the Choir corridor leading there. The Plant is rooted IN Hell.",
+          "The back room has collapsed into the pit to Hell. The Icon's Eyes will see an opening leading further in on the other side of the collapsed area. [CANON CHECK: what lies beyond that opening is unwritten.]",
           "Belpheduk wanted this. If she is with the party when the Plant dies, she weeps black tears, embraces the burning, and either swears loyalty forever or attacks the party — GM Morale roll.",
           "The Drowned in the Hall feel the Plant's death instantly. d4 Drowned will arrive within 10 rounds, in mourning frenzy (Morale ignored, attack at advantage). The Plant's death is the dungeon's loudest event.",
           "After the Plant's death, the angel-faces along the Choir corridor become small bone skulls grown into the wall. The corridor is silent. The hidden passage is now plainly visible — but there is nothing left in the chamber but black metal vines and a corpse-cactus."
@@ -531,14 +521,14 @@
         },
         {
           "id": "plant-to-pit",
-          "label": "Back of chamber (DEADLY) — collapsed floor drops into the Pit to Hell (DR14 Agility or fall to death)",
+          "label": "Back of chamber — collapsed into the pit to Hell; Eyes of St Largoth reveal an opening leading further in on the other side",
           "target": "pit-to-hell",
-          "condition": "DR14 Agility to navigate the rubble without falling",
-          "locked": false
+          "condition": "Icon's Eyes held to face to see the hidden opening",
+          "locked": true
         }
       ],
       "visited": false,
-      "tags": ["climax", "boss", "spores", "trap"]
+      "tags": ["climax", "boss", "spores"]
     }
   ],
   "bestiary": [
@@ -570,13 +560,13 @@
       "notes": "Imprisoned in the Traitor's Den. Will trade Plant-passage knowledge for freedom, food, and the promise to burn the Plant. May ally with the party or turn on them — GM Morale call after the Plant dies. Source: Devil's Tomb (Belpheduk)."
     },
     {
-      "name": "Goblin (Seth)",
+      "name": "Goblin",
       "hp": 6,
       "morale": "7",
       "speed": "normal",
-      "attack": "Knife or shortbow, d4",
-      "special": "Ropy skin −d2. Quick: attacks and defense at DR14. CURSE: any PC HIT OR ATTACKED by a goblin (hit or miss) is cursed. Kill the goblin who attacked you, or warp into a goblin yourself in d6 days.",
-      "notes": "Three present in the Goblin Squabble chamber, fighting over a d10+1 two-handed sword. Will kill each other in d4 rounds if left alone. Source: MÖRK BORG Bare Bones p.58; Devil's Tomb."
+      "attack": "Knife, d4",
+      "special": "Ropy skin −d2. DR14 to hit and defend against.",
+      "notes": "Three present in the Goblin chamber, fighting over a d10+1 two-handed sword. Source: Devil's Tomb."
     },
     {
       "name": "Angelic Choir (hazard)",
