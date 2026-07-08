@@ -11,7 +11,7 @@
           },
           {
             "term": "Difficulty Rating (DR)",
-            "text": "DR6 incredibly simple · DR8 routine · DR10 pretty simple · DR12 normal · DR14 difficult · DR16 really hard · DR18 should not be possible."
+            "text": "DR6 so simple people laugh at you for failing · DR8 routine but some chance of failure · DR10 pretty simple but not simple enough to not roll · DR12 normal · DR14 difficult · DR16 really hard · DR18 should not be possible."
           },
           {
             "term": "Omens",
@@ -31,7 +31,7 @@
           },
           {
             "term": "Saving Throws",
-            "text": "Same as tests. Roll d20 ± relevant ability vs DR set by the threat. Toughness vs poison/cold/heat/falling; Agility vs dodging; Presence vs Powers or charm; Strength vs grapples."
+            "text": "Not a named rule in Mörk Borg — all saves are Tests. Roll d20 ± relevant ability vs DR. Use Toughness to resist poison/cold/heat/falling; Agility to dodge; Presence vs Powers or charm; Strength vs grapples."
           }
         ]
       },
@@ -65,7 +65,7 @@
           },
           {
             "term": "Broken Table (d4)",
-            "text": "1 — Fall unconscious for d4 rounds, awaken with d4 HP. 2 — Roll a d6: 1–5 = Broken or severed limb, 6 = Lost eye. Can't act for d4 rounds then become active with d4 HP. 3 — Haemorrhage: death in d2 hours unless treated. All tests are DR16 the first hour, DR18 the last hour. 4 — Dead."
+            "text": "1 — Fall unconscious for d4 rounds, awaken with d4 HP. 2 — Roll a d6: 1–5 = Broken or severed limb, 6 = Lost eye. Can't act for d4 rounds then become active with d4 HP. 3 — Hemorrhage: death in d2 hours unless treated. All tests are DR16 the first hour, DR18 the last hour. 4 — Dead."
           },
           {
             "term": "Death",
@@ -95,7 +95,7 @@
           },
           {
             "term": "Armor and Casting",
-            "text": "Scrolls will never work when wielding Zweihänder (two-handed) weapons or medium/heavy armor."
+            "text": "Scrolls will never work when wielding two-handed (zweihand) weapons or medium/heavy armor."
           },
           {
             "term": "Scrolls",
@@ -107,7 +107,7 @@
           },
           {
             "term": "Critical / Fumble on Powers",
-            "text": "The GM decides the effect on a Crit or Fumble. An optional table of arcane catastrophes (d20) is available for fumbles."
+            "text": "The GM decides the effect on a Crit or Fumble. An optional d20 table of arcane catastrophes is available for either (p.43)."
           }
         ]
       },
@@ -117,7 +117,7 @@
         "entries": [
           {
             "term": "Calendar of Nechrubel",
-            "text": "The GM rolls a die each dawn. A result of 1 activates one Misery. The die used is determined by the GM and the group — from d2 (end is nigh!) to d100 (years of pain). The GM then rolls d66 to determine which Misery occurs. The same Misery will not befall the world twice."
+            "text": "The GM rolls a die each dawn. A result of 1 activates one Misery. The die used is determined by the GM and the group (see When Will It End? below). The GM then rolls d66 to determine which Misery occurs. The same Misery will not befall the world twice."
           },
           {
             "term": "When Will It End? (die options)",
